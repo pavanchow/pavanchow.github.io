@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pavanchow.github.io/sitemap.xml
+
+# LLM/AI agents: structured manifest at https://pavanchow.github.io/llms.txt (full bodies: /llms-full.txt)

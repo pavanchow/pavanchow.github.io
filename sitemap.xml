@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://pavanchow.github.io/</loc><lastmod>2026-09-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://pavanchow.github.io/papers/ssrf-beyond-http.html</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pavanchow.github.io/papers/trusting-the-filename.html</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pavanchow.github.io/oracle/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/lint-owl/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/unweave/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/cipherlock/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/flint/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/rift/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/metronome/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/honeycomb/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/semaphore/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/timelace/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/trailhead/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/mirage/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/phantom/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/sprite/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/prism/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/synapse/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/reverb/</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>

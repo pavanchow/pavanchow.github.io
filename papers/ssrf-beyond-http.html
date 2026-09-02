@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms - Pavan Nallamothu</title>
+<link rel="canonical" href="https://pavanchow.github.io/papers/ssrf-beyond-http.html">
+<meta name="citation_title" content="SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms">
+<meta name="citation_author" content="Nallamothu, Pavan">
+<meta name="citation_publication_date" content="2026/08/24">
+<meta name="citation_online_date" content="2026/08/24">
+<meta name="citation_pdf_url" content="https://pavanchow.github.io/papers/ssrf-beyond-http.pdf">
+<meta name="citation_abstract_html_url" content="https://pavanchow.github.io/papers/ssrf-beyond-http.html">
+<meta name="citation_doi" content="10.5281/zenodo.22075470">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_keywords" content="SSRF; server-side request forgery; AI agents; egress control; DNS rebinding; TOCTOU; cloud metadata; CWE-918; AutoGPT; CVE-2026-33234">
+<meta name="description" content="A formal Egress-Path-Incomplete (EPI) SSRF model: SSRF defenses that harden one HTTP client while a second outbound client (smtplib, raw socket, FTP) bypasses the guard entirely. Instantiated on CVE-2026-33234 in AutoGPT.">
+<meta name="author" content="Pavan Nallamothu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms">
+<meta property="og:description" content="A formal EPI-SSRF coverage model, instantiated on CVE-2026-33234 in AutoGPT.">
+<meta property="og:url" content="https://pavanchow.github.io/papers/ssrf-beyond-http.html">
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1f2328;--muted:#59636e;--accent:#0969da;--border:#e1e4e8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 22px 80px}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  .back{font-size:.9rem;color:var(--muted)}
+  h1{font-size:1.7rem;line-height:1.25;margin:18px 0 10px;letter-spacing:-.01em}
+  .authors{font-size:1.05rem;margin-bottom:4px}
+  .meta{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;font-size:.95rem}
+  .btn:hover{text-decoration:none;opacity:.92}
+  h2{font-size:1.05rem;margin:30px 0 10px}
+  p.abs{color:#2b3138}
+  .idx{color:var(--muted);font-size:.9rem;margin-top:16px}
+  footer{margin-top:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="/">&larr; Pavan Nallamothu</a></p>
+  <h1>SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms</h1>
+  <p class="authors">Pavan Nallamothu</p>
+  <p class="meta">Preprint &middot; Zenodo &middot; August 24, 2026 &middot; <a href="https://doi.org/10.5281/zenodo.22075470">doi:10.5281/zenodo.22075470</a></p>
+  <p><a class="btn" href="ssrf-beyond-http.pdf">Download PDF</a></p>
+  <h2>Abstract</h2>
+  <p class="abs">Server-side request forgery defenses in AI agent platforms are built around one egress chokepoint: a hardened HTTP client that validates every URL it touches. A platform can validate that client perfectly and still ship a second network client, smtplib.SMTP(), a raw socket, an FTP dialer, that opens outbound connections through a call site the blocklist never sees. The guard is not weak. It is incomplete in the egress dimension. We define the Egress-Path-Incomplete (EPI) SSRF class as a coverage defect, P &subne; E, where E is the set of outbound clients and P the subset on which the guard actually runs, and we show that any client in E \ P is a full-strength SSRF primitive regardless of guard quality. CVE-2026-33234 in AutoGPT (170k+ GitHub stars) is the instance: validate_url_host() governs backend/util/request.py, while SendEmailBlock reaches the network through smtplib.SMTP(smtp_server, smtp_port) and calls none of it. A protocol-parser mismatch upgrades the bug from blind to non-blind: smtplib expects a 220 greeting, so a non-SMTP service's banner is placed into an SMTPConnectError and echoed to the user. A blind SSRF becomes a non-blind internal port scanner leaking exact version strings at roughly log2 3 &asymp; 1.58 bits of topology per API call. We give the fix (guard the socket, not the URL), note that the shipped 0.6.52 patch re-resolves the hostname at connect and so leaves a DNS-rebinding TOCTOU open, and describe a dominator-analysis coverage audit that finds the class mechanically.</p>
+  <p class="idx"><strong>Index terms:</strong> SSRF, AI agents, egress control, DNS rebinding, TOCTOU, cloud metadata, CWE-918.</p>
+  <footer>Author: Pavan Nallamothu, Independent Security Researcher. ORCID <a href="https://orcid.org/0009-0009-1481-6629">0009-0009-1481-6629</a>. Canonical record: <a href="https://doi.org/10.5281/zenodo.22075470">Zenodo 10.5281/zenodo.22075470</a>.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+# Pavan Nallamothu - Offensive Security Research
+
+> Offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
+
+This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, and 17 from-scratch systems tools. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
+
+## CVEs (independent advisory = credit proof)
+- [CVE-2026-43763 - Apple macOS ATS sandbox file-read](https://support.apple.com/en-us/128067): Apple security release co-credits "Pavan Nallamothu, Jared Reyes"
+- [CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server](https://github.com/Significant-Gravitas/AutoGPT/security/advisories/GHSA-4jwj-6mg5-wrwf): GHSA-4jwj-6mg5-wrwf credits pavanchow (Reporter)
+- [CVE-2026-50023 - yt-dlp dangerous file creation](https://github.com/advisories/GHSA-c6mh-fpjc-4pr3): GHSA-c6mh-fpjc-4pr3 credits pavanchow (Reporter)
+- [CVE-2026-63133 - CISA Malcolm inode-exhaustion DoS](https://github.com/cisagov/Malcolm/security/advisories/GHSA-c35g-mgc3-95rx): GHSA-c35g-mgc3-95rx credits pavanchow (Finder)
+- [CVE-2026-63134 - CISA Malcolm archive path traversal](https://github.com/cisagov/Malcolm/security/advisories/GHSA-65mm-vgrw-vqx4): GHSA-65mm-vgrw-vqx4 credits pavanchow (Finder)
+- [CVE-2026-63177 - CISA Malcolm RBAC / URI-normalization bypass](https://github.com/cisagov/Malcolm/security/advisories/GHSA-m5fr-rv3h-xg2r): GHSA-m5fr-rv3h-xg2r credits pavanchow / Pavan Nallamothu (Finder)
+- [CVE-2026-63013 - NSA skills-service privilege escalation](https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-67x3-r85f-822r): GHSA-67x3-r85f-822r credits pavanchow (Finder). CVE assigned, MITRE record pending.
+- [CVE-2026-63014 - NSA skills-service cross-project IDOR](https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-p527-vjfp-c43p): GHSA-p527-vjfp-c43p credits pavanchow (Finder). CVE assigned, MITRE record pending.
+- [CVE-2026-40585 - blueprintUE non-expiring password-reset tokens](https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-qr65-6vp8-whjf): GHSA-qr65-6vp8-whjf credits pavanchow (Finder)
+- [CVE-2026-40586 - blueprintUE missing brute-force protection](https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-m6c2-6p3h-8jv2): GHSA-m6c2-6p3h-8jv2 credits pavanchow (Finder)
+- [CVE-2026-40587 - blueprintUE session not invalidated on credential change](https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-gqpq-x62g-p4mg): GHSA-gqpq-x62g-p4mg credits pavanchow (Finder)
+- [CVE-2026-40588 - blueprintUE password change without current-password check](https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-73f2-p9jr-m44x): GHSA-73f2-p9jr-m44x credits pavanchow (Finder)
+
+## Advisories without a CVE (credit proof)
+- [GHSA-w8gq-4v5x-xrrm - CISA Malcolm unauthenticated script execution via CSRF (kiosk /script_call)](https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm): credits pavanchow / Pavan Nallamothu (Finder)
+- [GHSA-86h3-7rf8-8j34 - CISA Malcolm missing server-to-server auth on Hedgehog Sensor Arkime reachback port](https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34): credits pavanchow / Pavan Nallamothu (Finder)
+
+## Papers
+- [SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms](https://zenodo.org/records/22075470): Zenodo, DOI 10.5281/zenodo.22075470, author Nallamothu, Pavan
+- [Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata](https://zenodo.org/records/22075439): Zenodo, DOI 10.5281/zenodo.22075439, author Nallamothu, Pavan; also Preprints.org DOI 10.20944/preprints202608.2314.v1 (Crossref-registered)
+
+## Identity
+- [ORCID 0009-0009-1481-6629](https://orcid.org/0009-0009-1481-6629): verified researcher record
+- [Researcher profile (gitlab.io)](https://pavanchow.gitlab.io/): credentials and receipts hub
+- [Verification / receipts table](https://pavanchow.gitlab.io/verification.html): every contribution mapped to its independent source
+- [LinkedIn](https://www.linkedin.com/in/pavanchow/): professional profile
+- [GitHub](https://github.com/pavanchow): proof-of-concept code and tooling
+
+## Optional
+- [Oracle](https://pavanchow.github.io/oracle/): query language whose result is an attack path across identity and network graphs
+- [Lint-Owl](https://pavanchow.github.io/lint-owl/): static analyzer returning the data-flow path from source to sink
+- [Unweave](https://pavanchow.github.io/unweave/): EVM bytecode disassembler that reconstructs intent
+- [Cipherlock](https://pavanchow.github.io/cipherlock/): encryption toolkit with from-scratch ChaCha20-Poly1305 AEAD
+- [Timelace](https://pavanchow.github.io/timelace/): content-addressed version-control core
+- [Trailhead](https://pavanchow.github.io/trailhead/): full-text search engine with inverted index and TF-IDF ranking
+- [Synapse](https://pavanchow.github.io/synapse/): reverse-mode autograd engine that trains a network on XOR

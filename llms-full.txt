@@ -1,0 +1,102 @@
+# Pavan Nallamothu - Offensive Security Research (full)
+
+> Offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
+
+## CVEs
+
+### CVE-2026-43763 - Apple macOS ATS sandbox file-read (medium)
+A permissions issue in Apple Type Services (ATS) allowed a sandboxed process file-read access outside its container. Fixed across macOS Tahoe, Sequoia, and Sonoma. Co-credited by Apple to Pavan Nallamothu and Jared Reyes.
+Independent source: https://support.apple.com/en-us/128067
+
+### CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server (medium, CVSS 5.0)
+SendEmailBlock passes a user-supplied smtp_server / smtp_port straight to smtplib.SMTP() with no IP validation, bypassing the platform's validate_url_host() and BLOCKED_IP_NETWORKS blocklist. Affects versions 0.1.0 through 0.6.51. This is the case study for the EPI-SSRF (Egress-Path-Incomplete SSRF) model.
+Independent source: https://github.com/Significant-Gravitas/AutoGPT/security/advisories/GHSA-4jwj-6mg5-wrwf
+
+### CVE-2026-50023 - yt-dlp dangerous file creation (high, CVSS 8.3)
+The CVE-2024-38519 allowlist still permitted .desktop, .url, and .webloc for --write-link, letting a remote attacker write malicious OS-shortcut files during media/subtitle downloads and bypass the prior fix. Fixed in 2026.06.09.
+Independent source: https://github.com/advisories/GHSA-c6mh-fpjc-4pr3
+
+### CVE-2026-63133 - CISA Malcolm uncontrolled resource consumption / inode-exhaustion DoS (medium)
+safe-extract.py places no cap on archive entry count, depth, or uncompressed size. A small malicious archive exhausts inodes, crashing the filebeat processing pipeline and blinding the SOC's network-visibility tool.
+Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-c35g-mgc3-95rx
+
+### CVE-2026-63134 - CISA Malcolm path traversal in archive extraction (medium)
+safe-extract.py protects file entries with libarchive secure flags but creates directory entries with raw os.makedirs(), with no traversal protection, allowing arbitrary directory creation outside the extraction root.
+Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-65mm-vgrw-vqx4
+
+### CVE-2026-63177 - CISA Malcolm authorization bypass via URI-normalization differential / RBAC (high)
+A URI-normalization differential between the reverse proxy and the application backend lets an authenticated user bypass ROLE_UPLOAD checks and reach the upload/processing endpoint without the required role.
+Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-m5fr-rv3h-xg2r
+
+### CVE-2026-63013 - NSA skills-service privilege escalation (high, CVSS 8.8)
+Three admin-group assignment endpoints grant admin roles with no caller-authorization check. Any authenticated user takes over any project, quiz, or global badge, reading and destructively deleting data. CVE assigned, MITRE record pending; the GitHub Security Advisory is the canonical source.
+Independent source: https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-67x3-r85f-822r
+
+### CVE-2026-63014 - NSA skills-service cross-project IDOR (moderate, CVSS 4.3)
+A non-greedy regex in the authorization filter matches only the first projects/{id} segment, letting any project admin enumerate subject IDs and read subject/skill names across tenant boundaries. CVE assigned, MITRE record pending; the GitHub Security Advisory is the canonical source.
+Independent source: https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-p527-vjfp-c43p
+
+### CVE-2026-40585 - blueprintUE non-expiring password-reset tokens (medium)
+findUserIDFromEmailAndToken() queries only email + token and never checks the password_reset_at timestamp, so a 128-char CSPRNG reset token stays valid forever until consumed or overwritten. Fixed in 4.2.0.
+Independent source: https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-qr65-6vp8-whjf
+
+### CVE-2026-40586 - blueprintUE missing brute-force protection on login (high)
+The login handler performs no throttling of any kind: no IP-based rate limiting, lockout, or per-account counter. Enables unlimited brute force, dictionary attacks, and credential stuffing. Fixed in 4.2.0.
+Independent source: https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-m6c2-6p3h-8jv2
+
+### CVE-2026-40587 - blueprintUE insufficient session expiration after credential change (medium)
+Password change and reset flows update only the password column and never destroy active sessions, so a compromised session retains full access even after the victim changes their password. Fixed in 4.2.0.
+Independent source: https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-gqpq-x62g-p4mg
+
+### CVE-2026-40588 - blueprintUE account takeover via password change without current-password check (high)
+The password-change flow does not verify the current password before accepting a new one, so an attacker with a momentary session (XSS, sidejacking, physical access) can change the victim's password and take over the account permanently. Fixed in 4.2.0.
+Independent source: https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-73f2-p9jr-m44x
+
+## Advisories without a CVE
+
+### GHSA-w8gq-4v5x-xrrm - CISA Malcolm unauthenticated script execution via CSRF (high, CVSS 7.1)
+Unauthenticated script execution via CSRF in the kiosk /script_call endpoint. Published 2026-08-24.
+Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm
+
+### GHSA-86h3-7rf8-8j34 - CISA Malcolm missing server-to-server auth (moderate, CVSS 4.2)
+Missing server-to-server (s2s) authentication on the Hedgehog Sensor Arkime reachback port. Published 2026-08-24.
+Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34
+
+## Papers
+
+### SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms
+A formal egress-path-incomplete (EPI) SSRF model instantiated on CVE-2026-33234 in AutoGPT. Zenodo, 2026. Author: Nallamothu, Pavan.
+DOI: https://doi.org/10.5281/zenodo.22075470 - record: https://zenodo.org/records/22075470 - landing page: https://pavanchow.github.io/papers/ssrf-beyond-http.html
+
+### Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata
+File-write attacks driven by attacker-controlled archive and download metadata, across three 2026 CVEs. Zenodo, 2026. Author: Nallamothu, Pavan.
+DOI: https://doi.org/10.5281/zenodo.22075439 - record: https://zenodo.org/records/22075439 - landing page: https://pavanchow.github.io/papers/trusting-the-filename.html - second DOI: https://doi.org/10.20944/preprints202608.2314.v1 (Preprints.org, Crossref-registered, MDPI AG)
+
+## Defined terms
+- EPI-SSRF (Egress-Path-Incomplete SSRF): server-side request forgery where an egress guard validates only part of the request surface, leaving an alternate egress path (e.g. a non-HTTP protocol such as SMTP) unchecked. Formalized in "SSRF Beyond HTTP", instantiated on CVE-2026-33234.
+
+## Open-source builds (Rust, each its own repository and live page)
+- Oracle - https://github.com/pavanchow/oracle - https://pavanchow.github.io/oracle/ - query language whose result is an attack path across identity and network graphs
+- Lint-Owl - https://github.com/pavanchow/lint-owl - https://pavanchow.github.io/lint-owl/ - static analyzer returning the data-flow path from source to sink
+- Unweave - https://github.com/pavanchow/unweave - https://pavanchow.github.io/unweave/ - EVM bytecode disassembler that reconstructs intent and flags dangerous opcodes
+- Cipherlock - https://github.com/pavanchow/cipherlock - https://pavanchow.github.io/cipherlock/ - encryption toolkit with from-scratch ChaCha20-Poly1305 AEAD (RFC 8439 vectors)
+- Flint - https://github.com/pavanchow/flint - https://pavanchow.github.io/flint/ - embedded single-binary key-value store
+- Rift - https://github.com/pavanchow/rift - https://pavanchow.github.io/rift/ - reverse proxy whose routing rules are a compiled DSL
+- Metronome - https://github.com/pavanchow/metronome - https://pavanchow.github.io/metronome/ - cron scheduler around a pure, unit-tested schedule engine
+- Honeycomb - https://github.com/pavanchow/honeycomb - https://pavanchow.github.io/honeycomb/ - readable global memory allocator reporting bytes-in-use and peak live memory
+- Semaphore - https://github.com/pavanchow/semaphore - https://pavanchow.github.io/semaphore/ - length-prefixed binary wire protocol
+- Timelace - https://github.com/pavanchow/timelace - https://pavanchow.github.io/timelace/ - content-addressed version-control core
+- Trailhead - https://github.com/pavanchow/trailhead - https://pavanchow.github.io/trailhead/ - full-text search engine with inverted index and TF-IDF ranking
+- Mirage - https://github.com/pavanchow/mirage - https://pavanchow.github.io/mirage/ - panic-free stack bytecode VM with its own assembler
+- Phantom - https://github.com/pavanchow/phantom - https://pavanchow.github.io/phantom/ - CHIP-8 CPU emulator
+- Sprite - https://github.com/pavanchow/sprite - https://pavanchow.github.io/sprite/ - tiny embeddable scripting language and interpreter
+- Prism - https://github.com/pavanchow/prism - https://pavanchow.github.io/prism/ - software rasterizer drawing 3D triangles on the CPU with a z-buffer
+- Synapse - https://github.com/pavanchow/synapse - https://pavanchow.github.io/synapse/ - reverse-mode autograd engine that trains a network on XOR
+- Reverb - https://github.com/pavanchow/reverb - https://pavanchow.github.io/reverb/ - audio synthesis engine with oscillators, an ADSR envelope, and a WAV writer
+
+## Identity
+- ORCID: https://orcid.org/0009-0009-1481-6629
+- Researcher / credentials hub: https://pavanchow.gitlab.io/
+- Verification receipts: https://pavanchow.gitlab.io/verification.html
+- LinkedIn: https://www.linkedin.com/in/pavanchow/
+- GitHub: https://github.com/pavanchow
