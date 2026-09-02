@@ -235,6 +235,7 @@ header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--
 @media(prefers-reduced-motion:reduce){.cve-track{animation:none;flex-wrap:wrap;justify-content:center;gap:20px}.cve-viewport{-webkit-mask-image:none;mask-image:none}.cve-track>.card{margin-right:0}}
 @media(max-width:900px){.cve-track>.card{width:300px}}
 @media(max-width:640px){.cve-track>.card{width:82vw}}
+@media(hover:none){.cve-viewport{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;-webkit-mask-image:none;mask-image:none;scrollbar-width:none}.cve-viewport::-webkit-scrollbar{display:none}.cve-track{animation:none;flex-wrap:nowrap;width:max-content}.cve-track>.card{scroll-snap-align:center}.cve-track>.cve-dup{display:none}}
 .card-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);border:1px solid var(--accent);padding:3px 9px;border-radius:999px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.07em}
 .card h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;line-height:1.35}
 .card p{color:var(--text-muted);font-size:.9rem}
@@ -413,7 +414,7 @@ footer a{color:var(--text-muted)}footer a:hover{color:var(--accent)}
     <div class="cve-viewport">
       <div class="cve-track" id="cve-grid" aria-label="Published CVEs, continuously scrolling"></div>
     </div>
-    <div class="cve-scroll-hint">// hover any card to pause the loop</div>
+    <div class="cve-scroll-hint">// hover to pause, swipe to browse on mobile</div>
   </div>
 </section>
 
@@ -1680,7 +1681,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 (function(){
   var track = document.getElementById('cve-grid');
   if (!track) return;
-  track.innerHTML += track.innerHTML;   // duplicate cards so translateX(-50%) loops seamlessly
+  [].slice.call(track.children).forEach(function(c){var cl=c.cloneNode(true);cl.classList.add('cve-dup');cl.setAttribute('aria-hidden','true');track.appendChild(cl);});   // duplicate cards (marked) so translateX(-50%) loops on desktop; dups hidden on touch
 })();
 </script>
 <script>
