@@ -13,7 +13,7 @@
 <meta name="citation_online_date" content="2026/08/24">
 <meta name="citation_pdf_url" content="https://pavanchow.github.io/papers/ssrf-beyond-http.pdf">
 <meta name="citation_abstract_html_url" content="https://pavanchow.github.io/papers/ssrf-beyond-http.html">
-<meta name="citation_doi" content="10.5281/zenodo.22075470">
+<meta name="citation_doi" content="10.5281/zenodo.22075469">
 <meta name="citation_publisher" content="Zenodo">
 <meta name="citation_keywords" content="SSRF; server-side request forgery; AI agents; egress control; DNS rebinding; TOCTOU; cloud metadata; CWE-918; AutoGPT; CVE-2026-33234">
 <meta name="description" content="A formal Egress-Path-Incomplete (EPI) SSRF model: SSRF defenses that harden one HTTP client while a second outbound client (smtplib, raw socket, FTP) bypasses the guard entirely. Instantiated on CVE-2026-33234 in AutoGPT.">
@@ -45,12 +45,12 @@
   <p class="back"><a href="/">&larr; Pavan Nallamothu</a></p>
   <h1>SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms</h1>
   <p class="authors">Pavan Nallamothu</p>
-  <p class="meta">Preprint &middot; Zenodo &middot; August 24, 2026 &middot; <a href="https://doi.org/10.5281/zenodo.22075470">doi:10.5281/zenodo.22075470</a></p>
+  <p class="meta">Preprint &middot; Zenodo &middot; August 24, 2026 &middot; <a href="https://doi.org/10.5281/zenodo.22075469">doi:10.5281/zenodo.22075469</a> &middot; <a href="https://doi.org/10.5281/zenodo.22249263">latest version</a></p>
   <p><a class="btn" href="ssrf-beyond-http.pdf">Download PDF</a></p>
   <h2>Abstract</h2>
   <p class="abs">Server-side request forgery defenses in AI agent platforms are built around one egress chokepoint: a hardened HTTP client that validates every URL it touches. A platform can validate that client perfectly and still ship a second network client, smtplib.SMTP(), a raw socket, an FTP dialer, that opens outbound connections through a call site the blocklist never sees. The guard is not weak. It is incomplete in the egress dimension. We define the Egress-Path-Incomplete (EPI) SSRF class as a coverage defect, P &subne; E, where E is the set of outbound clients and P the subset on which the guard actually runs, and we show that any client in E \ P is a full-strength SSRF primitive regardless of guard quality. CVE-2026-33234 in AutoGPT (170k+ GitHub stars) is the instance: validate_url_host() governs backend/util/request.py, while SendEmailBlock reaches the network through smtplib.SMTP(smtp_server, smtp_port) and calls none of it. A protocol-parser mismatch upgrades the bug from blind to non-blind: smtplib expects a 220 greeting, so a non-SMTP service's banner is placed into an SMTPConnectError and echoed to the user. A blind SSRF becomes a non-blind internal port scanner leaking exact version strings at roughly log2 3 &asymp; 1.58 bits of topology per API call. We give the fix (guard the socket, not the URL), note that the shipped 0.6.52 patch re-resolves the hostname at connect and so leaves a DNS-rebinding TOCTOU open, and describe a dominator-analysis coverage audit that finds the class mechanically.</p>
   <p class="idx"><strong>Index terms:</strong> SSRF, AI agents, egress control, DNS rebinding, TOCTOU, cloud metadata, CWE-918.</p>
-  <footer>Author: Pavan Nallamothu, Independent Security Researcher. ORCID <a href="https://orcid.org/0009-0009-1481-6629">0009-0009-1481-6629</a>. Canonical record: <a href="https://doi.org/10.5281/zenodo.22075470">Zenodo 10.5281/zenodo.22075470</a>.</footer>
+  <footer>Author: Pavan Nallamothu, Independent Security Researcher. ORCID <a href="https://orcid.org/0009-0009-1481-6629">0009-0009-1481-6629</a>. Canonical record: <a href="https://doi.org/10.5281/zenodo.22075469">Zenodo 10.5281/zenodo.22075469</a> (all versions), latest version <a href="https://doi.org/10.5281/zenodo.22249263">10.5281/zenodo.22249263</a>.</footer>
 </div>
 </body>
 </html>
