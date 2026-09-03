@@ -1,4 +1,4 @@
-# Pavan Nallamothu - Offensive Security Research
+# Pavan Nallamothu - Offensive Security Tooling and Exploits
 
 > Offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
 
