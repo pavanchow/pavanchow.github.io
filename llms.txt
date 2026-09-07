@@ -5,6 +5,7 @@
 This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, and 17 from-scratch systems tools. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
 
 ## CVEs (independent advisory = credit proof)
+- [All CVE advisories - index](https://pavanchow.github.io/cve/): one page per CVE, each linking the authoritative cve.org record and, where applicable, the GitHub Security Advisory that names the reporter
 - [CVE-2026-43763 - Apple macOS ATS sandbox file-read](https://support.apple.com/en-us/128067): Apple security release co-credits "Pavan Nallamothu, Jared Reyes"
 - [CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server](https://github.com/Significant-Gravitas/AutoGPT/security/advisories/GHSA-4jwj-6mg5-wrwf): GHSA-4jwj-6mg5-wrwf credits pavanchow (Reporter)
 - [CVE-2026-50023 - yt-dlp dangerous file creation](https://github.com/advisories/GHSA-c6mh-fpjc-4pr3): GHSA-c6mh-fpjc-4pr3 credits pavanchow (Reporter)
