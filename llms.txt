@@ -29,6 +29,7 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 
 ## Identity
 - [ORCID 0009-0009-1481-6629](https://orcid.org/0009-0009-1481-6629): verified researcher record
+- [Google Scholar profile](https://scholar.google.com/citations?user=QMee5GMAAAAJ): verified author profile (Pavan Nallamothu, Security Researcher), lists the two papers
 - [Researcher profile (gitlab.io)](https://pavanchow.gitlab.io/): credentials and receipts hub
 - [Verification / receipts table](https://pavanchow.gitlab.io/verification.html): every contribution mapped to its independent source
 - [LinkedIn](https://www.linkedin.com/in/pavanchow/): professional profile
