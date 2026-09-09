@@ -2,7 +2,7 @@
 
 > Offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
 
-This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, and 17 from-scratch systems tools. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
+This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, and 61 from-scratch systems tools. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
 
 ## Coined term
 - [EPI-SSRF (Egress-Path-Incomplete SSRF)](https://pavanchow.github.io/epi-ssrf/): a class of SSRF where the egress guard covers only a subset of outbound clients (coverage defect P subset of E), so an alternate egress path such as SMTP bypasses the guard. Coined by Pavan Nallamothu in the paper SSRF Beyond HTTP (DOI 10.5281/zenodo.22075469), instantiated on CVE-2026-33234 (AutoGPT).
@@ -38,11 +38,78 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 - [LinkedIn](https://www.linkedin.com/in/pavanchow/): professional profile
 - [GitHub](https://github.com/pavanchow): proof-of-concept code and tooling
 
-## Optional
-- [Oracle](https://pavanchow.github.io/oracle/): query language whose result is an attack path across identity and network graphs
+## Open-source systems tools (Rust, each its own live page)
+### Compilers, languages, and runtimes
+- [Alchemist](https://pavanchow.github.io/alchemist/): a compiler that lexes, parses, and lowers a small language to stack bytecode, then runs it on a bundled VM
+- [Anvil](https://pavanchow.github.io/anvil/): a compiler backend that lowers SSA to a target machine with graph-coloring register allocation
+- [Esperanto](https://pavanchow.github.io/esperanto/): a small statically-typed language with type inference
+- [Kindling](https://pavanchow.github.io/kindling/): a dynamically typed language with a bytecode compiler and a stack-based virtual machine
+- [Mirage](https://pavanchow.github.io/mirage/): a small bytecode virtual machine with its own instruction set, assembler, and runner
+- [Sprite](https://pavanchow.github.io/sprite/): a tiny embeddable scripting language with lexer, recursive-descent parser, and tree-walking interpreter
+- [Whetstone](https://pavanchow.github.io/whetstone/): a compiler optimizer with constant folding, propagation, and algebraic simplification
+- [Phantom](https://pavanchow.github.io/phantom/): a CHIP-8 emulator with a fully unit-tested CPU core
+
+### Operating systems and kernels
+- [Aurora](https://pavanchow.github.io/aurora/): an amnesic aarch64 kernel that runs in RAM, encrypts its vault in memory, and wipes secrets on exit
+- [Bedrock](https://pavanchow.github.io/bedrock/): a from-scratch virtual CPU, assembler, and preemptive OS kernel you can boot in the browser
+- [Chronos](https://pavanchow.github.io/chronos/): a CPU scheduler running FIFO, SJF, round-robin, priority, and MLFQ over real processes
+- [Cocoon](https://pavanchow.github.io/cocoon/): a rootless Linux container runtime using namespaces, pivot_root, and dropped capabilities
+- [Conch](https://pavanchow.github.io/conch/): a Unix shell with a hand-written tokenizer, pipeline parser, and process wiring
+- [Emberchip](https://pavanchow.github.io/emberchip/): a deterministic RTOS simulator on an emulated microcontroller with priority inheritance
+- [Honeycomb](https://pavanchow.github.io/honeycomb/): a readable global memory allocator with live stats
+- [Ignition](https://pavanchow.github.io/ignition/): a deterministic boot sequence simulator with an MBR parser, zero dependencies
+- [Nesthost](https://pavanchow.github.io/nesthost/): a deterministic type-1 hypervisor simulator that runs several guest VMs
+- [Pane](https://pavanchow.github.io/pane/): a dependency-free tiling window manager engine
+- [Seedcore](https://pavanchow.github.io/seedcore/): a deterministic microkernel simulator with threads, address spaces, and synchronization
+- [Terrarium](https://pavanchow.github.io/terrarium/): a from-scratch scripting sandbox that runs untrusted code under resource limits
+
+### Security and cryptography
+- [Cipherlock](https://pavanchow.github.io/cipherlock/): encryption toolkit with from-scratch ChaCha20-Poly1305 AEAD (RFC 8439 vectors)
+- [Gatekeeper](https://pavanchow.github.io/gatekeeper/): an auth server with HMAC-SHA256 signed tokens and salted password hashing, no crypto crates
+- [Ironchain](https://pavanchow.github.io/ironchain/): a from-scratch proof-of-work blockchain whose only primitive is SHA-256
 - [Lint-Owl](https://pavanchow.github.io/lint-owl/): static analyzer returning the data-flow path from source to sink
-- [Unweave](https://pavanchow.github.io/unweave/): EVM bytecode disassembler that reconstructs intent
-- [Cipherlock](https://pavanchow.github.io/cipherlock/): encryption toolkit with from-scratch ChaCha20-Poly1305 AEAD
-- [Timelace](https://pavanchow.github.io/timelace/): content-addressed version-control core
+- [Oracle](https://pavanchow.github.io/oracle/): query language whose result is an attack path across identity and network graphs
+- [Unweave](https://pavanchow.github.io/unweave/): EVM bytecode disassembler that reconstructs intent and flags dangerous opcodes
+- [Veilproof](https://pavanchow.github.io/veilproof/): a zero-knowledge proof system with no crypto crates and no elliptic curves
+
+### Networking and web
+- [Datagram](https://pavanchow.github.io/datagram/): a TCP reliable-transport engine over a simulated lossy link
+- [Echofront](https://pavanchow.github.io/echofront/): a layer 7 reverse proxy and load balancer with health checks and circuit breaking
+- [Ferryman](https://pavanchow.github.io/ferryman/): a load balancer with round-robin, weighted, least-connections, and seeded random strategies
+- [Hearth](https://pavanchow.github.io/hearth/): an HTTP server from scratch on std::net, no framework
+- [Kaleidoscope](https://pavanchow.github.io/kaleidoscope/): a browser engine with HTML parser, CSS parser, cascade, block layout, and paint
+- [Lighthouse](https://pavanchow.github.io/lighthouse/): a browser rendering engine that runs HTML and CSS through parse, layout, and paint
+- [Rift](https://pavanchow.github.io/rift/): reverse proxy whose routing rules are a compiled DSL
+- [Riverbed](https://pavanchow.github.io/riverbed/): a message broker with topics, wildcard subscriptions, and bounded per-subscriber queues
+- [Semaphore](https://pavanchow.github.io/semaphore/): length-prefixed framing codec plus a typed request/response protocol over TCP
+- [Tollgate](https://pavanchow.github.io/tollgate/): a from-scratch API gateway where routing, auth, and rate limiting are a pure pipeline
+
+### Data and storage
+- [Archipelago](https://pavanchow.github.io/archipelago/): a distributed file system with quorum writes, self-healing, and content-addressed chunks
+- [Conduit](https://pavanchow.github.io/conduit/): a from-scratch PostgreSQL driver speaking the v3 wire protocol with hand-written SCRAM-SHA-256
+- [Flashvault](https://pavanchow.github.io/flashvault/): an LRU cache with TTL expiry, a capacity bound, and live stats
+- [Flint](https://pavanchow.github.io/flint/): embedded single-binary key-value store, append-only log with in-memory index
+- [Keystone](https://pavanchow.github.io/keystone/): a durable, ordered, embedded key-value store written from scratch
+- [Ledgerstone](https://pavanchow.github.io/ledgerstone/): an embedded relational database with a real SQL subset and a hand-written executor
+- [Strata](https://pavanchow.github.io/strata/): a file system inside one container file: superblock, bitmap allocator, inodes, directories
+- [Timelace](https://pavanchow.github.io/timelace/): content-addressed version-control core with blobs, trees, and commits
 - [Trailhead](https://pavanchow.github.io/trailhead/): full-text search engine with inverted index and TF-IDF ranking
+
+### Graphics, audio, and machine learning
+- [Forge](https://pavanchow.github.io/forge/): a dependency-free 2D game engine with an ECS, a fixed-timestep loop, and impulse-based physics
+- [Loom](https://pavanchow.github.io/loom/): a dependency-free retained-mode GUI layout engine
+- [Newton](https://pavanchow.github.io/newton/): a 2D physics engine with semi-implicit Euler, circle collision, and impulse resolution
+- [Prism](https://pavanchow.github.io/prism/): a software rasterizer that draws 3D triangles on the CPU with a z-buffer, no GPU
+- [Reverb](https://pavanchow.github.io/reverb/): audio synthesis engine with oscillators, an ADSR envelope, and a WAV writer
 - [Synapse](https://pavanchow.github.io/synapse/): reverse-mode autograd engine that trains a network on XOR
+
+### Developer tools
+- [Atelier](https://pavanchow.github.io/atelier/): a dependency-free code-intelligence engine with go to definition, find references, diagnostics, and rename
+- [Bloodhound](https://pavanchow.github.io/bloodhound/): a portable time-travel debugger that steps backward through a running program
+- [Metronome](https://pavanchow.github.io/metronome/): cron scheduler around a pure, unit-tested schedule engine
+- [Quartermaster](https://pavanchow.github.io/quartermaster/): a from-scratch package manager with a PubGrub dependency resolver that explains conflicts
+- [Quill](https://pavanchow.github.io/quill/): a dependency-free editable text buffer backed by a piece table
+- [Quorum](https://pavanchow.github.io/quorum/): a deterministic Raft consensus simulator with leader election and log replication
+- [Relay](https://pavanchow.github.io/relay/): a from-scratch CI/CD engine whose scheduler is a pure, deterministic DAG executor
+- [Shepherd](https://pavanchow.github.io/shepherd/): a Kubernetes-style reconciliation control loop that schedules pods onto nodes
+- [Stopwatch](https://pavanchow.github.io/stopwatch/): a profiler with a call tree of self time and total time

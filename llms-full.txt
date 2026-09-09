@@ -75,24 +75,82 @@ DOI: https://doi.org/10.5281/zenodo.22075439 - record: https://zenodo.org/record
 ## Defined terms
 - EPI-SSRF (Egress-Path-Incomplete SSRF): server-side request forgery where an egress guard validates only part of the request surface, leaving an alternate egress path (e.g. a non-HTTP protocol such as SMTP) unchecked. Formalized in "SSRF Beyond HTTP", instantiated on CVE-2026-33234.
 
-## Open-source builds (Rust, each its own repository and live page)
-- Oracle - https://github.com/pavanchow/oracle - https://pavanchow.github.io/oracle/ - query language whose result is an attack path across identity and network graphs
-- Lint-Owl - https://github.com/pavanchow/lint-owl - https://pavanchow.github.io/lint-owl/ - static analyzer returning the data-flow path from source to sink
-- Unweave - https://github.com/pavanchow/unweave - https://pavanchow.github.io/unweave/ - EVM bytecode disassembler that reconstructs intent and flags dangerous opcodes
+## Open-source builds (Rust, each its own repository and live page) - 61 from-scratch systems tools
+
+### Compilers, languages, and runtimes
+- Alchemist - https://github.com/pavanchow/alchemist - https://pavanchow.github.io/alchemist/ - a compiler that lexes, parses, and lowers a small language to stack bytecode, then runs it on a bundled VM
+- Anvil - https://github.com/pavanchow/anvil - https://pavanchow.github.io/anvil/ - a compiler backend that lowers SSA to a target machine with graph-coloring register allocation
+- Esperanto - https://github.com/pavanchow/esperanto - https://pavanchow.github.io/esperanto/ - a small statically-typed language with type inference
+- Kindling - https://github.com/pavanchow/kindling - https://pavanchow.github.io/kindling/ - a dynamically typed language with a bytecode compiler and a stack-based virtual machine
+- Mirage - https://github.com/pavanchow/mirage - https://pavanchow.github.io/mirage/ - a small bytecode virtual machine with its own instruction set, assembler, and runner
+- Sprite - https://github.com/pavanchow/sprite - https://pavanchow.github.io/sprite/ - a tiny embeddable scripting language with lexer, recursive-descent parser, and tree-walking interpreter
+- Whetstone - https://github.com/pavanchow/whetstone - https://pavanchow.github.io/whetstone/ - a compiler optimizer with constant folding, propagation, and algebraic simplification
+- Phantom - https://github.com/pavanchow/phantom - https://pavanchow.github.io/phantom/ - a CHIP-8 emulator with a fully unit-tested CPU core
+
+### Operating systems and kernels
+- Aurora - https://github.com/pavanchow/aurora - https://pavanchow.github.io/aurora/ - an amnesic aarch64 kernel that runs in RAM, encrypts its vault in memory, and wipes secrets on exit
+- Bedrock - https://github.com/pavanchow/bedrock - https://pavanchow.github.io/bedrock/ - a from-scratch virtual CPU, assembler, and preemptive OS kernel you can boot in the browser
+- Chronos - https://github.com/pavanchow/chronos - https://pavanchow.github.io/chronos/ - a CPU scheduler running FIFO, SJF, round-robin, priority, and MLFQ over real processes
+- Cocoon - https://github.com/pavanchow/cocoon - https://pavanchow.github.io/cocoon/ - a rootless Linux container runtime using namespaces, pivot_root, and dropped capabilities
+- Conch - https://github.com/pavanchow/conch - https://pavanchow.github.io/conch/ - a Unix shell with a hand-written tokenizer, pipeline parser, and process wiring
+- Emberchip - https://github.com/pavanchow/emberchip - https://pavanchow.github.io/emberchip/ - a deterministic RTOS simulator on an emulated microcontroller with priority inheritance
+- Honeycomb - https://github.com/pavanchow/honeycomb - https://pavanchow.github.io/honeycomb/ - a readable global memory allocator with live stats
+- Ignition - https://github.com/pavanchow/ignition - https://pavanchow.github.io/ignition/ - a deterministic boot sequence simulator with an MBR parser, zero dependencies
+- Nesthost - https://github.com/pavanchow/nesthost - https://pavanchow.github.io/nesthost/ - a deterministic type-1 hypervisor simulator that runs several guest VMs
+- Pane - https://github.com/pavanchow/pane - https://pavanchow.github.io/pane/ - a dependency-free tiling window manager engine
+- Seedcore - https://github.com/pavanchow/seedcore - https://pavanchow.github.io/seedcore/ - a deterministic microkernel simulator with threads, address spaces, and synchronization
+- Terrarium - https://github.com/pavanchow/terrarium - https://pavanchow.github.io/terrarium/ - a from-scratch scripting sandbox that runs untrusted code under resource limits
+
+### Security and cryptography
 - Cipherlock - https://github.com/pavanchow/cipherlock - https://pavanchow.github.io/cipherlock/ - encryption toolkit with from-scratch ChaCha20-Poly1305 AEAD (RFC 8439 vectors)
-- Flint - https://github.com/pavanchow/flint - https://pavanchow.github.io/flint/ - embedded single-binary key-value store
+- Gatekeeper - https://github.com/pavanchow/gatekeeper - https://pavanchow.github.io/gatekeeper/ - an auth server with HMAC-SHA256 signed tokens and salted password hashing, no crypto crates
+- Ironchain - https://github.com/pavanchow/ironchain - https://pavanchow.github.io/ironchain/ - a from-scratch proof-of-work blockchain whose only primitive is SHA-256
+- Lint-Owl - https://github.com/pavanchow/lint-owl - https://pavanchow.github.io/lint-owl/ - static analyzer returning the data-flow path from source to sink
+- Oracle - https://github.com/pavanchow/oracle - https://pavanchow.github.io/oracle/ - query language whose result is an attack path across identity and network graphs
+- Unweave - https://github.com/pavanchow/unweave - https://pavanchow.github.io/unweave/ - EVM bytecode disassembler that reconstructs intent and flags dangerous opcodes
+- Veilproof - https://github.com/pavanchow/veilproof - https://pavanchow.github.io/veilproof/ - a zero-knowledge proof system with no crypto crates and no elliptic curves
+
+### Networking and web
+- Datagram - https://github.com/pavanchow/datagram - https://pavanchow.github.io/datagram/ - a TCP reliable-transport engine over a simulated lossy link
+- Echofront - https://github.com/pavanchow/echofront - https://pavanchow.github.io/echofront/ - a layer 7 reverse proxy and load balancer with health checks and circuit breaking
+- Ferryman - https://github.com/pavanchow/ferryman - https://pavanchow.github.io/ferryman/ - a load balancer with round-robin, weighted, least-connections, and seeded random strategies
+- Hearth - https://github.com/pavanchow/hearth - https://pavanchow.github.io/hearth/ - an HTTP server from scratch on std::net, no framework
+- Kaleidoscope - https://github.com/pavanchow/kaleidoscope - https://pavanchow.github.io/kaleidoscope/ - a browser engine with HTML parser, CSS parser, cascade, block layout, and paint
+- Lighthouse - https://github.com/pavanchow/lighthouse - https://pavanchow.github.io/lighthouse/ - a browser rendering engine that runs HTML and CSS through parse, layout, and paint
 - Rift - https://github.com/pavanchow/rift - https://pavanchow.github.io/rift/ - reverse proxy whose routing rules are a compiled DSL
-- Metronome - https://github.com/pavanchow/metronome - https://pavanchow.github.io/metronome/ - cron scheduler around a pure, unit-tested schedule engine
-- Honeycomb - https://github.com/pavanchow/honeycomb - https://pavanchow.github.io/honeycomb/ - readable global memory allocator reporting bytes-in-use and peak live memory
-- Semaphore - https://github.com/pavanchow/semaphore - https://pavanchow.github.io/semaphore/ - length-prefixed binary wire protocol
-- Timelace - https://github.com/pavanchow/timelace - https://pavanchow.github.io/timelace/ - content-addressed version-control core
+- Riverbed - https://github.com/pavanchow/riverbed - https://pavanchow.github.io/riverbed/ - a message broker with topics, wildcard subscriptions, and bounded per-subscriber queues
+- Semaphore - https://github.com/pavanchow/semaphore - https://pavanchow.github.io/semaphore/ - length-prefixed framing codec plus a typed request/response protocol over TCP
+- Tollgate - https://github.com/pavanchow/tollgate - https://pavanchow.github.io/tollgate/ - a from-scratch API gateway where routing, auth, and rate limiting are a pure pipeline
+
+### Data and storage
+- Archipelago - https://github.com/pavanchow/archipelago - https://pavanchow.github.io/archipelago/ - a distributed file system with quorum writes, self-healing, and content-addressed chunks
+- Conduit - https://github.com/pavanchow/conduit - https://pavanchow.github.io/conduit/ - a from-scratch PostgreSQL driver speaking the v3 wire protocol with hand-written SCRAM-SHA-256
+- Flashvault - https://github.com/pavanchow/flashvault - https://pavanchow.github.io/flashvault/ - an LRU cache with TTL expiry, a capacity bound, and live stats
+- Flint - https://github.com/pavanchow/flint - https://pavanchow.github.io/flint/ - embedded single-binary key-value store, append-only log with in-memory index
+- Keystone - https://github.com/pavanchow/keystone - https://pavanchow.github.io/keystone/ - a durable, ordered, embedded key-value store written from scratch
+- Ledgerstone - https://github.com/pavanchow/ledgerstone - https://pavanchow.github.io/ledgerstone/ - an embedded relational database with a real SQL subset and a hand-written executor
+- Strata - https://github.com/pavanchow/strata - https://pavanchow.github.io/strata/ - a file system inside one container file: superblock, bitmap allocator, inodes, directories
+- Timelace - https://github.com/pavanchow/timelace - https://pavanchow.github.io/timelace/ - content-addressed version-control core with blobs, trees, and commits
 - Trailhead - https://github.com/pavanchow/trailhead - https://pavanchow.github.io/trailhead/ - full-text search engine with inverted index and TF-IDF ranking
-- Mirage - https://github.com/pavanchow/mirage - https://pavanchow.github.io/mirage/ - panic-free stack bytecode VM with its own assembler
-- Phantom - https://github.com/pavanchow/phantom - https://pavanchow.github.io/phantom/ - CHIP-8 CPU emulator
-- Sprite - https://github.com/pavanchow/sprite - https://pavanchow.github.io/sprite/ - tiny embeddable scripting language and interpreter
-- Prism - https://github.com/pavanchow/prism - https://pavanchow.github.io/prism/ - software rasterizer drawing 3D triangles on the CPU with a z-buffer
-- Synapse - https://github.com/pavanchow/synapse - https://pavanchow.github.io/synapse/ - reverse-mode autograd engine that trains a network on XOR
+
+### Graphics, audio, and machine learning
+- Forge - https://github.com/pavanchow/forge - https://pavanchow.github.io/forge/ - a dependency-free 2D game engine with an ECS, a fixed-timestep loop, and impulse-based physics
+- Loom - https://github.com/pavanchow/loom - https://pavanchow.github.io/loom/ - a dependency-free retained-mode GUI layout engine
+- Newton - https://github.com/pavanchow/newton - https://pavanchow.github.io/newton/ - a 2D physics engine with semi-implicit Euler, circle collision, and impulse resolution
+- Prism - https://github.com/pavanchow/prism - https://pavanchow.github.io/prism/ - a software rasterizer that draws 3D triangles on the CPU with a z-buffer, no GPU
 - Reverb - https://github.com/pavanchow/reverb - https://pavanchow.github.io/reverb/ - audio synthesis engine with oscillators, an ADSR envelope, and a WAV writer
+- Synapse - https://github.com/pavanchow/synapse - https://pavanchow.github.io/synapse/ - reverse-mode autograd engine that trains a network on XOR
+
+### Developer tools
+- Atelier - https://github.com/pavanchow/atelier - https://pavanchow.github.io/atelier/ - a dependency-free code-intelligence engine with go to definition, find references, diagnostics, and rename
+- Bloodhound - https://github.com/pavanchow/bloodhound - https://pavanchow.github.io/bloodhound/ - a portable time-travel debugger that steps backward through a running program
+- Metronome - https://github.com/pavanchow/metronome - https://pavanchow.github.io/metronome/ - cron scheduler around a pure, unit-tested schedule engine
+- Quartermaster - https://github.com/pavanchow/quartermaster - https://pavanchow.github.io/quartermaster/ - a from-scratch package manager with a PubGrub dependency resolver that explains conflicts
+- Quill - https://github.com/pavanchow/quill - https://pavanchow.github.io/quill/ - a dependency-free editable text buffer backed by a piece table
+- Quorum - https://github.com/pavanchow/quorum - https://pavanchow.github.io/quorum/ - a deterministic Raft consensus simulator with leader election and log replication
+- Relay - https://github.com/pavanchow/relay - https://pavanchow.github.io/relay/ - a from-scratch CI/CD engine whose scheduler is a pure, deterministic DAG executor
+- Shepherd - https://github.com/pavanchow/shepherd - https://pavanchow.github.io/shepherd/ - a Kubernetes-style reconciliation control loop that schedules pods onto nodes
+- Stopwatch - https://github.com/pavanchow/stopwatch - https://pavanchow.github.io/stopwatch/ - a profiler with a call tree of self time and total time
 
 ## Identity
 - ORCID: https://orcid.org/0009-0009-1481-6629
