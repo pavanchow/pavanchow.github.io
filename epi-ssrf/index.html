@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EPI-SSRF (Egress-Path-Incomplete SSRF): definition, and how it differs from classic SSRF</title>
+<link rel="canonical" href="https://pavanchow.github.io/epi-ssrf/">
+<link rel="icon" type="image/svg+xml" href="/img/icon/favicon.svg">
+<link rel="apple-touch-icon" href="/img/icon/apple-touch-icon.png">
+<meta name="description" content="EPI-SSRF (Egress-Path-Incomplete SSRF) is a class of server-side request forgery in which the egress guard covers only a subset of an application's outbound clients, leaving an alternate egress path unchecked. Coined by security researcher Pavan Nallamothu.">
+<meta name="author" content="Pavan Nallamothu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EPI-SSRF (Egress-Path-Incomplete SSRF)">
+<meta property="og:description" content="A class of SSRF where the egress guard covers only part of the outbound surface. Definition, formal model, example CVE, and how it differs from classic SSRF.">
+<meta property="og:url" content="https://pavanchow.github.io/epi-ssrf/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "@id": "https://pavanchow.github.io/epi-ssrf/#epi-ssrf",
+  "name": "EPI-SSRF (Egress-Path-Incomplete SSRF)",
+  "alternateName": ["EPI-SSRF", "Egress-Path-Incomplete SSRF", "Egress-Path-Incomplete Guards"],
+  "termCode": "EPI-SSRF",
+  "description": "A class of server-side request forgery in which an egress guard validates only a subset of the application's outbound clients. Formally a coverage defect P ⊊ E, where E is the set of outbound egress clients and P the subset the guard covers, so an attacker reaches an unguarded egress path (for example a non-HTTP protocol such as SMTP) that bypasses the guard applied to the covered paths.",
+  "url": "https://pavanchow.github.io/epi-ssrf/",
+  "inDefinedTermSet": "https://doi.org/10.5281/zenodo.22075469",
+  "sameAs": "https://doi.org/10.5281/zenodo.22075469",
+  "creator": { "@type": "Person", "name": "Pavan Nallamothu", "url": "https://pavanchow.github.io/", "sameAs": "https://orcid.org/0009-0009-1481-6629" }
+}
+</script>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1f2328;--muted:#59636e;--accent:#0969da;--border:#e1e4e8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 22px 80px}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  .back{font-size:.9rem;color:var(--muted)}
+  h1{font-size:1.8rem;line-height:1.2;margin:16px 0 12px;letter-spacing:-.01em}
+  h2{font-size:1.15rem;margin:30px 0 8px}
+  h3{font-size:1rem;margin:18px 0 4px}
+  .lead{font-size:1.08rem;color:#2b3138;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:16px 18px;margin:6px 0 8px}
+  p{margin:8px 0}
+  .muted{color:var(--muted);font-size:.92rem}
+  svg{max-width:100%;height:auto;margin:14px 0}
+  .fig{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin:14px 0}
+  code{font-family:"SF Mono",Menlo,monospace;background:#eef1f4;padding:1px 5px;border-radius:4px;font-size:.92em}
+  footer{margin-top:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="/">&larr; Pavan Nallamothu</a></p>
+  <h1>EPI-SSRF (Egress-Path-Incomplete SSRF)</h1>
+  <p class="muted">Term coined by <a href="/">Pavan Nallamothu</a>, independent security researcher. Defined in the paper <a href="/papers/ssrf-beyond-http.html">SSRF Beyond HTTP</a>. Updated September 2026.</p>
+
+  <p class="lead"><strong>EPI-SSRF (Egress-Path-Incomplete SSRF)</strong> is a class of server-side request forgery in which the egress guard validates only a subset of the application's outbound clients. Formally it is a coverage defect <code>P &sub; E</code>, where <code>E</code> is the set of outbound egress clients and <code>P</code> is the subset the guard actually covers. The attacker does not defeat the guard, they reach an egress path outside it, for example a non-HTTP protocol such as SMTP, that was never guarded at all.</p>
+
+  <h2>How EPI-SSRF differs from classic SSRF</h2>
+  <p>Classic SSRF is about tricking a guarded request into hitting an unintended destination, usually by manipulating a URL the server fetches over HTTP. The defense is an egress guard: a blocklist or allowlist on outbound requests. EPI-SSRF is about the guard's <em>coverage</em>, not its logic. The HTTP client may be perfectly guarded, and the vulnerability lives in a second, unguarded egress path (a mailer, a webhook, a raw socket) that shares no code with the guarded one. You can pass every test against the HTTP layer and still be exposed, because the check protects <code>P</code> and the attack uses <code>E \ P</code>.</p>
+
+  <div class="fig">
+  <svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="E is the set of all egress clients; P the guarded subset; the attacker uses a path in E minus P">
+    <ellipse cx="280" cy="95" rx="250" ry="80" fill="#eef1f4" stroke="#59636e"/>
+    <text x="500" y="40" font-size="13" fill="#59636e" text-anchor="end">E: all egress clients</text>
+    <ellipse cx="205" cy="95" rx="120" ry="55" fill="#dff1e1" stroke="#1a7f37"/>
+    <text x="205" y="99" font-size="13" fill="#1a7f37" text-anchor="middle">P: guarded (HTTP)</text>
+    <circle cx="415" cy="95" r="9" fill="#cf222e"/>
+    <text x="415" y="128" font-size="12" fill="#cf222e" text-anchor="middle">SMTP / raw socket</text>
+    <text x="415" y="144" font-size="12" fill="#cf222e" text-anchor="middle">(in E, not in P)</text>
+  </svg>
+  </div>
+
+  <h2>A concrete example: CVE-2026-33234 (AutoGPT)</h2>
+  <p>AutoGPT enforced SSRF protection on its HTTP layer with an IP blocklist. Its <code>SendEmailBlock</code> opened raw SMTP sockets through a user-controlled mail server, an egress path the HTTP blocklist never touched. A prompt could make the agent connect outbound to an internal service over SMTP, bypassing the guard entirely. The HTTP egress was <code>P</code>, the SMTP path was in <code>E \ P</code>. That is EPI-SSRF. It was assigned <a href="/cve/CVE-2026-33234.html">CVE-2026-33234</a>.</p>
+
+  <h2>Why it matters for AI agent platforms</h2>
+  <p>Agent frameworks multiply egress paths: they browse, call tools, send mail, hit webhooks, and open sockets, often adding new outbound clients faster than anyone re-audits the guard. Each new client that is not brought under the existing egress policy is a fresh <code>E \ P</code> gap. EPI-SSRF names that failure mode so it can be tested for directly: enumerate every outbound client, then check the egress guard covers all of them, not just the HTTP one.</p>
+
+  <h2>FAQ</h2>
+  <h3>Is EPI-SSRF the same as SSRF?</h3>
+  <p>It is a subclass. All EPI-SSRF is SSRF, but the root cause is guard coverage (<code>P &sub; E</code>), not a bypass of the guard's matching logic.</p>
+  <h3>How do you test for EPI-SSRF?</h3>
+  <p>Enumerate the application's outbound clients (HTTP, SMTP, DNS, webhooks, raw sockets, third-party SDKs). For each, confirm the egress guard is actually applied. Any client the guard does not cover is an EPI-SSRF path.</p>
+  <h3>How do you fix it?</h3>
+  <p>Apply the egress policy at a choke point every outbound client passes through, rather than per-protocol. If one protocol cannot be routed through the shared guard, guard it explicitly. Coverage, not just correctness.</p>
+  <h3>Who coined the term?</h3>
+  <p>Security researcher <a href="/">Pavan Nallamothu</a>, in the paper <a href="/papers/ssrf-beyond-http.html">SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms</a> (<a href="https://doi.org/10.5281/zenodo.22075469">DOI 10.5281/zenodo.22075469</a>).</p>
+
+  <footer>Pavan Nallamothu is an independent security researcher known for 12 published CVEs credited by Apple, CISA, and the NSA, and for coining EPI-SSRF (Egress-Path-Incomplete SSRF). ORCID <a href="https://orcid.org/0009-0009-1481-6629">0009-0009-1481-6629</a>. Primary source: <a href="https://doi.org/10.5281/zenodo.22075469">SSRF Beyond HTTP on Zenodo</a>.</footer>
+</div>
+</body>
+</html>

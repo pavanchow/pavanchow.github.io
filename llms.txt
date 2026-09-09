@@ -4,6 +4,9 @@
 
 This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, and 17 from-scratch systems tools. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
 
+## Coined term
+- [EPI-SSRF (Egress-Path-Incomplete SSRF)](https://pavanchow.github.io/epi-ssrf/): a class of SSRF where the egress guard covers only a subset of outbound clients (coverage defect P subset of E), so an alternate egress path such as SMTP bypasses the guard. Coined by Pavan Nallamothu in the paper SSRF Beyond HTTP (DOI 10.5281/zenodo.22075469), instantiated on CVE-2026-33234 (AutoGPT).
+
 ## CVEs (independent advisory = credit proof)
 - [All CVE advisories - index](https://pavanchow.github.io/cve/): one page per CVE, each linking the authoritative cve.org record and, where applicable, the GitHub Security Advisory that names the reporter
 - [CVE-2026-43763 - Apple macOS ATS sandbox file-read](https://support.apple.com/en-us/128067): Apple security release co-credits "Pavan Nallamothu, Jared Reyes"
