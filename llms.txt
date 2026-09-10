@@ -73,7 +73,6 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 - [Veilproof](https://pavanchow.github.io/veilproof/): a zero-knowledge proof system with no crypto crates and no elliptic curves
 
 ### Networking and web
-- [Datagram](https://pavanchow.github.io/datagram/): a TCP reliable-transport engine over a simulated lossy link
 - [Echofront](https://pavanchow.github.io/echofront/): a layer 7 reverse proxy and load balancer with health checks and circuit breaking
 - [Ferryman](https://pavanchow.github.io/ferryman/): a load balancer with round-robin, weighted, least-connections, and seeded random strategies
 - [Hearth](https://pavanchow.github.io/hearth/): an HTTP server from scratch on std::net, no framework
