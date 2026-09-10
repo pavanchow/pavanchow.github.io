@@ -2,7 +2,7 @@
 
 > Offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
 
-This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, and 61 from-scratch systems tools. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
+This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, 60 from-scratch systems tools, and two standalone projects. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
 
 ## Coined term
 - [EPI-SSRF (Egress-Path-Incomplete SSRF)](https://pavanchow.github.io/epi-ssrf/): a class of SSRF where the egress guard covers only a subset of outbound clients (coverage defect P subset of E), so an alternate egress path such as SMTP bypasses the guard. Coined by Pavan Nallamothu in the paper SSRF Beyond HTTP (DOI 10.5281/zenodo.22075469), instantiated on CVE-2026-33234 (AutoGPT).
@@ -37,6 +37,10 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 - [Verification / receipts table](https://pavanchow.gitlab.io/verification.html): every contribution mapped to its independent source
 - [LinkedIn](https://www.linkedin.com/in/pavanchow/): professional profile
 - [GitHub](https://github.com/pavanchow): proof-of-concept code and tooling
+
+## Standalone projects (separate from the Rust systems series)
+- [Codebase Cartographer](https://pavanchow.github.io/Codebase-Cartographer/): a Claude Code subagent and MCP server that reads a repository and ships a living architectural map of it
+- [SiteGuard Scorecard](https://pavanchow.github.io/siteguard-scorecard/): a website security scanner that grades a site A through F on security headers, cookie flags, exposed files, TLS configuration, mixed content, and subdomain-takeover risk
 
 ## Open-source systems tools (Rust, each its own live page)
 ### Compilers, languages, and runtimes
