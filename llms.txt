@@ -31,6 +31,8 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 - [Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata](https://zenodo.org/records/22075439): Zenodo, DOI 10.5281/zenodo.22075439, author Nallamothu, Pavan; also Preprints.org DOI 10.20944/preprints202608.2314.v1 (Crossref-registered)
 
 ## Identity
+- [About the researcher (canonical profile)](https://pavanchow.github.io/about/): entity home with the role, education, identifiers, receipt links and a same-name disambiguation note
+- [Wikidata Q141119059](https://www.wikidata.org/wiki/Q141119059): the person entity (description "security researcher"), with ORCID, Scholar, GitHub and both official websites
 - [ORCID 0009-0009-1481-6629](https://orcid.org/0009-0009-1481-6629): verified researcher record
 - [Google Scholar profile](https://scholar.google.com/citations?user=QMee5GMAAAAJ): verified author profile (Pavan Nallamothu, Security Researcher), lists the two papers
 - [Researcher profile (gitlab.io)](https://pavanchow.gitlab.io/): credentials and receipts hub
