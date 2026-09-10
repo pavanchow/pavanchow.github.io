@@ -29,11 +29,11 @@ A URI-normalization differential between the reverse proxy and the application b
 Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-m5fr-rv3h-xg2r
 
 ### CVE-2026-63013 - NSA skills-service privilege escalation (high, CVSS 8.8)
-Three admin-group assignment endpoints grant admin roles with no caller-authorization check. Any authenticated user takes over any project, quiz, or global badge, reading and destructively deleting data. CVE assigned, MITRE record pending; the GitHub Security Advisory is the canonical source.
+Three admin-group assignment endpoints grant admin roles with no caller-authorization check. Any authenticated user takes over any project, quiz, or global badge, reading and destructively deleting data. CVE assigned, MITRE record pending. The GitHub Security Advisory is the canonical source.
 Independent source: https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-67x3-r85f-822r
 
 ### CVE-2026-63014 - NSA skills-service cross-project IDOR (moderate, CVSS 4.3)
-A non-greedy regex in the authorization filter matches only the first projects/{id} segment, letting any project admin enumerate subject IDs and read subject/skill names across tenant boundaries. CVE assigned, MITRE record pending; the GitHub Security Advisory is the canonical source.
+A non-greedy regex in the authorization filter matches only the first projects/{id} segment, letting any project admin enumerate subject IDs and read subject/skill names across tenant boundaries. CVE assigned, MITRE record pending. The GitHub Security Advisory is the canonical source.
 Independent source: https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-p527-vjfp-c43p
 
 ### CVE-2026-40585 - blueprintUE non-expiring password-reset tokens (medium)

@@ -28,7 +28,7 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 
 ## Papers
 - [SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms](https://zenodo.org/records/22075470): Zenodo, DOI 10.5281/zenodo.22075470, author Nallamothu, Pavan
-- [Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata](https://zenodo.org/records/22075439): Zenodo, DOI 10.5281/zenodo.22075439, author Nallamothu, Pavan; also Preprints.org DOI 10.20944/preprints202608.2314.v1 (Crossref-registered)
+- [Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata](https://zenodo.org/records/22075439): Zenodo, DOI 10.5281/zenodo.22075439, author Nallamothu, Pavan. Also on Preprints.org, DOI 10.20944/preprints202608.2314.v1 (Crossref-registered)
 
 ## Identity
 - [About the researcher (canonical profile)](https://pavanchow.github.io/about/): entity home with the role, education, identifiers, receipt links and a same-name disambiguation note
