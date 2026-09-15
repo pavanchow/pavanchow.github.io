@@ -1,6 +1,6 @@
 # Pavan Nallamothu - Offensive Security Research (full)
 
-> Offensive security researcher. 13 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
+> Offensive security researcher. 14 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
 
 ## CVEs
 
@@ -8,9 +8,13 @@
 A permissions issue in Apple Type Services (ATS) allowed a sandboxed process file-read access outside its container. Fixed across macOS Tahoe, Sequoia, and Sonoma. Co-credited by Apple to Pavan Nallamothu and Jared Reyes.
 Independent source: https://support.apple.com/en-us/128067
 
-### CVE-2026-65412 - Apple CoreText null pointer dereference / web content DoS (severity not yet scored)
+### CVE-2026-65412 - Apple CoreText null pointer dereference / web content DoS (medium, CVSS 6.5)
 A null pointer dereference in Apple CoreText could be reached by processing web content, leading to a denial of service. Addressed with improved input validation. Credited to Pavan Nallamothu alone in all seven advisories of the 14 September 2026 release: iOS 27 and iPadOS 27, iOS 26.7 and iPadOS 26.7, macOS Golden Gate 27, macOS Tahoe 26.7, macOS Sequoia 15.8, watchOS 27, and visionOS 27.
 Independent sources: https://support.apple.com/en-us/149034 (iOS 27 / iPadOS 27), https://support.apple.com/en-us/149035 (macOS Golden Gate 27), https://support.apple.com/en-us/149037 (watchOS 27), https://support.apple.com/en-us/149038 (visionOS 27), https://support.apple.com/en-us/149041 (iOS 26.7 / iPadOS 26.7), https://support.apple.com/en-us/149042 (macOS Tahoe 26.7), https://support.apple.com/en-us/149043 (macOS Sequoia 15.8)
+
+### CVE-2026-92148 - NSA skills-service privilege escalation to root admin via the Inception token endpoint (high)
+The Inception token endpoint accepts an arbitrary userId from the URL path with no validation that it matches the authenticated caller. The resulting JWT carries the target user's full authorities, and /root/** endpoints skip the proxyingSystemId vs projectId check entirely because root URLs carry no project ID, so any authenticated user escalates to root administrator and can grant themselves persistent ROLE_SUPER_DUPER_USER. Fixed in 4.6.1; Form authentication mode is the prerequisite.
+Independent source: https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-gx26-q78q-6hxr
 
 ### CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server (medium, CVSS 5.0)
 SendEmailBlock passes a user-supplied smtp_server / smtp_port straight to smtplib.SMTP() with no IP validation, bypassing the platform's validate_url_host() and BLOCKED_IP_NETWORKS blocklist. Affects versions 0.1.0 through 0.6.51. This is the case study for the EPI-SSRF (Egress-Path-Incomplete SSRF) model.

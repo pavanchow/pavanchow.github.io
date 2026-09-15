@@ -1,6 +1,6 @@
 # Pavan Nallamothu - Offensive Security Tooling and Exploits
 
-> Offensive security researcher. 13 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
+> Offensive security researcher. 14 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
 
 This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, 60 from-scratch systems tools, and two standalone projects. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
 
@@ -11,6 +11,7 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 - [All CVE advisories - index](https://pavanchow.github.io/cve/): one page per CVE, each linking the authoritative cve.org record and, where applicable, the GitHub Security Advisory that names the reporter
 - [CVE-2026-43763 - Apple macOS ATS sandbox file-read](https://support.apple.com/en-us/128067): Apple security release co-credits "Pavan Nallamothu, Jared Reyes"
 - [CVE-2026-65412 - Apple CoreText null pointer dereference / web content DoS](https://support.apple.com/en-us/149034): credited to Pavan Nallamothu alone in all seven advisories of the 14 September 2026 release (iOS 27, iPadOS 27, iOS 26.7, iPadOS 26.7, macOS Golden Gate 27, macOS Tahoe 26.7, macOS Sequoia 15.8, watchOS 27, visionOS 27). Registry: https://www.cve.org/CVERecord?id=CVE-2026-65412
+- [CVE-2026-92148 - NSA skills-service privilege escalation to root admin via the Inception token endpoint](https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-gx26-q78q-6hxr): GHSA-gx26-q78q-6hxr credits pavanchow (Finder). Fixed in 4.6.1.
 - [CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server](https://github.com/Significant-Gravitas/AutoGPT/security/advisories/GHSA-4jwj-6mg5-wrwf): GHSA-4jwj-6mg5-wrwf credits pavanchow (Reporter)
 - [CVE-2026-50023 - yt-dlp dangerous file creation](https://github.com/advisories/GHSA-c6mh-fpjc-4pr3): GHSA-c6mh-fpjc-4pr3 credits pavanchow (Reporter)
 - [CVE-2026-63133 - CISA Malcolm inode-exhaustion DoS](https://github.com/cisagov/Malcolm/security/advisories/GHSA-c35g-mgc3-95rx): GHSA-c35g-mgc3-95rx credits pavanchow (Finder)
