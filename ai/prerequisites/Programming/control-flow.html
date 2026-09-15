@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description"
+        content="Python control flow for AI: conditionals, loops, and iteration explained for machine learning beginners.">
+    <title>Control Flow for AI — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #10b981;
+            --prereq-accent-glow: rgba(16, 185, 129, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .prereq-page {
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+
+        .prereq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: clamp(1rem, 5vw, 2.5rem);
+        }
+
+        .prereq-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+
+        .prereq-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+
+        .back-link:hover {
+            color: var(--prereq-accent);
+            border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+
+        .prereq-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .prereq-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .prereq-nav a:hover {
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+
+        .prereq-nav .nav-divider {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
+            padding: 0 0.25rem;
+        }
+
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            border: 1px solid var(--surface-3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prereq-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .prereq-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 1rem;
+            line-height: 1.2;
+        }
+
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .estimated-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+
+        .learning-objectives {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .learning-objectives h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--prereq-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+        }
+
+        .learning-objectives ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .learning-objectives li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .toc-list a:hover {
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+        }
+
+        .toc-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--surface-3);
+            color: var(--text-tertiary);
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .code-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+
+        .code-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--prereq-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.875rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .code-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary);
+            margin: 1.75rem 0 1rem;
+        }
+
+        .code-section p {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin: 0 0 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .code-section ul,
+        .code-section ol {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            padding-left: 1.5rem;
+            margin: 0 0 1rem;
+        }
+
+        .code-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background: #1a1d23;
+            border-radius: var(--radius-md);
+            margin: 1.25rem 0;
+            overflow: hidden;
+        }
+
+        .code-block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: #252830;
+            border-bottom: 1px solid #333;
+        }
+
+        .code-block-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .code-block-lang .python-icon {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #306998 50%, #ffd43b 50%);
+            border-radius: 3px;
+        }
+
+        .code-block pre {
+            margin: 0;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: var(--font-mono);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+
+        .code-block .keyword {
+            color: #c678dd;
+        }
+
+        .code-block .string {
+            color: #98c379;
+        }
+
+        .code-block .number {
+            color: #d19a66;
+        }
+
+        .code-block .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .code-block .function {
+            color: #61afef;
+        }
+
+        .code-block .builtin {
+            color: #e5c07b;
+        }
+
+        .code-block .operator {
+            color: #56b6c2;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+
+        .concept-box h4 {
+            color: var(--prereq-accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+
+        .concept-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+
+        .ai-connection h4 {
+            color: #3b82f6;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+
+        .ai-connection p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(217, 119, 119, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(217, 119, 119, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+
+        .warning-box h4 {
+            color: var(--accent-coral);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+
+        .warning-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, rgba(212, 168, 85, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(212, 168, 85, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+
+        .tip-box h4 {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+
+        .tip-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-takeaways h3 {
+            color: var(--prereq-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+        }
+
+        .key-takeaways ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .key-takeaways li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-card:hover {
+            border-color: var(--prereq-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-card-label {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+        }
+
+        .nav-card-title {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .practice-problem {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+
+        .practice-problem h4 {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin: 0 0 1rem;
+        }
+
+        .practice-problem .problem {
+            background: var(--bg-elevated);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .practice-problem .solution {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--accent-emerald);
+        }
+
+        .practice-problem .solution-header {
+            color: var(--accent-emerald);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .practice-problem .solution-content {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .prereq-header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .back-link {
+                width: fit-content;
+            }
+
+            .prereq-nav {
+                justify-content: center;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--prereq-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link"><span>←</span> Back to Course</a>
+                    <nav class="prereq-nav">
+                        <a href="programming-foundations.html">Foundations</a>
+                        <span class="nav-divider">|</span>
+                        <a href="python-basics.html">Python Basics</a>
+                        <a href="control-flow.html" class="active">Control Flow</a>
+                        <a href="functions-data.html">Functions & Data</a>
+                    </nav>
+                </div>
+            </header>
+
+            <div class="prereq-hero">
+                <span class="prereq-badge">🔀 Prerequisite • Programming</span>
+                <h1 class="prereq-title">Control Flow in Python</h1>
+                <p class="prereq-subtitle">
+                    Control flow lets your code make decisions and repeat actions. These concepts power
+                    everything from training loops that iterate millions of times to conditionals that
+                    check model performance—essential patterns in every AI codebase.
+                </p>
+                <div class="estimated-time"><span>⏱</span> Estimated reading time: 20-25 minutes</div>
+            </div>
+
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>How to use if/elif/else for decision making</li>
+                    <li>For loops to iterate over sequences</li>
+                    <li>While loops for condition-based repetition</li>
+                    <li>Loop control: break, continue, and else clauses</li>
+                    <li>Common patterns used in AI code</li>
+                </ul>
+            </div>
+
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#conditionals"><span class="toc-number">1</span> Conditionals (if/elif/else)</a></li>
+                    <li><a href="#for-loops"><span class="toc-number">2</span> For Loops</a></li>
+                    <li><a href="#while-loops"><span class="toc-number">3</span> While Loops</a></li>
+                    <li><a href="#loop-control"><span class="toc-number">4</span> Loop Control</a></li>
+                    <li><a href="#comprehensions"><span class="toc-number">5</span> List Comprehensions</a></li>
+                    <li><a href="#practice"><span class="toc-number">6</span> Practice Exercises</a></li>
+                </ol>
+            </nav>
+
+            <section class="code-section" id="conditionals">
+                <h2><span class="section-number">1</span> Conditionals (if/elif/else)</h2>
+
+                <p>
+                    Conditionals let your program make decisions based on conditions. The basic structure
+                    is <code>if</code>, optionally followed by <code>elif</code> (else if) and <code>else</code>.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>accuracy = <span class="number">0.92</span>
+
+<span class="keyword">if</span> accuracy >= <span class="number">0.95</span>:
+    <span class="function">print</span>(<span class="string">"Excellent model!"</span>)
+<span class="keyword">elif</span> accuracy >= <span class="number">0.90</span>:
+    <span class="function">print</span>(<span class="string">"Good model"</span>)
+<span class="keyword">elif</span> accuracy >= <span class="number">0.80</span>:
+    <span class="function">print</span>(<span class="string">"Decent model"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Needs improvement"</span>)
+
+<span class="comment"># Output: Good model</span></code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Indentation Matters!</h4>
+                    <p>
+                        Python uses indentation (4 spaces) to define code blocks. Unlike other languages
+                        that use braces {}, Python requires consistent indentation. Mixing tabs and spaces
+                        causes errors!
+                    </p>
+                </div>
+
+                <h3>Comparison and Logical Operators</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>epoch = <span class="number">50</span>
+loss = <span class="number">0.05</span>
+patience = <span class="number">10</span>
+epochs_without_improvement = <span class="number">12</span>
+
+<span class="comment"># Combining conditions with 'and', 'or', 'not'</span>
+<span class="keyword">if</span> loss < <span class="number">0.1</span> <span class="keyword">and</span> epoch > <span class="number">10</span>:
+    <span class="function">print</span>(<span class="string">"Training converging well"</span>)
+
+<span class="keyword">if</span> loss > <span class="number">1.0</span> <span class="keyword">or</span> epochs_without_improvement > patience:
+    <span class="function">print</span>(<span class="string">"Consider stopping training"</span>)
+
+<span class="keyword">if</span> <span class="keyword">not</span> (loss < <span class="number">0.01</span>):
+    <span class="function">print</span>(<span class="string">"Loss hasn't reached target yet"</span>)</code></pre>
+                </div>
+
+                <h3>Checking Types and Values</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>model = <span class="keyword">None</span>
+data = []
+
+<span class="comment"># Check for None</span>
+<span class="keyword">if</span> model <span class="keyword">is</span> <span class="keyword">None</span>:
+    <span class="function">print</span>(<span class="string">"Model not loaded"</span>)
+
+<span class="comment"># Check for empty (falsy values)</span>
+<span class="keyword">if</span> <span class="keyword">not</span> data:
+    <span class="function">print</span>(<span class="string">"No data available"</span>)
+
+<span class="comment"># Check if value in collection</span>
+supported_models = [<span class="string">"gpt-4"</span>, <span class="string">"claude"</span>, <span class="string">"llama"</span>]
+<span class="keyword">if</span> <span class="string">"gpt-4"</span> <span class="keyword">in</span> supported_models:
+    <span class="function">print</span>(<span class="string">"GPT-4 is supported"</span>)</code></pre>
+                </div>
+
+                <div class="ai-connection">
+                    <h4>🤖 Conditionals in AI Code</h4>
+                    <p>
+                        Conditionals are everywhere: checking if GPU is available, early stopping when
+                        validation loss stops improving, switching between training and evaluation mode,
+                        handling different input formats, and implementing learning rate schedules.
+                    </p>
+                </div>
+            </section>
+
+            <section class="code-section" id="for-loops">
+                <h2><span class="section-number">2</span> For Loops</h2>
+
+                <p>
+                    For loops iterate over sequences (lists, strings, ranges, etc.). They're the most
+                    common loop type in AI code—used for training epochs, processing batches, and more.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Iterating over a list</span>
+models = [<span class="string">"BERT"</span>, <span class="string">"GPT"</span>, <span class="string">"T5"</span>]
+<span class="keyword">for</span> model <span class="keyword">in</span> models:
+    <span class="function">print</span>(<span class="string">f"Testing <span class="operator">{</span>model<span class="operator">}</span>"</span>)
+
+<span class="comment"># Using range() for counting</span>
+<span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>):  <span class="comment"># 0, 1, 2, 3, 4</span>
+    <span class="function">print</span>(<span class="string">f"Epoch <span class="operator">{</span>epoch<span class="operator">}</span>"</span>)
+
+<span class="comment"># range(start, stop, step)</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">0</span>, <span class="number">100</span>, <span class="number">10</span>):  <span class="comment"># 0, 10, 20, ..., 90</span>
+    <span class="function">print</span>(i)</code></pre>
+                </div>
+
+                <div class="pitfall-box"
+                    style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, transparent 100%); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-md); padding: 1rem; margin: 1.25rem 0;">
+                    <h4
+                        style="color: #f59e0b; font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        ℹ️ Important: Python Starts at 0</h4>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem; line-height: 1.7;">
+                        <strong>This is a very common beginner confusion!</strong><br><br>
+                        <strong>range() starts at 0 and stops before the end:</strong><br>
+                        • <code>range(5)</code> gives <code>0, 1, 2, 3, 4</code> — starts at 0, stops <em>before</em>
+                        5<br>
+                        • <code>range(1, 5)</code> gives <code>1, 2, 3, 4</code> — starts at 1, stops <em>before</em>
+                        5<br><br>
+                        <strong>Lists are also 0-indexed:</strong><br>
+                        • <code>my_list[0]</code> is the <strong>first</strong> item<br>
+                        • <code>my_list[1]</code> is the <strong>second</strong> item<br>
+                        • A list with 5 items has indices: 0, 1, 2, 3, 4<br><br>
+                        <strong>Why?</strong> This design ensures <code>range(len(items))</code> always gives valid
+                        indices!
+                    </p>
+                </div>
+
+                <h3>Enumerate: Index + Value</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>layers = [<span class="string">"embedding"</span>, <span class="string">"transformer"</span>, <span class="string">"output"</span>]
+
+<span class="comment"># Get both index and value</span>
+<span class="keyword">for</span> i, layer <span class="keyword">in</span> <span class="builtin">enumerate</span>(layers):
+    <span class="function">print</span>(<span class="string">f"Layer <span class="operator">{</span>i<span class="operator">}</span>: <span class="operator">{</span>layer<span class="operator">}</span>"</span>)
+
+<span class="comment"># Output:</span>
+<span class="comment"># Layer 0: embedding</span>
+<span class="comment"># Layer 1: transformer</span>
+<span class="comment"># Layer 2: output</span>
+
+<span class="comment"># Start counting from 1</span>
+<span class="keyword">for</span> i, layer <span class="keyword">in</span> <span class="builtin">enumerate</span>(layers, start=<span class="number">1</span>):
+    <span class="function">print</span>(<span class="string">f"Layer <span class="operator">{</span>i<span class="operator">}</span>: <span class="operator">{</span>layer<span class="operator">}</span>"</span>)</code></pre>
+                </div>
+
+                <h3>Zip: Iterate Multiple Sequences</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>predictions = [<span class="number">0.9</span>, <span class="number">0.3</span>, <span class="number">0.7</span>]
+labels = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]
+
+<span class="comment"># Iterate through pairs</span>
+<span class="keyword">for</span> pred, label <span class="keyword">in</span> <span class="builtin">zip</span>(predictions, labels):
+    correct = (pred > <span class="number">0.5</span>) == label
+    <span class="function">print</span>(<span class="string">f"Pred: <span class="operator">{</span>pred:.1f<span class="operator">}</span>, Label: <span class="operator">{</span>label<span class="operator">}</span>, Correct: <span class="operator">{</span>correct<span class="operator">}</span>"</span>)
+
+<span class="comment"># Output:</span>
+<span class="comment"># Pred: 0.9, Label: 1, Correct: True</span>
+<span class="comment"># Pred: 0.3, Label: 0, Correct: True</span>
+<span class="comment"># Pred: 0.7, Label: 1, Correct: True</span></code></pre>
+                </div>
+
+                <div class="ai-connection">
+                    <h4>🤖 The Training Loop Pattern</h4>
+                    <p>
+                        Every neural network training uses nested for loops: outer loop for epochs,
+                        inner loop for batches. This pattern is universal across frameworks.
+                    </p>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Typical Training Loop</span>
+                    </div>
+                    <pre><code><span class="comment"># Pseudocode for a typical training loop</span>
+num_epochs = <span class="number">10</span>
+batches = [[<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>], [<span class="number">5</span>,<span class="number">6</span>]]  <span class="comment"># Example data batches</span>
+
+<span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="builtin">range</span>(num_epochs):
+    total_loss = <span class="number">0</span>
+    
+    <span class="keyword">for</span> batch_idx, batch <span class="keyword">in</span> <span class="builtin">enumerate</span>(batches):
+        <span class="comment"># Forward pass, compute loss, backward pass</span>
+        loss = <span class="number">0.5</span>  <span class="comment"># placeholder</span>
+        total_loss += loss
+    
+    avg_loss = total_loss / <span class="builtin">len</span>(batches)
+    <span class="function">print</span>(<span class="string">f"Epoch <span class="operator">{</span>epoch+<span class="number">1</span><span class="operator">}</span>/<span class="operator">{</span>num_epochs<span class="operator">}</span>, Loss: <span class="operator">{</span>avg_loss:.4f<span class="operator">}</span>"</span>)</code></pre>
+                </div>
+            </section>
+
+            <section class="code-section" id="while-loops">
+                <h2><span class="section-number">3</span> While Loops</h2>
+
+                <p>
+                    While loops repeat as long as a condition is true. They're useful when you don't
+                    know in advance how many iterations you need.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Basic while loop</span>
+loss = <span class="number">1.0</span>
+threshold = <span class="number">0.1</span>
+iteration = <span class="number">0</span>
+
+<span class="keyword">while</span> loss > threshold:
+    loss *= <span class="number">0.9</span>  <span class="comment"># Simulate loss decreasing</span>
+    iteration += <span class="number">1</span>
+    <span class="function">print</span>(<span class="string">f"Iteration <span class="operator">{</span>iteration<span class="operator">}</span>: loss = <span class="operator">{</span>loss:.4f<span class="operator">}</span>"</span>)
+
+<span class="function">print</span>(<span class="string">f"Converged after <span class="operator">{</span>iteration<span class="operator">}</span> iterations"</span>)</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Avoid Infinite Loops</h4>
+                    <p>
+                        Make sure your while condition will eventually become False! Always have a way
+                        to exit the loop (condition change or max iterations).
+                    </p>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Safe While Loop</span>
+                    </div>
+                    <pre><code><span class="comment"># Always include a maximum iteration limit</span>
+loss = <span class="number">1.0</span>
+max_iterations = <span class="number">1000</span>
+iteration = <span class="number">0</span>
+
+<span class="keyword">while</span> loss > <span class="number">0.01</span> <span class="keyword">and</span> iteration < max_iterations:
+    loss *= <span class="number">0.99</span>
+    iteration += <span class="number">1</span>
+
+<span class="keyword">if</span> iteration == max_iterations:
+    <span class="function">print</span>(<span class="string">"Warning: Max iterations reached"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">f"Converged in <span class="operator">{</span>iteration<span class="operator">}</span> iterations"</span>)</code></pre>
+                </div>
+            </section>
+
+            <section class="code-section" id="loop-control">
+                <h2><span class="section-number">4</span> Loop Control</h2>
+
+                <h3>break: Exit the Loop Early</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Early stopping when validation loss stops improving</span>
+losses = [<span class="number">0.5</span>, <span class="number">0.4</span>, <span class="number">0.35</span>, <span class="number">0.36</span>, <span class="number">0.37</span>, <span class="number">0.38</span>]  <span class="comment"># Simulated losses</span>
+patience = <span class="number">2</span>
+no_improvement = <span class="number">0</span>
+best_loss = <span class="builtin">float</span>(<span class="string">'inf'</span>)
+
+<span class="keyword">for</span> epoch, loss <span class="keyword">in</span> <span class="builtin">enumerate</span>(losses):
+    <span class="keyword">if</span> loss < best_loss:
+        best_loss = loss
+        no_improvement = <span class="number">0</span>
+        <span class="function">print</span>(<span class="string">f"Epoch <span class="operator">{</span>epoch<span class="operator">}</span>: New best loss <span class="operator">{</span>loss<span class="operator">}</span>"</span>)
+    <span class="keyword">else</span>:
+        no_improvement += <span class="number">1</span>
+        <span class="function">print</span>(<span class="string">f"Epoch <span class="operator">{</span>epoch<span class="operator">}</span>: No improvement (<span class="operator">{</span>no_improvement<span class="operator">}</span>/<span class="operator">{</span>patience<span class="operator">}</span>)"</span>)
+    
+    <span class="keyword">if</span> no_improvement >= patience:
+        <span class="function">print</span>(<span class="string">"Early stopping!"</span>)
+        <span class="keyword">break</span></code></pre>
+                </div>
+
+                <h3>continue: Skip to Next Iteration</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Skip invalid data points</span>
+data_points = [<span class="number">0.5</span>, <span class="keyword">None</span>, <span class="number">0.8</span>, <span class="number">-0.1</span>, <span class="number">0.9</span>, <span class="keyword">None</span>]
+
+<span class="keyword">for</span> i, value <span class="keyword">in</span> <span class="builtin">enumerate</span>(data_points):
+    <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">None</span>:
+        <span class="function">print</span>(<span class="string">f"Skipping None at index <span class="operator">{</span>i<span class="operator">}</span>"</span>)
+        <span class="keyword">continue</span>
+    
+    <span class="keyword">if</span> value < <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"Skipping negative value at index <span class="operator">{</span>i<span class="operator">}</span>"</span>)
+        <span class="keyword">continue</span>
+    
+    <span class="function">print</span>(<span class="string">f"Processing: <span class="operator">{</span>value<span class="operator">}</span>"</span>)</code></pre>
+                </div>
+
+                <h3>else Clause on Loops</h3>
+
+                <p>
+                    Python has a unique feature: an <code>else</code> clause on loops that runs only
+                    if the loop completes normally (not via <code>break</code>).
+                </p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Check if any loss exceeds threshold</span>
+losses = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.15</span>, <span class="number">0.08</span>]
+threshold = <span class="number">0.5</span>
+
+<span class="keyword">for</span> loss <span class="keyword">in</span> losses:
+    <span class="keyword">if</span> loss > threshold:
+        <span class="function">print</span>(<span class="string">f"Found loss above threshold: <span class="operator">{</span>loss<span class="operator">}</span>"</span>)
+        <span class="keyword">break</span>
+<span class="keyword">else</span>:
+    <span class="comment"># This runs only if we didn't break</span>
+    <span class="function">print</span>(<span class="string">"All losses are below threshold!"</span>)</code></pre>
+                </div>
+            </section>
+
+            <section class="code-section" id="comprehensions">
+                <h2><span class="section-number">5</span> List Comprehensions</h2>
+
+                <p>
+                    List comprehensions are a concise way to create lists. They're faster and more
+                    "Pythonic" than equivalent for loops.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Traditional for loop</span>
+squares = []
+<span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>):
+    squares.append(x ** <span class="number">2</span>)
+<span class="comment"># [0, 1, 4, 9, 16]</span>
+
+<span class="comment"># List comprehension (same result, one line)</span>
+squares = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>)]
+<span class="comment"># [0, 1, 4, 9, 16]</span></code></pre>
+                </div>
+
+                <div class="visual-diagram"
+                    style="background: var(--bg-tertiary); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.25rem 0; overflow-x: auto;">
+                    <pre
+                        style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5; margin: 0;">
+    Anatomy of a List Comprehension:
+    
+    [ expression   for  item  in  sequence ]
+      ──────────   ───  ────  ──  ────────
+           │        │    │         │
+           │        │    │         └─ What to iterate over
+           │        │    │
+           │        │    └─────────── Variable name for each element
+           │        │
+           │        └──────────────── Keyword "for"
+           │
+           └───────────────────────── What to compute for each item
+    
+    Example: [x**2  for  x  in  range(5)]
+              ↓              ↓
+         "square x"    "for x = 0,1,2,3,4"
+                    </pre>
+                    <p style="text-align: center; font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.75rem;">
+                        Read it like English: "give me x squared, for each x in range(5)"
+                    </p>
+                </div>
+
+                <h3>With Conditions</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Filter: only keep items matching condition</span>
+numbers = [<span class="number">1</span>, <span class="number">-2</span>, <span class="number">3</span>, <span class="number">-4</span>, <span class="number">5</span>]
+positive = [x <span class="keyword">for</span> x <span class="keyword">in</span> numbers <span class="keyword">if</span> x > <span class="number">0</span>]
+<span class="comment"># [1, 3, 5]</span>
+
+<span class="comment"># Transform + filter</span>
+doubled_positive = [x * <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers <span class="keyword">if</span> x > <span class="number">0</span>]
+<span class="comment"># [2, 6, 10]</span>
+
+<span class="comment"># Conditional expression (ternary)</span>
+abs_values = [x <span class="keyword">if</span> x >= <span class="number">0</span> <span class="keyword">else</span> -x <span class="keyword">for</span> x <span class="keyword">in</span> numbers]
+<span class="comment"># [1, 2, 3, 4, 5]</span></code></pre>
+                </div>
+
+                <div class="ai-connection">
+                    <h4>🤖 Comprehensions in AI</h4>
+                    <p>
+                        Comprehensions are used constantly: <code>[f.read() for f in files]</code> to load data,
+                        <code>[pred > 0.5 for pred in predictions]</code> for thresholding,
+                        <code>[layer for layer in model.layers if 'attention' in layer.name]</code> to filter layers.
+                    </p>
+                </div>
+
+                <h3>Dictionary and Set Comprehensions</h3>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Dictionary comprehension</span>
+models = [<span class="string">"bert"</span>, <span class="string">"gpt"</span>, <span class="string">"t5"</span>]
+accuracies = [<span class="number">0.92</span>, <span class="number">0.95</span>, <span class="number">0.89</span>]
+
+results = {model: acc <span class="keyword">for</span> model, acc <span class="keyword">in</span> <span class="builtin">zip</span>(models, accuracies)}
+<span class="comment"># {'bert': 0.92, 'gpt': 0.95, 't5': 0.89}</span>
+
+<span class="comment"># Set comprehension (unique values)</span>
+labels = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>]
+unique_labels = {label <span class="keyword">for</span> label <span class="keyword">in</span> labels}
+<span class="comment"># {0, 1, 2}</span></code></pre>
+                </div>
+            </section>
+
+            <section class="code-section" id="practice">
+                <h2><span class="section-number">6</span> Practice Exercises</h2>
+
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 1: Conditional Logic</h4>
+                    <div class="problem">
+                        Write code that checks if a model is ready for deployment: accuracy must be ≥ 0.90
+                        AND loss must be ≤ 0.2. Test with accuracy=0.92, loss=0.15.
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code>accuracy = <span class="number">0.92</span>
+loss = <span class="number">0.15</span>
+
+<span class="keyword">if</span> accuracy >= <span class="number">0.90</span> <span class="keyword">and</span> loss <= <span class="number">0.2</span>:
+    <span class="function">print</span>(<span class="string">"Model ready for deployment!"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Model needs more training"</span>)
+<span class="comment"># Output: Model ready for deployment!</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 2: Training Loop</h4>
+                    <div class="problem">
+                        Simulate a training loop for 5 epochs. Each epoch, loss starts at 1.0 and decreases
+                        by 10%. Print epoch number and loss for each.
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code>loss = <span class="number">1.0</span>
+
+<span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    loss *= <span class="number">0.9</span>  <span class="comment"># Decrease by 10%</span>
+    <span class="function">print</span>(<span class="string">f"Epoch <span class="operator">{</span>epoch<span class="operator">}</span>/5 - Loss: <span class="operator">{</span>loss:.4f<span class="operator">}</span>"</span>)
+
+<span class="comment"># Output:</span>
+<span class="comment"># Epoch 1/5 - Loss: 0.9000</span>
+<span class="comment"># Epoch 2/5 - Loss: 0.8100</span>
+<span class="comment"># ...</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 3: List Comprehension</h4>
+                    <div class="problem">
+                        Given predictions = [0.2, 0.7, 0.4, 0.9, 0.1], create a list of binary predictions
+                        where values ≥ 0.5 become 1 and values < 0.5 become 0. </div>
+                            <div class="solution">
+                                <div class="solution-header">Click to reveal solution ▼</div>
+                                <div class="solution-content">
+                                    <div class="code-block">
+                                        <pre><code>predictions = [<span class="number">0.2</span>, <span class="number">0.7</span>, <span class="number">0.4</span>, <span class="number">0.9</span>, <span class="number">0.1</span>]
+
+<span class="comment"># Using list comprehension with conditional</span>
+binary = [<span class="number">1</span> <span class="keyword">if</span> p >= <span class="number">0.5</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> p <span class="keyword">in</span> predictions]
+<span class="function">print</span>(binary)  <span class="comment"># [0, 1, 0, 1, 0]</span></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+            </section>
+
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>if/elif/else</strong> for decision making—indentation defines code blocks</li>
+                    <li><strong>for loops</strong> iterate over sequences; use <code>range()</code> for counting</li>
+                    <li><strong>enumerate()</strong> gives you index + value; <code>zip()</code> for parallel iteration
+                    </li>
+                    <li><strong>while loops</strong> repeat while condition is true—always include exit condition</li>
+                    <li><strong>break</strong> exits loop; <strong>continue</strong> skips to next iteration</li>
+                    <li><strong>List comprehensions</strong> are concise: <code>[x**2 for x in range(5) if x > 0]</code>
+                    </li>
+                </ul>
+            </div>
+
+            <section class="code-section">
+                <h2>Next Steps</h2>
+                <p>
+                    Now you can control program flow! Next, learn about functions and data structures—the
+                    building blocks for organizing larger programs.
+                </p>
+
+                <div class="nav-cards">
+                    <a href="functions-data.html" class="nav-card">
+                        <span class="nav-card-label">Next Topic</span>
+                        <span class="nav-card-title">Functions & Data →</span>
+                    </a>
+                    <a href="../../index.html" class="nav-card">
+                        <span class="nav-card-label">Back to Course</span>
+                        <span class="nav-card-title">Foundations of AI</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="../../app.js"></script>
+    <script>
+        document.querySelectorAll('.solution-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isHidden = content.style.display === 'none' || !content.style.display;
+                content.style.display = isHidden ? 'block' : 'none';
+                header.textContent = isHidden ? 'Click to hide solution ▲' : 'Click to reveal solution ▼';
+            });
+        });
+    </script>
+</body>
+
+</html>

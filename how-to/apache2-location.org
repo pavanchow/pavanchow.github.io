@@ -1,0 +1,54 @@
+* How to change apache2 localhost location 
+
+** Follow the below steps to change apache2 localhost location 
+- Open up terminal and go the follwing location
+#+BEGIN_SRC 
+cd /etc/apache2/sites-available
+#+END_SRC
+
+- In this you will find 2 files ie,.
+#+BEGIN_SRC 
+000-default.conf 
+default-ssl.conf
+#+END_SRC
+- Open those files and replace the following text with your desired location
+#+BEGIN_SRC 
+DocumentRoot /var/www/html
+#+END_SRC
+- to your new location (example)
+#+BEGIN_SRC 
+/home/user/Desktop/YourFolderName
+#+END_SRC
+- Make changes in the both files
+- After making the change, go a step back (back to apache folder) with 
+#+BEGIN_SRC 
+cd ..
+#+END_SRC
+- or 
+#+BEGIN_SRC 
+cd /etc/apache2
+#+END_SRC
+- Now open up the following config file with some text editor 
+#+BEGIN_SRC 
+apache2.conf
+#+END_SRC
+- Then add the following text 
+#+BEGIN_SRC 
+<Directory /home/user/Desktop/YourFolderName>
+	Options Indexes FollowSymLinks 
+	AllowOverride None
+	Require all granted
+</Directory>
+#+END_SRC
+- After 
+#+BEGIN_SRC 
+<Directory /var/www/>
+	Options Indexes FollowSymLinks 
+	AllowOverride None
+	Require all granted
+</Directory>
+#+END_SRC
+- Now restart the apache service with the following command 
+#+BEGIN_SRC 
+sudo service apache2 restart
+#+END_SRC

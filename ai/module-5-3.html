@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>From Research to Deployment — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+    </button>
+
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span
+                                    class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span
+                                    class="nav-number">1.2</span><span class="nav-label">Intelligence as
+                                    Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span
+                                    class="nav-number">1.3</span><span class="nav-label">Probability &
+                                    Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span
+                                    class="nav-number">1.4</span><span class="nav-label">Optimization &
+                                    Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span
+                                    class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span
+                                    class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function
+                                    Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span
+                                    class="nav-number">2.3</span><span class="nav-label">Backpropagation &
+                                    Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span
+                                    class="nav-number">2.4</span><span class="nav-label">Generalization &
+                                    Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span
+                                    class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised
+                                    Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span
+                                    class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector
+                                    Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span
+                                    class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span
+                                    class="nav-number">3.3</span><span class="nav-label">Transformer
+                                    Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span
+                                    class="nav-number">3.4</span><span class="nav-label">Large Language
+                                    Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span
+                                    class="nav-number">4.1</span><span class="nav-label">Generative vs
+                                    Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span
+                                    class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span
+                                    class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span
+                                    class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span
+                                    class="nav-number">5.2</span><span class="nav-label">Responsible AI
+                                    Reasoning</span></a></li>
+                        <li class="nav-item active"><a href="module-5-3.html" class="nav-link"><span
+                                    class="nav-number">5.3</span><span class="nav-label">From Research to
+                                    Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <span class="progress-text">19 of 19 modules — Complete!</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Evaluation & Practice</span><span
+                        class="breadcrumb-sep">→</span><span>Module 5.3</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag final-tag">Final Module</span>
+                        <span class="module-duration">~50 min</span>
+                    </div>
+                    <h1 class="module-title">From Research to Deployment</h1>
+                    <p class="module-subtitle">
+                        A model that works in a notebook is only the beginning. Productionizing AI
+                        requires infrastructure, monitoring, versioning, and operational rigor.
+                        This is where ML engineering meets DevOps—welcome to MLOps.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand the MLOps lifecycle: from experimentation to production to retirement</li>
+                        <li>Design data pipelines and feature stores for reproducible ML</li>
+                        <li>Implement model versioning, experiment tracking, and reproducibility</li>
+                        <li>Deploy models: batch vs real-time, edge vs cloud, containers vs serverless</li>
+                        <li>Monitor production models for drift, performance degradation, and failures</li>
+                        <li>Build feedback loops and continuous training systems</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Production Gap</h2>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">The Reality</div>
+                        <p class="definition-text">
+                            87% of ML projects never make it to production. The gap between a working
+                            prototype and a reliable production system is vast—filled with infrastructure,
+                            operations, monitoring, and organizational challenges that notebooks don't prepare you for.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Why It's Hard</span>
+                            <p>
+                                In research, you optimize for model accuracy. In production, you optimize
+                                for reliability, latency, cost, maintainability, and the ability to update
+                                without breaking things. These are different disciplines.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Production Requirements</span>
+                            <ul>
+                                <li><strong>Reliability:</strong> 99.9% uptime, graceful degradation</li>
+                                <li><strong>Latency:</strong> p50 < 100ms, p99 < 500ms for many applications</li>
+                                <li><strong>Scalability:</strong> Handle 10x traffic spikes</li>
+                                <li><strong>Cost efficiency:</strong> Inference at scale is expensive</li>
+                                <li><strong>Reproducibility:</strong> Same code + data = same model</li>
+                                <li><strong>Observability:</strong> Know when things go wrong</li>
+                            </ul>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">What Changes</span>
+                            <table class="research-vs-prod">
+                                <tr>
+                                    <th>Research</th>
+                                    <th>Production</th>
+                                </tr>
+                                <tr>
+                                    <td>Static dataset</td>
+                                    <td>Streaming, changing data</td>
+                                </tr>
+                                <tr>
+                                    <td>Manual experiments</td>
+                                    <td>Automated pipelines</td>
+                                </tr>
+                                <tr>
+                                    <td>Accuracy matters</td>
+                                    <td>Latency, cost, reliability matter too</td>
+                                </tr>
+                                <tr>
+                                    <td>One environment</td>
+                                    <td>Dev, staging, prod, edge</td>
+                                </tr>
+                                <tr>
+                                    <td>Train once</td>
+                                    <td>Continuous training</td>
+                                </tr>
+                                <tr>
+                                    <td>Evaluate offline</td>
+                                    <td>Monitor in real-time</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The MLOps Lifecycle</h2>
+
+                    <div class="lifecycle-diagram">
+                        <div class="lifecycle-title">End-to-End ML System</div>
+                        <div class="lifecycle-stages">
+                            <div class="lifecycle-stage">
+                                <div class="stage-icon">📊</div>
+                                <h4>Data Pipeline</h4>
+                                <ul>
+                                    <li>Data ingestion</li>
+                                    <li>Validation</li>
+                                    <li>Transformation</li>
+                                    <li>Feature engineering</li>
+                                    <li>Feature store</li>
+                                </ul>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-stage">
+                                <div class="stage-icon">🔬</div>
+                                <h4>Training Pipeline</h4>
+                                <ul>
+                                    <li>Experiment tracking</li>
+                                    <li>Hyperparameter search</li>
+                                    <li>Model training</li>
+                                    <li>Evaluation</li>
+                                    <li>Model registry</li>
+                                </ul>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-stage">
+                                <div class="stage-icon">🚀</div>
+                                <h4>Deployment</h4>
+                                <ul>
+                                    <li>Model packaging</li>
+                                    <li>Serving infrastructure</li>
+                                    <li>A/B testing</li>
+                                    <li>Canary releases</li>
+                                    <li>Rollback capability</li>
+                                </ul>
+                            </div>
+                            <div class="lifecycle-arrow">→</div>
+                            <div class="lifecycle-stage">
+                                <div class="stage-icon">📈</div>
+                                <h4>Monitoring</h4>
+                                <ul>
+                                    <li>Performance metrics</li>
+                                    <li>Data drift detection</li>
+                                    <li>Model drift detection</li>
+                                    <li>Alerting</li>
+                                    <li>Feedback collection</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="lifecycle-feedback">
+                            <span>← Continuous Feedback Loop →</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Data Pipeline and Feature Engineering</h2>
+
+                    <p class="lead-paragraph">
+                        In production, data is the most challenging part. It's messy, constantly changing,
+                        and the same features need to be computed identically for training and inference.
+                    </p>
+
+                    <div class="data-concepts">
+                        <div class="data-card">
+                            <h4>Data Validation</h4>
+                            <p>
+                                Before data enters your pipeline, validate it. Catch schema changes,
+                                null values, distribution shifts, and anomalies early.
+                            </p>
+                            <div class="tools-list">
+                                <strong>Tools:</strong> Great Expectations, TFX Data Validation, Pandera
+                            </div>
+                            <div class="validation-checks">
+                                <ul>
+                                    <li>Schema validation (types, columns)</li>
+                                    <li>Statistical validation (ranges, distributions)</li>
+                                    <li>Semantic validation (business rules)</li>
+                                    <li>Freshness validation (data is recent)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="data-card">
+                            <h4>Feature Stores</h4>
+                            <p>
+                                A centralized repository for features that ensures consistency between
+                                training and serving. Features computed once, used everywhere.
+                            </p>
+                            <div class="tools-list">
+                                <strong>Tools:</strong> Feast, Tecton, AWS SageMaker Feature Store
+                            </div>
+                            <div class="feature-store-benefits">
+                                <ul>
+                                    <li><strong>Reuse:</strong> Share features across models</li>
+                                    <li><strong>Consistency:</strong> Same computation for training/serving</li>
+                                    <li><strong>Time-travel:</strong> Point-in-time correct features</li>
+                                    <li><strong>Low latency:</strong> Precomputed for real-time serving</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="data-card">
+                            <h4>Training-Serving Skew</h4>
+                            <p>
+                                When features are computed differently in training vs serving, models
+                                perform worse in production than in evaluation. This is a silent killer.
+                            </p>
+                            <div class="skew-causes">
+                                <strong>Common causes:</strong>
+                                <ul>
+                                    <li>Different code paths for offline/online computation</li>
+                                    <li>Data leakage in training (future data available)</li>
+                                    <li>Different preprocessing libraries or versions</li>
+                                    <li>Aggregation windows computed differently</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Data Flywheel</h4>
+                            <p>
+                                Production systems should collect data that improves future models.
+                                Log predictions, outcomes, and user feedback. Build active learning
+                                pipelines that identify valuable examples. The best production systems
+                                get better automatically.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Experiment Tracking and Reproducibility</h2>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">Reproducibility</div>
+                        <p class="definition-text">
+                            Given the same code, data, and configuration, you should get the same
+                            (or statistically equivalent) model. Without reproducibility, you can't
+                            debug, compare, or reliably improve.
+                        </p>
+                    </div>
+
+                    <div class="reproducibility-stack">
+                        <div class="repro-layer">
+                            <h4>Code Versioning</h4>
+                            <p>Git for everything. Tag releases. Link commits to experiments.</p>
+                        </div>
+                        <div class="repro-layer">
+                            <h4>Data Versioning</h4>
+                            <p>DVC, Delta Lake, or LakeFS. Version datasets like code.</p>
+                        </div>
+                        <div class="repro-layer">
+                            <h4>Environment Versioning</h4>
+                            <p>Docker containers, conda environments. Pin all dependencies.</p>
+                        </div>
+                        <div class="repro-layer">
+                            <h4>Experiment Tracking</h4>
+                            <p>MLflow, Weights & Biases, Neptune. Log everything automatically.</p>
+                        </div>
+                        <div class="repro-layer">
+                            <h4>Model Registry</h4>
+                            <p>Central catalog of trained models with metadata and lineage.</p>
+                        </div>
+                    </div>
+
+                    <div class="tracking-checklist">
+                        <h3>What to Track for Every Experiment</h3>
+                        <div class="checklist-grid">
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>Git commit hash</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>Data version/hash</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>Hyperparameters</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>Random seeds</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>Environment/dependencies</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>All metrics over time</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>Model artifacts</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span class="check-icon">✓</span>
+                                <span>Training time/resources</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Model Deployment Patterns</h2>
+
+                    <div class="deployment-patterns">
+                        <div class="pattern-card">
+                            <h4>Batch Inference</h4>
+                            <div class="pattern-desc">
+                                <p>Run predictions on large datasets periodically (hourly, daily).</p>
+                                <div class="pattern-use-cases">
+                                    <strong>Use when:</strong>
+                                    <ul>
+                                        <li>Predictions don't need to be immediate</li>
+                                        <li>Large volume of predictions</li>
+                                        <li>Complex models that are slow</li>
+                                    </ul>
+                                </div>
+                                <div class="pattern-example">
+                                    <strong>Example:</strong> Nightly recommendation generation,
+                                    fraud scoring for next-day review
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pattern-card">
+                            <h4>Real-Time Inference (Online)</h4>
+                            <div class="pattern-desc">
+                                <p>Serve predictions on-demand via API, typically sub-second latency.</p>
+                                <div class="pattern-use-cases">
+                                    <strong>Use when:</strong>
+                                    <ul>
+                                        <li>User-facing applications</li>
+                                        <li>Decisions needed immediately</li>
+                                        <li>Input data available at request time</li>
+                                    </ul>
+                                </div>
+                                <div class="pattern-example">
+                                    <strong>Example:</strong> Search ranking, fraud detection at checkout,
+                                    chatbots
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pattern-card">
+                            <h4>Streaming Inference</h4>
+                            <div class="pattern-desc">
+                                <p>Process continuous data streams, making predictions as events arrive.</p>
+                                <div class="pattern-use-cases">
+                                    <strong>Use when:</strong>
+                                    <ul>
+                                        <li>Data arrives continuously</li>
+                                        <li>Need to react to events quickly</li>
+                                        <li>State needs to be maintained</li>
+                                    </ul>
+                                </div>
+                                <div class="pattern-example">
+                                    <strong>Example:</strong> Real-time anomaly detection,
+                                    live video analysis
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pattern-card">
+                            <h4>Edge Inference</h4>
+                            <div class="pattern-desc">
+                                <p>Run models on device (phone, IoT, browser) rather than server.</p>
+                                <div class="pattern-use-cases">
+                                    <strong>Use when:</strong>
+                                    <ul>
+                                        <li>Privacy-sensitive data</li>
+                                        <li>No/unreliable network</li>
+                                        <li>Ultra-low latency required</li>
+                                    </ul>
+                                </div>
+                                <div class="pattern-example">
+                                    <strong>Example:</strong> Face ID, voice assistants,
+                                    autonomous vehicles
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 2rem;">
+                        <h3
+                            style="color: #a78bfa; font-size: 1rem; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span>🛠️</span> New to DevOps? Quick Crash Course
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <div
+                                style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm);">
+                                <strong style="color: var(--text-primary);">What is an API?</strong>
+                                <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                    An <strong>API (Application Programming Interface)</strong> is a way for programs to
+                                    talk to each other.
+                                    Think of it like a waiter at a restaurant: you tell the waiter what you want
+                                    (request), and they bring it back (response).
+                                    Your model becomes an API endpoint that receives data and returns predictions.
+                                </p>
+                            </div>
+                            <div
+                                style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm);">
+                                <strong style="color: var(--text-primary);">What is a Container (Docker)?</strong>
+                                <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                    A <strong>container</strong> packages your code + all its dependencies (Python
+                                    version, libraries, etc.) into a single portable unit.
+                                    It's like a shipping container: everything inside is bundled together and works the
+                                    same anywhere.
+                                    Docker is the tool that creates and runs these containers.
+                                </p>
+                            </div>
+                            <div
+                                style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm);">
+                                <strong style="color: var(--text-primary);">What is Kubernetes (K8s)?</strong>
+                                <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                    <strong>Kubernetes</strong> manages many containers across many machines. It handles
+                                    scaling (run more copies when busy),
+                                    healing (restart crashed containers), and routing (send requests to healthy
+                                    instances).
+                                    Think of it as the "operating system" for running containers in production.
+                                </p>
+                            </div>
+                        </div>
+                        <p style="margin: 1rem 0 0; font-size: 0.85rem; color: var(--text-tertiary);">
+                            <strong>Don't worry!</strong> You don't need to master all of this to understand ML systems.
+                            Most teams have dedicated infrastructure engineers. Your job is to know these exist and
+                            communicate effectively.
+                        </p>
+                    </div>
+
+                    <div class="serving-infrastructure">
+                        <h3>Serving Infrastructure Options</h3>
+                        <div class="infra-comparison">
+                            <div class="infra-option">
+                                <h4>Model Servers</h4>
+                                <p>Dedicated servers for ML inference: TensorFlow Serving, Triton, TorchServe</p>
+                                <div class="infra-props">
+                                    <span class="prop-good">Optimized for ML</span>
+                                    <span class="prop-good">Batching, GPU support</span>
+                                    <span class="prop-bad">More infrastructure</span>
+                                </div>
+                            </div>
+                            <div class="infra-option">
+                                <h4>Containers (K8s)</h4>
+                                <p>Package model + server in Docker, deploy on Kubernetes</p>
+                                <div class="infra-props">
+                                    <span class="prop-good">Flexible</span>
+                                    <span class="prop-good">Cloud-native</span>
+                                    <span class="prop-bad">Complexity</span>
+                                </div>
+                            </div>
+                            <div class="infra-option">
+                                <h4>Serverless</h4>
+                                <p>AWS Lambda, Google Cloud Functions, Azure Functions</p>
+                                <div class="infra-props">
+                                    <span class="prop-good">Zero ops</span>
+                                    <span class="prop-good">Auto-scaling</span>
+                                    <span class="prop-bad">Cold starts</span>
+                                    <span class="prop-bad">Size limits</span>
+                                </div>
+                            </div>
+                            <div class="infra-option">
+                                <h4>Managed ML Platforms</h4>
+                                <p>SageMaker, Vertex AI, Azure ML</p>
+                                <div class="infra-props">
+                                    <span class="prop-good">Integrated</span>
+                                    <span class="prop-good">Managed</span>
+                                    <span class="prop-bad">Vendor lock-in</span>
+                                    <span class="prop-bad">Cost</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TODO: Add simple 'Cost Calculator' UI to show estimated monthly cost based on:
+                         - model size (parameters)
+                         - requests per second
+                         - provider pricing assumptions -->
+                    <div class="deployment-artifacts">
+                        <h3>Hands-On: Deployment Artifacts</h3>
+                        <p class="artifacts-intro">
+                            Here are production-ready templates for the most common deployment patterns.
+                            Copy and adapt these for your own projects.
+                        </p>
+
+                        <div class="code-artifact">
+                            <div class="artifact-header">
+                                <span class="artifact-icon">📄</span>
+                                <span class="artifact-title">Dockerfile (FastAPI + Model)</span>
+                            </div>
+                            <pre><code class="language-dockerfile"># Dockerfile for ML Model Serving
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install dependencies first (cache layer)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy model and code
+COPY model/ ./model/
+COPY app.py .
+
+# Expose port for inference
+EXPOSE 8000
+
+# Run with uvicorn
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]</code></pre>
+                        </div>
+
+                        <div class="code-artifact">
+                            <div class="artifact-header">
+                                <span class="artifact-icon">📄</span>
+                                <span class="artifact-title">app.py (FastAPI Server)</span>
+                            </div>
+                            <pre><code class="language-python">from fastapi import FastAPI
+from pydantic import BaseModel
+import torch
+
+app = FastAPI()
+
+# Load model at startup (not per-request!)
+model = torch.load("model/model.pt")
+model.eval()
+
+class PredictionRequest(BaseModel):
+    text: str
+
+class PredictionResponse(BaseModel):
+    prediction: str
+    confidence: float
+
+@app.post("/predict", response_model=PredictionResponse)
+async def predict(request: PredictionRequest):
+    with torch.no_grad():
+        # Your preprocessing here
+        output = model(preprocess(request.text))
+        pred_class = output.argmax().item()
+        confidence = output.softmax(dim=-1).max().item()
+    
+    return PredictionResponse(
+        prediction=CLASS_NAMES[pred_class],
+        confidence=confidence
+    )
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}</code></pre>
+                        </div>
+
+                        <div class="code-artifact">
+                            <div class="artifact-header">
+                                <span class="artifact-icon">📄</span>
+                                <span class="artifact-title">docker-compose.yml (Local Development)</span>
+                            </div>
+                            <pre><code class="language-yaml">version: '3.8'
+services:
+  ml-api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./model:/app/model  # Hot-reload models
+    environment:
+      - MODEL_PATH=/app/model/model.pt
+      - LOG_LEVEL=debug
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3</code></pre>
+                        </div>
+
+                        <div class="code-artifact">
+                            <div class="artifact-header">
+                                <span class="artifact-icon">📄</span>
+                                <span class="artifact-title">requirements.txt</span>
+                            </div>
+                            <pre><code class="language-text">torch==2.0.1
+fastapi==0.100.0
+uvicorn[standard]==0.23.0
+pydantic==2.0.0
+numpy==1.24.0</code></pre>
+                        </div>
+
+                        <div class="deployment-commands">
+                            <h4>Quick Commands</h4>
+                            <div class="command-block">
+                                <span class="command-label">Build:</span>
+                                <code>docker build -t my-model-api:v1 .</code>
+                            </div>
+                            <div class="command-block">
+                                <span class="command-label">Run:</span>
+                                <code>docker run -p 8000:8000 my-model-api:v1</code>
+                            </div>
+                            <div class="command-block">
+                                <span class="command-label">Test:</span>
+                                <code>curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d '{"text": "Hello world"}'</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Safe Deployment Strategies</h2>
+
+                    <p class="lead-paragraph">
+                        Don't deploy new models directly to all users. Use progressive rollout
+                        strategies to catch problems before they affect everyone.
+                    </p>
+
+                    <div class="deployment-strategies">
+                        <div class="strategy-card">
+                            <h4>Shadow Deployment</h4>
+                            <div class="strategy-visual">
+                                <div class="traffic-flow">
+                                    <span class="traffic-source">Traffic</span>
+                                    <span class="traffic-split">→</span>
+                                    <div class="traffic-targets">
+                                        <span class="target-prod">Prod Model (serves)</span>
+                                        <span class="target-shadow">New Model (logs only)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                Run new model in parallel, compare outputs without serving to users.
+                                Zero risk to users.
+                            </p>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h4>Canary Deployment</h4>
+                            <div class="strategy-visual">
+                                <div class="canary-stages">
+                                    <span class="canary-stage">1% → 5% → 25% → 50% → 100%</span>
+                                </div>
+                            </div>
+                            <p>
+                                Gradually increase traffic to new model. Monitor metrics at each
+                                stage. Rollback if problems appear.
+                            </p>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h4>A/B Testing</h4>
+                            <div class="strategy-visual">
+                                <div class="ab-split">
+                                    <span class="ab-group">Group A: Old Model</span>
+                                    <span class="ab-group">Group B: New Model</span>
+                                </div>
+                            </div>
+                            <p>
+                                Randomly assign users to variants. Measure business metrics
+                                (not just ML metrics). Statistical significance before decision.
+                            </p>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h4>Blue-Green Deployment</h4>
+                            <div class="strategy-visual">
+                                <div class="blue-green">
+                                    <span class="blue">Blue (current)</span>
+                                    <span class="switch">⇄</span>
+                                    <span class="green">Green (new)</span>
+                                </div>
+                            </div>
+                            <p>
+                                Maintain two production environments. Switch traffic instantly.
+                                Easy rollback by switching back.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Production Monitoring</h2>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">The Monitoring Mandate</div>
+                        <p class="definition-text">
+                            ML models degrade silently. Unlike traditional software that crashes when
+                            broken, ML models continue producing outputs—just worse ones. You won't
+                            know unless you monitor.
+                        </p>
+                    </div>
+
+                    <div class="monitoring-categories">
+                        <div class="monitor-card">
+                            <h4>System Metrics</h4>
+                            <p>Traditional DevOps monitoring—infrastructure health.</p>
+                            <ul>
+                                <li>Latency (p50, p95, p99)</li>
+                                <li>Throughput (requests/sec)</li>
+                                <li>Error rates</li>
+                                <li>CPU/Memory/GPU utilization</li>
+                                <li>Queue depths</li>
+                            </ul>
+                        </div>
+
+                        <div class="monitor-card">
+                            <h4>Data Quality Metrics</h4>
+                            <p>Is the input data what the model expects?</p>
+                            <ul>
+                                <li>Missing values</li>
+                                <li>Schema violations</li>
+                                <li>Out-of-range values</li>
+                                <li>Data freshness</li>
+                                <li>Volume anomalies</li>
+                            </ul>
+                        </div>
+
+                        <div class="monitor-card">
+                            <h4>Data Drift</h4>
+                            <p>Has the input distribution changed since training?</p>
+                            <ul>
+                                <li>Feature distributions (PSI, KL divergence)</li>
+                                <li>Embedding drift</li>
+                                <li>Covariate shift detection</li>
+                            </ul>
+                            <div class="drift-note">
+                                <strong>Why it matters:</strong> Models trained on old distributions
+                                may perform poorly on new ones.
+                            </div>
+                        </div>
+
+                        <div class="monitor-card">
+                            <h4>Model Performance</h4>
+                            <p>Is the model still accurate? (Requires ground truth)</p>
+                            <ul>
+                                <li>Accuracy, precision, recall over time</li>
+                                <li>Performance by segment</li>
+                                <li>Prediction distribution changes</li>
+                                <li>Concept drift detection</li>
+                            </ul>
+                            <div class="drift-note">
+                                <strong>Challenge:</strong> Ground truth often delayed (did the
+                                user click? did the loan default?)
+                            </div>
+                        </div>
+
+                        <div class="monitor-card">
+                            <h4>Business Metrics</h4>
+                            <p>Is the model achieving its business goal?</p>
+                            <ul>
+                                <li>Conversion rates</li>
+                                <li>Revenue impact</li>
+                                <li>User engagement</li>
+                                <li>Customer satisfaction</li>
+                            </ul>
+                            <div class="drift-note">
+                                <strong>Key insight:</strong> ML metrics (accuracy) don't always
+                                correlate with business metrics.
+                            </div>
+                        </div>
+
+                        <div class="monitor-card">
+                            <h4>Fairness Metrics</h4>
+                            <p>Are there disparities in how the model treats groups?</p>
+                            <ul>
+                                <li>Performance by demographic</li>
+                                <li>Prediction rate parity</li>
+                                <li>Error rate parity</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Monitoring Without Ground Truth</h4>
+                            <p>
+                                When labels are delayed or unavailable, monitor proxy signals:
+                                prediction confidence distributions, prediction rate changes,
+                                user behavior (do users accept recommendations?), and input
+                                data drift. These can signal problems before you have ground truth.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Continuous Training and Feedback Loops</h2>
+
+                    <p class="lead-paragraph">
+                        Static models decay. Production systems need mechanisms to retrain
+                        models on fresh data—automatically or with human oversight.
+                    </p>
+
+                    <div class="retraining-strategies">
+                        <div class="retrain-card">
+                            <h4>Scheduled Retraining</h4>
+                            <p>
+                                Retrain on a fixed schedule (daily, weekly, monthly). Simple but
+                                may retrain unnecessarily or not quickly enough.
+                            </p>
+                            <div class="retrain-when">
+                                <strong>Best for:</strong> Stable domains, predictable drift
+                            </div>
+                        </div>
+
+                        <div class="retrain-card">
+                            <h4>Triggered Retraining</h4>
+                            <p>
+                                Retrain when drift or performance degradation is detected. More
+                                efficient but requires good monitoring.
+                            </p>
+                            <div class="retrain-when">
+                                <strong>Best for:</strong> Variable drift, cost-sensitive environments
+                            </div>
+                        </div>
+
+                        <div class="retrain-card">
+                            <h4>Online Learning</h4>
+                            <p>
+                                Update model continuously as new data arrives. No discrete
+                                retraining—model always current.
+                            </p>
+                            <div class="retrain-when">
+                                <strong>Best for:</strong> High-frequency data, real-time adaptation
+                            </div>
+                            <div class="retrain-caution">
+                                <strong>Caution:</strong> Vulnerable to data quality issues and adversarial inputs
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Human-in-the-Loop Retraining</h3>
+                        <p>
+                            Fully automated retraining can propagate errors. Consider requiring
+                            human approval for:
+                        </p>
+                        <ul>
+                            <li>Model promotions to production</li>
+                            <li>Significant training data changes</li>
+                            <li>Models in high-stakes domains</li>
+                            <li>First deployment of new architectures</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"If the model works in testing, it'll work in production"
+                            </h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Test environments differ from production in data distribution, scale,
+                                latency requirements, and edge cases. Models that ace offline evaluation
+                                often struggle with real-world messiness.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Offline evaluation is necessary
+                                but not sufficient. Use shadow deployments, canary releases, and
+                                continuous monitoring to validate in production.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Deploy once and you're done"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                The world changes. Data drifts. User behavior evolves. Competitors
+                                adapt. A model that's excellent today may be mediocre in three months.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> ML systems need continuous
+                                monitoring, regular evaluation, and mechanisms for updating.
+                                Deployment is the beginning, not the end.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"The ML code is the hard part"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                In production systems, ML code is typically 5-10% of the codebase.
+                                The rest is data pipelines, serving infrastructure, monitoring,
+                                testing, and configuration management.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> ML engineering is mostly
+                                engineering. Data quality, infrastructure reliability, and
+                                operational excellence determine production success.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Deployment Decision Tree
+                    </h2>
+
+                    <div class="lab-introduction">
+                        <p>
+                            Answer questions about your use case to get deployment architecture
+                            recommendations.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="decision-lab">
+                            <div class="decision-questions">
+                                <div class="decision-question" data-step="1">
+                                    <p>What is the latency requirement?</p>
+                                    <div class="decision-options">
+                                        <button class="decision-btn" data-answer="realtime">Real-time
+                                            (&lt;100ms)</button>
+                                        <button class="decision-btn" data-answer="nearrealtime">Near real-time
+                                            (&lt;1s)</button>
+                                        <button class="decision-btn" data-answer="batch">Batch (hours OK)</button>
+                                    </div>
+                                </div>
+
+                                <div class="decision-question hidden" data-step="2">
+                                    <p>Where does the data live?</p>
+                                    <div class="decision-options">
+                                        <button class="decision-btn" data-answer="cloud">Cloud/Server</button>
+                                        <button class="decision-btn" data-answer="edge">On Device (Edge)</button>
+                                        <button class="decision-btn" data-answer="hybrid">Both</button>
+                                    </div>
+                                </div>
+
+                                <div class="decision-question hidden" data-step="3">
+                                    <p>What's the scale?</p>
+                                    <div class="decision-options">
+                                        <button class="decision-btn" data-answer="small">&lt;1K requests/day</button>
+                                        <button class="decision-btn" data-answer="medium">1K-100K requests/day</button>
+                                        <button class="decision-btn" data-answer="large">&gt;100K requests/day</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recommendation hidden" id="recommendation">
+                                <h4>Recommended Architecture</h4>
+                                <div class="rec-content" id="rec-content"></div>
+                            </div>
+
+                            <button class="btn btn-secondary" id="reset-decision" style="display:none;">Start
+                                Over</button>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Considerations</h4>
+                        <ul>
+                            <li><strong>Latency:</strong> Determines real-time vs batch architecture</li>
+                            <li><strong>Data location:</strong> Privacy and connectivity constraints</li>
+                            <li><strong>Scale:</strong> Influences infrastructure complexity and cost</li>
+                            <li><strong>Model size:</strong> Large models need more resources</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What is training-serving skew?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span
+                                        class="option-marker"></span><span class="option-text">When training takes
+                                        longer than expected</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span
+                                        class="option-marker"></span><span class="option-text">When features are
+                                        computed differently during training vs inference, causing performance
+                                        degradation</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span
+                                        class="option-marker"></span><span class="option-text">When the model is
+                                        biased</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span
+                                        class="option-marker"></span><span class="option-text">When the training data is
+                                        too small</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">What is a canary deployment?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span
+                                        class="option-marker"></span><span class="option-text">Deploying to a
+                                        yellow-colored server</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span
+                                        class="option-marker"></span><span class="option-text">Gradually increasing
+                                        traffic to a new model while monitoring for problems</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span
+                                        class="option-marker"></span><span class="option-text">Running two identical
+                                        models in parallel</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span
+                                        class="option-marker"></span><span class="option-text">Testing the model
+                                        manually before deployment</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">Why is data drift monitoring important?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span
+                                        class="option-marker"></span><span class="option-text">It makes the model
+                                        faster</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span
+                                        class="option-marker"></span><span class="option-text">Models trained on old
+                                        data distributions may perform poorly when input distributions
+                                        change</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span
+                                        class="option-marker"></span><span class="option-text">It's required by
+                                        law</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span
+                                        class="option-marker"></span><span class="option-text">It reduces storage
+                                        costs</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">What's the primary purpose of a feature store?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span
+                                        class="option-marker"></span><span class="option-text">To store raw data
+                                        cheaply</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span
+                                        class="option-marker"></span><span class="option-text">To ensure consistent
+                                        feature computation between training and serving</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span
+                                        class="option-marker"></span><span class="option-text">To visualize model
+                                        predictions</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span
+                                        class="option-marker"></span><span class="option-text">To compress model
+                                        weights</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">In a production ML system, approximately what percentage of
+                                    code is typically ML-specific?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span
+                                        class="option-marker"></span><span class="option-text">80-90%</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span
+                                        class="option-marker"></span><span class="option-text">5-10%</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span
+                                        class="option-marker"></span><span class="option-text">50%</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span
+                                        class="option-marker"></span><span class="option-text">100%</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Completion Section -->
+                <section class="content-section completion-section">
+                    <div class="completion-card">
+                        <div class="completion-icon">🎓</div>
+                        <h2>Congratulations!</h2>
+                        <p class="completion-message">
+                            You've completed the <strong>Foundations of Artificial Intelligence</strong>
+                            curriculum. You now have a rigorous understanding of:
+                        </p>
+                        <ul class="completion-list">
+                            <li>What AI actually is and how intelligence emerges from optimization</li>
+                            <li>Core ML methods: decision boundaries, neural networks, backpropagation</li>
+                            <li>Modern architectures: embeddings, attention, transformers, LLMs</li>
+                            <li>Generative AI: diffusion models, multimodal systems</li>
+                            <li>Evaluation, responsible AI, and production deployment</li>
+                        </ul>
+                        <p class="completion-next">
+                            This foundation prepares you to dive deeper into specialized areas:
+                            computer vision, NLP, reinforcement learning, AI safety research,
+                            or applied ML engineering. Keep learning, stay curious, and build
+                            responsibly.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-5-2.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Responsible AI Reasoning</span>
+                    </a>
+                    <a href="index.html" class="nav-next">
+                        <span class="nav-direction">Return to</span>
+                        <span class="nav-title">Course Overview →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-5-3.js"></script>
+</body>
+
+</html>

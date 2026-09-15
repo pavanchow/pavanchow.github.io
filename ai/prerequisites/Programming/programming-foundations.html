@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Programming foundations for AI beginners: what is a program, variables, loops, functions, and how computers follow instructions.">
+    <title>Programming Foundations — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #10b981;
+            --prereq-accent-glow: rgba(16, 185, 129, 0.15);
+        }
+        
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; }
+        
+        .prereq-page { min-height: 100vh; background: var(--bg-primary); }
+        .prereq-container { max-width: 900px; margin: 0 auto; padding: clamp(1rem, 5vw, 2.5rem); }
+        
+        .prereq-header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0; margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-tertiary); text-decoration: none; font-size: 0.875rem;
+            padding: 0.5rem 1rem; border-radius: var(--radius-md);
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent); border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .prereq-nav a {
+            padding: 0.5rem 0.75rem; background: var(--bg-elevated);
+            border: 1px solid var(--surface-3); border-radius: var(--radius-md);
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.75rem; font-weight: 500; transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        .prereq-nav a:hover { border-color: var(--prereq-accent); color: var(--prereq-accent); }
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent); color: var(--prereq-accent);
+        }
+        .prereq-nav .nav-divider {
+            display: flex; align-items: center; color: var(--text-tertiary);
+            font-size: 0.7rem; padding: 0 0.25rem;
+        }
+        
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl); padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem; border: 1px solid var(--surface-3);
+            position: relative; overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--prereq-accent-glow); color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem; border-radius: var(--radius-sm);
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600; color: var(--text-primary);
+            margin: 0 0 1rem; line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary); max-width: 600px;
+            line-height: 1.7; margin: 0;
+        }
+        
+        .estimated-time {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-tertiary); font-size: 0.8rem; margin-top: 1rem;
+            padding: 0.5rem 0.75rem; background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        .learning-objectives {
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem; font-weight: 600; color: var(--prereq-accent);
+            text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem;
+        }
+        
+        .learning-objectives ul { margin: 0; padding-left: 1.25rem; }
+        .learning-objectives li {
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 0.5rem;
+        }
+        
+        .toc {
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 2rem;
+        }
+        .toc h3 {
+            font-size: 0.8rem; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.075em; margin: 0 0 1rem;
+        }
+        .toc-list { list-style: none; padding: 0; margin: 0; }
+        .toc-list li { margin-bottom: 0.5rem; }
+        .toc-list a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        .toc-list a:hover { background: var(--prereq-accent-glow); color: var(--prereq-accent); }
+        .toc-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 1.5rem; height: 1.5rem; background: var(--surface-3);
+            color: var(--text-tertiary); border-radius: 50%;
+            font-size: 0.75rem; font-weight: 600;
+        }
+        
+        .content-section {
+            background: var(--bg-secondary); border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem); margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .content-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary); margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem; border-bottom: 2px solid var(--prereq-accent);
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2rem; height: 2rem; background: var(--prereq-accent);
+            color: white; border-radius: 50%;
+            font-size: 0.875rem; font-weight: 600; flex-shrink: 0;
+        }
+        
+        .content-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary); margin: 1.75rem 0 1rem;
+        }
+        
+        .content-section p {
+            color: var(--text-secondary); line-height: 1.75;
+            margin: 0 0 1rem; font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .content-section ul, .content-section ol {
+            color: var(--text-secondary); line-height: 1.75;
+            padding-left: 1.5rem; margin: 0 0 1rem;
+        }
+        .content-section li { margin-bottom: 0.5rem; }
+        
+        .code-box {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--prereq-accent);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .code-box h4 {
+            color: var(--prereq-accent); font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.075em;
+            margin: 0 0 0.75rem;
+        }
+        
+        .code-box pre {
+            background: var(--bg-tertiary);
+            padding: clamp(0.75rem, 2vw, 1rem); border-radius: var(--radius-sm);
+            font-family: var(--font-mono); font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: var(--text-primary); margin: 0.5rem 0;
+            overflow-x: auto; white-space: pre; line-height: 1.6;
+        }
+        
+        .code-box .code-comment { color: var(--text-tertiary); }
+        .code-box .code-keyword { color: #c792ea; }
+        .code-box .code-string { color: #c3e88d; }
+        .code-box .code-number { color: #f78c6c; }
+        
+        .code-box p {
+            font-size: 0.875rem; color: var(--text-secondary); margin: 0.75rem 0 0;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .concept-box h4 {
+            color: var(--prereq-accent); font-size: 0.8rem; font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .concept-box p {
+            color: var(--text-secondary); margin: 0;
+            font-size: 0.925rem; line-height: 1.7;
+        }
+        
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 {
+            color: var(--accent-blue); font-size: 0.8rem; font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .ai-connection p {
+            color: var(--text-secondary); margin: 0;
+            font-size: 0.925rem; line-height: 1.7;
+        }
+        
+        .visual-diagram {
+            background: var(--bg-tertiary); border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem); margin: 1.25rem 0;
+            overflow-x: auto;
+        }
+        
+        .visual-diagram pre {
+            font-family: var(--font-mono); color: var(--text-secondary);
+            font-size: clamp(0.7rem, 2vw, 0.85rem); line-height: 1.5;
+            margin: 0; white-space: pre;
+        }
+        
+        .visual-diagram .diagram-caption {
+            font-size: 0.8rem; color: var(--text-tertiary);
+            text-align: center; margin-top: 1rem; font-style: italic;
+        }
+        
+        .analogy-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .analogy-box h4 {
+            color: var(--accent-gold); font-size: 0.8rem; font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .analogy-box p {
+            color: var(--text-secondary); margin: 0;
+            font-size: 0.925rem; line-height: 1.7;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3); border-radius: var(--radius-lg);
+            padding: 1.5rem; margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 {
+            color: var(--prereq-accent); font-size: 0.9rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem;
+        }
+        
+        .key-takeaways ul { margin: 0; padding-left: 1.25rem; }
+        .key-takeaways li {
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 0.5rem;
+        }
+        
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem; margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--bg-elevated); border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md); padding: 1.25rem;
+            text-decoration: none; transition: all var(--transition-fast);
+        }
+        
+        .nav-card:hover {
+            border-color: var(--prereq-accent); transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card-label {
+            font-size: 0.7rem; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.075em;
+        }
+        
+        .nav-card-title {
+            font-size: 1rem; color: var(--text-primary);
+            font-weight: 500; margin-top: 0.25rem;
+        }
+        
+        @media (max-width: 640px) {
+            .prereq-header-inner { flex-direction: column; align-items: stretch; }
+            .back-link { width: fit-content; }
+            .prereq-nav { justify-content: flex-start; overflow-x: auto; }
+            .two-column { grid-template-columns: 1fr; }
+        }
+        
+        html { scroll-behavior: smooth; }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--prereq-accent); outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link"><span>←</span> Back to Course</a>
+                    <nav class="prereq-nav">
+                        <a href="programming-foundations.html" class="active">Foundations</a>
+                        <span class="nav-divider">|</span>
+                        <a href="python-basics.html">Python Basics</a>
+                        <a href="control-flow.html">Control Flow</a>
+                        <a href="functions-data.html">Functions & Data</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="prereq-hero">
+                <span class="prereq-badge">🌱 Beginner • Programming</span>
+                <h1 class="prereq-title">Programming Foundations</h1>
+                <p class="prereq-subtitle">
+                    Never written code before? Start here. Learn what programs actually are, how 
+                    computers follow instructions, and the core concepts that underpin all programming—
+                    no prior experience needed.
+                </p>
+                <div class="estimated-time"><span>⏱</span> 15-18 minutes</div>
+            </div>
+            
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>What a program really is and how computers execute it</li>
+                    <li>Variables: storing and naming information</li>
+                    <li>Loops: repeating actions efficiently</li>
+                    <li>Functions: reusable blocks of code</li>
+                    <li>How to read and write pseudocode</li>
+                    <li>The mental model for thinking like a programmer</li>
+                </ul>
+            </div>
+            
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#what-is-program"><span class="toc-number">1</span> What is a Program?</a></li>
+                    <li><a href="#variables"><span class="toc-number">2</span> Variables</a></li>
+                    <li><a href="#loops"><span class="toc-number">3</span> Loops</a></li>
+                    <li><a href="#functions"><span class="toc-number">4</span> Functions</a></li>
+                    <li><a href="#pseudocode"><span class="toc-number">5</span> Pseudocode</a></li>
+                    <li><a href="#how-computers-work"><span class="toc-number">6</span> How Computers Follow Instructions</a></li>
+                </ol>
+            </nav>
+            
+            <!-- Section 1: What is a Program? -->
+            <section class="content-section" id="what-is-program">
+                <h2><span class="section-number">1</span> What is a Program?</h2>
+                
+                <p>
+                    A <strong>program</strong> is a set of instructions that tells a computer exactly 
+                    what to do. Think of it as a very detailed recipe—but instead of cooking, you're 
+                    telling a computer how to process information.
+                </p>
+                
+                <div class="analogy-box">
+                    <h4>🍳 Recipe Analogy</h4>
+                    <p>
+                        <strong>Recipe:</strong> "Take 2 eggs, crack them into a bowl, whisk for 30 seconds, 
+                        pour into pan, cook until solid."<br><br>
+                        <strong>Program:</strong> "Take the input number, multiply by 2, add 5, display the result."<br><br>
+                        Both are step-by-step instructions. The difference? Computers follow instructions 
+                        <em>exactly</em> and <em>literally</em>—they can't improvise or assume anything.
+                    </p>
+                </div>
+                
+                <h3>Key Properties of Programs</h3>
+                
+                <ul>
+                    <li><strong>Sequential:</strong> Instructions run one after another, in order</li>
+                    <li><strong>Precise:</strong> Every step must be explicitly stated</li>
+                    <li><strong>Deterministic:</strong> Same input always gives same output</li>
+                    <li><strong>Fast:</strong> Computers can execute billions of instructions per second</li>
+                </ul>
+                
+                <div class="visual-diagram">
+                    <pre>
+        A Simple Program:
+        
+        ┌─────────────────────────────────────────────┐
+        │  1. Get a number from the user              │
+        │  2. Multiply the number by 2                │
+        │  3. Add 5 to the result                     │
+        │  4. Show the final answer                   │
+        └─────────────────────────────────────────────┘
+        
+        If user enters 10:
+        Step 1: number = 10
+        Step 2: 10 × 2 = 20
+        Step 3: 20 + 5 = 25
+        Step 4: Display "25"
+                    </pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Programs in AI</h4>
+                    <p>
+                        An AI model is essentially a very complex program. It takes input (an image, text, 
+                        audio), processes it through millions of mathematical operations, and produces output 
+                        (a classification, translation, or generated content). The "learning" part is just 
+                        a program that adjusts the numbers (weights) based on examples.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 2: Variables -->
+            <section class="content-section" id="variables">
+                <h2><span class="section-number">2</span> Variables</h2>
+                
+                <p>
+                    A <strong>variable</strong> is a named container that stores data. It's like a labeled 
+                    box where you can put information, retrieve it later, and change its contents.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        Variables as Labeled Boxes:
+        
+        ┌─────────┐    ┌─────────┐    ┌─────────────┐
+        │  age    │    │  name   │    │   score     │
+        │─────────│    │─────────│    │─────────────│
+        │   25    │    │ "Alice" │    │    98.5     │
+        └─────────┘    └─────────┘    └─────────────┘
+           number        text            number
+                    </pre>
+                </div>
+                
+                <h3>Why "Variable"?</h3>
+                
+                <p>
+                    The value can <em>vary</em>—it can change over time. That's the power: you can 
+                    update the contents without changing the name.
+                </p>
+                
+                <div class="code-box">
+                    <h4>💻 Variables in Action</h4>
+                    <pre><span class="code-comment"># Creating variables</span>
+age = <span class="code-number">25</span>
+name = <span class="code-string">"Alice"</span>
+score = <span class="code-number">98.5</span>
+
+<span class="code-comment"># Using variables</span>
+<span class="code-keyword">print</span>(name)       <span class="code-comment"># Output: Alice</span>
+<span class="code-keyword">print</span>(age + <span class="code-number">10</span>)   <span class="code-comment"># Output: 35</span>
+
+<span class="code-comment"># Changing a variable</span>
+age = <span class="code-number">26</span>          <span class="code-comment"># Now age is 26</span>
+score = score + <span class="code-number">1</span> <span class="code-comment"># Add 1 to score (now 99.5)</span></pre>
+                </div>
+                
+                <h3>Variable Naming Rules</h3>
+                
+                <ul>
+                    <li>Use descriptive names: <code>user_age</code> not <code>x</code></li>
+                    <li>No spaces: use underscores (<code>first_name</code>) or camelCase (<code>firstName</code>)</li>
+                    <li>Can't start with numbers: <code>2fast</code> ❌, <code>fast2</code> ✓</li>
+                    <li>Case matters: <code>Age</code> and <code>age</code> are different variables</li>
+                </ul>
+                
+                <div class="concept-box">
+                    <h4>💡 Think of Variables as...</h4>
+                    <p>
+                        <strong>Post-it notes</strong> with names. You can write a value on one, stick it 
+                        somewhere, read it later, erase it and write something new. The label (name) stays 
+                        the same, but the content can change.
+                    </p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Variables in AI</h4>
+                    <p>
+                        AI models have millions of variables called "weights" and "parameters." During 
+                        training, these variables are continuously updated to improve the model's 
+                        predictions. The learning rate, batch size, and number of epochs are also stored 
+                        as variables.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 3: Loops -->
+            <section class="content-section" id="loops">
+                <h2><span class="section-number">3</span> Loops</h2>
+                
+                <p>
+                    A <strong>loop</strong> repeats a block of code multiple times. Instead of writing 
+                    the same instruction 100 times, you write it once and tell the computer to repeat it.
+                </p>
+                
+                <div class="analogy-box">
+                    <h4>🏃 Exercise Analogy</h4>
+                    <p>
+                        Without loops: "Do a pushup. Do a pushup. Do a pushup. Do a pushup..."<br>
+                        With loops: "Do 10 pushups."<br><br>
+                        Same result, much less writing!
+                    </p>
+                </div>
+                
+                <h3>Types of Loops</h3>
+                
+                <div class="two-column">
+                    <div class="code-box">
+                        <h4>🔄 For Loop (Count-based)</h4>
+                        <pre><span class="code-comment"># Repeat 5 times</span>
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-number">5</span>):
+    <span class="code-keyword">print</span>(<span class="code-string">"Hello!"</span>)
+
+<span class="code-comment"># Output:</span>
+<span class="code-comment"># Hello!</span>
+<span class="code-comment"># Hello!</span>
+<span class="code-comment"># Hello!</span>
+<span class="code-comment"># Hello!</span>
+<span class="code-comment"># Hello!</span></pre>
+                        <p>Use when you know how many times to repeat</p>
+                        <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
+                            <strong>Note:</strong> <code>range(5)</code> gives 0,1,2,3,4 — starts at 0, stops <em>before</em> 5
+                        </p>
+                    </div>
+                    
+                    <div class="code-box">
+                        <h4>🔁 While Loop (Condition-based)</h4>
+                        <pre><span class="code-comment"># Repeat while condition is true</span>
+count = <span class="code-number">0</span>
+<span class="code-keyword">while</span> count < <span class="code-number">3</span>:
+    <span class="code-keyword">print</span>(count)
+    count = count + <span class="code-number">1</span>
+
+<span class="code-comment"># Output:</span>
+<span class="code-comment"># 0</span>
+<span class="code-comment"># 1</span>
+<span class="code-comment"># 2</span></pre>
+                        <p>Use when repeating until something changes</p>
+                    </div>
+                </div>
+                
+                <h3>Loop Through Data</h3>
+                
+                <div class="code-box">
+                    <h4>💻 Processing a List</h4>
+                    <pre>names = [<span class="code-string">"Alice"</span>, <span class="code-string">"Bob"</span>, <span class="code-string">"Charlie"</span>]
+
+<span class="code-keyword">for</span> name <span class="code-keyword">in</span> names:
+    <span class="code-keyword">print</span>(<span class="code-string">"Hello, "</span> + name)
+
+<span class="code-comment"># Output:</span>
+<span class="code-comment"># Hello, Alice</span>
+<span class="code-comment"># Hello, Bob</span>
+<span class="code-comment"># Hello, Charlie</span></pre>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+        Loop Execution Flow:
+        
+        ┌─────────────┐
+        │ Start Loop  │
+        └──────┬──────┘
+               │
+               ▼
+        ┌─────────────┐    No     ┌─────────────┐
+        │ More items? │─────────▶│  Exit Loop  │
+        └──────┬──────┘          └─────────────┘
+               │ Yes
+               ▼
+        ┌─────────────┐
+        │ Do the task │
+        └──────┬──────┘
+               │
+               └──────────┐
+                          │ (repeat)
+                          ▼
+                   Back to "More items?"
+                    </pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Loops in AI</h4>
+                    <p>
+                        Training a neural network is one big loop: "For each batch of data, make predictions, 
+                        calculate error, update weights. Repeat for all batches. Repeat for multiple epochs." 
+                        A model trained for 100 epochs has looped through the entire dataset 100 times!
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Functions -->
+            <section class="content-section" id="functions">
+                <h2><span class="section-number">4</span> Functions</h2>
+                
+                <p>
+                    A <strong>function</strong> is a reusable block of code that performs a specific task. 
+                    You define it once, give it a name, and call it whenever you need that task done.
+                </p>
+                
+                <div class="analogy-box">
+                    <h4>📱 Speed Dial Analogy</h4>
+                    <p>
+                        Instead of dialing 555-123-4567 every time you want to call Mom, you save it as 
+                        "Mom" and just tap once. A function is like that: a shortcut for a complex operation.
+                    </p>
+                </div>
+                
+                <h3>Function Structure</h3>
+                
+                <div class="visual-diagram">
+                    <pre>
+        Function Anatomy:
+        
+        def greet(name):           ← Name and input (parameter)
+            message = "Hello, " + name
+            return message         ← Output (return value)
+        
+        
+        Using the function:
+        
+        result = greet("Alice")    ← Call with argument
+        print(result)              ← Output: Hello, Alice
+                    </pre>
+                </div>
+                
+                <h3>Why Functions?</h3>
+                
+                <ul>
+                    <li><strong>Reusability:</strong> Write once, use many times</li>
+                    <li><strong>Organization:</strong> Break complex tasks into smaller pieces</li>
+                    <li><strong>Readability:</strong> Give meaningful names to operations</li>
+                    <li><strong>Testing:</strong> Test each piece independently</li>
+                </ul>
+                
+                <div class="two-column">
+                    <div class="code-box">
+                        <h4>❌ Without Functions</h4>
+                        <pre><span class="code-comment"># Calculate area 3 times</span>
+area1 = <span class="code-number">5</span> * <span class="code-number">10</span>
+area2 = <span class="code-number">3</span> * <span class="code-number">7</span>
+area3 = <span class="code-number">8</span> * <span class="code-number">2</span>
+
+<span class="code-comment"># What if formula changes?</span>
+<span class="code-comment"># Have to update 3 places!</span></pre>
+                    </div>
+                    
+                    <div class="code-box">
+                        <h4>✅ With Functions</h4>
+                        <pre><span class="code-keyword">def</span> area(width, height):
+    <span class="code-keyword">return</span> width * height
+
+area1 = area(<span class="code-number">5</span>, <span class="code-number">10</span>)
+area2 = area(<span class="code-number">3</span>, <span class="code-number">7</span>)
+area3 = area(<span class="code-number">8</span>, <span class="code-number">2</span>)
+
+<span class="code-comment"># Change formula once,</span>
+<span class="code-comment"># works everywhere!</span></pre>
+                    </div>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Functions in AI</h4>
+                    <p>
+                        AI libraries are built on functions: <code>model.fit()</code> trains a model, 
+                        <code>model.predict()</code> makes predictions, <code>loss_function()</code> 
+                        calculates error. Neural networks themselves are compositions of functions—each 
+                        layer is a function that transforms its input.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 5: Pseudocode -->
+            <section class="content-section" id="pseudocode">
+                <h2><span class="section-number">5</span> Pseudocode</h2>
+                
+                <p>
+                    <strong>Pseudocode</strong> is a way to describe an algorithm in plain language, 
+                    without worrying about specific programming syntax. It's how programmers plan 
+                    their code before writing it.
+                </p>
+                
+                <div class="concept-box">
+                    <h4>💡 Why Pseudocode?</h4>
+                    <p>
+                        It lets you focus on the <em>logic</em> without getting stuck on <em>syntax</em>. 
+                        Once your pseudocode is clear, translating it to any programming language becomes 
+                        straightforward.
+                    </p>
+                </div>
+                
+                <h3>Example: Finding the Largest Number</h3>
+                
+                <div class="two-column">
+                    <div class="code-box">
+                        <h4>📝 Pseudocode</h4>
+                        <pre>INPUT: a list of numbers
+
+SET largest TO the first number
+
+FOR EACH number in the list:
+    IF number > largest:
+        SET largest TO number
+
+OUTPUT: largest</pre>
+                    </div>
+                    
+                    <div class="code-box">
+                        <h4>🐍 Python</h4>
+                        <pre>numbers = [<span class="code-number">3</span>, <span class="code-number">7</span>, <span class="code-number">2</span>, <span class="code-number">9</span>, <span class="code-number">1</span>]
+
+largest = numbers[<span class="code-number">0</span>]
+
+<span class="code-keyword">for</span> number <span class="code-keyword">in</span> numbers:
+    <span class="code-keyword">if</span> number > largest:
+        largest = number
+
+<span class="code-keyword">print</span>(largest)  <span class="code-comment"># 9</span></pre>
+                    </div>
+                </div>
+                
+                <h3>Pseudocode Conventions</h3>
+                
+                <ul>
+                    <li><strong>INPUT/OUTPUT:</strong> What goes in and comes out</li>
+                    <li><strong>SET...TO:</strong> Assign a value to a variable</li>
+                    <li><strong>IF...THEN:</strong> Conditional logic</li>
+                    <li><strong>FOR EACH:</strong> Loop through items</li>
+                    <li><strong>WHILE:</strong> Loop until condition changes</li>
+                    <li><strong>CALL:</strong> Use a function</li>
+                </ul>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Pseudocode for AI</h4>
+                    <p>
+                        Here's the training loop in pseudocode:<br><br>
+                        <code>FOR each epoch:<br>
+                        &nbsp;&nbsp;FOR each batch of data:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Make predictions<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Calculate loss<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Compute gradients<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Update weights</code><br><br>
+                        Simple, right? The details are complex, but the structure is clear.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 6: How Computers Work -->
+            <section class="content-section" id="how-computers-work">
+                <h2><span class="section-number">6</span> How Computers Follow Instructions</h2>
+                
+                <p>
+                    Understanding how computers execute programs helps you write better code and 
+                    debug problems. Here's the simplified mental model.
+                </p>
+                
+                <h3>The Execution Model</h3>
+                
+                <div class="visual-diagram">
+                    <pre>
+        Your Code          Computer's Brain         Memory
+        ─────────         ───────────────         ────────
+                          
+        x = 5       ──▶   "Store 5 in x"    ──▶  │ x: 5  │
+        y = 3       ──▶   "Store 3 in y"    ──▶  │ y: 3  │
+        z = x + y   ──▶   "Get x, get y,         │ z: 8  │
+                          add them,
+                          store in z"
+        print(z)    ──▶   "Get z, display"  ──▶  Output: 8
+                    </pre>
+                </div>
+                
+                <h3>Key Concepts</h3>
+                
+                <ul>
+                    <li><strong>Sequential Execution:</strong> Code runs line by line, top to bottom</li>
+                    <li><strong>Memory:</strong> Variables are stored in memory (RAM)</li>
+                    <li><strong>CPU:</strong> The "brain" that executes instructions</li>
+                    <li><strong>State:</strong> The current values of all variables at any moment</li>
+                </ul>
+                
+                <h3>Tracing Execution</h3>
+                
+                <p>
+                    "Tracing" means following your code step by step, tracking how variables change. 
+                    This is how you debug!
+                </p>
+                
+                <div class="code-box">
+                    <h4>💻 Trace Example</h4>
+                    <pre><span class="code-comment"># Code              State after line</span>
+x = <span class="code-number">10</span>              <span class="code-comment"># x=10</span>
+y = <span class="code-number">5</span>               <span class="code-comment"># x=10, y=5</span>
+x = x + y           <span class="code-comment"># x=15, y=5</span>
+y = x - <span class="code-number">3</span>           <span class="code-comment"># x=15, y=12</span>
+<span class="code-keyword">print</span>(x, y)         <span class="code-comment"># Output: 15 12</span></pre>
+                </div>
+                
+                <div class="concept-box">
+                    <h4>💡 The Literal Computer</h4>
+                    <p>
+                        Computers are <em>extremely literal</em>. They do exactly what you say, not what 
+                        you mean. If you write <code>print("Hello")</code> 1000 times, it will print 
+                        "Hello" 1000 times—no questions asked. This is why precision in code matters!
+                    </p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Computation in AI</h4>
+                    <p>
+                        Training GPT-4 required massive computation—estimated at 10²⁵ floating-point 
+                        operations! This is just the CPU (and GPU) following instructions billions of 
+                        times per second, across thousands of machines, for months. Understanding the 
+                        basics helps you appreciate the scale.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Key Takeaways -->
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li>A <strong>program</strong> is a sequence of precise instructions for a computer</li>
+                    <li><strong>Variables</strong> store data with names—like labeled boxes</li>
+                    <li><strong>Loops</strong> repeat code efficiently—essential for processing data</li>
+                    <li><strong>Functions</strong> are reusable code blocks—the building blocks of programs</li>
+                    <li><strong>Pseudocode</strong> lets you plan logic before worrying about syntax</li>
+                    <li>Computers execute code <strong>literally and sequentially</strong></li>
+                </ul>
+            </div>
+            
+            <!-- Navigation -->
+            <section class="content-section">
+                <h2>What's Next?</h2>
+                <p>
+                    Now that you understand the concepts, it's time to see them in action with Python:
+                </p>
+                
+                <div class="nav-cards">
+                    <a href="python-basics.html" class="nav-card">
+                        <span class="nav-card-label">Next Step</span>
+                        <span class="nav-card-title">Python Basics →</span>
+                    </a>
+                    <a href="control-flow.html" class="nav-card">
+                        <span class="nav-card-label">After That</span>
+                        <span class="nav-card-title">Control Flow →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+</body>
+</html>
+

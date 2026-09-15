@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Python functions and data structures for AI: functions, lists, dictionaries, and more for machine learning.">
+    <title>Functions & Data Structures — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #f59e0b;
+            --prereq-accent-glow: rgba(245, 158, 11, 0.15);
+        }
+        
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; }
+        
+        .prereq-page { min-height: 100vh; background: var(--bg-primary); }
+        .prereq-container { max-width: 900px; margin: 0 auto; padding: clamp(1rem, 5vw, 2.5rem); }
+        
+        .prereq-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent);
+            border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .prereq-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        .prereq-nav a:hover { border-color: var(--prereq-accent); color: var(--prereq-accent); }
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav .nav-divider {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
+            padding: 0 0.25rem;
+        }
+        
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            border: 1px solid var(--surface-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 1rem;
+            line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        .estimated-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        .learning-objectives {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--prereq-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+        }
+        
+        .learning-objectives ul { margin: 0; padding-left: 1.25rem; }
+        .learning-objectives li { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.5rem; }
+        
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 { font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.075em; margin: 0 0 1rem; }
+        .toc-list { list-style: none; padding: 0; margin: 0; }
+        .toc-list li { margin-bottom: 0.5rem; }
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        .toc-list a:hover { background: var(--prereq-accent-glow); color: var(--prereq-accent); }
+        .toc-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--surface-3);
+            color: var(--text-tertiary);
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .code-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .code-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--prereq-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.875rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .code-section h3 { font-size: clamp(1rem, 2.5vw, 1.125rem); color: var(--text-primary); margin: 1.75rem 0 1rem; }
+        .code-section p { color: var(--text-secondary); line-height: 1.75; margin: 0 0 1rem; font-size: clamp(0.9rem, 2vw, 1rem); }
+        .code-section ul, .code-section ol { color: var(--text-secondary); line-height: 1.75; padding-left: 1.5rem; margin: 0 0 1rem; }
+        .code-section li { margin-bottom: 0.5rem; }
+        
+        .code-block {
+            background: #1a1d23;
+            border-radius: var(--radius-md);
+            margin: 1.25rem 0;
+            overflow: hidden;
+        }
+        
+        .code-block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: #252830;
+            border-bottom: 1px solid #333;
+        }
+        
+        .code-block-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #888;
+            font-weight: 500;
+        }
+        
+        .code-block-lang .python-icon {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #306998 50%, #ffd43b 50%);
+            border-radius: 3px;
+        }
+        
+        .code-block pre { margin: 0; padding: 1rem; overflow-x: auto; }
+        .code-block code {
+            font-family: var(--font-mono);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+        
+        .code-block .keyword { color: #c678dd; }
+        .code-block .string { color: #98c379; }
+        .code-block .number { color: #d19a66; }
+        .code-block .comment { color: #5c6370; font-style: italic; }
+        .code-block .function { color: #61afef; }
+        .code-block .builtin { color: #e5c07b; }
+        .code-block .operator { color: #56b6c2; }
+        
+        .concept-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .concept-box h4 { color: var(--prereq-accent); font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; }
+        .concept-box p { color: var(--text-secondary); margin: 0; font-size: 0.925rem; line-height: 1.7; }
+        
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(80, 184, 146, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 { color: var(--accent-emerald); font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; }
+        .ai-connection p { color: var(--text-secondary); margin: 0; font-size: 0.925rem; line-height: 1.7; }
+        
+        .warning-box {
+            background: linear-gradient(135deg, rgba(217, 119, 119, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(217, 119, 119, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .warning-box h4 { color: var(--accent-coral); font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; }
+        .warning-box p { color: var(--text-secondary); margin: 0; font-size: 0.925rem; line-height: 1.7; }
+        
+        .tip-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .tip-box h4 { color: #3b82f6; font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; }
+        .tip-box p { color: var(--text-secondary); margin: 0; font-size: 0.925rem; line-height: 1.7; }
+        
+        .two-column { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+        
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 { color: var(--prereq-accent); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem; }
+        .key-takeaways ul { margin: 0; padding-left: 1.25rem; }
+        .key-takeaways li { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.5rem; }
+        
+        .nav-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .nav-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        .nav-card:hover { border-color: var(--prereq-accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        .nav-card-label { font-size: 0.7rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.075em; }
+        .nav-card-title { font-size: 1rem; color: var(--text-primary); font-weight: 500; margin-top: 0.25rem; }
+        
+        .practice-problem {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+        .practice-problem h4 { color: var(--text-primary); font-size: 0.9rem; margin: 0 0 1rem; }
+        .practice-problem .problem { background: var(--bg-elevated); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1rem; color: var(--text-primary); font-size: 0.9rem; }
+        .practice-problem .solution { background: var(--bg-secondary); padding: 1rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald); }
+        .practice-problem .solution-header { color: var(--accent-emerald); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; cursor: pointer; }
+        .practice-problem .solution-content { display: none; }
+        
+        /* Mini Project Section */
+        .mini-project-section {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 2px solid var(--prereq-accent);
+        }
+        
+        .step-plan {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--bg-elevated);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--prereq-accent);
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .step-content strong {
+            color: var(--text-primary);
+        }
+        
+        .variations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .variation-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+        
+        .variation-card h4 {
+            color: var(--prereq-accent);
+            font-size: 0.95rem;
+            margin: 0 0 0.75rem;
+        }
+        
+        .variation-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0 0 1rem;
+            line-height: 1.6;
+        }
+        
+        .code-block.mini {
+            margin: 0;
+        }
+        
+        .code-block.mini pre {
+            font-size: 0.8rem;
+            padding: 0.75rem;
+        }
+        
+        .course-ready-callout {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .callout-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .course-ready-callout h2 {
+            color: #10b981;
+            font-size: 1.5rem;
+            margin: 0 0 1rem;
+        }
+        
+        .course-ready-callout p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+            line-height: 1.7;
+        }
+        
+        .course-ready-callout ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            display: inline-block;
+            text-align: left;
+        }
+        
+        .course-ready-callout li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .callout-emphasis {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            font-style: italic;
+        }
+        
+        @media (max-width: 640px) {
+            .prereq-header-inner { flex-direction: column; align-items: stretch; }
+            .back-link { width: fit-content; }
+            .prereq-nav { justify-content: center; }
+            .two-column { grid-template-columns: 1fr; }
+            .variations-grid { grid-template-columns: 1fr; }
+            .step { flex-direction: column; gap: 0.75rem; }
+            .course-ready-callout { padding: 1.5rem 1rem; }
+            .course-ready-callout h2 { font-size: 1.25rem; }
+        }
+        
+        html { scroll-behavior: smooth; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--prereq-accent); outline-offset: 2px; }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link"><span>←</span> Back to Course</a>
+                    <nav class="prereq-nav">
+                        <a href="programming-foundations.html">Foundations</a>
+                        <span class="nav-divider">|</span>
+                        <a href="python-basics.html">Python Basics</a>
+                        <a href="control-flow.html">Control Flow</a>
+                        <a href="functions-data.html" class="active">Functions & Data</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="prereq-hero">
+                <span class="prereq-badge">📦 Prerequisite • Programming</span>
+                <h1 class="prereq-title">Functions & Data Structures</h1>
+                <p class="prereq-subtitle">
+                    Functions let you organize and reuse code. Data structures let you organize data. 
+                    Together, they're the foundation of every AI codebase—from preprocessing pipelines 
+                    to model architectures. Master these, and you can read and write real AI code.
+                </p>
+                <div class="estimated-time"><span>⏱</span> Estimated reading time: 25-30 minutes</div>
+            </div>
+            
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>How to define and call functions with parameters and return values</li>
+                    <li>Lists: ordered, mutable collections for sequences of data</li>
+                    <li>Dictionaries: key-value stores for labeled data</li>
+                    <li>Tuples and sets for specialized use cases</li>
+                    <li>Common patterns for data processing in AI</li>
+                </ul>
+            </div>
+            
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#functions"><span class="toc-number">1</span> Functions</a></li>
+                    <li><a href="#lists"><span class="toc-number">2</span> Lists</a></li>
+                    <li><a href="#dictionaries"><span class="toc-number">3</span> Dictionaries</a></li>
+                    <li><a href="#tuples-sets"><span class="toc-number">4</span> Tuples & Sets</a></li>
+                    <li><a href="#ai-patterns"><span class="toc-number">5</span> AI Data Patterns</a></li>
+                    <li><a href="#practice"><span class="toc-number">6</span> Practice Exercises</a></li>
+                    <li><a href="#mini-project"><span class="toc-number">🚀</span> Mini Project: Text Classifier</a></li>
+                </ol>
+            </nav>
+            
+            <section class="code-section" id="functions">
+                <h2><span class="section-number">1</span> Functions</h2>
+                
+                <p>
+                    A <strong>function</strong> is a reusable block of code that performs a specific task. 
+                    Functions help you avoid repetition and make code more organized and readable.
+                </p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Defining a function</span>
+<span class="keyword">def</span> <span class="function">greet</span>(name):
+    <span class="string">"""Return a greeting message."""</span>
+    <span class="keyword">return</span> <span class="string">f"Hello, <span class="operator">{</span>name<span class="operator">}</span>!"</span>
+
+<span class="comment"># Calling a function</span>
+message = <span class="function">greet</span>(<span class="string">"AI Developer"</span>)
+<span class="function">print</span>(message)  <span class="comment"># Hello, AI Developer!</span></code></pre>
+                </div>
+                
+                <div class="pitfall-box" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.25rem 0;">
+                    <h4 style="color: #ef4444; font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem;">⚠️ Common Pitfall: <code>print</code> vs <code>return</code></h4>
+                    <p style="color: var(--text-secondary); margin: 0 0 0.75rem; font-size: 0.925rem; line-height: 1.7;">
+                        Beginners often confuse these. They are NOT the same!
+                    </p>
+                    <div class="code-block" style="margin: 0;">
+                        <pre><code><span class="comment"># ❌ WRONG: prints to screen, but returns None</span>
+<span class="keyword">def</span> <span class="function">add_wrong</span>(a, b):
+    <span class="function">print</span>(a + b)      <span class="comment"># shows "7" but...</span>
+    
+result = <span class="function">add_wrong</span>(<span class="number">3</span>, <span class="number">4</span>)
+<span class="function">print</span>(result)         <span class="comment"># None! Can't use the value</span>
+
+<span class="comment"># ✅ CORRECT: returns the value so you can use it</span>
+<span class="keyword">def</span> <span class="function">add_right</span>(a, b):
+    <span class="keyword">return</span> a + b      <span class="comment"># gives back the value</span>
+    
+result = <span class="function">add_right</span>(<span class="number">3</span>, <span class="number">4</span>)
+<span class="function">print</span>(result)         <span class="comment"># 7 - usable!</span>
+doubled = result * <span class="number">2</span>  <span class="comment"># 14 - can do math with it</span></code></pre>
+                    </div>
+                    <p style="color: var(--text-tertiary); margin: 0.75rem 0 0; font-size: 0.85rem;">
+                        <strong>Rule:</strong> Use <code>return</code> when you need to USE the result later. Use <code>print</code> only to display information.
+                    </p>
+                </div>
+                
+                <h3>Parameters and Arguments</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Multiple parameters</span>
+<span class="keyword">def</span> <span class="function">compute_loss</span>(predictions, labels):
+    <span class="string">"""Compute mean squared error loss."""</span>
+    total = <span class="number">0</span>
+    <span class="keyword">for</span> pred, label <span class="keyword">in</span> <span class="builtin">zip</span>(predictions, labels):
+        total += (pred - label) ** <span class="number">2</span>
+    <span class="keyword">return</span> total / <span class="builtin">len</span>(predictions)
+
+preds = [<span class="number">0.9</span>, <span class="number">0.3</span>, <span class="number">0.7</span>]
+actual = [<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>]
+loss = <span class="function">compute_loss</span>(preds, actual)
+<span class="function">print</span>(<span class="string">f"Loss: <span class="operator">{</span>loss:.4f<span class="operator">}</span>"</span>)  <span class="comment"># Loss: 0.0633</span></code></pre>
+                </div>
+                
+                <h3>Default Parameters</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="keyword">def</span> <span class="function">train</span>(model, epochs=<span class="number">10</span>, learning_rate=<span class="number">0.001</span>, verbose=<span class="keyword">True</span>):
+    <span class="string">"""Train a model with configurable parameters."""</span>
+    <span class="keyword">if</span> verbose:
+        <span class="function">print</span>(<span class="string">f"Training for <span class="operator">{</span>epochs<span class="operator">}</span> epochs at lr=<span class="operator">{</span>learning_rate<span class="operator">}</span>"</span>)
+    <span class="comment"># ... training code ...</span>
+    <span class="keyword">return</span> <span class="string">"trained"</span>
+
+<span class="comment"># Call with defaults</span>
+<span class="function">train</span>(<span class="string">"my_model"</span>)
+
+<span class="comment"># Override specific parameters</span>
+<span class="function">train</span>(<span class="string">"my_model"</span>, epochs=<span class="number">50</span>, learning_rate=<span class="number">0.0001</span>)
+
+<span class="comment"># Use keyword arguments (clearer!)</span>
+<span class="function">train</span>(<span class="string">"my_model"</span>, verbose=<span class="keyword">False</span>)</code></pre>
+                </div>
+                
+                <h3>Returning Multiple Values</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="keyword">def</span> <span class="function">evaluate_model</span>(predictions, labels):
+    <span class="string">"""Return multiple metrics."""</span>
+    correct = <span class="builtin">sum</span>(p == l <span class="keyword">for</span> p, l <span class="keyword">in</span> <span class="builtin">zip</span>(predictions, labels))
+    accuracy = correct / <span class="builtin">len</span>(labels)
+    error_rate = <span class="number">1</span> - accuracy
+    <span class="keyword">return</span> accuracy, error_rate  <span class="comment"># Returns a tuple</span>
+
+<span class="comment"># Unpack the returned values</span>
+acc, err = <span class="function">evaluate_model</span>([<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>])
+<span class="function">print</span>(<span class="string">f"Accuracy: <span class="operator">{</span>acc:.2%<span class="operator">}</span>, Error: <span class="operator">{</span>err:.2%<span class="operator">}</span>"</span>)</code></pre>
+                </div>
+                
+                <h3>Lambda Functions (Anonymous)</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Lambda: short, one-line functions</span>
+square = <span class="keyword">lambda</span> x: x ** <span class="number">2</span>
+<span class="function">print</span>(<span class="function">square</span>(<span class="number">5</span>))  <span class="comment"># 25</span>
+
+<span class="comment"># Often used with map, filter, sorted</span>
+numbers = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>]
+sorted_numbers = <span class="builtin">sorted</span>(numbers, key=<span class="keyword">lambda</span> x: -x)  <span class="comment"># Descending</span>
+<span class="function">print</span>(sorted_numbers)  <span class="comment"># [5, 4, 3, 1, 1]</span>
+
+<span class="comment"># Sorting models by accuracy</span>
+models = [{<span class="string">'name'</span>: <span class="string">'A'</span>, <span class="string">'acc'</span>: <span class="number">0.9</span>}, {<span class="string">'name'</span>: <span class="string">'B'</span>, <span class="string">'acc'</span>: <span class="number">0.95</span>}]
+best_first = <span class="builtin">sorted</span>(models, key=<span class="keyword">lambda</span> m: m[<span class="string">'acc'</span>], reverse=<span class="keyword">True</span>)
+<span class="function">print</span>(best_first[<span class="number">0</span>][<span class="string">'name'</span>])  <span class="comment"># B</span></code></pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Functions in AI Libraries</h4>
+                    <p>
+                        AI frameworks are built on functions. PyTorch models have <code>forward()</code>, 
+                        training uses <code>optimizer.step()</code>, losses are functions like <code>nn.CrossEntropyLoss()</code>. 
+                        Understanding functions lets you customize and extend any framework.
+                    </p>
+                </div>
+            </section>
+            
+            <section class="code-section" id="lists">
+                <h2><span class="section-number">2</span> Lists</h2>
+                
+                <p>
+                    <strong>Lists</strong> are ordered, mutable collections. They're the most common 
+                    data structure in Python and store sequences of any data type.
+                </p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Creating lists</span>
+epochs = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+losses = [<span class="number">0.9</span>, <span class="number">0.7</span>, <span class="number">0.5</span>, <span class="number">0.3</span>, <span class="number">0.2</span>]
+models = [<span class="string">"BERT"</span>, <span class="string">"GPT"</span>, <span class="string">"T5"</span>]
+mixed = [<span class="number">1</span>, <span class="string">"hello"</span>, <span class="number">3.14</span>, <span class="keyword">True</span>]  <span class="comment"># Can mix types</span>
+empty = []  <span class="comment"># Empty list</span>
+
+<span class="comment"># Accessing elements (0-indexed)</span>
+<span class="function">print</span>(models[<span class="number">0</span>])   <span class="comment"># BERT (first)</span>
+<span class="function">print</span>(models[<span class="number">-1</span>])  <span class="comment"># T5 (last)</span>
+
+<span class="comment"># Slicing</span>
+<span class="function">print</span>(losses[<span class="number">1</span>:<span class="number">4</span>])  <span class="comment"># [0.7, 0.5, 0.3]</span></code></pre>
+                </div>
+                
+                <h3>Modifying Lists</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>layers = [<span class="string">"input"</span>, <span class="string">"hidden"</span>]
+
+<span class="comment"># Adding elements</span>
+layers.append(<span class="string">"output"</span>)           <span class="comment"># Add to end</span>
+layers.insert(<span class="number">1</span>, <span class="string">"embedding"</span>)    <span class="comment"># Insert at index 1</span>
+layers.extend([<span class="string">"softmax"</span>])       <span class="comment"># Add multiple</span>
+
+<span class="comment"># Removing elements</span>
+layers.pop()                       <span class="comment"># Remove & return last</span>
+layers.remove(<span class="string">"embedding"</span>)        <span class="comment"># Remove first occurrence</span>
+<span class="keyword">del</span> layers[<span class="number">0</span>]                     <span class="comment"># Remove by index</span>
+
+<span class="comment"># Modifying in place</span>
+scores = [<span class="number">85</span>, <span class="number">90</span>, <span class="number">78</span>]
+scores[<span class="number">1</span>] = <span class="number">95</span>  <span class="comment"># Change element</span></code></pre>
+                </div>
+                
+                <h3>List Methods</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>accuracies = [<span class="number">0.8</span>, <span class="number">0.95</span>, <span class="number">0.7</span>, <span class="number">0.95</span>, <span class="number">0.85</span>]
+
+<span class="function">print</span>(<span class="builtin">len</span>(accuracies))           <span class="comment"># 5 (length)</span>
+<span class="function">print</span>(<span class="builtin">max</span>(accuracies))           <span class="comment"># 0.95 (maximum)</span>
+<span class="function">print</span>(<span class="builtin">min</span>(accuracies))           <span class="comment"># 0.7 (minimum)</span>
+<span class="function">print</span>(<span class="builtin">sum</span>(accuracies))           <span class="comment"># 4.25 (sum)</span>
+<span class="function">print</span>(accuracies.index(<span class="number">0.95</span>))   <span class="comment"># 1 (first index of value)</span>
+<span class="function">print</span>(accuracies.count(<span class="number">0.95</span>))   <span class="comment"># 2 (occurrences)</span>
+
+<span class="comment"># Sorting</span>
+accuracies.sort()                  <span class="comment"># In-place, ascending</span>
+accuracies.sort(reverse=<span class="keyword">True</span>)    <span class="comment"># In-place, descending</span>
+sorted_copy = <span class="builtin">sorted</span>(accuracies) <span class="comment"># New sorted list</span>
+
+<span class="comment"># Reversing</span>
+accuracies.reverse()               <span class="comment"># In-place</span>
+reversed_copy = accuracies[::-<span class="number">1</span>]  <span class="comment"># Slicing trick</span></code></pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Lists in AI</h4>
+                    <p>
+                        Training history is stored as lists: <code>losses = []</code>, <code>losses.append(epoch_loss)</code>. 
+                        Data batches are lists of samples. Predictions are lists of outputs. Even neural 
+                        network layers are often stored as <code>model.layers</code>, a list.
+                    </p>
+                </div>
+            </section>
+            
+            <section class="code-section" id="dictionaries">
+                <h2><span class="section-number">3</span> Dictionaries</h2>
+                
+                <p>
+                    <strong>Dictionaries</strong> store key-value pairs. They're perfect for labeled data, 
+                    configuration, and mapping relationships.
+                </p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Creating dictionaries</span>
+config = {
+    <span class="string">"model_name"</span>: <span class="string">"GPT-4"</span>,
+    <span class="string">"learning_rate"</span>: <span class="number">0.001</span>,
+    <span class="string">"batch_size"</span>: <span class="number">32</span>,
+    <span class="string">"epochs"</span>: <span class="number">100</span>
+}
+
+<span class="comment"># Accessing values</span>
+<span class="function">print</span>(config[<span class="string">"model_name"</span>])      <span class="comment"># GPT-4</span>
+<span class="function">print</span>(config.get(<span class="string">"dropout"</span>, <span class="number">0.1</span>)) <span class="comment"># 0.1 (default if missing)</span>
+
+<span class="comment"># Adding/modifying</span>
+config[<span class="string">"dropout"</span>] = <span class="number">0.2</span>          <span class="comment"># Add new key</span>
+config[<span class="string">"epochs"</span>] = <span class="number">200</span>           <span class="comment"># Modify existing</span>
+
+<span class="comment"># Removing</span>
+<span class="keyword">del</span> config[<span class="string">"dropout"</span>]             <span class="comment"># Remove key</span>
+value = config.pop(<span class="string">"epochs"</span>)     <span class="comment"># Remove & return value</span></code></pre>
+                </div>
+                
+                <h3>Iterating Over Dictionaries</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>metrics = {<span class="string">"accuracy"</span>: <span class="number">0.95</span>, <span class="string">"precision"</span>: <span class="number">0.92</span>, <span class="string">"recall"</span>: <span class="number">0.89</span>}
+
+<span class="comment"># Iterate over keys</span>
+<span class="keyword">for</span> key <span class="keyword">in</span> metrics:
+    <span class="function">print</span>(key)
+
+<span class="comment"># Iterate over values</span>
+<span class="keyword">for</span> value <span class="keyword">in</span> metrics.values():
+    <span class="function">print</span>(value)
+
+<span class="comment"># Iterate over key-value pairs (most common)</span>
+<span class="keyword">for</span> name, score <span class="keyword">in</span> metrics.items():
+    <span class="function">print</span>(<span class="string">f"<span class="operator">{</span>name<span class="operator">}</span>: <span class="operator">{</span>score:.2%<span class="operator">}</span>"</span>)
+
+<span class="comment"># Output:</span>
+<span class="comment"># accuracy: 95.00%</span>
+<span class="comment"># precision: 92.00%</span>
+<span class="comment"># recall: 89.00%</span></code></pre>
+                </div>
+                
+                <h3>Nested Dictionaries</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Model results by experiment</span>
+results = {
+    <span class="string">"experiment_1"</span>: {
+        <span class="string">"model"</span>: <span class="string">"BERT"</span>,
+        <span class="string">"accuracy"</span>: <span class="number">0.92</span>,
+        <span class="string">"epochs"</span>: <span class="number">10</span>
+    },
+    <span class="string">"experiment_2"</span>: {
+        <span class="string">"model"</span>: <span class="string">"GPT"</span>,
+        <span class="string">"accuracy"</span>: <span class="number">0.95</span>,
+        <span class="string">"epochs"</span>: <span class="number">15</span>
+    }
+}
+
+<span class="comment"># Accessing nested values</span>
+<span class="function">print</span>(results[<span class="string">"experiment_1"</span>][<span class="string">"accuracy"</span>])  <span class="comment"># 0.92</span>
+
+<span class="comment"># Finding best experiment</span>
+best = <span class="builtin">max</span>(results.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>][<span class="string">"accuracy"</span>])
+<span class="function">print</span>(<span class="string">f"Best: <span class="operator">{</span>best[<span class="number">0</span>]<span class="operator">}</span> with <span class="operator">{</span>best[<span class="number">1</span>][<span class="string">'accuracy'</span>]:.2%<span class="operator">}</span>"</span>)</code></pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Dictionaries Everywhere in AI</h4>
+                    <p>
+                        <strong>Configs:</strong> <code>{"lr": 0.001, "epochs": 100}</code><br>
+                        <strong>Tokenizers:</strong> <code>{"hello": 123, "world": 456}</code><br>
+                        <strong>Model state:</strong> <code>model.state_dict()</code> is a dictionary<br>
+                        <strong>Results:</strong> <code>{"train_loss": 0.1, "val_loss": 0.2}</code>
+                    </p>
+                </div>
+            </section>
+            
+            <section class="code-section" id="tuples-sets">
+                <h2><span class="section-number">4</span> Tuples & Sets</h2>
+                
+                <h3>Tuples: Immutable Sequences</h3>
+                
+                <p>
+                    <strong>Tuples</strong> are like lists but immutable (cannot be changed after creation). 
+                    They're used for data that shouldn't change, like coordinates or function return values.
+                </p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Creating tuples</span>
+shape = (<span class="number">224</span>, <span class="number">224</span>, <span class="number">3</span>)  <span class="comment"># Image dimensions</span>
+point = (<span class="number">3.5</span>, <span class="number">2.1</span>)       <span class="comment"># Coordinate</span>
+single = (<span class="number">42</span>,)           <span class="comment"># Single element (note comma)</span>
+
+<span class="comment"># Accessing (same as lists)</span>
+<span class="function">print</span>(shape[<span class="number">0</span>])    <span class="comment"># 224</span>
+<span class="function">print</span>(shape[<span class="number">1</span>:<span class="number">3</span>])  <span class="comment"># (224, 3)</span>
+
+<span class="comment"># Unpacking</span>
+height, width, channels = shape
+<span class="function">print</span>(<span class="string">f"<span class="operator">{</span>height<span class="operator">}</span>x<span class="operator">{</span>width<span class="operator">}</span> with <span class="operator">{</span>channels<span class="operator">}</span> channels"</span>)
+
+<span class="comment"># Tuples are immutable!</span>
+<span class="comment"># shape[0] = 256  # ERROR: TypeError</span></code></pre>
+                </div>
+                
+                <h3>Sets: Unique Values</h3>
+                
+                <p>
+                    <strong>Sets</strong> store unique values with no duplicates. They're fast for 
+                    membership testing and useful for finding unique elements.
+                </p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Creating sets</span>
+labels = {<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>}  <span class="comment"># Duplicates removed</span>
+<span class="function">print</span>(labels)  <span class="comment"># {0, 1, 2}</span>
+
+<span class="comment"># From list (deduplicate)</span>
+predictions = [<span class="string">"cat"</span>, <span class="string">"dog"</span>, <span class="string">"cat"</span>, <span class="string">"bird"</span>, <span class="string">"dog"</span>]
+unique_classes = <span class="builtin">set</span>(predictions)
+<span class="function">print</span>(unique_classes)  <span class="comment"># {'cat', 'dog', 'bird'}</span>
+
+<span class="comment"># Fast membership testing</span>
+valid_models = {<span class="string">"gpt-4"</span>, <span class="string">"claude"</span>, <span class="string">"llama"</span>}
+<span class="function">print</span>(<span class="string">"gpt-4"</span> <span class="keyword">in</span> valid_models)  <span class="comment"># True (O(1) lookup)</span>
+
+<span class="comment"># Set operations</span>
+a = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>}
+b = {<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>}
+<span class="function">print</span>(a | b)  <span class="comment"># Union: {1, 2, 3, 4}</span>
+<span class="function">print</span>(a & b)  <span class="comment"># Intersection: {2, 3}</span>
+<span class="function">print</span>(a - b)  <span class="comment"># Difference: {1}</span></code></pre>
+                </div>
+            </section>
+            
+            <section class="code-section" id="ai-patterns">
+                <h2><span class="section-number">5</span> AI Data Patterns</h2>
+                
+                <p>
+                    Let's see how these concepts come together in real AI code patterns.
+                </p>
+                
+                <h3>Configuration Dictionary</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Common Pattern</span>
+                    </div>
+                    <pre><code><span class="comment"># Typical AI experiment config</span>
+config = {
+    <span class="string">"model"</span>: {
+        <span class="string">"name"</span>: <span class="string">"transformer"</span>,
+        <span class="string">"hidden_size"</span>: <span class="number">768</span>,
+        <span class="string">"num_layers"</span>: <span class="number">12</span>,
+        <span class="string">"num_heads"</span>: <span class="number">12</span>
+    },
+    <span class="string">"training"</span>: {
+        <span class="string">"epochs"</span>: <span class="number">100</span>,
+        <span class="string">"batch_size"</span>: <span class="number">32</span>,
+        <span class="string">"learning_rate"</span>: <span class="number">1e-4</span>,
+        <span class="string">"weight_decay"</span>: <span class="number">0.01</span>
+    },
+    <span class="string">"data"</span>: {
+        <span class="string">"train_path"</span>: <span class="string">"data/train.csv"</span>,
+        <span class="string">"val_path"</span>: <span class="string">"data/val.csv"</span>,
+        <span class="string">"max_length"</span>: <span class="number">512</span>
+    }
+}
+
+<span class="comment"># Access nested config</span>
+lr = config[<span class="string">"training"</span>][<span class="string">"learning_rate"</span>]</code></pre>
+                </div>
+                
+                <h3>Tracking Training History</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Training Pattern</span>
+                    </div>
+                    <pre><code><span class="comment"># Initialize history</span>
+history = {
+    <span class="string">"train_loss"</span>: [],
+    <span class="string">"val_loss"</span>: [],
+    <span class="string">"train_acc"</span>: [],
+    <span class="string">"val_acc"</span>: []
+}
+
+<span class="comment"># Simulate training loop</span>
+<span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>):
+    train_loss = <span class="number">1.0</span> * (<span class="number">0.8</span> ** epoch)  <span class="comment"># Simulated</span>
+    val_loss = <span class="number">1.1</span> * (<span class="number">0.8</span> ** epoch)
+    
+    history[<span class="string">"train_loss"</span>].append(train_loss)
+    history[<span class="string">"val_loss"</span>].append(val_loss)
+
+<span class="comment"># Find best epoch</span>
+best_epoch = history[<span class="string">"val_loss"</span>].index(<span class="builtin">min</span>(history[<span class="string">"val_loss"</span>]))
+<span class="function">print</span>(<span class="string">f"Best epoch: <span class="operator">{</span>best_epoch<span class="operator">}</span>"</span>)</code></pre>
+                </div>
+                
+                <h3>Batch Processing Function</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Data Processing</span>
+                    </div>
+                    <pre><code><span class="keyword">def</span> <span class="function">create_batches</span>(data, batch_size=<span class="number">32</span>):
+    <span class="string">"""Split data into batches."""</span>
+    batches = []
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">0</span>, <span class="builtin">len</span>(data), batch_size):
+        batch = data[i:i + batch_size]
+        batches.append(batch)
+    <span class="keyword">return</span> batches
+
+<span class="comment"># Example usage</span>
+samples = <span class="builtin">list</span>(<span class="builtin">range</span>(<span class="number">100</span>))  <span class="comment"># 100 samples</span>
+batches = <span class="function">create_batches</span>(samples, batch_size=<span class="number">32</span>)
+<span class="function">print</span>(<span class="string">f"Created <span class="operator">{</span><span class="builtin">len</span>(batches)<span class="operator">}</span> batches"</span>)  <span class="comment"># 4 batches</span>
+<span class="function">print</span>(<span class="string">f"Last batch size: <span class="operator">{</span><span class="builtin">len</span>(batches[-<span class="number">1</span>])<span class="operator">}</span>"</span>)  <span class="comment"># 4 (100 % 32 = 4)</span></code></pre>
+                </div>
+                
+                <h3>Results Aggregation</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Evaluation Pattern</span>
+                    </div>
+                    <pre><code><span class="keyword">def</span> <span class="function">aggregate_results</span>(predictions, labels):
+    <span class="string">"""Compute multiple metrics from predictions."""</span>
+    results = {}
+    
+    <span class="comment"># Accuracy</span>
+    correct = <span class="builtin">sum</span>(p == l <span class="keyword">for</span> p, l <span class="keyword">in</span> <span class="builtin">zip</span>(predictions, labels))
+    results[<span class="string">"accuracy"</span>] = correct / <span class="builtin">len</span>(labels)
+    
+    <span class="comment"># Per-class counts</span>
+    results[<span class="string">"classes"</span>] = <span class="builtin">list</span>(<span class="builtin">set</span>(labels))
+    results[<span class="string">"total"</span>] = <span class="builtin">len</span>(labels)
+    
+    <span class="keyword">return</span> results
+
+<span class="comment"># Usage</span>
+preds = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]
+actual = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]
+results = <span class="function">aggregate_results</span>(preds, actual)
+<span class="function">print</span>(results)
+<span class="comment"># {'accuracy': 0.8, 'classes': [0, 1], 'total': 5}</span></code></pre>
+                </div>
+            </section>
+            
+            <section class="code-section" id="practice">
+                <h2><span class="section-number">6</span> Practice Exercises</h2>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 1: Function</h4>
+                    <div class="problem">
+                        Write a function <code>normalize(values)</code> that takes a list of numbers and 
+                        returns a new list where each value is scaled to be between 0 and 1.
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code><span class="keyword">def</span> <span class="function">normalize</span>(values):
+    min_val = <span class="builtin">min</span>(values)
+    max_val = <span class="builtin">max</span>(values)
+    range_val = max_val - min_val
+    <span class="keyword">return</span> [(v - min_val) / range_val <span class="keyword">for</span> v <span class="keyword">in</span> values]
+
+<span class="comment"># Test</span>
+data = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>]
+<span class="function">print</span>(<span class="function">normalize</span>(data))
+<span class="comment"># [0.0, 0.25, 0.5, 0.75, 1.0]</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 2: Dictionary</h4>
+                    <div class="problem">
+                        Create a function <code>count_labels(labels)</code> that takes a list of labels 
+                        and returns a dictionary with each unique label as a key and its count as the value.
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code><span class="keyword">def</span> <span class="function">count_labels</span>(labels):
+    counts = {}
+    <span class="keyword">for</span> label <span class="keyword">in</span> labels:
+        counts[label] = counts.get(label, <span class="number">0</span>) + <span class="number">1</span>
+    <span class="keyword">return</span> counts
+
+<span class="comment"># Test</span>
+labels = [<span class="string">"cat"</span>, <span class="string">"dog"</span>, <span class="string">"cat"</span>, <span class="string">"bird"</span>, <span class="string">"dog"</span>, <span class="string">"cat"</span>]
+<span class="function">print</span>(<span class="function">count_labels</span>(labels))
+<span class="comment"># {'cat': 3, 'dog': 2, 'bird': 1}</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 3: Combined</h4>
+                    <div class="problem">
+                        Write a function <code>top_k_predictions(scores_dict, k=3)</code> that takes a 
+                        dictionary of {class: score} and returns the top k classes by score.
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code><span class="keyword">def</span> <span class="function">top_k_predictions</span>(scores_dict, k=<span class="number">3</span>):
+    <span class="comment"># Sort by score (descending) and take top k</span>
+    sorted_items = <span class="builtin">sorted</span>(
+        scores_dict.items(), 
+        key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], 
+        reverse=<span class="keyword">True</span>
+    )
+    <span class="keyword">return</span> [item[<span class="number">0</span>] <span class="keyword">for</span> item <span class="keyword">in</span> sorted_items[:k]]
+
+<span class="comment"># Test</span>
+scores = {<span class="string">"cat"</span>: <span class="number">0.7</span>, <span class="string">"dog"</span>: <span class="number">0.2</span>, <span class="string">"bird"</span>: <span class="number">0.05</span>, <span class="string">"fish"</span>: <span class="number">0.05</span>}
+<span class="function">print</span>(<span class="function">top_k_predictions</span>(scores, k=<span class="number">2</span>))
+<span class="comment"># ['cat', 'dog']</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Mini Project Section -->
+            <section class="code-section mini-project-section" id="mini-project">
+                <h2><span class="section-number" style="background: linear-gradient(135deg, #10b981, #059669);">🚀</span> Mini Project: Simple Text Classifier</h2>
+                
+                <div class="ai-connection">
+                    <h4>🎯 Put It All Together</h4>
+                    <p>
+                        Time to synthesize everything you've learned! This mini-project uses <strong>variables</strong>, 
+                        <strong>lists</strong>, <strong>dictionaries</strong>, <strong>conditionals</strong>, <strong>loops</strong>, 
+                        and <strong>string operations</strong>—no external libraries needed. By the end, you'll have 
+                        built a working text classifier from scratch.
+                    </p>
+                </div>
+                
+                <h3>The Problem</h3>
+                <p>
+                    Build a simple program that classifies text into categories based on keywords. Given a piece of text, 
+                    your classifier should determine if it's about <strong>Sports</strong>, <strong>Technology</strong>, 
+                    or <strong>Other</strong>.
+                </p>
+                
+                <div class="concept-box">
+                    <h4>💡 How Real Classifiers Work</h4>
+                    <p>
+                        This is a simplified version of how early text classifiers worked! Modern AI uses learned 
+                        embeddings instead of keyword lists, but the core logic—checking features and assigning 
+                        labels—remains the same. You're building intuition for classification.
+                    </p>
+                </div>
+                
+                <h3>Step-by-Step Plan</h3>
+                
+                <div class="step-plan">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Define categories and keyword lists</strong><br>
+                            Create a dictionary mapping each category to a list of relevant keywords.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Get user input</strong><br>
+                            Accept text from the user and normalize it (lowercase) for matching.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Check for keywords and count matches</strong><br>
+                            Loop through each category's keywords and count how many appear in the text.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Assign the best label</strong><br>
+                            Pick the category with the most keyword matches (or "Other" if no matches).
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Display the result</strong><br>
+                            Print the classification with confidence information.
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>The Complete Code</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">text_classifier.py</div>
+                    <pre><code><span class="comment"># ============================================</span>
+<span class="comment"># MINI PROJECT: Simple Text Classifier</span>
+<span class="comment"># ============================================</span>
+<span class="comment"># This program classifies text into categories</span>
+<span class="comment"># based on keyword matching. No ML libraries!</span>
+<span class="comment"># ============================================</span>
+
+<span class="comment"># -----------------------------------------</span>
+<span class="comment"># STEP 1: Define categories and keywords</span>
+<span class="comment"># -----------------------------------------</span>
+<span class="comment"># Each category has a list of associated keywords.</span>
+<span class="comment"># The more keywords match, the more likely that category.</span>
+
+categories = {
+    <span class="string">"sports"</span>: [
+        <span class="string">"football"</span>, <span class="string">"basketball"</span>, <span class="string">"soccer"</span>, <span class="string">"tennis"</span>,
+        <span class="string">"game"</span>, <span class="string">"player"</span>, <span class="string">"team"</span>, <span class="string">"score"</span>,
+        <span class="string">"championship"</span>, <span class="string">"league"</span>, <span class="string">"win"</span>, <span class="string">"match"</span>,
+        <span class="string">"athlete"</span>, <span class="string">"coach"</span>, <span class="string">"stadium"</span>
+    ],
+    <span class="string">"technology"</span>: [
+        <span class="string">"computer"</span>, <span class="string">"software"</span>, <span class="string">"app"</span>, <span class="string">"phone"</span>,
+        <span class="string">"ai"</span>, <span class="string">"robot"</span>, <span class="string">"code"</span>, <span class="string">"programming"</span>,
+        <span class="string">"data"</span>, <span class="string">"internet"</span>, <span class="string">"digital"</span>, <span class="string">"tech"</span>,
+        <span class="string">"startup"</span>, <span class="string">"algorithm"</span>, <span class="string">"device"</span>
+    ]
+}
+
+<span class="comment"># -----------------------------------------</span>
+<span class="comment"># STEP 2: Create the classifier function</span>
+<span class="comment"># -----------------------------------------</span>
+
+<span class="keyword">def</span> <span class="function">classify_text</span>(text):
+    <span class="string">"""
+    Classify text into a category based on keyword matching.
+    
+    Args:
+        text: The input text to classify (string)
+    
+    Returns:
+        A tuple of (category, match_count, all_scores)
+    """</span>
+    
+    <span class="comment"># Normalize the text: lowercase for case-insensitive matching</span>
+    text_lower = text.lower()
+    
+    <span class="comment"># Dictionary to store match counts for each category</span>
+    scores = {}
+    
+    <span class="comment"># -----------------------------------------</span>
+    <span class="comment"># STEP 3: Count keyword matches per category</span>
+    <span class="comment"># -----------------------------------------</span>
+    
+    <span class="keyword">for</span> category, keywords <span class="keyword">in</span> categories.items():
+        <span class="comment"># Count how many keywords from this category appear in the text</span>
+        match_count = <span class="number">0</span>
+        
+        <span class="keyword">for</span> keyword <span class="keyword">in</span> keywords:
+            <span class="comment"># Check if keyword appears in the text</span>
+            <span class="keyword">if</span> keyword <span class="keyword">in</span> text_lower:
+                match_count += <span class="number">1</span>
+        
+        <span class="comment"># Store the count for this category</span>
+        scores[category] = match_count
+    
+    <span class="comment"># -----------------------------------------</span>
+    <span class="comment"># STEP 4: Determine the best category</span>
+    <span class="comment"># -----------------------------------------</span>
+    
+    <span class="comment"># Find the category with the highest score</span>
+    best_category = <span class="string">"other"</span>
+    best_score = <span class="number">0</span>
+    
+    <span class="keyword">for</span> category, score <span class="keyword">in</span> scores.items():
+        <span class="keyword">if</span> score > best_score:
+            best_score = score
+            best_category = category
+    
+    <span class="comment"># If no keywords matched, classify as "other"</span>
+    <span class="keyword">if</span> best_score == <span class="number">0</span>:
+        best_category = <span class="string">"other"</span>
+    
+    <span class="keyword">return</span> best_category, best_score, scores
+
+
+<span class="comment"># -----------------------------------------</span>
+<span class="comment"># STEP 5: Display results nicely</span>
+<span class="comment"># -----------------------------------------</span>
+
+<span class="keyword">def</span> <span class="function">display_result</span>(text, category, score, all_scores):
+    <span class="string">"""Print the classification result in a readable format."""</span>
+    
+    <span class="function">print</span>(<span class="string">"\n"</span> + <span class="string">"="</span> * <span class="number">50</span>)
+    <span class="function">print</span>(<span class="string">"📝 TEXT CLASSIFICATION RESULT"</span>)
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">50</span>)
+    
+    <span class="comment"># Show the input text (truncated if too long)</span>
+    display_text = text[:<span class="number">100</span>] + <span class="string">"..."</span> <span class="keyword">if</span> <span class="builtin">len</span>(text) > <span class="number">100</span> <span class="keyword">else</span> text
+    <span class="function">print</span>(<span class="string">f"\nInput: \"{display_text}\""</span>)
+    
+    <span class="comment"># Show the classification</span>
+    <span class="function">print</span>(<span class="string">f"\n🏷️  Category: {category.upper()}"</span>)
+    <span class="function">print</span>(<span class="string">f"📊 Confidence: {score} keyword(s) matched"</span>)
+    
+    <span class="comment"># Show all scores for transparency</span>
+    <span class="function">print</span>(<span class="string">"\nAll scores:"</span>)
+    <span class="keyword">for</span> cat, s <span class="keyword">in</span> all_scores.items():
+        bar = <span class="string">"█"</span> * s + <span class="string">"░"</span> * (<span class="number">5</span> - s)  <span class="comment"># Simple bar chart</span>
+        <span class="function">print</span>(<span class="string">f"  {cat:12} [{bar}] {s}"</span>)
+    
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">50</span>)
+
+
+<span class="comment"># -----------------------------------------</span>
+<span class="comment"># MAIN: Run the classifier</span>
+<span class="comment"># -----------------------------------------</span>
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># Example texts to classify</span>
+    test_texts = [
+        <span class="string">"The team scored three goals in the championship match last night."</span>,
+        <span class="string">"New AI startup raises funding to build better algorithms for data processing."</span>,
+        <span class="string">"I went to the grocery store and bought some milk and bread."</span>,
+        <span class="string">"The basketball player signed a contract with a tech company to develop a fitness app."</span>
+    ]
+    
+    <span class="comment"># Classify each text</span>
+    <span class="keyword">for</span> text <span class="keyword">in</span> test_texts:
+        category, score, all_scores = <span class="function">classify_text</span>(text)
+        <span class="function">display_result</span>(text, category, score, all_scores)</code></pre>
+                </div>
+                
+                <h3>Example Output</h3>
+                
+                <div class="code-block" style="background: var(--bg-tertiary);">
+                    <pre><code>==================================================
+📝 TEXT CLASSIFICATION RESULT
+==================================================
+
+Input: "The team scored three goals in the championship match last night."
+
+🏷️  Category: SPORTS
+📊 Confidence: 4 keyword(s) matched
+
+All scores:
+  sports       [████░] 4
+  technology   [░░░░░] 0
+==================================================
+
+==================================================
+📝 TEXT CLASSIFICATION RESULT
+==================================================
+
+Input: "New AI startup raises funding to build better algorithms for data processing."
+
+🏷️  Category: TECHNOLOGY
+📊 Confidence: 4 keyword(s) matched
+
+All scores:
+  sports       [░░░░░] 0
+  technology   [████░] 4
+==================================================</code></pre>
+                </div>
+                
+                <h3>🔧 Try These Variations</h3>
+                
+                <div class="variations-grid">
+                    <div class="variation-card">
+                        <h4>1. Add More Categories</h4>
+                        <p>
+                            Extend the <code>categories</code> dictionary with new topics like <code>"health"</code>, 
+                            <code>"finance"</code>, or <code>"entertainment"</code>. Add relevant keywords for each.
+                        </p>
+                        <div class="code-block mini">
+                            <pre><code>categories[<span class="string">"health"</span>] = [
+    <span class="string">"doctor"</span>, <span class="string">"medicine"</span>, <span class="string">"hospital"</span>,
+    <span class="string">"health"</span>, <span class="string">"disease"</span>, <span class="string">"treatment"</span>
+]</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="variation-card">
+                        <h4>2. Weighted Keywords</h4>
+                        <p>
+                            Make some keywords worth more than others. Change the keyword lists to 
+                            dictionaries with weights:
+                        </p>
+                        <div class="code-block mini">
+                            <pre><code>categories = {
+    <span class="string">"sports"</span>: {
+        <span class="string">"championship"</span>: <span class="number">3</span>,  <span class="comment"># Worth 3 points</span>
+        <span class="string">"game"</span>: <span class="number">1</span>,          <span class="comment"># Worth 1 point</span>
+        <span class="string">"player"</span>: <span class="number">2</span>
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="variation-card">
+                        <h4>3. Interactive Mode</h4>
+                        <p>
+                            Add a loop that keeps asking for input until the user types "quit":
+                        </p>
+                        <div class="code-block mini">
+                            <pre><code><span class="keyword">while</span> <span class="keyword">True</span>:
+    text = <span class="builtin">input</span>(<span class="string">"Enter text: "</span>)
+    <span class="keyword">if</span> text.lower() == <span class="string">"quit"</span>:
+        <span class="keyword">break</span>
+    <span class="comment"># ... classify and display</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, transparent 100%); border-color: rgba(16, 185, 129, 0.4);">
+                    <h4>🎓 What You Just Built</h4>
+                    <p>
+                        Congratulations! You've created a <strong>rule-based text classifier</strong>—the same type 
+                        that powered early spam filters and document categorizers. While modern AI uses learned 
+                        representations (embeddings) instead of handcrafted keywords, you now understand the 
+                        fundamental pattern: <em>check features → compute scores → pick the best label</em>.
+                    </p>
+                </div>
+            </section>
+            
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Functions</strong>: <code>def name(params): return value</code>—use default params and docstrings</li>
+                    <li><strong>Lists</strong>: Ordered, mutable—<code>append()</code>, <code>extend()</code>, slicing, comprehensions</li>
+                    <li><strong>Dictionaries</strong>: Key-value pairs—<code>dict[key]</code>, <code>.get()</code>, <code>.items()</code></li>
+                    <li><strong>Tuples</strong>: Immutable sequences—for data that shouldn't change</li>
+                    <li><strong>Sets</strong>: Unique values—fast membership testing, deduplication</li>
+                    <li>AI code combines these: configs (dict), training history (dict of lists), batch processing (functions)</li>
+                </ul>
+            </div>
+            
+            <!-- Course Ready Callout -->
+            <div class="course-ready-callout">
+                <div class="callout-icon">🎉</div>
+                <h2>You're Ready for the AI Course!</h2>
+                <p>
+                    You've completed all the programming prerequisites. You now have the foundation to:
+                </p>
+                <ul>
+                    <li>✓ Read and understand Python code in the course</li>
+                    <li>✓ Follow along with code examples and implementations</li>
+                    <li>✓ Understand data structures used in AI (configs, batches, histories)</li>
+                    <li>✓ Build simple classifiers and data processing pipelines</li>
+                </ul>
+                <p class="callout-emphasis">
+                    The concepts you've learned—functions, loops, conditionals, dictionaries—are 
+                    the building blocks of every AI system. Let's put them to use!
+                </p>
+            </div>
+            
+            <section class="code-section">
+                <h2>Start Learning AI →</h2>
+                <p>
+                    You're fully prepared. The main course awaits—from understanding what AI actually is, 
+                    through neural networks, to modern architectures like transformers and diffusion models.
+                </p>
+                
+                <div class="nav-cards">
+                    <a href="python-basics.html" class="nav-card">
+                        <span class="nav-card-label">Review</span>
+                        <span class="nav-card-title">← Python Basics</span>
+                    </a>
+                    <a href="../../index.html" class="nav-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%); border-color: rgba(16, 185, 129, 0.4);">
+                        <span class="nav-card-label" style="color: #10b981;">Begin Your Journey</span>
+                        <span class="nav-card-title">Start the AI Course →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+    <script>
+        document.querySelectorAll('.solution-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isHidden = content.style.display === 'none' || !content.style.display;
+                content.style.display = isHidden ? 'block' : 'none';
+                header.textContent = isHidden ? 'Click to hide solution ▲' : 'Click to reveal solution ▼';
+            });
+        });
+    </script>
+</body>
+</html>
+

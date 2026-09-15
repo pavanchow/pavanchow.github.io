@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-book Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body class="bg-slate-100 font-inter text-slate-800 antialiased min-h-screen flex flex-col">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl w-full flex-grow">
+        <header class="mb-8 flex flex-col sm:flex-row justify-between items-center gap-4 pb-4 border-b border-slate-200">
+            <div class="text-center sm:text-left">
+                <h1 class="text-3xl sm:text-4xl font-bold text-sky-600">E-book Creator</h1>
+                <p class="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base">Craft your digital masterpiece, section by section.</p>
+            </div>
+            <button id="showInstructionsBtn" class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 whitespace-nowrap shadow hover:shadow-md transition-shadow">
+                Instructions
+            </button>
+        </header>
+
+        <input type="file" id="imageUploadInput" accept="image/*" class="hidden">
+        <input type="file" id="coverImageUploadInput" accept="image/jpeg,image/png" class="hidden">
+
+
+        <div id="instructionsModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[70] hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-semibold text-slate-700">How to Use E-book Creator</h3>
+                    <button id="closeInstructionsBtn" class="text-slate-500 hover:text-slate-700 text-2xl leading-none p-1 rounded-full hover:bg-slate-100">&times;</button>
+                </div>
+                <div id="instructionsContent" class="prose prose-sm sm:prose-base max-w-none text-slate-700 space-y-4">
+                    <p>Welcome to the E-book Creator! Follow these steps to create your e-book:</p>
+                    
+                    <h4 class="font-semibold">1. Book Title, Author & Cover:</h4>
+                    <ul>
+                        <li>Start by entering your <strong>Book Title</strong>.</li>
+                        <li>Enter the <strong>Author Name (for Title Page)</strong>. This name will appear on the title page byline.</li>
+                        <li>Optionally, upload a <strong>Cover Image</strong> (JPEG or PNG recommended). This will be used as the EPUB cover.</li>
+                    </ul>
+                    
+                    <h4 class="font-semibold">2. Book Structure:</h4>
+                    <ul>
+                        <li>Next, go to the <strong>"Book Structure"</strong> section. Here you can:
+                            <ul>
+                                <li>Add new <strong>Custom Text Sections</strong>.</li>
+                                <li>Reorder all sections (including Table of Contents, predefined, and custom) using "Up" and "Down" buttons.</li>
+                                <li>Show or Hide optional predefined sections (Preface, About Author, Appendix, Index) and the Table of Contents. Hidden sections won't appear in your e-book.</li>
+                                <li>Rename your custom sections.</li>
+                                <li>Delete custom sections.</li>
+                            </ul>
+                        </li>
+                        <li>After setting up the structure, use <strong>"Next"</strong> and <strong>"Back"</strong> to move through your defined sections to add content.</li>
+                        <li>The <strong>"Current Step"</strong> indicator at the top shows where you are.</li>
+                        <li>You can jump directly to the export options using the <strong>"Skip to Export"</strong> button.</li>
+                    </ul>
+
+                    <h4 class="font-semibold">3. Entering Content:</h4>
+                    <ul>
+                        <li>Each section (Preface, About Author, Custom Sections, Chapters, etc.) has a dedicated input area. The Table of Contents section is auto-generated and not directly editable.</li>
+                        <li>Simply type or paste your content into the text boxes. The "About the Author" section is where you can provide a detailed biography, including images.</li>
+                    </ul>
+
+                    <h4 class="font-semibold">4. Managing Chapters (within a "Chapters" section):</h4>
+                     <ul>
+                        <li>When you are editing a "Chapters" section:</li>
+                        <li>Enter a <strong>Chapter Title</strong> and its <strong>Content</strong>.</li>
+                        <li>Click <strong>"Save and Add Another Chapter"</strong> to save the current chapter and start a new one within that "Chapters" block.</li>
+                        <li>Use "Next Chapter" (if available) or "Next Section" to move on.</li>
+                    </ul>
+
+                    <h4 class="font-semibold">5. Formatting with Markdown:</h4>
+                    <p>You can use Markdown syntax in all content areas for rich formatting. Here are some common examples:</p>
+                    <ul>
+                        <li><strong>Headings:</strong> <code># Heading 1</code>, <code>## Heading 2</code>, <code>### Heading 3</code></li>
+                        <li><strong>Emphasis:</strong> <code>*italic*</code> or <code>_italic_</code>, <code>**bold**</code> or <code>__bold__</code></li>
+                        <li><strong>Lists:</strong> Unordered: <code>- Item 1</code>; Ordered: <code>1. Item 1</code></li>
+                        <li><strong>Links:</strong> <code>[Link Text](https://example.com)</code></li>
+                        <li><strong>Images:</strong> Use the "Add Image" button (alt text will be "Image") or Markdown <code>![Alt Text](image_url)</code>.</li>
+                        <li><strong>Tables, Code Blocks, Blockquotes/Prompts</strong> are also supported.</li>
+                    </ul>
+                    
+                    <h4 class="font-semibold">6. Previewing:</h4>
+                    <ul>
+                        <li>Click the <strong>"Preview E-book"</strong> button at any time.</li>
+                    </ul>
+
+                    <h4 class="font-semibold">7. Exporting:</h4>
+                    <ul>
+                        <li>Navigate or skip to the <strong>"Finish & Export"</strong> section.</li>
+                        <li>Choose your format (.txt, .html, .pdf, .epub).</li>
+                        <li>Click <strong>"Export E-book"</strong>.</li>
+                        <li>For .mobi/.azw, export as .epub and use a tool like Calibre.</li>
+                    </ul>
+                    <p>Happy e-book writing!</p>
+                </div>
+                 <div class="mt-6 text-right">
+                    <button id="okInstructionsBtn" class="px-4 py-2 bg-sky-500 text-white rounded-md hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">OK, Got it!</button>
+                </div>
+            </div>
+        </div>
+
+        <main id="appContainer" class="bg-white p-6 sm:p-8 rounded-xl shadow-xl flex-grow">
+            <div id="stepIndicator" class="mb-6 text-center text-sm text-slate-500">
+                Current Step: <span id="currentStepName" class="font-semibold text-sky-700">Book Title & Author</span>
+            </div>
+
+            <div id="sectionsContainer">
+                <div id="titlePageSection" class="space-y-4 section-active">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Book Title, Author & Cover</h2>
+                    <div>
+                        <label for="ebookTitle" class="block text-sm font-medium text-slate-700 mb-1">E-book Title:</label>
+                        <input type="text" id="ebookTitle" name="ebookTitle" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Enter your e-book title">
+                    </div>
+                    <div> 
+                        <label for="ebookAuthorName" class="block text-sm font-medium text-slate-700 mb-1">Author Name (for Title Page):</label>
+                        <input type="text" id="ebookAuthorName" name="ebookAuthorName" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Enter author's name for the title page">
+                    </div>
+                    <div> <label class="block text-sm font-medium text-slate-700 mb-1">Cover Image (Optional, for EPUB):</label>
+                        <div class="mt-1 flex items-center space-x-4">
+                            <button type="button" id="uploadCoverBtn" class="px-3 py-1.5 bg-sky-100 text-sky-700 text-xs font-medium rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1">
+                                Upload Cover
+                            </button>
+                            <div id="coverPreviewContainer" class="flex items-center space-x-2">
+                                <img id="coverPreview" src="#" alt="Cover Preview" class="hidden h-16 w-auto border border-slate-300 rounded-sm object-contain"/>
+                                <button type="button" id="removeCoverBtn" class="hidden px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-md hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1">&times; Remove</button>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Recommended: JPG or PNG, approx. 600x800 pixels.</p>
+                    </div>
+                </div>
+
+                <div id="bookStructureSection" class="space-y-4 section-hidden">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Book Structure</h2>
+                    <p class="text-slate-600 mb-4">Organize your e-book sections. Add custom sections, reorder, or hide/show optional predefined sections.</p>
+                    <div id="structureListContainer" class="space-y-2 mb-4 bg-slate-50 p-4 rounded-lg shadow">
+                        <p class="text-slate-500 italic text-center">Loading structure...</p>
+                    </div>
+                    <button id="addCustomSectionBtn" class="px-4 py-2 bg-sky-500 text-white rounded-md hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 text-sm font-medium shadow hover:shadow-md transition-shadow">
+                        Add Custom Text Section
+                    </button>
+                </div>
+
+                <div id="prefaceSection" class="space-y-4 section-hidden">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Preface</h2>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="prefaceContent" class="block text-sm font-medium text-slate-700">Content:</label>
+                            <button class="addImageBtn text-xs bg-sky-100 text-sky-700 hover:bg-sky-200 px-2 py-1 rounded-md" data-target-textarea="prefaceContent">Add Image</button>
+                        </div>
+                        <textarea id="prefaceContent" name="prefaceContent" rows="10" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Write your preface..."></textarea>
+                    </div>
+                </div>
+
+                <div id="aboutAuthorSection" class="space-y-4 section-hidden">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">About the Author</h2>
+                     <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="aboutAuthorContent" class="block text-sm font-medium text-slate-700">Content:</label>
+                            <button class="addImageBtn text-xs bg-sky-100 text-sky-700 hover:bg-sky-200 px-2 py-1 rounded-md" data-target-textarea="aboutAuthorContent">Add Image</button>
+                        </div>
+                        <textarea id="aboutAuthorContent" name="aboutAuthorContent" rows="10" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Tell us about the author..."></textarea>
+                    </div>
+                </div>
+                
+                <div id="tocSection" class="space-y-4 section-hidden">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Table of Contents</h2>
+                    <p class="text-slate-600 italic">This section is auto-generated during preview and export. Its position can be managed in the "Book Structure" screen.</p>
+                </div>
+
+                <div id="chapterEditSection" class="space-y-4 section-hidden"> <h2 id="chapterEditTitle" class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Edit Chapter Group</h2>
+                    <div>
+                        <label for="chapterTitleInput" class="block text-sm font-medium text-slate-700 mb-1">Chapter Title:</label>
+                        <input type="text" id="chapterTitleInput" name="chapterTitleInput" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Enter chapter title">
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="chapterContentInput" class="block text-sm font-medium text-slate-700">Chapter Content:</label>
+                            <button class="addImageBtn text-xs bg-sky-100 text-sky-700 hover:bg-sky-200 px-2 py-1 rounded-md" data-target-textarea="chapterContentInput">Add Image</button>
+                        </div>
+                        <textarea id="chapterContentInput" name="chapterContentInput" rows="15" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Write your chapter content..."></textarea>
+                    </div>
+                    <button id="addChapterBtn" class="mt-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-sm font-medium shadow hover:shadow-md transition-shadow">Save and Add Another Chapter</button>
+                </div>
+
+                <div id="appendixSection" class="space-y-4 section-hidden">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Appendix</h2>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                             <label for="appendixContent" class="block text-sm font-medium text-slate-700">Content:</label>
+                            <button class="addImageBtn text-xs bg-sky-100 text-sky-700 hover:bg-sky-200 px-2 py-1 rounded-md" data-target-textarea="appendixContent">Add Image</button>
+                        </div>
+                        <textarea id="appendixContent" name="appendixContent" rows="10" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Add appendix content..."></textarea>
+                    </div>
+                </div>
+
+                <div id="indexSection" class="space-y-4 section-hidden">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Index</h2>
+                    <div>
+                         <div class="flex justify-between items-center mb-1">
+                            <label for="indexContent" class="block text-sm font-medium text-slate-700">Content:</label>
+                             <button class="addImageBtn text-xs bg-sky-100 text-sky-700 hover:bg-sky-200 px-2 py-1 rounded-md" data-target-textarea="indexContent">Add Image</button>
+                        </div>
+                        <textarea id="indexContent" name="indexContent" rows="10" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Create your index..."></textarea>
+                    </div>
+                </div>
+
+                <div id="customSectionEditor" class="space-y-4 section-hidden">
+                    <h2 id="customSectionTitleHeader" class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Edit Custom Section</h2>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="customSectionContentInput" class="block text-sm font-medium text-slate-700">Content:</label>
+                            <button id="customSectionAddImageBtn" class="addImageBtn text-xs bg-sky-100 text-sky-700 hover:bg-sky-200 px-2 py-1 rounded-md" data-target-textarea="customSectionContentInput">Add Image</button>
+                        </div>
+                        <textarea id="customSectionContentInput" name="customSectionContentInput" rows="15" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" placeholder="Write your custom content... Use Markdown for formatting."></textarea>
+                    </div>
+                </div>
+                
+                <div id="exportPageSection" class="space-y-6 section-hidden">
+                    <h2 class="text-2xl font-semibold text-slate-700 border-b pb-2 mb-4">Finish & Export</h2>
+                    <p class="text-slate-600">Your e-book is ready! Choose your desired export format.</p>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Export Format:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="exportFormat" value="txt" class="form-radio h-4 w-4 text-sky-600 border-slate-300 focus:ring-sky-500" checked>
+                                <span class="ml-2 text-slate-700">.txt</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="exportFormat" value="html" class="form-radio h-4 w-4 text-sky-600 border-slate-300 focus:ring-sky-500">
+                                <span class="ml-2 text-slate-700">.html</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="exportFormat" value="pdf" class="form-radio h-4 w-4 text-sky-600 border-slate-300 focus:ring-sky-500">
+                                <span class="ml-2 text-slate-700">.pdf</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="exportFormat" value="epub" class="form-radio h-4 w-4 text-sky-600 border-slate-300 focus:ring-sky-500">
+                                <span class="ml-2 text-slate-700">.epub</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="exportFormat" value="mobi" class="form-radio h-4 w-4 text-sky-600 border-slate-300 focus:ring-sky-500">
+                                <span class="ml-2 text-slate-700">.mobi (Info)</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="exportFormat" value="azw" class="form-radio h-4 w-4 text-sky-600 border-slate-300 focus:ring-sky-500">
+                                <span class="ml-2 text-slate-700">.azw (Info)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button id="finalExportBtn" class="w-full sm:w-auto px-6 py-3 bg-sky-600 text-white rounded-lg hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 font-semibold mt-4 shadow hover:shadow-md transition-shadow">Export E-book</button>
+                </div>
+            </div>
+
+            <div id="navigationContainer" class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 sm:space-x-3">
+                <button id="backBtn" class="px-5 py-2.5 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-sm font-medium w-full sm:w-auto shadow hover:shadow-md transition-shadow">Back</button>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
+                    <button id="previewBookBtn" class="px-5 py-2.5 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 text-sm font-medium w-full sm:w-auto shadow hover:shadow-md transition-shadow">Preview E-book</button>
+                    <button id="goToExportBtn" class="px-5 py-2.5 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 text-sm font-medium w-full sm:w-auto shadow hover:shadow-md transition-shadow">Skip to Export</button>
+                </div>
+                <button id="nextBtn" class="px-5 py-2.5 bg-sky-500 text-white rounded-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 text-sm font-medium w-full sm:w-auto shadow hover:shadow-md transition-shadow">Next</button>
+            </div>
+        </main>
+
+        <div id="previewModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-semibold text-slate-700">E-book Preview</h3>
+                    <button id="closePreviewBtn" class="text-slate-500 hover:text-slate-700 text-2xl leading-none p-1 rounded-full hover:bg-slate-100">&times;</button>
+                </div>
+                <div id="previewContentContainer" class="prose prose-sm sm:prose-base max-w-none">
+                    </div>
+            </div>
+        </div>
+
+        <div id="infoModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[60] hidden"> 
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-xl max-w-md w-full">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="infoModalTitle" class="text-xl font-semibold text-slate-700">Information</h3>
+                    <button id="closeInfoModalBtn" class="text-slate-500 hover:text-slate-700 text-2xl leading-none p-1 rounded-full hover:bg-slate-100">&times;</button>
+                </div>
+                <div id="infoModalContent" class="text-slate-600 prose prose-sm">
+                    </div>
+                <div class="mt-6 text-right">
+                    <button id="okInfoModalBtn" class="px-4 py-2 bg-sky-500 text-white rounded-md hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingIndicator" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] hidden">
+            <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+                <svg class="animate-spin h-8 w-8 text-sky-600 mx-auto mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p id="loadingIndicatorText" class="text-slate-700 font-medium">Generating, please wait...</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

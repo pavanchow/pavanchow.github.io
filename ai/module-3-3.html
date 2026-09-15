@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Transformer Architecture — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+    </button>
+
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span
+                                    class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span
+                                    class="nav-number">1.2</span><span class="nav-label">Intelligence as
+                                    Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span
+                                    class="nav-number">1.3</span><span class="nav-label">Probability &
+                                    Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span
+                                    class="nav-number">1.4</span><span class="nav-label">Optimization &
+                                    Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span
+                                    class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span
+                                    class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function
+                                    Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span
+                                    class="nav-number">2.3</span><span class="nav-label">Backpropagation &
+                                    Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span
+                                    class="nav-number">2.4</span><span class="nav-label">Generalization &
+                                    Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span
+                                    class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised
+                                    Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span
+                                    class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector
+                                    Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span
+                                    class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a>
+                        </li>
+                        <li class="nav-item active"><a href="module-3-3.html" class="nav-link"><span
+                                    class="nav-number">3.3</span><span class="nav-label">Transformer
+                                    Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span
+                                    class="nav-number">3.4</span><span class="nav-label">Large Language
+                                    Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span
+                                    class="nav-number">4.1</span><span class="nav-label">Generative vs
+                                    Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span
+                                    class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span
+                                    class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span
+                                    class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span
+                                    class="nav-number">5.2</span><span class="nav-label">Responsible AI
+                                    Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span
+                                    class="nav-number">5.3</span><span class="nav-label">From Research to
+                                    Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 69%"></div>
+                    </div>
+                    <span class="progress-text">12 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Modern Architectures</span><span
+                        class="breadcrumb-sep">→</span><span>Module 3.3</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Modern Architectures</span>
+                        <span class="module-duration">~50 min</span>
+                    </div>
+                    <h1 class="module-title">Transformer Architecture</h1>
+                    <p class="module-subtitle">
+                        The architecture that revolutionized AI: understanding how transformers combine
+                        attention, feed-forward networks, and residual connections to achieve
+                        state-of-the-art performance across virtually every AI domain.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand the complete transformer architecture</li>
+                        <li>Explain the role of each component: attention, FFN, normalization, residuals</li>
+                        <li>Distinguish encoder-only, decoder-only, and encoder-decoder architectures</li>
+                        <li>Understand positional encoding and why it's necessary</li>
+                        <li>Connect transformers to specific applications (BERT, GPT, etc.)</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">"Attention Is All You Need"</h2>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">The 2017 Revolution</div>
+                        <p class="definition-text">
+                            The transformer, introduced by Vaswani et al. in "Attention Is All You Need,"
+                            replaced recurrent and convolutional layers entirely with attention mechanisms.
+                            This enabled massive parallelization and unprecedented scale.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Why Transformers Won</span>
+                            <p>
+                                RNNs process sequences step-by-step—slow and prone to forgetting. CNNs
+                                have fixed receptive fields. Transformers let every position attend to
+                                every other position directly, in parallel.
+                            </p>
+                            <p>
+                                This direct global connectivity, combined with massive parallelization on
+                                GPUs, enabled training on internet-scale data—giving us GPT, BERT, and
+                                the current AI revolution.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">The Inductive Bias Shift</span>
+                            <p>
+                                Every architecture embeds an <strong>inductive bias</strong>—assumptions about
+                                data structure that guide learning:
+                            </p>
+                            <ul class="technical-list">
+                                <li><strong>CNNs:</strong> Assume spatial locality (nearby pixels are related) and
+                                    translation invariance (a cat is a cat anywhere in the image).</li>
+                                <li><strong>RNNs:</strong> Assume sequential dependence (earlier tokens causally
+                                    affect later ones) and recency (recent tokens matter most).</li>
+                                <li><strong>Transformers:</strong> Make minimal assumptions—every position can
+                                    attend to every other. The model <em>learns</em> which positions matter.</li>
+                            </ul>
+                            <p>
+                                This <strong>weaker inductive bias</strong> requires more data but enables
+                                greater flexibility. Given internet-scale training, transformers learn the
+                                "right" biases from data rather than having them hard-coded.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">Architectural Simplicity</span>
+                            <p>
+                                The transformer stacks self-attention and feed-forward layers, using
+                                residual connections and layer normalization for stable training. The
+                                architecture is remarkably simple—mostly attention and MLPs—yet scales
+                                to billions of parameters.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Transformer Block: The Building Block</h2>
+
+                    <p class="lead-paragraph">
+                        A transformer is a stack of identical blocks. Each block has two main
+                        components: multi-head self-attention and a position-wise feed-forward network,
+                        each wrapped in residual connections and layer normalization.
+                    </p>
+
+                    <!-- TODO: Upgrade static Transformer diagram to interactive hover-based flow 
+                         (hover over each block to highlight data flow: tokens → embeddings → attention → output) -->
+                    <div class="transformer-block-viz">
+                        <div class="block-component input-comp">
+                            <div class="comp-label">Input</div>
+                            <div class="comp-box">x</div>
+                        </div>
+
+                        <div class="block-flow">↓</div>
+
+                        <div class="block-component attention-comp">
+                            <div class="residual-wrapper">
+                                <div class="comp-box main-box">Multi-Head Self-Attention</div>
+                                <div class="residual-arrow">+</div>
+                            </div>
+                            <div class="norm-box">Layer Norm</div>
+                        </div>
+
+                        <div class="block-flow">↓</div>
+
+                        <div class="block-component ffn-comp">
+                            <div class="residual-wrapper">
+                                <div class="comp-box main-box">Feed-Forward Network</div>
+                                <div class="residual-arrow">+</div>
+                            </div>
+                            <div class="norm-box">Layer Norm</div>
+                        </div>
+
+                        <div class="block-flow">↓</div>
+
+                        <div class="block-component output-comp">
+                            <div class="comp-label">Output</div>
+                            <div class="comp-box">y</div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, rgba(80, 184, 146, 0.08) 0%, transparent 100%); border: 1px solid rgba(80, 184, 146, 0.25); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0;">
+                        <h4 style="color: var(--accent-emerald); font-size: 0.9rem; margin: 0 0 0.75rem;">🎯 Data Flow:
+                            Follow One Token Through</h4>
+                        <p style="margin-bottom: 1rem; font-size: 0.95rem;">
+                            Let's trace the word "cat" through a transformer block:
+                        </p>
+                        <ol style="margin: 0; padding-left: 1.5rem; line-height: 1.9; font-size: 0.9rem;">
+                            <li><strong>"cat" enters</strong> as a 768-dimensional vector (its embedding)</li>
+                            <li><strong>Attention:</strong> "cat" looks at ALL other tokens → "What's relevant to me?" →
+                                Gets updated with context</li>
+                            <li><strong>Add & Normalize:</strong> Add original "cat" back (residual) + normalize values
+                            </li>
+                            <li><strong>Feed-Forward:</strong> "cat" gets transformed alone (no mixing with others) →
+                                Expand → Contract</li>
+                            <li><strong>Add & Normalize:</strong> Add previous version back + normalize</li>
+                            <li><strong>"cat" exits</strong> as a richer 768-dimensional vector, now carrying context
+                                from the sentence</li>
+                        </ol>
+                        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-tertiary);">
+                            <strong>Key insight:</strong> Attention = "mix information between tokens" • FFN = "process
+                            each token individually"
+                        </p>
+                    </div>
+
+                    <div class="component-details">
+                        <div class="detail-card">
+                            <h4>Multi-Head Self-Attention</h4>
+                            <p>
+                                Each position attends to all positions. Multiple heads capture different
+                                relationship types. This is where global context mixing happens.
+                            </p>
+                            <div class="detail-formula">MultiHead(Q, K, V) with Q=K=V=x</div>
+                        </div>
+
+                        <div class="detail-card">
+                            <h4>Feed-Forward Network (FFN)</h4>
+                            <p>
+                                Applied independently to each position. Typically expands dimension 4×
+                                then projects back. This is where per-position computation happens.
+                            </p>
+                            <div class="detail-formula">FFN(x) = GELU(xW₁ + b₁)W₂ + b₂</div>
+                        </div>
+
+                        <div class="detail-card">
+                            <h4>Layer Normalization</h4>
+                            <p>
+                                Normalizes activations across features (not batch). Stabilizes training
+                                and enables higher learning rates.
+                            </p>
+                            <div class="detail-formula">LN(x) = γ · (x - μ) / σ + β</div>
+                        </div>
+
+                        <div class="detail-card">
+                            <h4>Residual Connections</h4>
+                            <p>
+                                Adds input directly to output of each sub-layer. Enables gradient flow
+                                through very deep networks (50+ layers).
+                            </p>
+                            <div class="detail-formula">output = x + SubLayer(x)</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Positional Encoding</h2>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Position Problem</h4>
+                            <p>
+                                Self-attention treats input as a set—it has no notion of order. "The cat
+                                sat" and "sat cat the" produce identical attention patterns. We must
+                                explicitly inject position information.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Sinusoidal Positional Encoding</h3>
+                        <p>
+                            The original transformer uses sine and cosine functions of different frequencies:
+                        </p>
+                        <div class="formula-block">
+                            <div class="formula-content">
+                                PE(pos, 2i) = sin(pos / 10000^(2i/d))<br>
+                                PE(pos, 2i+1) = cos(pos / 10000^(2i/d))
+                            </div>
+                        </div>
+                        <p>
+                            Each dimension has a different frequency, creating a unique "fingerprint" for
+                            each position. The sinusoidal form allows the model to learn relative positions
+                            through simple linear combinations.
+                        </p>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Learned Positional Embeddings</h3>
+                        <p>
+                            Modern models (GPT, BERT) often learn position embeddings directly—a matrix
+                            of shape (max_seq_len, d_model) trained with the rest of the network.
+                        </p>
+                        <p>
+                            <strong>Trade-off:</strong> Learned embeddings can capture position patterns
+                            specific to the training data but don't extrapolate to longer sequences.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Architecture Variants</h2>
+
+                    <div class="architecture-cards">
+                        <div class="arch-card encoder">
+                            <h3 class="arch-title">Encoder-Only</h3>
+                            <div class="arch-example">BERT, RoBERTa</div>
+                            <div class="arch-diagram">
+                                <div class="arch-block">Encoder</div>
+                                <div class="arch-block">Encoder</div>
+                                <div class="arch-block">Encoder</div>
+                                <div class="arch-arrow">→ [CLS] embedding</div>
+                            </div>
+                            <p>
+                                <strong>Bidirectional attention:</strong> Each token attends to all
+                                tokens in both directions. Best for understanding tasks (classification,
+                                NER, question answering).
+                            </p>
+                            <p>
+                                <strong>Training:</strong> Masked language modeling—predict masked tokens
+                                from context.
+                            </p>
+                        </div>
+
+                        <div class="arch-card decoder">
+                            <h3 class="arch-title">Decoder-Only</h3>
+                            <div class="arch-example">GPT, LLaMA, Claude</div>
+                            <div class="arch-diagram">
+                                <div class="arch-block">Decoder</div>
+                                <div class="arch-block">Decoder</div>
+                                <div class="arch-block">Decoder</div>
+                                <div class="arch-arrow">→ Next token</div>
+                            </div>
+                            <p>
+                                <strong>Causal attention:</strong> Each token attends only to previous
+                                tokens (left-to-right). Best for generation tasks.
+                            </p>
+                            <p>
+                                <strong>Training:</strong> Next-token prediction—predict each token
+                                from all previous tokens.
+                            </p>
+                        </div>
+
+                        <div class="arch-card enc-dec">
+                            <h3 class="arch-title">Encoder-Decoder</h3>
+                            <div class="arch-example">T5, BART, Original Transformer</div>
+                            <div class="arch-diagram">
+                                <div class="arch-section">
+                                    <div class="arch-block small">Enc</div>
+                                    <div class="arch-block small">Enc</div>
+                                </div>
+                                <div class="arch-cross">↓ Cross-Attention</div>
+                                <div class="arch-section">
+                                    <div class="arch-block small">Dec</div>
+                                    <div class="arch-block small">Dec</div>
+                                </div>
+                            </div>
+                            <p>
+                                <strong>Cross-attention:</strong> Decoder attends to encoder outputs.
+                                Best for sequence-to-sequence tasks (translation, summarization).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Causal Mask</h2>
+
+                    <p class="lead-paragraph">
+                        In decoder models, we prevent positions from attending to future tokens using
+                        a <strong>causal mask</strong>—ensuring the model can only "see" the past when
+                        predicting the next token.
+                    </p>
+
+                    <div class="mask-visualization">
+                        <div class="mask-matrix">
+                            <div class="mask-header">
+                                <span></span>
+                                <span>The</span>
+                                <span>cat</span>
+                                <span>sat</span>
+                                <span>on</span>
+                            </div>
+                            <div class="mask-row">
+                                <span class="mask-label">The</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell blocked">✗</span>
+                                <span class="mask-cell blocked">✗</span>
+                                <span class="mask-cell blocked">✗</span>
+                            </div>
+                            <div class="mask-row">
+                                <span class="mask-label">cat</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell blocked">✗</span>
+                                <span class="mask-cell blocked">✗</span>
+                            </div>
+                            <div class="mask-row">
+                                <span class="mask-label">sat</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell blocked">✗</span>
+                            </div>
+                            <div class="mask-row">
+                                <span class="mask-label">on</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell allowed">✓</span>
+                                <span class="mask-cell allowed">✓</span>
+                            </div>
+                        </div>
+                        <p class="mask-caption">
+                            Causal mask: ✓ = can attend, ✗ = masked (set to -∞ before softmax)
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Transformers understand language like humans"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Transformers are pattern-matching machines optimized to predict tokens.
+                                They have no grounded understanding of meaning, only statistical
+                                correlations learned from text.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Transformers capture useful
+                                patterns that often align with semantic meaning, but this emerges from
+                                prediction objectives, not understanding.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More layers always means better performance"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Beyond a certain depth, adding layers provides diminishing returns and
+                                increases training instability. The optimal depth depends on task and data.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Modern scaling laws suggest
+                                balancing depth, width, and data. Very deep models need careful
+                                initialization and may still underperform wider, shallower alternatives.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Transformer Explorer
+                    </h2>
+
+                    <div class="lab-introduction">
+                        <p>
+                            Explore the transformer architecture interactively. See how data flows
+                            through layers and understand the role of each component.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="flow">Data Flow</button>
+                            <button class="lab-tab" data-tab="positions">Positional Encoding</button>
+                            <button class="lab-tab" data-tab="shapes">Tensor Shapes</button>
+                            <button class="lab-tab code-view-tab" data-tab="code-view">
+                                <span class="code-icon">{ }</span> Code View
+                            </button>
+                        </div>
+
+                        <div class="lab-panel active" id="flow-panel">
+                            <div class="flow-lab">
+                                <div class="flow-controls">
+                                    <div class="control-group">
+                                        <label>Architecture</label>
+                                        <select id="arch-select">
+                                            <option value="encoder">Encoder (BERT-style)</option>
+                                            <option value="decoder">Decoder (GPT-style)</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Number of Layers</label>
+                                        <input type="range" id="num-layers" min="1" max="6" value="3">
+                                        <span class="control-value" id="layers-value">3</span>
+                                    </div>
+                                </div>
+
+                                <div class="flow-visualization">
+                                    <canvas id="flow-canvas" width="600" height="450"></canvas>
+                                </div>
+
+                                <div class="flow-explanation" id="flow-explanation">
+                                    Hover over components to learn more.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="positions-panel">
+                            <div class="positions-lab">
+                                <div class="positions-viz">
+                                    <canvas id="positions-canvas" width="600" height="350"></canvas>
+                                </div>
+                                <div class="positions-info">
+                                    <p>
+                                        Visualization of sinusoidal positional encodings. Each row is a
+                                        position, each column is a dimension. Notice the different frequencies
+                                        across dimensions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tensor Shapes Panel (EX-1) -->
+                        <div class="lab-panel" id="shapes-panel">
+                            <div class="tensor-shapes-intro">
+                                <p>
+                                    Understanding tensor shapes is crucial for implementing transformers.
+                                    Follow the data through each operation with concrete dimensions.
+                                </p>
+                            </div>
+
+                            <div class="shapes-config">
+                                <div class="shape-param">
+                                    <label>Batch Size (B):</label>
+                                    <select id="batch-size">
+                                        <option value="8">8</option>
+                                        <option value="32" selected>32</option>
+                                        <option value="64">64</option>
+                                    </select>
+                                </div>
+                                <div class="shape-param">
+                                    <label>Sequence Length (T):</label>
+                                    <select id="seq-length">
+                                        <option value="10">10</option>
+                                        <option value="128" selected>128</option>
+                                        <option value="512">512</option>
+                                    </select>
+                                </div>
+                                <div class="shape-param">
+                                    <label>Model Dimension (d_model):</label>
+                                    <select id="d-model">
+                                        <option value="256">256</option>
+                                        <option value="512" selected>512</option>
+                                        <option value="768">768</option>
+                                    </select>
+                                </div>
+                                <div class="shape-param">
+                                    <label>Heads (h):</label>
+                                    <select id="num-heads">
+                                        <option value="4">4</option>
+                                        <option value="8" selected>8</option>
+                                        <option value="16">16</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="tensor-flow-diagram">
+                                <div class="tensor-step">
+                                    <div class="step-name">Input Tokens</div>
+                                    <div class="tensor-shape" id="shape-input">[32, 128]</div>
+                                    <div class="step-desc">Integer token IDs</div>
+                                </div>
+                                <div class="tensor-arrow">↓ Embedding Lookup</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">Embeddings + Position</div>
+                                    <div class="tensor-shape" id="shape-embed">[32, 128, 512]</div>
+                                    <div class="step-desc">(B, T, d_model)</div>
+                                </div>
+                                <div class="tensor-arrow">↓ Linear Projections (Q, K, V)</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">Q, K, V (each)</div>
+                                    <div class="tensor-shape" id="shape-qkv">[32, 128, 512]</div>
+                                    <div class="step-desc">Each is (B, T, d_model)</div>
+                                </div>
+                                <div class="tensor-arrow">↓ Reshape for Multi-Head</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">Multi-Head Q, K, V</div>
+                                    <div class="tensor-shape highlighted" id="shape-multihead">[32, 8, 128, 64]</div>
+                                    <div class="step-desc">(B, h, T, d_head) where d_head = d_model/h</div>
+                                </div>
+                                <div class="tensor-arrow">↓ Q @ K.T (Attention Scores)</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">Attention Weights</div>
+                                    <div class="tensor-shape highlighted" id="shape-attn">[32, 8, 128, 128]</div>
+                                    <div class="step-desc">(B, h, T, T) — Every position attends to every other</div>
+                                </div>
+                                <div class="tensor-arrow">↓ Softmax, then @ V</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">Attention Output</div>
+                                    <div class="tensor-shape" id="shape-attn-out">[32, 8, 128, 64]</div>
+                                    <div class="step-desc">(B, h, T, d_head)</div>
+                                </div>
+                                <div class="tensor-arrow">↓ Concat Heads + Linear</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">Projected Output</div>
+                                    <div class="tensor-shape" id="shape-proj">[32, 128, 512]</div>
+                                    <div class="step-desc">(B, T, d_model) — Back to original shape</div>
+                                </div>
+                                <div class="tensor-arrow">↓ FFN (expand → contract)</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">FFN Intermediate</div>
+                                    <div class="tensor-shape" id="shape-ffn">[32, 128, 2048]</div>
+                                    <div class="step-desc">(B, T, 4×d_model) — Expansion layer</div>
+                                </div>
+                                <div class="tensor-arrow">↓ Project back</div>
+                                <div class="tensor-step">
+                                    <div class="step-name">Layer Output</div>
+                                    <div class="tensor-shape" id="shape-layer-out">[32, 128, 512]</div>
+                                    <div class="step-desc">(B, T, d_model) — Ready for next layer</div>
+                                </div>
+                            </div>
+
+                            <div class="shapes-note">
+                                <strong>Memory bottleneck:</strong> The attention matrix [B, h, T, T] is why long
+                                sequences are expensive. For T=4096, this is 4096² ≈ 16M elements per head per batch.
+                            </div>
+                        </div>
+
+                        <!-- Code View Panel -->
+                        <div class="lab-panel" id="code-view-panel">
+                            <div class="code-view-intro">
+                                <p>
+                                    Here's how to implement a transformer from scratch in PyTorch.
+                                    This is production-quality code used as a foundation for real LLMs.
+                                </p>
+                            </div>
+
+                            <div class="code-block-with-comments">
+                                <div class="code-section">
+                                    <h4>Multi-Head Attention</h4>
+                                    <pre><code class="language-python">import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import math
+
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model, num_heads):
+        super().__init__()
+        assert d_model % num_heads == 0
+        
+        self.d_model = d_model
+        self.num_heads = num_heads
+        <span class="code-highlight">self.d_head = d_model // num_heads</span>
+        
+        # Q, K, V projections (often combined into one)
+        self.W_q = nn.Linear(d_model, d_model)
+        self.W_k = nn.Linear(d_model, d_model)
+        self.W_v = nn.Linear(d_model, d_model)
+        self.W_o = nn.Linear(d_model, d_model)
+    
+    def forward(self, x, mask=None):
+        B, T, _ = x.shape
+        
+        # Project to Q, K, V
+        Q = self.W_q(x)  # [B, T, d_model]
+        K = self.W_k(x)
+        V = self.W_v(x)
+        
+        # Reshape for multi-head: [B, T, d_model] → [B, h, T, d_head]
+        <span class="code-highlight">Q = Q.view(B, T, self.num_heads, self.d_head).transpose(1, 2)</span>
+        K = K.view(B, T, self.num_heads, self.d_head).transpose(1, 2)
+        V = V.view(B, T, self.num_heads, self.d_head).transpose(1, 2)
+        
+        # Scaled dot-product attention
+        <span class="code-highlight">scores = (Q @ K.transpose(-2, -1)) / math.sqrt(self.d_head)</span>
+        # scores: [B, h, T, T]
+        
+        if mask is not None:
+            scores = scores.masked_fill(mask == 0, float('-inf'))
+        
+        attn = F.softmax(scores, dim=-1)
+        out = attn @ V  # [B, h, T, d_head]
+        
+        # Concat heads: [B, h, T, d_head] → [B, T, d_model]
+        out = out.transpose(1, 2).contiguous().view(B, T, self.d_model)
+        return self.W_o(out)</code></pre>
+                                </div>
+
+                                <div class="code-section">
+                                    <h4>Transformer Block</h4>
+                                    <pre><code class="language-python">class TransformerBlock(nn.Module):
+    def __init__(self, d_model, num_heads, d_ff, dropout=0.1):
+        super().__init__()
+        self.attn = MultiHeadAttention(d_model, num_heads)
+        <span class="code-highlight">self.norm1 = nn.LayerNorm(d_model)</span>
+        <span class="code-highlight">self.norm2 = nn.LayerNorm(d_model)</span>
+        
+        # Feed-forward network (expand → contract)
+        self.ffn = nn.Sequential(
+            nn.Linear(d_model, d_ff),  # d_model → 4×d_model
+            nn.GELU(),
+            nn.Linear(d_ff, d_model),   # 4×d_model → d_model
+            nn.Dropout(dropout)
+        )
+        self.dropout = nn.Dropout(dropout)
+    
+    def forward(self, x, mask=None):
+        # Attention with residual connection
+        <span class="code-highlight">x = x + self.dropout(self.attn(self.norm1(x), mask))</span>
+        # FFN with residual connection  
+        <span class="code-highlight">x = x + self.dropout(self.ffn(self.norm2(x)))</span>
+        return x</code></pre>
+                                </div>
+
+                                <div class="code-section">
+                                    <h4>Full GPT-style Model</h4>
+                                    <pre><code class="language-python">class GPTModel(nn.Module):
+    def __init__(self, vocab_size, d_model, num_heads, num_layers, max_len):
+        super().__init__()
+        <span class="code-highlight">self.token_emb = nn.Embedding(vocab_size, d_model)</span>
+        <span class="code-highlight">self.pos_emb = nn.Embedding(max_len, d_model)</span>
+        
+        self.blocks = nn.ModuleList([
+            TransformerBlock(d_model, num_heads, 4*d_model)
+            for _ in range(num_layers)
+        ])
+        
+        self.ln_f = nn.LayerNorm(d_model)
+        self.head = nn.Linear(d_model, vocab_size)
+    
+    def forward(self, idx):
+        B, T = idx.shape
+        pos = torch.arange(T, device=idx.device)
+        
+        # Embed tokens + positions
+        x = self.token_emb(idx) + self.pos_emb(pos)
+        
+        # Causal mask for autoregressive generation
+        <span class="code-highlight">mask = torch.tril(torch.ones(T, T)).unsqueeze(0).unsqueeze(0)</span>
+        
+        for block in self.blocks:
+            x = block(x, mask)
+        
+        x = self.ln_f(x)
+        logits = self.head(x)  # [B, T, vocab_size]
+        return logits</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="code-view-note">
+                                <strong>This is real code:</strong> With minor modifications, this is the foundation
+                                for GPT-2, LLaMA, and most modern LLMs. The magic is in the scale, not the architecture.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Residual connections</strong> create "highways" for gradients, enabling deep
+                                networks.</li>
+                            <li><strong>Layer norm</strong> appears after each sub-layer, stabilizing training.</li>
+                            <li><strong>FFN expands and contracts</strong>: d_model → 4×d_model → d_model.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">Why do transformers need positional encoding?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span
+                                        class="option-marker"></span><span class="option-text">To reduce memory
+                                        usage</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span
+                                        class="option-marker"></span><span class="option-text">Self-attention treats
+                                        input as a set with no inherent order; positional encoding injects sequence
+                                        information</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span
+                                        class="option-marker"></span><span class="option-text">To speed up
+                                        training</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span
+                                        class="option-marker"></span><span class="option-text">To enable multi-head
+                                        attention</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">What is the purpose of the feed-forward network in each
+                                    transformer block?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span
+                                        class="option-marker"></span><span class="option-text">To mix information
+                                        between positions</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span
+                                        class="option-marker"></span><span class="option-text">To perform per-position
+                                        nonlinear transformation, expanding and projecting back</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span
+                                        class="option-marker"></span><span class="option-text">To compute attention
+                                        weights</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span
+                                        class="option-marker"></span><span class="option-text">To reduce sequence
+                                        length</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">How does GPT differ from BERT architecturally?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span
+                                        class="option-marker"></span><span class="option-text">GPT has more
+                                        parameters</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span
+                                        class="option-marker"></span><span class="option-text">GPT uses causal
+                                        (unidirectional) attention; BERT uses bidirectional attention</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span
+                                        class="option-marker"></span><span class="option-text">GPT doesn't use
+                                        attention</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span
+                                        class="option-marker"></span><span class="option-text">BERT is faster to
+                                        train</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">Why are residual connections important in transformers?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span
+                                        class="option-marker"></span><span class="option-text">They reduce the number of
+                                        parameters</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span
+                                        class="option-marker"></span><span class="option-text">They enable gradient flow
+                                        through deep networks and allow layers to learn residual
+                                        functions</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span
+                                        class="option-marker"></span><span class="option-text">They compute attention
+                                        weights</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span
+                                        class="option-marker"></span><span class="option-text">They increase model
+                                        capacity</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">What does the causal mask do in GPT-style models?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span
+                                        class="option-marker"></span><span class="option-text">Speeds up
+                                        training</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span
+                                        class="option-marker"></span><span class="option-text">Prevents each position
+                                        from attending to future positions, ensuring autoregressive
+                                        generation</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span
+                                        class="option-marker"></span><span class="option-text">Reduces memory
+                                        usage</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span
+                                        class="option-marker"></span><span class="option-text">Improves accuracy on
+                                        classification tasks</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-3-2.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Attention Mechanisms</span>
+                    </a>
+                    <a href="module-3-4.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Large Language Models →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-3-3.js"></script>
+</body>
+
+</html>

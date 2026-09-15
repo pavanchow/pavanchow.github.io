@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description"
+        content="Learn the foundations of Artificial Intelligence with interactive labs and in-depth explanations.">
+    <title>Foundations of AI — Interactive Learning Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+    </button>
+
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+
+    <!-- Legacy Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <!-- Sidebar Toggle Button (inside header) -->
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">Getting Started</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="start-here.html" class="nav-link">
+                                <span class="nav-number"></span>
+                                <span class="nav-label">Start Here</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item active" data-module="what-ai-is">
+                            <a href="index.html" class="nav-link">
+                                <span class="nav-number">1.1</span>
+                                <span class="nav-label">What AI Actually Is</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="intelligence-patterns">
+                            <a href="module-1-2.html" class="nav-link">
+                                <span class="nav-number">1.2</span>
+                                <span class="nav-label">Intelligence as Pattern-Finding</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="probability-uncertainty">
+                            <a href="module-1-3.html" class="nav-link">
+                                <span class="nav-number">1.3</span>
+                                <span class="nav-label">Probability & Uncertainty</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="optimization">
+                            <a href="module-1-4.html" class="nav-link">
+                                <span class="nav-number">1.4</span>
+                                <span class="nav-label">Optimization & Gradients</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item" data-module="decision-boundaries">
+                            <a href="module-2-1.html" class="nav-link">
+                                <span class="nav-number">2.1</span>
+                                <span class="nav-label">Decision Boundaries</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="neural-networks">
+                            <a href="module-2-2.html" class="nav-link">
+                                <span class="nav-number">2.2</span>
+                                <span class="nav-label">Neural Networks as Function Approximators</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="backpropagation">
+                            <a href="module-2-3.html" class="nav-link">
+                                <span class="nav-number">2.3</span>
+                                <span class="nav-label">Backpropagation & Learning</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="regularization">
+                            <a href="module-2-4.html" class="nav-link">
+                                <span class="nav-number">2.4</span>
+                                <span class="nav-label">Generalization & Regularization</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="specialized-architectures">
+                            <a href="module-2-5.html" class="nav-link">
+                                <span class="nav-number">2.5</span>
+                                <span class="nav-label">CNNs, RNNs & Unsupervised Learning</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item" data-module="embeddings">
+                            <a href="module-3-1.html" class="nav-link">
+                                <span class="nav-number">3.1</span>
+                                <span class="nav-label">Embeddings & Vector Spaces</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="attention">
+                            <a href="module-3-2.html" class="nav-link">
+                                <span class="nav-number">3.2</span>
+                                <span class="nav-label">Attention Mechanisms</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="transformers">
+                            <a href="module-3-3.html" class="nav-link">
+                                <span class="nav-number">3.3</span>
+                                <span class="nav-label">Transformer Architecture</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="llm-basics">
+                            <a href="module-3-4.html" class="nav-link">
+                                <span class="nav-number">3.4</span>
+                                <span class="nav-label">Large Language Models</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item" data-module="generative-models">
+                            <a href="module-4-1.html" class="nav-link">
+                                <span class="nav-number">4.1</span>
+                                <span class="nav-label">Generative vs Discriminative</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="diffusion">
+                            <a href="module-4-2.html" class="nav-link">
+                                <span class="nav-number">4.2</span>
+                                <span class="nav-label">Diffusion Models</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="multimodal">
+                            <a href="module-4-3.html" class="nav-link">
+                                <span class="nav-number">4.3</span>
+                                <span class="nav-label">Multimodal Systems</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item" data-module="evaluation">
+                            <a href="module-5-1.html" class="nav-link">
+                                <span class="nav-number">5.1</span>
+                                <span class="nav-label">Model Evaluation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="responsible-ai">
+                            <a href="module-5-2.html" class="nav-link">
+                                <span class="nav-number">5.2</span>
+                                <span class="nav-label">Responsible AI Reasoning</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="deployment">
+                            <a href="module-5-3.html" class="nav-link">
+                                <span class="nav-number">5.3</span>
+                                <span class="nav-label">From Research to Deployment</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 6%"></div>
+                    </div>
+                    <span class="progress-text">1 of 19 modules</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb">
+                    <span>Foundations</span>
+                    <span class="breadcrumb-sep">→</span>
+                    <span>Module 1.1</span>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Prerequisites Banner -->
+            <section class="prerequisites-banner" id="prerequisites">
+                <div class="prereq-header">
+                    <h2>Prerequisites & Preparation</h2>
+                    <button class="prereq-toggle" aria-expanded="false"
+                        onclick="this.closest('.prerequisites-banner').classList.toggle('expanded'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+                        <span class="toggle-text">Show Details</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                </div>
+                <div class="prereq-content">
+                    <p class="prereq-intro">
+                        This course assumes foundational knowledge in mathematics and logical thinking.
+                        No prior AI/ML experience is required, but the following background will help you succeed.
+                    </p>
+
+                    <div class="prereq-grid">
+                        <div class="prereq-card">
+                            <h3>📐 Mathematics</h3>
+
+                            <div class="prereq-level-group">
+                                <h4 class="prereq-sublevel">🌱 Beginner — Start Here</h4>
+                                <ul>
+                                    <li><a href="prerequisites/Mathematics/math-foundations.html"><strong>Math
+                                                Foundations:</strong></a> Functions, variables, graphs, rate of change,
+                                        basic algebra, vectors</li>
+                                    <li><a href="prerequisites/Mathematics/number-sense.html"><strong>Number
+                                                Sense:</strong></a> Real numbers, growth patterns (linear vs
+                                        exponential), orders of magnitude</li>
+                                    <li><a href="prerequisites/Mathematics/logic-basics.html"><strong>Logic
+                                                Basics:</strong></a> Propositions, AND/OR/NOT, if-then reasoning, truth
+                                        tables</li>
+                                </ul>
+                                <div class="prereq-links">
+                                    <a href="prerequisites/Mathematics/math-foundations.html"
+                                        class="prereq-link-btn prereq-link-beginner">🌱 Math Foundations</a>
+                                    <a href="prerequisites/Mathematics/number-sense.html"
+                                        class="prereq-link-btn prereq-link-beginner">🔢 Number Sense</a>
+                                    <a href="prerequisites/Mathematics/logic-basics.html"
+                                        class="prereq-link-btn prereq-link-beginner">🧠 Logic Basics</a>
+                                </div>
+                            </div>
+
+                            <div class="prereq-level-group prereq-level-advanced">
+                                <h4 class="prereq-sublevel">📚 Core Topics</h4>
+                                <ul>
+                                    <li><a href="prerequisites/Mathematics/calculus.html"><strong>Calculus:</strong></a>
+                                        Derivatives, partial derivatives, chain rule</li>
+                                    <li><a href="prerequisites/Mathematics/linear-algebra.html"><strong>Linear
+                                                Algebra:</strong></a> Vectors, matrices, dot products, matrix
+                                        multiplication</li>
+                                    <li><a
+                                            href="prerequisites/Mathematics/probability.html"><strong>Probability:</strong></a>
+                                        Basic probability, conditional probability, expectation</li>
+                                </ul>
+                                <div class="prereq-links">
+                                    <a href="prerequisites/Mathematics/calculus.html" class="prereq-link-btn">📐
+                                        Calculus Guide</a>
+                                    <a href="prerequisites/Mathematics/linear-algebra.html" class="prereq-link-btn">🔢
+                                        Linear Algebra Guide</a>
+                                    <a href="prerequisites/Mathematics/probability.html" class="prereq-link-btn">🎲
+                                        Probability Guide</a>
+                                </div>
+                            </div>
+
+                            <p class="prereq-level">Required for full understanding of Modules 1.3, 1.4, 2.2-2.4</p>
+                        </div>
+
+                        <div class="prereq-card">
+                            <h3>💻 Programming (Optional)</h3>
+
+                            <div class="prereq-level-group">
+                                <h4 class="prereq-sublevel">🌱 Beginner — Start Here</h4>
+                                <ul>
+                                    <li><a href="prerequisites/Programming/programming-foundations.html"><strong>Programming
+                                                Foundations:</strong></a> What is a program, variables, loops,
+                                        functions, pseudocode</li>
+                                </ul>
+                                <div class="prereq-links">
+                                    <a href="prerequisites/Programming/programming-foundations.html"
+                                        class="prereq-link-btn prereq-link-beginner">🌱 Programming Foundations</a>
+                                </div>
+                            </div>
+
+                            <div class="prereq-level-group prereq-level-advanced">
+                                <h4 class="prereq-sublevel">📚 Python Syntax</h4>
+                                <ul>
+                                    <li><a href="prerequisites/Programming/python-basics.html"><strong>Python
+                                                Basics:</strong></a> Variables, data types, operators</li>
+                                    <li><a href="prerequisites/Programming/control-flow.html"><strong>Control
+                                                Flow:</strong></a> Conditionals, loops, iteration</li>
+                                    <li><a href="prerequisites/Programming/functions-data.html"><strong>Functions &
+                                                Data:</strong></a> Functions, lists, dictionaries</li>
+                                </ul>
+                                <div class="prereq-links">
+                                    <a href="prerequisites/Programming/python-basics.html" class="prereq-link-btn">🐍
+                                        Python Basics</a>
+                                    <a href="prerequisites/Programming/control-flow.html" class="prereq-link-btn">🔀
+                                        Control Flow</a>
+                                    <a href="prerequisites/Programming/functions-data.html" class="prereq-link-btn">📦
+                                        Functions & Data</a>
+                                </div>
+                            </div>
+
+                            <p class="prereq-level">Helpful for understanding code examples and future implementation
+                            </p>
+                        </div>
+
+                        <div class="prereq-card">
+                            <h3>📚 Recommended Resources</h3>
+                            <ul>
+                                <li><a href="https://www.khanacademy.org/math/linear-algebra" target="_blank"
+                                        rel="noopener">Khan Academy: Linear Algebra</a></li>
+                                <li><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr"
+                                        target="_blank" rel="noopener">3Blue1Brown: Essence of Linear Algebra</a></li>
+                                <li><a href="https://www.khanacademy.org/math/calculus-1" target="_blank"
+                                        rel="noopener">Khan Academy: Calculus</a></li>
+                                <li><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+                                        target="_blank" rel="noopener">3Blue1Brown: Essence of Calculus</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="prereq-self-check">
+                        <h4>Quick Self-Assessment</h4>
+                        <p>Can you answer these? If not, review the resources above first.</p>
+                        <ul class="self-check-list">
+                            <li>What is the derivative of f(x) = x²?</li>
+                            <li>What does the dot product of two vectors represent?</li>
+                            <li>If P(A) = 0.3 and P(B|A) = 0.8, what is P(A and B)?</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <article class="module-content" id="module-what-ai-is">
+                <!-- Module Header -->
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Foundation</span>
+                        <span class="module-duration">~25 min</span>
+                    </div>
+                    <h1 class="module-title">What AI Actually Is</h1>
+                    <p class="module-subtitle">
+                        A rigorous introduction to artificial intelligence: definitions, taxonomies,
+                        and the operational meaning of machine intelligence in modern computing.
+                    </p>
+                </section>
+
+                <!-- Learning Objectives -->
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Define artificial intelligence using modern academic terminology</li>
+                        <li>Distinguish between AI, machine learning, and deep learning</li>
+                        <li>Understand what "intelligence" means operationally in computing systems</li>
+                        <li>Identify common misconceptions and their corrections</li>
+                        <li>Interact with a pattern-recognition decision boundary system</li>
+                    </ul>
+                </section>
+
+                <!-- Main Content Sections -->
+                <section class="content-section">
+                    <h2 class="section-heading">The Working Definition</h2>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">Definition</div>
+                        <p class="definition-text">
+                            <strong>Artificial Intelligence</strong> refers to computational systems designed to perform
+                            tasks that, when performed by humans, would be described as requiring <em>reasoning</em>,
+                            <em>learning</em>, <em>perception</em>, or <em>decision-making under uncertainty</em>.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Consider what happens when you recognize a friend's face in a crowd. Your visual system
+                                processes millions of light signals, extracts features (the shape of eyes, the curve of
+                                a jawline), compares them against stored memories, and produces a judgment—all in
+                                milliseconds, often despite poor lighting, unusual angles, or years since your last
+                                meeting.
+                            </p>
+                            <p>
+                                AI systems attempt to replicate this kind of <em>competent behavior</em>: not by copying
+                                human biology, but by building computational structures that achieve similar functional
+                                outcomes.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                The field divides roughly into two paradigms:
+                            </p>
+                            <ol class="technical-list">
+                                <li>
+                                    <strong>Symbolic AI</strong> (1950s–1980s dominant): Systems that manipulate
+                                    explicit
+                                    symbols according to rules. Think of expert systems with if-then rules encoding
+                                    human knowledge.
+                                </li>
+                                <li>
+                                    <strong>Statistical/Connectionist AI</strong> (1990s–present dominant): Systems that
+                                    learn patterns from data using mathematical optimization. This includes neural
+                                    networks,
+                                    which learn hierarchical representations by adjusting millions of numerical
+                                    parameters
+                                    through a process called <strong>gradient descent</strong> (covered in
+                                    <a href="module-1-4.html">Module 1.4</a>).
+                                </li>
+                            </ol>
+                            <p>
+                                Modern AI is overwhelmingly statistical. When you hear about GPT, DALL-E, or AlphaFold,
+                                you're hearing about systems that learned their capabilities from data, not systems
+                                programmed
+                                with explicit rules.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                A spam filter is AI: it classifies emails by learning patterns that distinguish spam
+                                from
+                                legitimate messages. A recommendation system is AI: it predicts your preferences by
+                                finding
+                                statistical structure in user behavior data. A self-driving car's perception system is
+                                AI:
+                                it segments camera images into objects by learning from millions of labeled examples.
+                            </p>
+                            <p>
+                                The common thread: <em>tasks that require generalization from experience</em>—the
+                                ability
+                                to handle inputs the system has never seen before, based on patterns extracted from
+                                inputs
+                                it has seen.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Taxonomy: AI → ML → DL</h2>
+
+                    <div class="taxonomy-visual">
+                        <div class="taxonomy-ring ring-ai">
+                            <span class="ring-label">Artificial Intelligence</span>
+                            <p class="ring-description">Any system exhibiting intelligent behavior</p>
+                            <div class="taxonomy-ring ring-ml">
+                                <span class="ring-label">Machine Learning</span>
+                                <p class="ring-description">Systems that improve through experience</p>
+                                <div class="taxonomy-ring ring-dl">
+                                    <span class="ring-label">Deep Learning</span>
+                                    <p class="ring-description">Learning hierarchical representations via neural
+                                        networks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Machine Learning</h3>
+                        <p>
+                            Machine learning is the subset of AI where systems <em>improve their performance on a task
+                                through exposure to data</em>, without being explicitly programmed for every case. The
+                            canonical formulation comes from Tom Mitchell (1997):
+                        </p>
+                        <blockquote class="formal-quote">
+                            "A computer program is said to learn from experience E with respect to some class of tasks T
+                            and performance measure P, if its performance at tasks in T, as measured by P, improves with
+                            experience E."
+                        </blockquote>
+                        <p>
+                            This is precise: learning means measurable improvement on defined tasks given more data.
+                            It excludes systems that merely store and retrieve information (databases) and systems
+                            whose behavior is entirely hand-coded (traditional software).
+                        </p>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Deep Learning</h3>
+                        <p>
+                            Deep learning is a specific approach within machine learning that uses <strong>artificial
+                                neural networks with multiple layers</strong> (hence "deep") to learn hierarchical
+                            representations of data.
+                        </p>
+                        <p>
+                            The key insight: rather than hand-engineering features (e.g., telling an image classifier
+                            to look for edges, then corners, then shapes), deep learning systems <em>learn the features
+                                themselves</em>. Early layers might learn simple patterns (edges), middle layers combine
+                            these into complex patterns (textures, object parts), and final layers assemble these into
+                            task-relevant concepts (faces, cats, tumors).
+                        </p>
+                        <p>
+                            Deep learning dominates modern AI because it scales: given sufficient data and computation,
+                            deeper networks with more parameters consistently achieve better performance on complex
+                            tasks
+                            like image recognition, language understanding, and protein structure prediction.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Types of Machine Learning</h2>
+
+                    <p class="lead-paragraph">
+                        Machine learning encompasses several fundamentally different <strong>learning
+                            paradigms</strong>,
+                        distinguished by how the system receives feedback and what it's trying to learn. Understanding
+                        these paradigms is essential vocabulary for modern AI.
+                    </p>
+
+                    <div class="ml-types-grid">
+                        <div class="ml-type-card">
+                            <div class="ml-type-header supervised">
+                                <h4>Supervised Learning</h4>
+                            </div>
+                            <div class="ml-type-content">
+                                <p class="ml-type-def">
+                                    Learning from <strong>labeled examples</strong>—input-output pairs where the correct
+                                    answer is provided during training.
+                                </p>
+                                <p class="ml-type-how">
+                                    <strong>How it works:</strong> Given data points (X) with known labels (Y), learn
+                                    a function f such that f(X) ≈ Y. Minimize prediction error on training data, then
+                                    generalize to new inputs.
+                                </p>
+                                <div class="ml-type-examples">
+                                    <strong>Examples:</strong>
+                                    <ul>
+                                        <li><strong>Classification:</strong> Email spam detection (spam/not spam)</li>
+                                        <li><strong>Regression:</strong> House price prediction (continuous value)</li>
+                                        <li><strong>Image classification:</strong> Identifying objects in photos</li>
+                                    </ul>
+                                </div>
+                                <p class="ml-type-note">
+                                    <em>This is the dominant paradigm in most of this course.</em>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="ml-type-card">
+                            <div class="ml-type-header unsupervised">
+                                <h4>Unsupervised Learning</h4>
+                            </div>
+                            <div class="ml-type-content">
+                                <p class="ml-type-def">
+                                    Finding <strong>structure in unlabeled data</strong>—discovering patterns without
+                                    being told what to look for.
+                                </p>
+                                <p class="ml-type-how">
+                                    <strong>How it works:</strong> Given only inputs (X) with no labels, identify
+                                    underlying structure: clusters, dimensions of variation, or density distributions.
+                                </p>
+                                <div class="ml-type-examples">
+                                    <strong>Examples:</strong>
+                                    <ul>
+                                        <li><strong>Clustering:</strong> Customer segmentation, grouping similar
+                                            documents</li>
+                                        <li><strong>Dimensionality reduction:</strong> PCA, t-SNE for visualization</li>
+                                        <li><strong>Anomaly detection:</strong> Fraud detection, system monitoring</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ml-type-card">
+                            <div class="ml-type-header reinforcement">
+                                <h4>Reinforcement Learning</h4>
+                            </div>
+                            <div class="ml-type-content">
+                                <p class="ml-type-def">
+                                    Learning through <strong>interaction and rewards</strong>—an agent learns by
+                                    taking actions in an environment and receiving feedback.
+                                </p>
+                                <p class="ml-type-how">
+                                    <strong>How it works:</strong> Agent observes state, takes action, receives reward.
+                                    Goal: learn a policy that maximizes cumulative reward over time. Handles the
+                                    exploration-exploitation tradeoff.
+                                </p>
+                                <div class="ml-type-examples">
+                                    <strong>Examples:</strong>
+                                    <ul>
+                                        <li><strong>Game playing:</strong> AlphaGo, chess engines</li>
+                                        <li><strong>Robotics:</strong> Learning to walk, grasp objects</li>
+                                        <li><strong>RLHF:</strong> Fine-tuning ChatGPT with human feedback</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ml-type-card">
+                            <div class="ml-type-header self-supervised">
+                                <h4>Self-Supervised Learning</h4>
+                            </div>
+                            <div class="ml-type-content">
+                                <p class="ml-type-def">
+                                    Creating supervision signal <strong>from the data itself</strong>—a modern paradigm
+                                    powering large language models.
+                                </p>
+                                <p class="ml-type-how">
+                                    <strong>How it works:</strong> Create tasks where labels are derived from the input
+                                    (e.g., predict masked words, predict next token). Enables learning from massive
+                                    unlabeled datasets.
+                                </p>
+                                <div class="ml-type-examples">
+                                    <strong>Examples:</strong>
+                                    <ul>
+                                        <li><strong>Language models:</strong> GPT's next-word prediction</li>
+                                        <li><strong>Masked prediction:</strong> BERT filling in [MASK] tokens</li>
+                                        <li><strong>Contrastive learning:</strong> CLIP matching images with text</li>
+                                    </ul>
+                                </div>
+                                <p class="ml-type-note">
+                                    <em>Key enabler of foundation models—covered in Modules 3.3-3.4.</em>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="ml-type-card">
+                            <div class="ml-type-header semi-supervised">
+                                <h4>Semi-Supervised Learning</h4>
+                            </div>
+                            <div class="ml-type-content">
+                                <p class="ml-type-def">
+                                    Combining <strong>small labeled + large unlabeled</strong> datasets—leveraging
+                                    the best of both worlds.
+                                </p>
+                                <p class="ml-type-how">
+                                    <strong>How it works:</strong> Use limited labeled data to guide learning,
+                                    while extracting additional signal from abundant unlabeled data. Addresses
+                                    the labeling bottleneck.
+                                </p>
+                                <div class="ml-type-examples">
+                                    <strong>Use cases:</strong>
+                                    <ul>
+                                        <li>Medical imaging (labels require expert annotation)</li>
+                                        <li>Speech recognition with limited transcriptions</li>
+                                        <li>Web content classification</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Why This Taxonomy Matters</h4>
+                            <p>
+                                These aren't just academic categories—they represent fundamentally different
+                                learning settings with different algorithms, assumptions, and applications.
+                                Knowing whether your problem is supervised (you have labels), unsupervised
+                                (you need to discover structure), or reinforcement (you have rewards) is the
+                                first step in choosing the right approach.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">What "Intelligence" Means Operationally</h2>
+
+                    <p class="lead-paragraph">
+                        The word "intelligence" carries philosophical baggage. In AI, we sidestep debates about
+                        consciousness or understanding by focusing on <strong>operational definitions</strong>:
+                        intelligence is measured by <em>what a system can do</em>, not what it "is."
+                    </p>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Behavioral View</h4>
+                            <p>
+                                A system exhibits intelligence to the degree that it produces appropriate responses
+                                to novel situations. "Appropriate" is defined relative to some objective—winning a
+                                game, correctly classifying an image, generating coherent text.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        This is why we can meaningfully say that a chess engine "plays intelligently" without
+                        claiming it thinks, feels, or understands chess the way a grandmaster does. The engine
+                        produces moves that achieve the objective (winning) in situations it has never encountered
+                        before. That capacity—<em>generalization to new inputs</em>—is the operational signature
+                        of intelligence in computing.
+                    </p>
+
+                    <div class="comparison-table">
+                        <h4 class="table-title">Intelligence vs. Mere Computation</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Characteristic</th>
+                                    <th>Traditional Program</th>
+                                    <th>Intelligent System</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Handles novel inputs</td>
+                                    <td>Only if explicitly coded</td>
+                                    <td>Generalizes from training data</td>
+                                </tr>
+                                <tr>
+                                    <td>Adapts over time</td>
+                                    <td>Static until manually updated</td>
+                                    <td>Can improve with more experience</td>
+                                </tr>
+                                <tr>
+                                    <td>Knowledge source</td>
+                                    <td>Programmer's explicit rules</td>
+                                    <td>Patterns extracted from data</td>
+                                </tr>
+                                <tr>
+                                    <td>Failure mode</td>
+                                    <td>Crashes or wrong output</td>
+                                    <td>Graceful degradation, uncertainty estimates</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"AI systems understand what they're doing"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                This anthropomorphizes AI. Current systems are sophisticated pattern matchers that
+                                optimize objectives. A language model predicting the next word doesn't "understand"
+                                language in any human sense—it has learned statistical regularities that produce
+                                coherent outputs.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> AI systems exhibit <em>functional competence</em>
+                                without necessarily possessing understanding, awareness, or intentions. They solve
+                                problems through mathematical optimization, not comprehension.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"AI learns the way humans learn"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Current AI requires vastly more data than humans. A child learns to recognize cats
+                                from a handful of examples; an image classifier needs thousands. Human learning
+                                involves embodiment, curiosity, social context, and sleep—none of which apply to
+                                neural networks.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Machine learning and human learning share
+                                the abstract principle of "improvement from experience" but differ radically in
+                                mechanism, efficiency, and requirements. Neural networks are inspired by brains
+                                but are not models of brains.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More data always means better AI"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Data quality matters as much as quantity. Biased data produces biased models.
+                                Noisy labels degrade learning. And beyond a certain scale, returns diminish—doubling
+                                data might yield only marginal improvements.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> More data <em>can</em> improve performance,
+                                but only if the data is representative, correctly labeled, and relevant to the task.
+                                Data curation is often more valuable than data collection.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"AI will inevitably become sentient/conscious"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                This assumes that scaling pattern matching leads to consciousness—an unsupported leap.
+                                We don't understand consciousness well enough to know if any computational process
+                                could produce it, let alone current architectures.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Current AI systems are tools that process
+                                information according to trained parameters. Whether AI could ever be conscious is
+                                an open philosophical question, not an engineering inevitability.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab Section -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Decision Boundaries
+                    </h2>
+
+                    <div class="lab-introduction">
+                        <p>
+                            A fundamental task in AI is <strong>classification</strong>: given an input, assign it
+                            to one of several categories. The <em>decision boundary</em> is the surface that separates
+                            different classes in the input space.
+                        </p>
+                        <p>
+                            In this lab, you'll see how a simple classifier learns to separate two classes of points.
+                            Add points, adjust the model complexity, and observe how the decision boundary changes.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-controls">
+                            <div class="control-group">
+                                <label class="control-label">Current Class</label>
+                                <div class="class-selector">
+                                    <button class="class-btn active" data-class="0">
+                                        <span class="class-indicator class-a"></span>
+                                        Class A
+                                    </button>
+                                    <button class="class-btn" data-class="1">
+                                        <span class="class-indicator class-b"></span>
+                                        Class B
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Model Complexity</label>
+                                <div class="slider-container">
+                                    <input type="range" id="complexity-slider" min="1" max="5" value="2" class="slider">
+                                    <div class="slider-labels">
+                                        <span>Linear</span>
+                                        <span>Polynomial</span>
+                                        <span>Complex</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Learning Rate</label>
+                                <div class="slider-container">
+                                    <input type="range" id="learning-rate-slider" min="1" max="10" value="5"
+                                        class="slider">
+                                    <div class="slider-labels">
+                                        <span>Slow</span>
+                                        <span>Fast</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-actions">
+                                <button id="train-btn" class="btn btn-primary">Train Model</button>
+                                <button id="clear-btn" class="btn btn-secondary">Clear All</button>
+                                <button id="preset-btn" class="btn btn-ghost">Load Example</button>
+                            </div>
+                        </div>
+
+                        <div class="lab-canvas-container">
+                            <canvas id="decision-boundary-canvas" width="600" height="450"></canvas>
+                            <div class="canvas-instructions">Click to add points</div>
+                        </div>
+
+                        <div class="lab-metrics">
+                            <div class="metric">
+                                <span class="metric-value" id="accuracy-value">—</span>
+                                <span class="metric-label">Training Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value" id="points-value">0</span>
+                                <span class="metric-label">Total Points</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value" id="iterations-value">0</span>
+                                <span class="metric-label">Iterations</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>What to Observe</h4>
+                        <ul>
+                            <li>
+                                <strong>Linear boundaries</strong> (low complexity) can only separate data with a
+                                straight line. If your classes are interleaved, accuracy will suffer.
+                            </li>
+                            <li>
+                                <strong>High complexity</strong> models can fit intricate boundaries but may
+                                "overfit"—learning the noise in your specific points rather than the true pattern.
+                            </li>
+                            <li>
+                                <strong>The learning rate</strong> controls how aggressively the model updates.
+                                Too high and it oscillates; too low and it converges slowly.
+                            </li>
+                            <li>
+                                Notice how adding a single point in a critical region can dramatically change the
+                                boundary.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz Section -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <!-- Question 1 -->
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">
+                                    According to the operational definition, what makes a system "intelligent"?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q1" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The system is aware of its own existence</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The system produces appropriate responses to novel
+                                        situations based on learned patterns</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The system uses neural networks</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The system can pass the Turing test</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">
+                                    What distinguishes deep learning from other machine learning approaches?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q2" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Deep learning uses more data</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Deep learning uses multi-layer neural networks to learn
+                                        hierarchical feature representations automatically</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Deep learning is always more accurate</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Deep learning can only be used for images</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">
+                                    Why is the claim "AI systems understand what they're doing" considered a
+                                    misconception?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q3" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Because AI systems are too slow to truly understand</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Because current AI exhibits functional competence through
+                                        optimization, not comprehension or awareness</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Because only humans can understand anything</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Because AI only works on specific tasks</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">
+                                    In the decision boundary lab, what happens when you increase model complexity for
+                                    data that is linearly separable?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q4" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model always improves</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model may overfit, learning noise rather than the true
+                                        linear pattern</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model becomes unable to classify</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Nothing changes</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <!-- Question 5 -->
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">
+                                    According to Tom Mitchell's definition, what three elements must be specified to
+                                    define a machine learning problem?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q5" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Data, model, and computer</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Task (T), performance measure (P), and experience
+                                        (E)</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Input, output, and algorithm</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Training, validation, and testing</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module Navigation -->
+                <section class="module-navigation">
+                    <div class="nav-prev disabled">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">—</span>
+                    </div>
+                    <a href="module-1-2.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Intelligence as Pattern-Finding →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

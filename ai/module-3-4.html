@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Large Language Models — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item active"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+                    <span class="progress-text">13 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Modern Architectures</span><span class="breadcrumb-sep">→</span><span>Module 3.4</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Modern Architectures</span>
+                        <span class="module-duration">~55 min</span>
+                    </div>
+                    <h1 class="module-title">Large Language Models</h1>
+                    <p class="module-subtitle">
+                        Understanding the systems behind GPT, Claude, and Gemini: how scale, 
+                        pre-training objectives, and alignment techniques produce the most 
+                        capable AI systems ever created.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand what makes a language model "large" and why scale matters</li>
+                        <li>Explain pre-training objectives: next-token prediction and masked language modeling</li>
+                        <li>Distinguish pre-training, fine-tuning, and alignment (RLHF, Constitutional AI)</li>
+                        <li>Understand emergent capabilities and why they appear at scale</li>
+                        <li>Recognize limitations: hallucinations, context windows, reasoning failures</li>
+                        <li>Explain Chain-of-Thought prompting and Process Reward Models for reasoning</li>
+                        <li>Understand efficient architectures: Mixture of Experts (MoE) and sparse attention</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">What is a Large Language Model?</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Definition</div>
+                        <p class="definition-text">
+                            A <strong>Large Language Model (LLM)</strong> is a neural network trained on 
+                            massive text corpora to predict text. "Large" refers to both parameter count 
+                            (billions) and training data (trillions of tokens). The scale enables 
+                            capabilities that don't appear in smaller models.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">What They Actually Do</span>
+                            <p>
+                                At their core, LLMs predict the next token given previous tokens. That's it. 
+                                GPT-4 answering your question is fundamentally running: "Given this prompt, 
+                                what token is most likely next?" repeated thousands of times.
+                            </p>
+                            <p>
+                                The remarkable finding: this simple objective, at sufficient scale, produces 
+                                systems that appear to "understand" language, "reason" about problems, and 
+                                "know" facts—even though they have no explicit world model.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Scale Numbers</span>
+                            <div class="scale-comparison">
+                                <div class="scale-item">
+                                    <span class="scale-name">GPT-2 (2019)</span>
+                                    <span class="scale-value">1.5B parameters</span>
+                                </div>
+                                <div class="scale-item">
+                                    <span class="scale-name">GPT-3 (2020)</span>
+                                    <span class="scale-value">175B parameters</span>
+                                </div>
+                                <div class="scale-item">
+                                    <span class="scale-name">GPT-4 (2023)</span>
+                                    <span class="scale-value">~1.8T parameters (est.)</span>
+                                </div>
+                                <div class="scale-item">
+                                    <span class="scale-name">Training tokens</span>
+                                    <span class="scale-value">~10T+ tokens</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">Why This Matters</span>
+                            <p>
+                                Scale isn't just more of the same—it unlocks qualitatively new capabilities. 
+                                A 100M parameter model can't follow complex instructions. A 100B parameter 
+                                model can. Understanding why requires understanding scaling laws and emergence.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Training Pipeline</h2>
+                    
+                    <p class="lead-paragraph">
+                        Modern LLMs go through multiple training phases, each with different objectives 
+                        and data. This multi-stage approach produces models that are both capable and 
+                        (relatively) aligned with human preferences.
+                    </p>
+
+                    <div class="pipeline-stages">
+                        <div class="pipeline-stage">
+                            <div class="stage-number">1</div>
+                            <div class="stage-content">
+                                <h4>Pre-training</h4>
+                                <p class="stage-objective">Objective: Predict next token</p>
+                                <p>
+                                    Train on internet-scale text (books, websites, code, papers). The model 
+                                    learns language structure, facts, reasoning patterns—everything encoded 
+                                    in its training data.
+                                </p>
+                                <p class="stage-data">Data: Trillions of tokens, diverse sources</p>
+                                <p class="stage-cost">Cost: Millions of dollars, weeks of compute</p>
+                            </div>
+                        </div>
+
+                        <div class="pipeline-stage">
+                            <div class="stage-number">2</div>
+                            <div class="stage-content">
+                                <h4>Supervised Fine-Tuning (SFT)</h4>
+                                <p class="stage-objective">Objective: Learn to follow instructions</p>
+                                <p>
+                                    Train on human-written examples of helpful responses. Converts a 
+                                    "text predictor" into an "assistant" that understands prompts and 
+                                    generates appropriate responses.
+                                </p>
+                                <p class="stage-data">Data: ~100K high-quality instruction/response pairs</p>
+                            </div>
+                        </div>
+
+                        <div class="pipeline-stage">
+                            <div class="stage-number">3</div>
+                            <div class="stage-content">
+                                <h4>Alignment (RLHF / Constitutional AI)</h4>
+                                <p class="stage-objective">Objective: Match human preferences</p>
+                                <p>
+                                    Use human feedback or AI feedback to further refine behavior. Train a 
+                                    reward model on human preferences, then optimize the LLM to maximize 
+                                    reward while staying close to the SFT model.
+                                </p>
+                                <p class="stage-data">Data: Human comparisons of response quality</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Pre-training: The Foundation</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Next-Token Prediction</h4>
+                            <p>
+                                The pre-training objective is deceptively simple: given tokens [t₁, t₂, ..., tₙ], 
+                                predict tₙ₊₁. The model is trained on every position in every document, 
+                                learning to predict each token from its context.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="formula-block">
+                        <div class="formula-content">
+                            L = -Σ log P(tᵢ | t₁, ..., tᵢ₋₁)
+                        </div>
+                        <div class="formula-note">
+                            Cross-entropy loss: negative log probability of the correct next token
+                        </div>
+                    </div>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">Why Next-Token Prediction Works</h3>
+                        <p>
+                            To predict the next word accurately, the model must:
+                        </p>
+                        <ul class="technical-list">
+                            <li><strong>Learn syntax:</strong> Grammar, word order, agreement</li>
+                            <li><strong>Learn semantics:</strong> Word meanings, relationships, context</li>
+                            <li><strong>Learn facts:</strong> "The capital of France is..." → Paris</li>
+                            <li><strong>Learn reasoning:</strong> "If A implies B, and A, then..." → B</li>
+                        </ul>
+                        <p>
+                            The objective forces the model to build internal representations that capture 
+                            everything relevant to prediction—which turns out to be a lot.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Scaling Laws and Emergence</h2>
+                    
+                    <p class="lead-paragraph">
+                        A remarkable discovery: LLM capabilities follow predictable <strong>scaling laws</strong>. 
+                        Loss decreases smoothly with more parameters, data, and compute. But some capabilities 
+                        appear suddenly at specific scales—these are <strong>emergent abilities</strong>.
+                    </p>
+
+                    <div class="comparison-cards">
+                        <div class="scaling-card">
+                            <h3 class="card-title">Scaling Laws</h3>
+                            <p class="card-subtitle">Predictable improvement</p>
+                            <div class="card-content">
+                                <p>
+                                    Test loss follows a power law: L ∝ N^(-α) where N is parameters. 
+                                    Doubling parameters gives consistent (though diminishing) improvement.
+                                </p>
+                                <p>
+                                    <strong>Chinchilla scaling:</strong> Optimal to scale parameters and 
+                                    data together. A 70B model trained on 1.4T tokens beats a 280B model 
+                                    trained on 300B tokens.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="scaling-card">
+                            <h3 class="card-title">Emergent Abilities</h3>
+                            <p class="card-subtitle">Sudden capability jumps</p>
+                            <div class="card-content">
+                                <p>
+                                    Some capabilities appear suddenly at scale thresholds:
+                                </p>
+                                <ul>
+                                    <li>Multi-step arithmetic: ~10B parameters</li>
+                                    <li>Chain-of-thought reasoning: ~100B parameters</li>
+                                    <li>In-context learning: ~1B parameters</li>
+                                </ul>
+                                <p>
+                                    <strong>Debate:</strong> Are these true emergent abilities or artifacts 
+                                    of how we measure? Recent work suggests many "emergent" abilities may 
+                                    be gradual improvements that cross evaluation thresholds.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Alignment: Making LLMs Helpful and Safe</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">The Alignment Problem</div>
+                        <p class="definition-text">
+                            Pre-trained LLMs predict likely text—but likely text isn't always helpful, 
+                            truthful, or safe. <strong>Alignment</strong> refers to techniques that shape 
+                            model behavior to match human values and intentions.
+                        </p>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Why Reinforcement Learning?</h4>
+                            <p>
+                                Unlike supervised learning (learning from labeled examples), alignment requires 
+                                learning from <strong>preferences</strong>. RL provides the framework: an 
+                                <strong>agent</strong> (the LLM) takes <strong>actions</strong> (generating tokens) 
+                                in an <strong>environment</strong> (the conversation) to maximize a 
+                                <strong>reward signal</strong> (human preference scores).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rl-basics-box">
+                        <h4>Reinforcement Learning Fundamentals</h4>
+                        <div class="rl-components">
+                            <div class="rl-component">
+                                <span class="rl-term">Agent</span>
+                                <span class="rl-desc">The LLM that generates responses</span>
+                            </div>
+                            <div class="rl-component">
+                                <span class="rl-term">Environment</span>
+                                <span class="rl-desc">The prompt and conversation context</span>
+                            </div>
+                            <div class="rl-component">
+                                <span class="rl-term">Action</span>
+                                <span class="rl-desc">Each token generated (or full response)</span>
+                            </div>
+                            <div class="rl-component">
+                                <span class="rl-term">Reward</span>
+                                <span class="rl-desc">Score from reward model (trained on human preferences)</span>
+                            </div>
+                            <div class="rl-component">
+                                <span class="rl-term">Policy</span>
+                                <span class="rl-desc">The LLM's strategy for generating responses</span>
+                            </div>
+                        </div>
+                        <p class="rl-note">
+                            <strong>Goal:</strong> Adjust the policy (LLM weights) to maximize expected reward 
+                            while staying close to the pre-trained model (to preserve capabilities).
+                        </p>
+                    </div>
+
+                    <div class="alignment-methods">
+                        <div class="method-card rlhf-detailed">
+                            <h4>RLHF (Reinforcement Learning from Human Feedback)</h4>
+                            <p class="method-intro">
+                                The standard technique for aligning LLMs (Ouyang et al., 2022, "Training language 
+                                models to follow instructions with human feedback").
+                            </p>
+                            <div class="method-steps">
+                                <div class="method-step">
+                                    <span class="step-num">1</span>
+                                    <div class="step-detail">
+                                        <strong>Collect Comparisons</strong>
+                                        <span>Human raters rank responses: "Response A is better than B"</span>
+                                    </div>
+                                </div>
+                                <div class="method-step">
+                                    <span class="step-num">2</span>
+                                    <div class="step-detail">
+                                        <strong>Train Reward Model</strong>
+                                        <span>Learn to predict human preferences from comparison data</span>
+                                    </div>
+                                </div>
+                                <div class="method-step">
+                                    <span class="step-num">3</span>
+                                    <div class="step-detail">
+                                        <strong>RL Optimization (PPO)</strong>
+                                        <span>Fine-tune LLM to maximize reward model scores</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="method-code">
+                                <div class="code-label">Conceptual PyTorch</div>
+                                <pre><code># RLHF training loop (simplified)
+for prompt in prompts:
+    response = llm.generate(prompt)
+    reward = reward_model(prompt, response)
+    
+    # PPO update: increase probability of 
+    # high-reward responses
+    loss = -reward * log_prob(response)
+    loss.backward()
+    optimizer.step()</code></pre>
+                            </div>
+                            <p class="method-note">
+                                <strong>Used by:</strong> ChatGPT, GPT-4, Claude 1.x, Gemini
+                            </p>
+                        </div>
+
+                        <div class="method-card">
+                            <h4>Constitutional AI (CAI)</h4>
+                            <p class="method-intro">
+                                Anthropic's approach to reduce reliance on human labeling by using AI feedback.
+                            </p>
+                            <div class="method-steps">
+                                <div class="method-step">
+                                    <span class="step-num">1</span>
+                                    <div class="step-detail">
+                                        <strong>Define Constitution</strong>
+                                        <span>Set of principles (be helpful, honest, harmless)</span>
+                                    </div>
+                                </div>
+                                <div class="method-step">
+                                    <span class="step-num">2</span>
+                                    <div class="step-detail">
+                                        <strong>Self-Critique</strong>
+                                        <span>Model critiques and revises its own outputs using constitution</span>
+                                    </div>
+                                </div>
+                                <div class="method-step">
+                                    <span class="step-num">3</span>
+                                    <div class="step-detail">
+                                        <strong>RLAIF</strong>
+                                        <span>RL from AI Feedback—train on revised outputs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="method-note">
+                                <strong>Used by:</strong> Claude 2, Claude 3. Scales better than human labeling.
+                            </p>
+                        </div>
+
+                        <div class="method-card">
+                            <h4>DPO (Direct Preference Optimization)</h4>
+                            <p class="method-intro">
+                                A simpler alternative to RLHF that skips the reward model entirely.
+                            </p>
+                            <div class="method-steps">
+                                <div class="method-step">
+                                    <span class="step-num">1</span>
+                                    <div class="step-detail">
+                                        <strong>Collect Comparisons</strong>
+                                        <span>Same as RLHF: pairs of (better, worse) responses</span>
+                                    </div>
+                                </div>
+                                <div class="method-step">
+                                    <span class="step-num">2</span>
+                                    <div class="step-detail">
+                                        <strong>Direct Optimization</strong>
+                                        <span>Directly increase probability of preferred response vs rejected</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="method-note">
+                                <strong>Advantage:</strong> Simpler, more stable training. No separate reward model needed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">The Alignment Tax</h3>
+                        <p>
+                            Alignment often reduces raw capabilities. A model optimized for "being helpful" may 
+                            be less willing to engage with edge cases, leading to overly cautious behavior. 
+                            Balancing safety with capability is an active research area.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Limitations and Failure Modes</h2>
+                    
+                    <p class="lead-paragraph">
+                        Despite impressive capabilities, LLMs have fundamental limitations. Understanding 
+                        these is crucial for appropriate use and for research progress.
+                    </p>
+
+                    <div class="limitations-grid">
+                        <div class="limitation-card">
+                            <h4>Hallucinations</h4>
+                            <p>
+                                LLMs confidently generate false information—invented facts, fake citations, 
+                                incorrect reasoning. This occurs because the training objective is 
+                                "predict likely text," not "predict true text."
+                            </p>
+                            <p class="limitation-severity">Severity: High in factual domains</p>
+                        </div>
+
+                        <div class="limitation-card">
+                            <h4>Limited Context Window</h4>
+                            <p>
+                                Models can only "see" a fixed number of tokens (4K-200K typically). Long 
+                                documents, extended conversations, or complex codebases exceed this limit.
+                            </p>
+                            <p class="limitation-severity">Mitigation: RAG, extended context methods</p>
+                        </div>
+
+                        <div class="limitation-card">
+                            <h4>Reasoning Limitations</h4>
+                            <p>
+                                LLMs can fail on multi-step reasoning, especially novel problems not 
+                                similar to training data. They often "pattern match" rather than reason.
+                            </p>
+                            <p class="limitation-severity">Mitigation: Chain-of-thought, tool use</p>
+                        </div>
+
+                        <div class="limitation-card">
+                            <h4>No True Understanding</h4>
+                            <p>
+                                LLMs learn correlations in text, not grounded world knowledge. They can 
+                                describe how to ride a bike without understanding balance or motion.
+                            </p>
+                            <p class="limitation-severity">Open question: How much does this matter?</p>
+                        </div>
+
+                        <div class="limitation-card">
+                            <h4>Training Data Cutoff</h4>
+                            <p>
+                                Knowledge is frozen at training time. Events after cutoff are unknown 
+                                unless provided in context or via retrieval augmentation.
+                            </p>
+                            <p class="limitation-severity">Mitigation: RAG, fine-tuning, tool use</p>
+                        </div>
+
+                        <div class="limitation-card">
+                            <h4>Prompt Sensitivity</h4>
+                            <p>
+                                Small changes in phrasing can dramatically change outputs. Models aren't 
+                                robust to paraphrase in the way humans are.
+                            </p>
+                            <p class="limitation-severity">Mitigation: Prompt engineering, ensembles</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NEW: Reasoning Models Section -->
+                <section class="content-section">
+                    <h2 class="section-heading">Reasoning Models: Beyond Pattern Matching</h2>
+                    
+                    <p class="intro-text">
+                        Standard LLMs generate tokens auto-regressively without explicit "thinking." 
+                        Recent advances introduce <strong>inference-time compute</strong>—models that 
+                        reason step-by-step before producing answers, sometimes called "System 2" thinking.
+                    </p>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Chain-of-Thought (CoT) Prompting</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>The breakthrough:</strong> Simply asking a model to "think step by step" 
+                                dramatically improves performance on reasoning tasks. This was formalized by 
+                                <em>Wei et al. (2022)</em>.
+                            </p>
+                            
+                            <div class="comparison-box">
+                                <div class="comparison-item">
+                                    <h4>Standard Prompting</h4>
+                                    <div class="code-block">
+                                        <code>Q: Roger has 5 tennis balls. He buys 2 more cans of 3. How many does he have?</code>
+                                        <code>A: 11 ❌</code>
+                                    </div>
+                                </div>
+                                <div class="comparison-item">
+                                    <h4>Chain-of-Thought</h4>
+                                    <div class="code-block">
+                                        <code>Q: Roger has 5 tennis balls. He buys 2 more cans of 3. How many does he have?</code>
+                                        <code>A: Roger starts with 5 balls. 2 cans × 3 balls = 6 balls. 5 + 6 = 11 ✓</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="key-insight">
+                                <h4>Why It Works</h4>
+                                <p>
+                                    CoT decomposes complex problems into simpler sub-problems that each 
+                                    fall within the model's capabilities. The intermediate steps serve as 
+                                    a form of working memory, reducing the effective reasoning depth.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Process Reward Models (PRMs)</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>The limitation of outcome-based evaluation:</strong> Standard reward 
+                                models score only final answers. PRMs instead evaluate each reasoning step, 
+                                providing fine-grained feedback.
+                            </p>
+                            
+                            <div class="architecture-diagram">
+                                <div class="diagram-title">Outcome vs Process Reward</div>
+                                <div class="diagram-content">
+                                    <div class="diagram-row">
+                                        <span class="diagram-label">ORM:</span>
+                                        <span class="diagram-flow">Solution → Final Answer → ✓/✗</span>
+                                    </div>
+                                    <div class="diagram-row">
+                                        <span class="diagram-label">PRM:</span>
+                                        <span class="diagram-flow">Step 1 ✓ → Step 2 ✓ → Step 3 ✗ → Backtrack</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p>
+                                <strong>Modern reasoning systems</strong> (like OpenAI o1, DeepSeek-R1) combine:
+                            </p>
+                            <ul class="concept-list">
+                                <li><strong>Test-time compute scaling:</strong> More inference computation → better answers</li>
+                                <li><strong>Tree search:</strong> Exploring multiple reasoning paths</li>
+                                <li><strong>PRMs:</strong> Evaluating which paths are promising</li>
+                                <li><strong>Self-correction:</strong> Identifying and fixing errors mid-reasoning</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="callout-box info">
+                        <h4>📚 Key Literature</h4>
+                        <ul>
+                            <li>Wei et al. (2022) — "Chain-of-Thought Prompting Elicits Reasoning in LLMs"</li>
+                            <li>Lightman et al. (2023) — "Let's Verify Step by Step" (PRMs)</li>
+                            <li>OpenAI (2024) — "Learning to Reason with LLMs" (o1 technical report)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- NEW: Efficient Architectures Section -->
+                <section class="content-section">
+                    <h2 class="section-heading">Efficient Architectures: Scaling Sustainably</h2>
+                    
+                    <p class="intro-text">
+                        As models grow to hundreds of billions of parameters, efficiency becomes critical. 
+                        Two key innovations enable practical deployment: <strong>Mixture of Experts (MoE)</strong> 
+                        and <strong>Sparse Attention</strong>.
+                    </p>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Mixture of Experts (MoE)</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>The core idea:</strong> Instead of activating all parameters for every 
+                                input, route tokens to specialized "expert" subnetworks. This enables massive 
+                                total parameters with constant compute per token.
+                            </p>
+
+                            <div class="architecture-diagram">
+                                <div class="diagram-title">MoE Layer Architecture</div>
+                                <div class="diagram-content">
+                                    <pre class="architecture-ascii">
+Input Token
+     │
+     ▼
+┌─────────────┐
+│   Router    │ → Softmax over experts
+│  (Gating)   │
+└─────────────┘
+     │ Top-K selection
+     ▼
+┌────┬────┬────┬────┐
+│ E1 │ E2 │ E3 │ E4 │  ← Experts (only K activated)
+└────┴────┴────┴────┘
+     │ Weighted combination
+     ▼
+  Output
+                                    </pre>
+                                </div>
+                            </div>
+
+                            <div class="stat-grid">
+                                <div class="stat-item">
+                                    <span class="stat-value">8×</span>
+                                    <span class="stat-label">Total params vs dense</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">~2×</span>
+                                    <span class="stat-label">Active params per token</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">Top-2</span>
+                                    <span class="stat-label">Typical expert selection</span>
+                                </div>
+                            </div>
+
+                            <p>
+                                <strong>Examples:</strong> GPT-4 (rumored), Mixtral 8x7B, Switch Transformer, 
+                                Grok, DeepSeek-MoE. Mixtral 8x7B has 47B total parameters but only 13B active 
+                                per forward pass, matching 70B dense model quality.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Sparse Attention</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>The bottleneck:</strong> Standard attention is O(n²) in sequence length, 
+                                limiting context windows. Sparse patterns reduce this to O(n) or O(n log n).
+                            </p>
+
+                            <div class="comparison-grid">
+                                <div class="comparison-card">
+                                    <h4>Sliding Window</h4>
+                                    <p>Each token attends only to local neighbors. Used in Mistral, Longformer.</p>
+                                    <span class="complexity">O(n × w)</span>
+                                </div>
+                                <div class="comparison-card">
+                                    <h4>Dilated/Strided</h4>
+                                    <p>Attend to every k-th token, expanding receptive field exponentially.</p>
+                                    <span class="complexity">O(n × w)</span>
+                                </div>
+                                <div class="comparison-card">
+                                    <h4>Global + Local</h4>
+                                    <p>Some tokens (CLS, delimiters) attend globally; others locally.</p>
+                                    <span class="complexity">O(n × (w + g))</span>
+                                </div>
+                                <div class="comparison-card">
+                                    <h4>Linear Attention</h4>
+                                    <p>Reformulate attention to avoid explicit N×N matrix. Used in RWKV, Mamba.</p>
+                                    <span class="complexity">O(n × d)</span>
+                                </div>
+                            </div>
+
+                            <div class="key-insight">
+                                <h4>Modern Hybrid Approaches</h4>
+                                <p>
+                                    State-of-the-art models often combine techniques: sliding window for most 
+                                    layers, full attention at key layers, and hardware-optimized implementations 
+                                    (FlashAttention) that make full attention practical up to 128K tokens.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout-box info">
+                        <h4>📚 Key Literature</h4>
+                        <ul>
+                            <li>Shazeer et al. (2017) — "Outrageously Large Neural Networks: The Sparsely-Gated MoE Layer"</li>
+                            <li>Fedus et al. (2022) — "Switch Transformers: Scaling to Trillion Parameter Models"</li>
+                            <li>Dao et al. (2022) — "FlashAttention: Fast and Memory-Efficient Exact Attention"</li>
+                            <li>Gu & Dao (2023) — "Mamba: Linear-Time Sequence Modeling with Selective State Spaces"</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"LLMs understand and think like humans"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                LLMs have no consciousness, goals, or genuine understanding. They are 
+                                sophisticated pattern matchers that produce plausible-sounding text.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> LLMs capture useful statistical 
+                                patterns that often correlate with meaning and reasoning. Whether this 
+                                constitutes "understanding" is a philosophical question, but their 
+                                internal mechanisms are fundamentally different from human cognition.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"If an LLM says it, it must be true"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                LLMs are optimized for plausibility, not truth. They confidently produce 
+                                false statements, especially for rare facts or complex reasoning.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Treat LLM outputs as suggestions 
+                                requiring verification, not authoritative answers. Use them for brainstorming, 
+                                drafting, and assistance—but verify important claims independently.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Bigger models are always better"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Scale helps, but efficiency matters too. Smaller, well-trained models 
+                                often outperform larger poorly-trained ones. Cost, latency, and deployment 
+                                constraints matter in practice.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Optimal model size depends on 
+                                training data, task requirements, and deployment constraints. Chinchilla 
+                                scaling suggests data-efficient training often beats parameter scaling.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: LLM Concepts Explorer
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore key LLM concepts interactively. Understand tokenization, 
+                            temperature sampling, and how context affects generation.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="token">Tokenization</button>
+                            <button class="lab-tab" data-tab="sampling">Sampling & Temperature</button>
+                        </div>
+
+                        <div class="lab-panel active" id="token-panel">
+                            <div class="token-lab">
+                                <div class="token-input">
+                                    <label>Enter text to tokenize:</label>
+                                    <input type="text" id="token-text" value="Hello, how are you?" maxlength="100">
+                                    <button id="tokenize-btn" class="btn btn-primary">Tokenize</button>
+                                </div>
+                                <div class="token-output" id="token-output">
+                                    <!-- Generated by JS -->
+                                </div>
+                                <div class="token-info">
+                                    <p>
+                                        <strong>Tokenization</strong> splits text into subword units. Common 
+                                        words are single tokens; rare words are split. This is why LLMs 
+                                        struggle with character-level tasks.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="sampling-panel">
+                            <div class="sampling-lab">
+                                <div class="sampling-controls">
+                                    <div class="control-group">
+                                        <label>Temperature</label>
+                                        <input type="range" id="temperature" min="0" max="200" value="100">
+                                        <span class="control-value" id="temp-value">1.0</span>
+                                    </div>
+                                </div>
+                                <div class="sampling-viz">
+                                    <canvas id="sampling-canvas" width="500" height="300"></canvas>
+                                </div>
+                                <div class="sampling-explanation" id="sampling-explanation">
+                                    Temperature controls randomness. Low = deterministic, high = creative/random.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Tokenization matters:</strong> "ChatGPT" might be 1 token while "Llama" is 2.</li>
+                            <li><strong>Temperature = 0:</strong> Always picks most likely token (deterministic).</li>
+                            <li><strong>Temperature > 1:</strong> Flattens distribution, more random choices.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What is the fundamental objective during LLM pre-training?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Answer questions correctly</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Predict the next token given previous tokens</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Classify text into categories</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Translate between languages</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">What is RLHF used for?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">Pre-training the model on text data</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">Aligning the model with human preferences after pre-training</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">Compressing the model for deployment</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">Generating training data</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">Why do LLMs hallucinate (make up false information)?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">They are malicious</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">They are trained to produce plausible text, not necessarily true text</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">They have memory errors</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">The training data was too small</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">What does higher "temperature" in sampling do?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">Makes output more deterministic</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">Flattens the probability distribution, making output more random/creative</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">Speeds up generation</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">Increases model accuracy</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">What is an "emergent ability" in LLMs?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">An ability that was explicitly programmed</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">A capability that appears suddenly at certain scales, not present in smaller models</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">The ability to generate emergencies</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">A bug in the model</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-3-3.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Transformer Architecture</span>
+                    </a>
+                    <a href="index.html" class="nav-next">
+                        <span class="nav-direction">Continue Learning</span>
+                        <span class="nav-title">Back to Curriculum →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-3-4.js"></script>
+</body>
+</html>
+

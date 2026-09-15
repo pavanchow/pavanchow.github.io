@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Diffusion Models — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item active"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 87%"></div></div>
+                    <span class="progress-text">15 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Generative AI</span><span class="breadcrumb-sep">→</span><span>Module 4.2</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Generative AI</span>
+                        <span class="module-duration">~60 min</span>
+                    </div>
+                    <h1 class="module-title">Diffusion Models</h1>
+                    <p class="module-subtitle">
+                        The mathematical elegance behind Stable Diffusion, DALL-E 3, Midjourney, and Sora. 
+                        Learn how destroying data with noise, then learning to reverse the destruction, 
+                        yields the most powerful generative models we've ever built.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand the forward diffusion process: progressively adding noise</li>
+                        <li>Understand the reverse process: learning to denoise step by step</li>
+                        <li>Connect score matching to denoising and the score function ∇log p(x)</li>
+                        <li>Explain how conditioning (text, images) enables controllable generation</li>
+                        <li>Understand key innovations: latent diffusion, classifier-free guidance, DDIM</li>
+                        <li>Compare diffusion models to other generative approaches</li>
+                        <li>Explore emerging paradigms: Flow Matching and Consistency Models for faster generation</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Core Insight: Destruction is Easy, Creation is Hard</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Diffusion Models</div>
+                        <p class="definition-text">
+                            A class of generative models that learn to generate data by learning to reverse a 
+                            gradual noising process. Given any data point, progressively add Gaussian noise 
+                            until it becomes pure noise; then train a neural network to reverse each step.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Imagine dropping ink into water. It gradually diffuses until the pattern 
+                                is completely lost. Now imagine learning to reverse that process—given 
+                                diffused ink, reconstruct where it started. If you can do that, you can 
+                                start from <em>any</em> random diffusion state and "reverse" it into a 
+                                plausible ink pattern.
+                            </p>
+                            <p>
+                                Diffusion models do exactly this with images: learn to undo noise, one 
+                                small step at a time, until random static becomes a coherent image.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Mathematical Framework</span>
+                            <p>
+                                <strong>Forward process (fixed):</strong> Gradually add noise over T steps
+                            </p>
+                            <div class="formula-block">
+                                <div class="formula-content">
+                                    q(x_t | x_{t-1}) = N(x_t; √(1-β_t) x_{t-1}, β_t I)
+                                </div>
+                                <div class="formula-note">
+                                    Each step slightly shrinks the signal and adds Gaussian noise
+                                </div>
+                            </div>
+                            <p>
+                                <strong>Reverse process (learned):</strong> A neural network predicts the reverse
+                            </p>
+                            <div class="formula-block">
+                                <div class="formula-content">
+                                    p_θ(x_{t-1} | x_t) = N(x_{t-1}; μ_θ(x_t, t), Σ_θ(x_t, t))
+                                </div>
+                                <div class="formula-note">
+                                    The model learns to denoise: predict the slightly less noisy version
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                <strong>To generate an image:</strong> Start with pure Gaussian noise (x_T), 
+                                run the learned reverse process for T steps, end up with a realistic image (x_0).
+                            </p>
+                            <p>
+                                <strong>To train:</strong> Take a real image, add noise at a random timestep t, 
+                                ask the model to predict what noise was added (or predict the clean image). 
+                                This simple training objective produces remarkably high-quality generators.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Forward Process: Structured Destruction</h2>
+                    
+                    <p class="lead-paragraph">
+                        The forward process is completely fixed—no learning required. We simply define 
+                        how to gradually corrupt any data point into noise.
+                    </p>
+
+                    <div class="process-visualization">
+                        <div class="process-step">
+                            <div class="step-label">x₀</div>
+                            <div class="step-desc">Original image</div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">
+                            <div class="step-label">x₁</div>
+                            <div class="step-desc">Slightly noisy</div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step faded">
+                            <div class="step-label">...</div>
+                            <div class="step-desc">Increasingly noisy</div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">
+                            <div class="step-label">x_T</div>
+                            <div class="step-desc">Pure noise</div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">The Noise Schedule</h3>
+                        <p>
+                            The sequence {β₁, β₂, ..., β_T} controls how quickly we add noise. This 
+                            "noise schedule" is a crucial design choice:
+                        </p>
+                        <ul class="concept-list">
+                            <li><strong>Linear schedule:</strong> β increases linearly from β₁≈0.0001 to β_T≈0.02</li>
+                            <li><strong>Cosine schedule:</strong> Produces a smoother transition, often works better</li>
+                            <li><strong>Learned schedule:</strong> Some approaches learn optimal schedules</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Closed-Form Shortcut</h4>
+                            <p>
+                                We don't need to iterate through all t steps to get x_t. Define 
+                                ᾱ_t = ∏ᵢ₌₁ᵗ (1-βᵢ). Then:
+                            </p>
+                            <div class="formula-inline">
+                                x_t = √ᾱ_t · x₀ + √(1-ᾱ_t) · ε,  where ε ~ N(0, I)
+                            </div>
+                            <p>
+                                This lets us jump directly to any noise level during training—sample a 
+                                random t, compute x_t in one step, and train.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Reverse Process: Learning to Denoise</h2>
+                    
+                    <p class="lead-paragraph">
+                        The reverse process is where all the learning happens. Given a noisy image x_t 
+                        and timestep t, the model must predict either the noise that was added, the 
+                        clean image x₀, or the "score" ∇log p(x_t).
+                    </p>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">Three Equivalent Parameterizations</h3>
+                        
+                        <div class="param-grid">
+                            <div class="param-item">
+                                <h4>ε-prediction (DDPM)</h4>
+                                <p>Predict the noise ε that was added</p>
+                                <div class="formula-inline">L = E[‖ε - ε_θ(x_t, t)‖²]</div>
+                                <p class="param-note">Most common. Model learns: "what noise made this?"</p>
+                            </div>
+                            
+                            <div class="param-item">
+                                <h4>x₀-prediction</h4>
+                                <p>Predict the clean data directly</p>
+                                <div class="formula-inline">L = E[‖x₀ - x̂₀_θ(x_t, t)‖²]</div>
+                                <p class="param-note">More intuitive but can be harder to train for large t</p>
+                            </div>
+                            
+                            <div class="param-item">
+                                <h4>v-prediction</h4>
+                                <p>Predict v = √ᾱ_t · ε - √(1-ᾱ_t) · x₀</p>
+                                <div class="formula-inline">L = E[‖v - v_θ(x_t, t)‖²]</div>
+                                <p class="param-note">Velocity parameterization, used in some SOTA models</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">The Connection to Score Matching</h3>
+                        <p>
+                            There's a deep connection between denoising and <strong>score functions</strong>. 
+                            The score is the gradient of log probability: s(x) = ∇_x log p(x).
+                        </p>
+                        <p>
+                            Remarkably, predicting the noise ε is equivalent to predicting the score:
+                        </p>
+                        <div class="formula-block">
+                            <div class="formula-content">
+                                ∇_{x_t} log p(x_t) ≈ -ε / √(1-ᾱ_t)
+                            </div>
+                            <div class="formula-note">
+                                The score points "uphill" toward higher probability—toward cleaner images
+                            </div>
+                        </div>
+                        <p>
+                            This score-based view explains why diffusion models work: they learn to follow 
+                            the gradient of the data distribution, step by step, from noise to data.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Architecture: U-Net and Beyond</h2>
+                    
+                    <p class="lead-paragraph">
+                        The neural network that predicts ε (or x₀) is typically a U-Net—an architecture 
+                        originally designed for image segmentation that works remarkably well for denoising.
+                    </p>
+
+                    <div class="architecture-diagram">
+                        <div class="arch-title">U-Net Architecture for Diffusion</div>
+                        <div class="arch-visual">
+                            <div class="arch-column encoder">
+                                <div class="arch-block">Conv + Attention</div>
+                                <div class="arch-block">Downsample</div>
+                                <div class="arch-block">Conv + Attention</div>
+                                <div class="arch-block">Downsample</div>
+                            </div>
+                            <div class="arch-column bottleneck">
+                                <div class="arch-block bottleneck-block">
+                                    Bottleneck<br>
+                                    <span class="small">+ Time embedding</span><br>
+                                    <span class="small">+ Text embedding</span>
+                                </div>
+                            </div>
+                            <div class="arch-column decoder">
+                                <div class="arch-block">Upsample</div>
+                                <div class="arch-block">Conv + Attention</div>
+                                <div class="arch-block">Upsample</div>
+                                <div class="arch-block">Conv + Attention</div>
+                            </div>
+                        </div>
+                        <div class="arch-note">Skip connections connect encoder to decoder at each resolution</div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Key Components</h3>
+                        <ul class="detailed-list">
+                            <li>
+                                <strong>Time embedding:</strong> The timestep t is encoded (usually with 
+                                sinusoidal positional encoding, then MLP) and added to the network. This 
+                                tells the model how noisy the input is.
+                            </li>
+                            <li>
+                                <strong>Residual blocks:</strong> Standard ResNet-style blocks with 
+                                GroupNorm, SiLU activation, and skip connections.
+                            </li>
+                            <li>
+                                <strong>Attention layers:</strong> Self-attention and (for conditioning) 
+                                cross-attention. This is where text embeddings are injected in text-to-image models.
+                            </li>
+                            <li>
+                                <strong>Skip connections:</strong> The U-shape passes high-resolution 
+                                features directly from encoder to decoder, preserving detail.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>DiT: Diffusion Transformers</h4>
+                            <p>
+                                Recent work (including Sora) replaces the U-Net with a pure Transformer 
+                                architecture. Images are patchified, treated as sequences, and processed 
+                                with standard transformer blocks. DiT scales better with compute.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Latent Diffusion: The Stable Diffusion Revolution</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Latent Diffusion Models (LDM)</div>
+                        <p class="definition-text">
+                            Instead of running diffusion in pixel space, first compress images into a 
+                            lower-dimensional latent space using a VAE, then run diffusion there. This 
+                            is the key innovation behind Stable Diffusion.
+                        </p>
+                    </div>
+
+                    <div class="ldm-pipeline">
+                        <div class="ldm-stage">
+                            <div class="stage-title">Stage 1: VAE Encoding</div>
+                            <div class="stage-content">
+                                <p>Image (512×512×3) → Latent (64×64×4)</p>
+                                <p class="stage-note">64× compression, preserving semantic content</p>
+                            </div>
+                        </div>
+                        <div class="ldm-arrow">→</div>
+                        <div class="ldm-stage">
+                            <div class="stage-title">Stage 2: Diffusion in Latent Space</div>
+                            <div class="stage-content">
+                                <p>Add noise / denoise in the compact latent space</p>
+                                <p class="stage-note">Much faster and cheaper than pixel-space diffusion</p>
+                            </div>
+                        </div>
+                        <div class="ldm-arrow">→</div>
+                        <div class="ldm-stage">
+                            <div class="stage-title">Stage 3: VAE Decoding</div>
+                            <div class="stage-content">
+                                <p>Latent (64×64×4) → Image (512×512×3)</p>
+                                <p class="stage-note">Decode back to full resolution</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">Why Latent Diffusion Works</h3>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>Advantages</h4>
+                                <ul>
+                                    <li>~64× fewer pixels to process</li>
+                                    <li>Train on consumer GPUs (vs clusters for pixel-space)</li>
+                                    <li>Faster inference (fewer FLOPs per step)</li>
+                                    <li>Latent space removes imperceptible details</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Trade-offs</h4>
+                                <ul>
+                                    <li>VAE introduces slight blurriness</li>
+                                    <li>Small details may be lost in compression</li>
+                                    <li>Two-stage training is more complex</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Conditioning: From Noise to Controlled Generation</h2>
+                    
+                    <p class="lead-paragraph">
+                        The real power of diffusion models emerges when we add <strong>conditioning</strong>—
+                        generating not just any image, but images that match a text prompt, input image, 
+                        or other constraints.
+                    </p>
+
+                    <div class="conditioning-types">
+                        <div class="cond-card">
+                            <h4>Text Conditioning</h4>
+                            <div class="cond-content">
+                                <p>Encode text prompt with CLIP or T5, inject via cross-attention</p>
+                                <div class="cond-formula">ε_θ(x_t, t, c_text)</div>
+                                <p class="cond-examples">Stable Diffusion, DALL-E, Imagen</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cond-card">
+                            <h4>Image Conditioning</h4>
+                            <div class="cond-content">
+                                <p>img2img: start from noised version of input image</p>
+                                <div class="cond-formula">x_t = √ᾱ_t · encode(img) + √(1-ᾱ_t) · ε</div>
+                                <p class="cond-examples">Style transfer, variations, inpainting</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cond-card">
+                            <h4>ControlNet</h4>
+                            <div class="cond-content">
+                                <p>Add spatial control: edges, poses, depth maps</p>
+                                <p>Trainable copy of encoder, zero-convolutions</p>
+                                <p class="cond-examples">Pose-guided, edge-guided generation</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cond-card">
+                            <h4>Class Conditioning</h4>
+                            <div class="cond-content">
+                                <p>Simple: add class embedding to time embedding</p>
+                                <div class="cond-formula">ε_θ(x_t, t, c_class)</div>
+                                <p class="cond-examples">ImageNet class-conditional generation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">Classifier-Free Guidance (CFG)</h3>
+                        <p>
+                            The key technique for high-quality conditional generation. Instead of using a 
+                            separate classifier, train a single model that can do both conditional and 
+                            unconditional generation. Then at inference:
+                        </p>
+                        <div class="formula-block">
+                            <div class="formula-content">
+                                ε̃_θ = ε_θ(x_t, t, ∅) + w · (ε_θ(x_t, t, c) - ε_θ(x_t, t, ∅))
+                            </div>
+                            <div class="formula-note">
+                                w is the guidance scale; ∅ means no conditioning (trained by randomly dropping c)
+                            </div>
+                        </div>
+                        <p>
+                            Higher guidance scale w (e.g., 7-15) → images follow the prompt more closely but 
+                            may lose diversity. Lower w → more diverse but less prompt-adherent.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Sampling: From 1000 Steps to 20</h2>
+                    
+                    <p class="lead-paragraph">
+                        The original DDPM required 1000 denoising steps—impractically slow. Modern methods 
+                        achieve similar quality in 20-50 steps through smarter samplers.
+                    </p>
+
+                    <div class="sampler-comparison">
+                        <div class="sampler-card">
+                            <h4>DDPM (Original)</h4>
+                            <div class="sampler-stats">
+                                <span class="stat">1000 steps</span>
+                                <span class="stat">Stochastic</span>
+                            </div>
+                            <p>Original sampler. Add noise at each step. Very slow but high quality.</p>
+                        </div>
+                        
+                        <div class="sampler-card">
+                            <h4>DDIM</h4>
+                            <div class="sampler-stats">
+                                <span class="stat">50-200 steps</span>
+                                <span class="stat">Deterministic</span>
+                            </div>
+                            <p>Skip steps via non-Markovian process. Same trained model, deterministic sampling. Enables interpolation.</p>
+                        </div>
+                        
+                        <div class="sampler-card">
+                            <h4>DPM-Solver</h4>
+                            <div class="sampler-stats">
+                                <span class="stat">15-25 steps</span>
+                                <span class="stat">ODE Solver</span>
+                            </div>
+                            <p>Treats reverse process as ODE, uses higher-order solvers. Very fast with good quality.</p>
+                        </div>
+                        
+                        <div class="sampler-card">
+                            <h4>Consistency Models</h4>
+                            <div class="sampler-stats">
+                                <span class="stat">1-4 steps</span>
+                                <span class="stat">Distilled</span>
+                            </div>
+                            <p>Learn to map any noise level directly to x₀. Can generate in a single step.</p>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The ODE/SDE Perspective</h4>
+                            <p>
+                                Diffusion can be viewed as a continuous process. The forward process is a 
+                                stochastic differential equation (SDE); the reverse is another SDE, or a 
+                                probability flow ODE. This view enables using numerical ODE solvers for 
+                                faster, more flexible sampling.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Why Diffusion Models Win</h2>
+                    
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>GANs</th>
+                                    <th>VAEs</th>
+                                    <th>Diffusion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sample quality</td>
+                                    <td class="rating-good">High</td>
+                                    <td class="rating-mid">Medium (blurry)</td>
+                                    <td class="rating-best">Highest</td>
+                                </tr>
+                                <tr>
+                                    <td>Mode coverage</td>
+                                    <td class="rating-mid">Mode collapse risk</td>
+                                    <td class="rating-good">Good</td>
+                                    <td class="rating-best">Excellent</td>
+                                </tr>
+                                <tr>
+                                    <td>Training stability</td>
+                                    <td class="rating-mid">Unstable</td>
+                                    <td class="rating-good">Stable</td>
+                                    <td class="rating-best">Very stable</td>
+                                </tr>
+                                <tr>
+                                    <td>Sampling speed</td>
+                                    <td class="rating-best">Fast (1 forward)</td>
+                                    <td class="rating-best">Fast (1 forward)</td>
+                                    <td class="rating-mid">Slow (many steps)</td>
+                                </tr>
+                                <tr>
+                                    <td>Likelihood</td>
+                                    <td class="rating-bad">Not available</td>
+                                    <td class="rating-good">ELBO bound</td>
+                                    <td class="rating-good">ELBO bound</td>
+                                </tr>
+                                <tr>
+                                    <td>Conditioning</td>
+                                    <td class="rating-mid">Requires tricks</td>
+                                    <td class="rating-mid">Possible</td>
+                                    <td class="rating-best">Natural & flexible</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">The Key Advantages</h3>
+                        <ul class="detailed-list">
+                            <li>
+                                <strong>No adversarial training:</strong> Simple MSE loss, no minimax games, 
+                                no discriminator to balance. Training just works.
+                            </li>
+                            <li>
+                                <strong>Mode coverage:</strong> The denoising objective naturally covers 
+                                the full distribution—no mode collapse.
+                            </li>
+                            <li>
+                                <strong>Flexible conditioning:</strong> Cross-attention makes it easy to 
+                                add any conditioning signal.
+                            </li>
+                            <li>
+                                <strong>Scaling laws:</strong> Quality improves predictably with more 
+                                compute and data—essential for large-scale training.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- NEW: Next-Gen Generative Models Section -->
+                <section class="content-section">
+                    <h2 class="section-heading">Beyond Diffusion: Emerging Paradigms</h2>
+                    
+                    <p class="intro-text">
+                        While diffusion models dominate today, the field is rapidly evolving. Two promising 
+                        directions address diffusion's key limitation: <strong>slow sampling</strong> requiring 
+                        many iterative steps.
+                    </p>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Flow Matching</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>The insight:</strong> Instead of learning to reverse a noise process, 
+                                directly learn a <em>velocity field</em> that transports samples from noise 
+                                to data along straight paths.
+                            </p>
+
+                            <div class="comparison-box">
+                                <div class="comparison-item">
+                                    <h4>Diffusion (Curved Paths)</h4>
+                                    <p>
+                                        Forward: Add Gaussian noise incrementally<br>
+                                        Reverse: Learn complex curved trajectories<br>
+                                        Steps: 20-1000 typically needed
+                                    </p>
+                                </div>
+                                <div class="comparison-item">
+                                    <h4>Flow Matching (Straight Paths)</h4>
+                                    <p>
+                                        Forward: Define optimal transport path<br>
+                                        Reverse: Learn simple velocity field<br>
+                                        Steps: Often 10-50 sufficient
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="math-block">
+                                <div class="math-title">Flow Matching Objective</div>
+                                <div class="math-equation">
+                                    x_t = (1-t)·x_0 + t·x_1 &nbsp;&nbsp;&nbsp;(Linear interpolation)
+                                </div>
+                                <div class="math-equation">
+                                    v_θ(x_t, t) ≈ x_1 - x_0 &nbsp;&nbsp;&nbsp;(Learn velocity)
+                                </div>
+                            </div>
+
+                            <p>
+                                <strong>Key advantage:</strong> Simulation-free training—no need to simulate 
+                                the full ODE during training. Used in Stable Diffusion 3, Flux, and OpenAI's 
+                                latest image models.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Consistency Models</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>The goal:</strong> Generate high-quality samples in just 1-2 steps 
+                                by learning a function that maps any point on a diffusion trajectory directly 
+                                to the clean data endpoint.
+                            </p>
+
+                            <div class="architecture-diagram">
+                                <div class="diagram-title">Consistency Property</div>
+                                <div class="diagram-content">
+                                    <pre class="architecture-ascii">
+Noise (t=T)                                        Clean Data (t=0)
+    x_T ─────────────────────────────────────────────► x_0
+         ↘                                          ↗
+           x_t ───────────────────────────────────►
+              ↘                                  ↗
+                x_s ─────────────────────────►
+
+    f_θ(x_T, T) = f_θ(x_t, t) = f_θ(x_s, s) = x_0
+    
+    All points on the same trajectory map to the same output!
+                                    </pre>
+                                </div>
+                            </div>
+
+                            <div class="stat-grid">
+                                <div class="stat-item">
+                                    <span class="stat-value">1-2</span>
+                                    <span class="stat-label">Steps to generate</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">10-50×</span>
+                                    <span class="stat-label">Faster than DDPM</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">~95%</span>
+                                    <span class="stat-label">Quality vs multi-step</span>
+                                </div>
+                            </div>
+
+                            <div class="key-insight">
+                                <h4>Training Approaches</h4>
+                                <ul class="concept-list">
+                                    <li><strong>Consistency Distillation:</strong> Train from a pre-trained diffusion model</li>
+                                    <li><strong>Consistency Training:</strong> Train from scratch using consistency loss</li>
+                                    <li><strong>Latent Consistency Models:</strong> Apply to latent space (LCM-LoRA)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout-box info">
+                        <h4>📚 Key Literature</h4>
+                        <ul>
+                            <li>Lipman et al. (2023) — "Flow Matching for Generative Modeling"</li>
+                            <li>Song et al. (2023) — "Consistency Models"</li>
+                            <li>Esser et al. (2024) — "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis" (SD3)</li>
+                            <li>Luo et al. (2023) — "Latent Consistency Models"</li>
+                        </ul>
+                    </div>
+
+                    <div class="callout-box note">
+                        <h4>🔮 The Frontier</h4>
+                        <p>
+                            These methods are actively converging: Flow Matching provides cleaner theory, 
+                            Consistency Models provide speed, and hybrid approaches combine both. 
+                            Expect 1-4 step high-quality generation to become standard within 1-2 years.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Diffusion models memorize and copy training images"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                While memorization can occur (especially for frequently duplicated data), 
+                                diffusion models primarily learn statistical patterns. Studies show most 
+                                generations are novel interpolations.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Diffusion models learn the data 
+                                distribution, not individual images. Memorization is a training data issue 
+                                (duplicates, small datasets), not inherent to diffusion.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"The model removes noise like a photo denoiser"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Photo denoisers try to recover the original signal. Diffusion models 
+                                "denoise" random noise into images that never existed. They're not 
+                                recovering anything—they're creating.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> The model learns the gradient of 
+                                the data distribution, following it from noise toward the manifold of 
+                                real images. "Denoising" is the mechanism, but generation is the result.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More diffusion steps always means better quality"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                With modern samplers (DDIM, DPM-Solver), 20-30 steps often match 1000-step 
+                                DDPM quality. Beyond a point, more steps waste compute without improving quality.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> The optimal step count depends on 
+                                the sampler. With good samplers, diminishing returns hit quickly. The 
+                                frontier is now about efficient sampling, not more steps.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: The Diffusion Process
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Visualize the forward (noising) and reverse (denoising) diffusion processes. 
+                            See how an image dissolves into noise and how a trained model could reverse it.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="diffusion-lab">
+                            <div class="diffusion-display">
+                                <canvas id="diffusion-canvas" width="400" height="200"></canvas>
+                                <div class="diffusion-labels">
+                                    <span class="diff-label">t=0 (Clean)</span>
+                                    <span class="diff-label">→</span>
+                                    <span class="diff-label">t=T (Noise)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="diffusion-controls">
+                                <div class="control-group">
+                                    <label>Timestep (t)</label>
+                                    <input type="range" id="timestep-slider" min="0" max="100" value="0">
+                                    <span id="timestep-display">t = 0</span>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label>Noise Schedule</label>
+                                    <select id="schedule-select">
+                                        <option value="linear">Linear</option>
+                                        <option value="cosine">Cosine</option>
+                                        <option value="quadratic">Quadratic</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="control-buttons">
+                                    <button id="play-forward" class="btn btn-primary">▶ Forward (Add Noise)</button>
+                                    <button id="play-reverse" class="btn btn-secondary">◀ Reverse (Denoise)</button>
+                                    <button id="reset-diffusion" class="btn btn-outline">Reset</button>
+                                </div>
+                            </div>
+                            
+                            <div class="schedule-visualization">
+                                <h4>Noise Schedule: α̅_t over time</h4>
+                                <canvas id="schedule-canvas" width="400" height="100"></canvas>
+                                <p class="schedule-note">α̅_t starts at ~1 (clean) and approaches 0 (pure noise)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Early steps</strong> add imperceptible noise; details disappear later</li>
+                            <li><strong>Cosine schedule</strong> preserves structure longer than linear</li>
+                            <li><strong>At t=T,</strong> no information remains—just Gaussian noise N(0,I)</li>
+                            <li><strong>The reverse process</strong> must learn to recover structure from nothing</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What does a diffusion model actually learn to predict during training?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">The original training images</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">The noise that was added to a clean image (ε-prediction)</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">The forward diffusion process parameters</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">The text embedding of the caption</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">What is the key innovation of Latent Diffusion Models (Stable Diffusion)?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">Running diffusion in a compressed latent space rather than pixel space</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">Using GANs instead of the denoising objective</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">Removing the need for any neural network</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">Training on only synthetic data</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">What does Classifier-Free Guidance (CFG) allow you to control?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">The number of diffusion steps</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">The trade-off between prompt adherence and diversity</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">The resolution of the output image</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">The VAE compression ratio</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">How is the "score function" ∇log p(x) related to diffusion models?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">It's unrelated; scores are only used in GANs</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">Predicting the noise ε is equivalent to predicting the score, which points toward high-probability regions</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">The score determines how many steps to use</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">The score is the image quality metric</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">Why do diffusion models avoid the mode collapse problem that plagues GANs?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">They use more parameters</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">The denoising objective naturally covers the full distribution; no adversarial game</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">They train for longer</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">They only work on small datasets</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-4-1.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Generative vs Discriminative</span>
+                    </a>
+                    <a href="module-4-3.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Multimodal Systems →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-4-2.js"></script>
+</body>
+</html>
+

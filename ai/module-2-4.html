@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Generalization & Regularization — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item active"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+                    <span class="progress-text">8 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Core Methods</span><span class="breadcrumb-sep">→</span><span>Module 2.4</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Core Methods</span>
+                        <span class="module-duration">~40 min</span>
+                    </div>
+                    <h1 class="module-title">Generalization & Regularization</h1>
+                    <p class="module-subtitle">
+                        The fundamental challenge of machine learning: learning patterns that apply 
+                        beyond the training data, and the techniques that prevent models from 
+                        memorizing rather than understanding.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand why generalization—not training accuracy—is the true goal</li>
+                        <li>Explain the bias-variance tradeoff and its implications</li>
+                        <li>Apply common regularization techniques (L1, L2, dropout)</li>
+                        <li>Use validation sets correctly to estimate generalization</li>
+                        <li>Recognize overfitting and underfitting from learning curves</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Generalization Problem</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Core Challenge</div>
+                        <p class="definition-text">
+                            <strong>Generalization</strong> is a model's ability to perform well on data 
+                            it hasn't seen during training. A model that achieves 99% accuracy on training 
+                            data but fails on new data hasn't learned—it has memorized.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Consider studying for an exam. A student who memorizes specific practice 
+                                questions word-for-word will fail when questions are rephrased. A student 
+                                who understands underlying concepts can handle new formulations.
+                            </p>
+                            <p>
+                                Neural networks face the same challenge. With enough parameters, they can 
+                                memorize any training set perfectly—but this "overfitting" means they've 
+                                learned noise rather than signal, specific examples rather than patterns.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                We distinguish between:
+                            </p>
+                            <ul class="technical-list">
+                                <li><strong>Training error:</strong> Performance on data used to train the model</li>
+                                <li><strong>Generalization error:</strong> Expected performance on unseen data from the same distribution</li>
+                                <li><strong>Generalization gap:</strong> The difference between training and generalization error</li>
+                            </ul>
+                            <p>
+                                The goal of learning theory is to bound the generalization gap—to guarantee 
+                                that low training error implies low generalization error.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                We estimate generalization error using a <strong>held-out test set</strong>—data 
+                                the model never sees during training. But once you use the test set to make 
+                                decisions (architecture, hyperparameters), you risk overfitting to it too.
+                            </p>
+                            <p>
+                                The solution: use a <strong>validation set</strong> for development decisions, 
+                                and touch the test set only once, at the very end.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Hold-Out Methodology</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Critical Principle</div>
+                        <p class="definition-text">
+                            <strong>Never evaluate on data the model has seen.</strong> The test set must be 
+                            a true hold-out that simulates deployment conditions. Using test data for model 
+                            selection invalidates your performance estimates.
+                        </p>
+                    </div>
+
+                    <div class="three-way-split">
+                        <div class="split-diagram">
+                            <div class="split-bar">
+                                <div class="split-segment train" style="flex: 7;">
+                                    <span class="split-label">Training Set (60-80%)</span>
+                                </div>
+                                <div class="split-segment val" style="flex: 1.5;">
+                                    <span class="split-label">Validation (10-20%)</span>
+                                </div>
+                                <div class="split-segment test" style="flex: 1.5;">
+                                    <span class="split-label">Test (10-20%)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="split-roles">
+                            <div class="split-role-card train">
+                                <h4>Training Set</h4>
+                                <p><strong>Purpose:</strong> Fit model parameters (weights, biases)</p>
+                                <p><strong>Used for:</strong> Gradient descent, backpropagation</p>
+                                <p><strong>Look at:</strong> As many times as needed</p>
+                            </div>
+                            
+                            <div class="split-role-card val">
+                                <h4>Validation Set</h4>
+                                <p><strong>Purpose:</strong> Tune hyperparameters, select architecture</p>
+                                <p><strong>Used for:</strong> Learning rate, regularization strength, early stopping, model selection</p>
+                                <p><strong>Look at:</strong> During development (but not too often)</p>
+                            </div>
+                            
+                            <div class="split-role-card test">
+                                <h4>Test Set</h4>
+                                <p><strong>Purpose:</strong> Final, honest evaluation of generalization</p>
+                                <p><strong>Used for:</strong> Final performance number only</p>
+                                <p><strong>Look at:</strong> <strong>ONCE</strong>, at the very end</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight warning-insight">
+                        <div class="insight-icon">⚠</div>
+                        <div class="insight-content">
+                            <h4>Data Leakage</h4>
+                            <p>
+                                <strong>Data leakage</strong> occurs when information from outside the training 
+                                set improperly influences model development. Common forms:
+                            </p>
+                            <ul>
+                                <li>Scaling/normalizing before splitting (uses test set statistics)</li>
+                                <li>Feature engineering on the full dataset</li>
+                                <li>Repeated testing → selecting models that happen to do well on test set</li>
+                                <li>Time series: using future data to predict past</li>
+                            </ul>
+                            <p>
+                                <strong>Result:</strong> Reported performance is optimistic; model fails in deployment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="methodology-steps">
+                        <h3>Correct Workflow</h3>
+                        <ol class="workflow-list">
+                            <li><strong>Split first:</strong> Before any preprocessing, separate train/val/test</li>
+                            <li><strong>Fit preprocessors on training only:</strong> Compute means, scales from training set</li>
+                            <li><strong>Apply same transformations:</strong> Use training statistics to transform val/test</li>
+                            <li><strong>Develop on validation:</strong> Try architectures, hyperparameters, measure on validation</li>
+                            <li><strong>Final evaluation:</strong> Once satisfied, evaluate once on test set</li>
+                            <li><strong>Report honestly:</strong> The test set number is your generalization estimate</li>
+                        </ol>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Cross-Validation: When Data is Limited</h3>
+                        <p>
+                            With small datasets, a single train/val/test split may be too variable. 
+                            <strong>K-fold cross-validation</strong> rotates which portion serves as validation:
+                        </p>
+                        <ol class="concept-list">
+                            <li>Divide data into K equal folds (typically K=5 or K=10)</li>
+                            <li>For each fold: train on K-1 folds, validate on remaining fold</li>
+                            <li>Average performance across all K experiments</li>
+                            <li>Still reserve a separate test set for final evaluation</li>
+                        </ol>
+                        <p>
+                            Cross-validation gives more reliable performance estimates but requires K times 
+                            more computation.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Bias-Variance Tradeoff</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Decomposing Prediction Error</h4>
+                            <p>
+                                Total error can be decomposed into: Bias² + Variance + Irreducible Noise. 
+                                Reducing one often increases the other—finding the sweet spot is the art 
+                                of machine learning.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="comparison-cards">
+                        <div class="bias-card high-bias">
+                            <h3 class="card-title">High Bias (Underfitting)</h3>
+                            <p class="card-subtitle">Model too simple for the data</p>
+                            <div class="card-content">
+                                <p>
+                                    <strong>Symptoms:</strong> Both training and test error are high. The 
+                                    model fails to capture the underlying pattern.
+                                </p>
+                                <p>
+                                    <strong>Example:</strong> Fitting a straight line to clearly curved data.
+                                </p>
+                                <p>
+                                    <strong>Fix:</strong> Increase model complexity, add features, train longer.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bias-card high-variance">
+                            <h3 class="card-title">High Variance (Overfitting)</h3>
+                            <p class="card-subtitle">Model too sensitive to training data</p>
+                            <div class="card-content">
+                                <p>
+                                    <strong>Symptoms:</strong> Low training error but high test error. Small 
+                                    changes in training data cause large changes in the model.
+                                </p>
+                                <p>
+                                    <strong>Example:</strong> A high-degree polynomial that perfectly fits 
+                                    noisy training points but oscillates wildly elsewhere.
+                                </p>
+                                <p>
+                                    <strong>Fix:</strong> Regularization, more training data, simpler model.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Learning Curves: The Diagnostic Tool</h3>
+                        <p>
+                            Plot training and validation error against training set size or epochs:
+                        </p>
+                        <ul class="concept-list">
+                            <li><strong>High bias:</strong> Both curves plateau at high error; more data won't help</li>
+                            <li><strong>High variance:</strong> Large gap between curves; more data should help</li>
+                            <li><strong>Good fit:</strong> Both curves converge to low error</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Regularization Techniques</h2>
+                    
+                    <p class="lead-paragraph">
+                        <strong>Regularization</strong> constrains the model to prevent it from fitting 
+                        noise. The idea: prefer simpler models even if they fit training data slightly 
+                        worse—they'll generalize better.
+                    </p>
+
+                    <div class="regularization-grid">
+                        <div class="reg-card">
+                            <h4>L2 Regularization (Weight Decay)</h4>
+                            <div class="reg-formula">L_total = L_data + λ Σ w²</div>
+                            <p>
+                                Adds the squared magnitude of weights to the loss. Penalizes large weights, 
+                                pushing them toward zero. The result: smoother, more stable functions.
+                            </p>
+                            <p class="reg-effect">
+                                <strong>Effect:</strong> All weights shrink proportionally. Prevents any 
+                                single feature from dominating.
+                            </p>
+                        </div>
+
+                        <div class="reg-card">
+                            <h4>L1 Regularization (Lasso)</h4>
+                            <div class="reg-formula">L_total = L_data + λ Σ |w|</div>
+                            <p>
+                                Adds the absolute magnitude of weights to the loss. Can push weights all 
+                                the way to zero, performing implicit feature selection.
+                            </p>
+                            <p class="reg-effect">
+                                <strong>Effect:</strong> Sparse models—many weights exactly zero. Good 
+                                when you expect few features matter.
+                            </p>
+                        </div>
+
+                        <div class="reg-card">
+                            <h4>Dropout</h4>
+                            <div class="reg-formula">During training, randomly zero neurons with probability p</div>
+                            <p>
+                                During each forward pass, randomly "drop" neurons (set to 0). Forces the 
+                                network to not rely on any single neuron—learned representations become 
+                                more distributed.
+                            </p>
+                            <p class="reg-effect">
+                                <strong>Effect:</strong> Approximates training an ensemble of networks. 
+                                At test time, use all neurons but scale outputs.
+                            </p>
+                        </div>
+
+                        <div class="reg-card">
+                            <h4>Early Stopping</h4>
+                            <div class="reg-formula">Stop training when validation error starts increasing</div>
+                            <p>
+                                Monitor validation error during training. Stop before the model has time 
+                                to overfit—even if training error could still decrease.
+                            </p>
+                            <p class="reg-effect">
+                                <strong>Effect:</strong> Implicitly limits model complexity by limiting 
+                                how far from initialization weights can move.
+                            </p>
+                        </div>
+
+                        <div class="reg-card">
+                            <h4>Data Augmentation</h4>
+                            <div class="reg-formula">Create modified versions of training examples</div>
+                            <p>
+                                For images: rotations, flips, crops, color changes. For text: synonym 
+                                replacement, back-translation. Artificially increases training set size 
+                                with realistic variations.
+                            </p>
+                            <p class="reg-effect">
+                                <strong>Effect:</strong> Forces invariance to transformations that 
+                                shouldn't affect the label.
+                            </p>
+                        </div>
+
+                        <div class="reg-card">
+                            <h4>Batch Normalization</h4>
+                            <div class="reg-formula">Normalize activations within each batch</div>
+                            <p>
+                                Normalizes layer inputs to have zero mean and unit variance. Originally 
+                                designed to stabilize training, but also has regularization effects.
+                            </p>
+                            <p class="reg-effect">
+                                <strong>Effect:</strong> Adds noise through batch statistics, reducing 
+                                overfitting. Also enables higher learning rates.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"100% training accuracy means the model works"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Perfect training accuracy is often a sign of overfitting. A model with 
+                                enough capacity can memorize any finite training set, including its noise.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> What matters is validation/test 
+                                accuracy. Training accuracy is meaningful only in comparison—a large gap 
+                                between training and validation accuracy signals overfitting.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More data always helps"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                More data helps variance (overfitting) but not bias (underfitting). If 
+                                your model is too simple to capture the pattern, more examples of the 
+                                same pattern won't help.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> More data helps if you have high 
+                                variance. If you have high bias, you need a more expressive model, not 
+                                more data. Diagnose first, then prescribe.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Regularization always hurts training performance"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                While regularization does constrain the model, techniques like batch 
+                                normalization can actually improve optimization, enabling faster training 
+                                and sometimes better results.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Regularization trades some training 
+                                performance for generalization. But techniques like dropout and batch norm 
+                                often have beneficial side effects on optimization dynamics.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Regularization Explorer
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Experiment with different regularization techniques and see how they 
+                            affect model behavior, decision boundaries, and generalization.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="reg">Regularization Effects</button>
+                            <button class="lab-tab" data-tab="curves">Learning Curves</button>
+                        </div>
+
+                        <div class="lab-panel active" id="reg-panel">
+                            <div class="reg-lab">
+                                <div class="reg-controls">
+                                    <div class="control-group">
+                                        <label>Dataset</label>
+                                        <select id="reg-dataset">
+                                            <option value="moons">Two Moons</option>
+                                            <option value="circles">Circles</option>
+                                            <option value="spiral">Spiral</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Noise Level</label>
+                                        <input type="range" id="reg-noise" min="0" max="50" value="20">
+                                        <span class="control-value" id="reg-noise-value">20%</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>L2 Regularization (λ)</label>
+                                        <input type="range" id="reg-l2" min="0" max="100" value="0">
+                                        <span class="control-value" id="reg-l2-value">0.00</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Dropout</label>
+                                        <input type="range" id="reg-dropout" min="0" max="70" value="0">
+                                        <span class="control-value" id="reg-dropout-value">0%</span>
+                                    </div>
+                                    <div class="control-actions">
+                                        <button id="train-reg" class="btn btn-primary">Train</button>
+                                        <button id="reset-reg" class="btn btn-secondary">Reset</button>
+                                    </div>
+                                </div>
+
+                                <div class="reg-visualization">
+                                    <div class="reg-canvas-container">
+                                        <h4>Training Data</h4>
+                                        <canvas id="reg-train-canvas" width="280" height="280"></canvas>
+                                    </div>
+                                    <div class="reg-canvas-container">
+                                        <h4>Test Data</h4>
+                                        <canvas id="reg-test-canvas" width="280" height="280"></canvas>
+                                    </div>
+                                </div>
+
+                                <div class="reg-metrics">
+                                    <div class="metric-card">
+                                        <span class="metric-label">Train Accuracy</span>
+                                        <span class="metric-value" id="reg-train-acc">—</span>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-label">Test Accuracy</span>
+                                        <span class="metric-value" id="reg-test-acc">—</span>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-label">Gap</span>
+                                        <span class="metric-value" id="reg-gap">—</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="curves-panel">
+                            <div class="curves-lab">
+                                <div class="curves-controls">
+                                    <div class="control-group">
+                                        <label>Model Complexity</label>
+                                        <select id="curves-complexity">
+                                            <option value="low">Low (Underfit)</option>
+                                            <option value="medium" selected>Medium (Good)</option>
+                                            <option value="high">High (Overfit)</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-actions">
+                                        <button id="run-curves" class="btn btn-primary">Run Experiment</button>
+                                    </div>
+                                </div>
+
+                                <div class="curves-visualization">
+                                    <canvas id="curves-canvas" width="600" height="350"></canvas>
+                                </div>
+
+                                <div class="curves-interpretation" id="curves-interpretation">
+                                    Select model complexity and run the experiment.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Without regularization:</strong> Boundaries can become very complex, fitting noise in training data.</li>
+                            <li><strong>L2 regularization:</strong> Smoother boundaries, smaller weights, better generalization.</li>
+                            <li><strong>Dropout:</strong> Forces distributed representations, acts like an ensemble.</li>
+                            <li><strong>The gap:</strong> Large train-test gap = overfitting. Increase regularization.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What is the primary goal of regularization?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Maximize training accuracy</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Prevent overfitting by constraining model complexity</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Speed up training</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Reduce the number of parameters</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">What symptom indicates high bias (underfitting)?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">Low training error, high test error</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">High training error and high test error</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">Low training error, low test error</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">Increasing training error over time</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">What distinguishes L1 from L2 regularization?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">L1 is faster to compute</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">L1 can drive weights exactly to zero, producing sparse models</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">L2 produces sparse models</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">They are mathematically identical</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">How does dropout regularize a neural network?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">By removing unimportant neurons permanently</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">By randomly zeroing neurons during training, forcing distributed representations</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">By adding noise to the weights</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">By reducing learning rate</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">If validation error increases while training error decreases, you should:</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">Continue training longer</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">Increase model complexity</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">Stop training (early stopping) or add regularization</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">Remove the validation set</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-2-3.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Backpropagation & Learning</span>
+                    </a>
+                    <a href="module-3-1.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Embeddings & Vector Spaces →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-2-4.js"></script>
+</body>
+</html>
+

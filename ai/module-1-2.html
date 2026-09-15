@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Intelligence as Pattern-Finding — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item" data-module="what-ai-is">
+                            <a href="index.html" class="nav-link">
+                                <span class="nav-number">1.1</span>
+                                <span class="nav-label">What AI Actually Is</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active" data-module="intelligence-patterns">
+                            <a href="module-1-2.html" class="nav-link">
+                                <span class="nav-number">1.2</span>
+                                <span class="nav-label">Intelligence as Pattern-Finding</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="probability-uncertainty">
+                            <a href="module-1-3.html" class="nav-link">
+                                <span class="nav-number">1.3</span>
+                                <span class="nav-label">Probability & Uncertainty</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-module="optimization">
+                            <a href="module-1-4.html" class="nav-link">
+                                <span class="nav-number">1.4</span>
+                                <span class="nav-label">Optimization & Gradients</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 11%"></div>
+                    </div>
+                    <span class="progress-text">2 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb">
+                    <span>Foundations</span>
+                    <span class="breadcrumb-sep">→</span>
+                    <span>Module 1.2</span>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <!-- Module Header -->
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Foundation</span>
+                        <span class="module-duration">~30 min</span>
+                    </div>
+                    <h1 class="module-title">Intelligence as Pattern-Finding</h1>
+                    <p class="module-subtitle">
+                        Understanding the computational essence of intelligence: how learning systems 
+                        discover structure in data and use it to make predictions about unseen inputs.
+                    </p>
+                </section>
+
+                <!-- Learning Objectives -->
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand pattern recognition as the core mechanism of machine intelligence</li>
+                        <li>Distinguish between memorization and genuine pattern extraction</li>
+                        <li>Explain how statistical regularities enable generalization</li>
+                        <li>Recognize the role of representation in pattern discovery</li>
+                        <li>Interact with pattern-finding systems across different domains</li>
+                    </ul>
+                </section>
+
+                <!-- Main Content Sections -->
+                <section class="content-section">
+                    <h2 class="section-heading">The Core Insight</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Central Thesis</div>
+                        <p class="definition-text">
+                            <strong>Intelligence, computationally operationalized, is the capacity to detect 
+                            statistical regularities</strong> (patterns) <strong>in data and leverage them to make 
+                            accurate predictions about previously unseen inputs.</strong>
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Consider how you read handwriting. Each person's 'A' looks different—slanted, 
+                                rounded, with or without a crossbar—yet you instantly recognize them all as 
+                                the letter A. You've extracted a <em>pattern</em>: the abstract structure 
+                                that all A's share despite their surface differences.
+                            </p>
+                            <p>
+                                This is what machine learning does mathematically. When a neural network is 
+                                trained on thousands of handwritten A's, it doesn't memorize each image. 
+                                Instead, it discovers the underlying statistical regularities—the consistent 
+                                features—that distinguish A's from B's. It learns a <em>pattern</em>, not a list.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                Formally, a pattern is a <strong>regularity that has a compact description 
+                                relative to the data it describes</strong>. If 1000 data points can be 
+                                accurately summarized by 10 parameters, those parameters encode a pattern.
+                            </p>
+                            <p>
+                                Machine learning algorithms search through a space of possible patterns 
+                                (defined by model architecture) to find one that:
+                            </p>
+                            <ol class="technical-list">
+                                <li><strong>Fits the training data</strong>: Correctly describes observed examples</li>
+                                <li><strong>Generalizes to new data</strong>: Makes accurate predictions on unseen examples</li>
+                                <li><strong>Is compressible</strong>: Has fewer effective parameters than raw data points</li>
+                            </ol>
+                            <p>
+                                The tension between fitting and generalizing is fundamental. A model that 
+                                memorizes training data (no compression) fails on new data. A model that 
+                                underfits (too much compression) captures only trivial patterns. The sweet 
+                                spot is <em>lossy compression</em>: discarding irrelevant variation while 
+                                preserving predictive structure.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                A spam classifier learns patterns like: messages containing "FREE!!!" and 
+                                "Click here" from unknown senders are likely spam. It doesn't memorize 
+                                specific spam emails—it extracts features that generalize.
+                            </p>
+                            <p>
+                                A language model learns patterns like: after "The cat sat on the," words 
+                                like "mat," "floor," or "chair" are probable; "elephant" is improbable. 
+                                These patterns emerge from statistical co-occurrences in billions of sentences.
+                            </p>
+                            <p>
+                                The pattern isn't explicitly programmed. It's <em>induced</em> from data 
+                                through optimization—adjusting model parameters until predictions match 
+                                observed outcomes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="definition-expansion">
+                        <h3>Beyond Pattern-Finding: The Agent Perspective</h3>
+                        <p>
+                            The "pattern-finding" definition captures supervised and unsupervised learning well—the 
+                            model observes data and extracts regularities. But there's another view of intelligence:
+                        </p>
+                        
+                        <div class="dual-definition">
+                            <div class="def-column">
+                                <div class="def-header">Passive Observer</div>
+                                <div class="def-content">
+                                    <p><strong>Pattern Recognition:</strong></p>
+                                    <p>Intelligence as detecting regularities in static data.</p>
+                                    <p class="def-example">E.g., image classification, language modeling</p>
+                                </div>
+                            </div>
+                            <div class="def-column">
+                                <div class="def-header">Active Agent</div>
+                                <div class="def-content">
+                                    <p><strong>Goal-Directed Behavior:</strong></p>
+                                    <p>Intelligence as taking actions to maximize a reward signal in an environment.</p>
+                                    <p class="def-example">E.g., game playing, robotics, RLHF for LLMs</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>
+                            Modern AI systems increasingly combine both: an LLM uses pattern recognition to understand 
+                            language, then uses reinforcement learning (the agent view) to align its behavior with 
+                            human preferences. <strong>Both perspectives are essential</strong>—patterns enable 
+                            understanding; agency enables action.
+                        </p>
+
+                        <div class="agent-note">
+                            <strong>Looking Ahead:</strong> We'll explore the agent perspective in depth when we 
+                            discuss RLHF (Reinforcement Learning from Human Feedback) in Module 3.4 on LLMs. For now, 
+                            understand that "intelligence" in AI has multiple valid formalizations.
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">What Makes a Pattern?</h2>
+                    
+                    <p class="lead-paragraph">
+                        Not all regularities are useful patterns. The key criteria are <strong>predictive 
+                        power</strong> and <strong>stability</strong>—a pattern must help predict new 
+                        instances and hold across the relevant distribution of data.
+                    </p>
+
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <h3 class="concept-title">Statistical Regularity</h3>
+                            <p>
+                                A pattern exists when certain features co-occur more frequently than chance 
+                                would predict. In images of dogs, four legs, fur, and snouts co-occur 
+                                reliably. This co-occurrence structure is what neural networks learn to detect.
+                            </p>
+                            <p>
+                                Mathematically, patterns correspond to <strong>low-entropy regions</strong> 
+                                in the space of possible data—places where data is more predictable than 
+                                random noise would be.
+                            </p>
+                        </div>
+
+                        <div class="concept-card">
+                            <h3 class="concept-title">Hierarchical Structure</h3>
+                            <p>
+                                Complex patterns are built from simpler ones. In vision:
+                            </p>
+                            <ul class="concept-list">
+                                <li><strong>Level 1:</strong> Edges, gradients, color blobs</li>
+                                <li><strong>Level 2:</strong> Textures, corners, simple shapes</li>
+                                <li><strong>Level 3:</strong> Object parts (eyes, wheels, leaves)</li>
+                                <li><strong>Level 4:</strong> Whole objects (faces, cars, trees)</li>
+                                <li><strong>Level 5:</strong> Scenes and relationships</li>
+                            </ul>
+                            <p>
+                                Deep learning succeeds because deep networks can learn these hierarchies 
+                                automatically—each layer detects patterns in the patterns of the layer below.
+                            </p>
+                        </div>
+
+                        <div class="concept-card">
+                            <h3 class="concept-title">Invariance</h3>
+                            <p>
+                                Useful patterns are <strong>invariant</strong> to irrelevant transformations. 
+                                The pattern "cat" should be recognized whether the cat is:
+                            </p>
+                            <ul class="concept-list">
+                                <li>Left or right side of the image (translation invariance)</li>
+                                <li>Large or small (scale invariance)</li>
+                                <li>Under different lighting (illumination invariance)</li>
+                                <li>A tabby or a Siamese (intra-class variation)</li>
+                            </ul>
+                            <p>
+                                Learning invariant representations is a major challenge. Convolutional 
+                                neural networks build in translation invariance architecturally; other 
+                                invariances must be learned from varied training data.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Memorization vs. Generalization</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Fundamental Distinction</h4>
+                            <p>
+                                <strong>Memorization</strong> stores specific training examples and retrieves 
+                                exact matches. <strong>Generalization</strong> extracts underlying patterns 
+                                and applies them to novel inputs. Intelligence requires generalization—the 
+                                ability to handle situations never encountered during training.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="comparison-table">
+                        <h4 class="table-title">Memorization vs. Generalization</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Aspect</th>
+                                    <th>Memorization</th>
+                                    <th>Generalization</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>What is stored</td>
+                                    <td>Exact examples</td>
+                                    <td>Patterns / rules</td>
+                                </tr>
+                                <tr>
+                                    <td>Training accuracy</td>
+                                    <td>Can be 100%</td>
+                                    <td>May be less than 100%</td>
+                                </tr>
+                                <tr>
+                                    <td>Test accuracy</td>
+                                    <td>Poor on new data</td>
+                                    <td>Good on new data</td>
+                                </tr>
+                                <tr>
+                                    <td>Model complexity</td>
+                                    <td>Grows with data size</td>
+                                    <td>Fixed or grows slowly</td>
+                                </tr>
+                                <tr>
+                                    <td>Noise handling</td>
+                                    <td>Learns the noise</td>
+                                    <td>Ignores the noise</td>
+                                </tr>
+                                <tr>
+                                    <td>Indicator</td>
+                                    <td>Train >> Test accuracy</td>
+                                    <td>Train ≈ Test accuracy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        The phenomenon of achieving high training accuracy but low test accuracy is called 
+                        <strong>overfitting</strong>. It occurs when a model has learned patterns specific 
+                        to the training set that don't hold in general—including the random noise in 
+                        training examples.
+                    </p>
+
+                    <div class="example-block">
+                        <h4 class="example-title">Example: Overfitting in Action</h4>
+                        <p>
+                            Suppose you train a model to classify images as "indoor" or "outdoor." Your 
+                            training set happens to have a watermark in the corner of all outdoor images 
+                            (an artifact of how the data was collected). A memorizing model might learn 
+                            "watermark → outdoor" instead of learning actual features of outdoor scenes.
+                        </p>
+                        <p>
+                            This model achieves 100% training accuracy but fails on new images without 
+                            watermarks. It found a <em>spurious correlation</em>—a pattern in the training 
+                            data that doesn't reflect the underlying concept.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Representation: The Key to Pattern Discovery</h2>
+                    
+                    <p class="lead-paragraph">
+                        The same data can be represented in ways that make patterns obvious or invisible. 
+                        A central challenge in machine learning is finding <strong>good representations</strong>
+                        —ways of encoding data that expose useful patterns.
+                    </p>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">The Representation Learning Revolution</h3>
+                        <p>
+                            Traditional ML required humans to design features (hand-crafted representations). 
+                            For image classification, engineers would define features like "edge count," 
+                            "color histogram," or "texture descriptors."
+                        </p>
+                        <p>
+                            Deep learning's breakthrough was <strong>learning representations automatically</strong>. 
+                            Neural networks discover which features matter through optimization—often finding 
+                            representations humans wouldn't have designed.
+                        </p>
+                        <p>
+                            This is why deep learning dominates: it solves the representation problem 
+                            end-to-end, learning features and classifiers jointly.
+                        </p>
+                    </div>
+
+                    <div class="visual-example">
+                        <h4>Example: Why Representation Matters</h4>
+                        <div class="representation-demo">
+                            <div class="repr-box">
+                                <div class="repr-title">Raw Pixels</div>
+                                <div class="repr-content">
+                                    <code>[0.2, 0.3, 0.1, 0.4, ...]</code>
+                                </div>
+                                <div class="repr-note">Pattern: Hidden in high-dimensional space</div>
+                            </div>
+                            <div class="repr-arrow">→</div>
+                            <div class="repr-box">
+                                <div class="repr-title">Learned Features</div>
+                                <div class="repr-content">
+                                    <code>[has_fur: 0.9, has_wheels: 0.1, ...]</code>
+                                </div>
+                                <div class="repr-note">Pattern: Obviously "animal, not vehicle"</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        The deep learning mantra: <em>More data + bigger models + better representations = 
+                        better pattern discovery</em>. But "better representations" is doing most of the 
+                        work—it's what transforms raw signals into semantic meaning.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"AI finds the 'true' pattern in data"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                There's no unique "true" pattern. Any dataset admits infinitely many patterns 
+                                that fit it perfectly. The pattern a model finds depends on its architecture, 
+                                training procedure, and implicit biases—not just the data.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> ML finds <em>a</em> pattern consistent 
+                                with the data and the model's inductive biases. Different architectures find 
+                                different patterns. The "best" pattern is the one that generalizes well to 
+                                the task at hand.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More complex patterns are always better"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Complex models can fit complex patterns but also fit noise. Occam's Razor 
+                                applies: among patterns that fit the data, simpler ones often generalize 
+                                better. Complexity should match the true structure of the problem.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> The best pattern balances fit and 
+                                simplicity. This trade-off is formalized in concepts like the 
+                                bias-variance trade-off and minimum description length.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Neural networks understand the patterns they find"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                A network that correctly classifies images of cats has learned statistical 
+                                regularities that distinguish cat images from non-cat images. It hasn't 
+                                learned what a cat <em>is</em>—its evolutionary history, behavior, or 
+                                relationship to other concepts.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Neural networks learn 
+                                <em>discriminative patterns</em>—features that predict labels. This is 
+                                different from semantic understanding, which involves rich conceptual 
+                                knowledge and causal reasoning.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"If the pattern works, it must be correct"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Spurious correlations can be highly predictive within a specific dataset 
+                                but fail catastrophically when the world changes. A model might learn 
+                                "hospital bed → pneumonia" because sick patients are photographed in beds, 
+                                not because beds cause disease.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Predictive accuracy doesn't imply 
+                                causal correctness. Models learn correlations, which may or may not reflect 
+                                causal relationships. This matters when deploying models in new contexts.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab Section -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Pattern Recognition
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            This lab demonstrates how pattern recognition works across different domains. 
+                            You'll see how systems identify regularities in sequences, complete patterns, 
+                            and how representation affects pattern visibility.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="sequence">Sequence Patterns</button>
+                            <button class="lab-tab" data-tab="visual">Visual Patterns</button>
+                            <button class="lab-tab" data-tab="analogy">Analogical Patterns</button>
+                        </div>
+
+                        <!-- Sequence Pattern Lab -->
+                        <div class="lab-panel active" id="sequence-panel">
+                            <div class="lab-description">
+                                <p>Identify the pattern and predict the next element in each sequence.</p>
+                            </div>
+                            
+                            <div class="sequence-challenges">
+                                <div class="sequence-challenge" data-level="1">
+                                    <div class="challenge-header">
+                                        <span class="challenge-level">Level 1: Arithmetic</span>
+                                        <span class="challenge-status"></span>
+                                    </div>
+                                    <div class="sequence-display">
+                                        <span class="seq-item">2</span>
+                                        <span class="seq-item">4</span>
+                                        <span class="seq-item">6</span>
+                                        <span class="seq-item">8</span>
+                                        <span class="seq-item answer-box">
+                                            <input type="text" class="seq-input" placeholder="?" data-answer="10">
+                                        </span>
+                                    </div>
+                                    <div class="pattern-explanation hidden">
+                                        <strong>Pattern:</strong> Add 2 each time (arithmetic sequence with d=2)
+                                    </div>
+                                </div>
+
+                                <div class="sequence-challenge" data-level="2">
+                                    <div class="challenge-header">
+                                        <span class="challenge-level">Level 2: Geometric</span>
+                                        <span class="challenge-status"></span>
+                                    </div>
+                                    <div class="sequence-display">
+                                        <span class="seq-item">3</span>
+                                        <span class="seq-item">9</span>
+                                        <span class="seq-item">27</span>
+                                        <span class="seq-item">81</span>
+                                        <span class="seq-item answer-box">
+                                            <input type="text" class="seq-input" placeholder="?" data-answer="243">
+                                        </span>
+                                    </div>
+                                    <div class="pattern-explanation hidden">
+                                        <strong>Pattern:</strong> Multiply by 3 each time (geometric sequence with r=3)
+                                    </div>
+                                </div>
+
+                                <div class="sequence-challenge" data-level="3">
+                                    <div class="challenge-header">
+                                        <span class="challenge-level">Level 3: Fibonacci-like</span>
+                                        <span class="challenge-status"></span>
+                                    </div>
+                                    <div class="sequence-display">
+                                        <span class="seq-item">1</span>
+                                        <span class="seq-item">1</span>
+                                        <span class="seq-item">2</span>
+                                        <span class="seq-item">3</span>
+                                        <span class="seq-item">5</span>
+                                        <span class="seq-item answer-box">
+                                            <input type="text" class="seq-input" placeholder="?" data-answer="8">
+                                        </span>
+                                    </div>
+                                    <div class="pattern-explanation hidden">
+                                        <strong>Pattern:</strong> Each number is the sum of the two preceding numbers
+                                    </div>
+                                </div>
+
+                                <div class="sequence-challenge" data-level="4">
+                                    <div class="challenge-header">
+                                        <span class="challenge-level">Level 4: Second-order</span>
+                                        <span class="challenge-status"></span>
+                                    </div>
+                                    <div class="sequence-display">
+                                        <span class="seq-item">1</span>
+                                        <span class="seq-item">4</span>
+                                        <span class="seq-item">9</span>
+                                        <span class="seq-item">16</span>
+                                        <span class="seq-item">25</span>
+                                        <span class="seq-item answer-box">
+                                            <input type="text" class="seq-input" placeholder="?" data-answer="36">
+                                        </span>
+                                    </div>
+                                    <div class="pattern-explanation hidden">
+                                        <strong>Pattern:</strong> Perfect squares: n² where n = 1, 2, 3, ...
+                                    </div>
+                                </div>
+
+                                <div class="sequence-challenge" data-level="5">
+                                    <div class="challenge-header">
+                                        <span class="challenge-level">Level 5: Composite</span>
+                                        <span class="challenge-status"></span>
+                                    </div>
+                                    <div class="sequence-display">
+                                        <span class="seq-item">2</span>
+                                        <span class="seq-item">3</span>
+                                        <span class="seq-item">5</span>
+                                        <span class="seq-item">7</span>
+                                        <span class="seq-item">11</span>
+                                        <span class="seq-item answer-box">
+                                            <input type="text" class="seq-input" placeholder="?" data-answer="13">
+                                        </span>
+                                    </div>
+                                    <div class="pattern-explanation hidden">
+                                        <strong>Pattern:</strong> Prime numbers in ascending order
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lab-actions">
+                                <button id="check-sequences" class="btn btn-primary">Check Answers</button>
+                                <button id="reveal-patterns" class="btn btn-secondary">Reveal Patterns</button>
+                            </div>
+                        </div>
+
+                        <!-- Visual Pattern Lab -->
+                        <div class="lab-panel" id="visual-panel">
+                            <div class="lab-description">
+                                <p>Complete the visual pattern by selecting the missing element.</p>
+                            </div>
+                            
+                            <div class="visual-pattern-container">
+                                <div class="pattern-grid" id="pattern-grid">
+                                    <!-- Pattern cells will be generated by JS -->
+                                </div>
+                                
+                                <div class="pattern-options" id="pattern-options">
+                                    <!-- Options will be generated by JS -->
+                                </div>
+                            </div>
+
+                            <div class="pattern-feedback" id="visual-feedback"></div>
+                            
+                            <div class="lab-actions">
+                                <button id="new-visual-pattern" class="btn btn-primary">New Pattern</button>
+                            </div>
+                        </div>
+
+                        <!-- Analogical Reasoning Lab -->
+                        <div class="lab-panel" id="analogy-panel">
+                            <div class="lab-description">
+                                <p>
+                                    Analogical reasoning—finding relationships between relationships—is 
+                                    a hallmark of intelligence. Complete these word analogies.
+                                </p>
+                            </div>
+                            
+                            <div class="analogy-challenges">
+                                <div class="analogy-item">
+                                    <div class="analogy-format">
+                                        <span class="analogy-word">king</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-word">queen</span>
+                                        <span class="analogy-equiv">::</span>
+                                        <span class="analogy-word">man</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-answer">
+                                            <select class="analogy-select" data-answer="woman">
+                                                <option value="">?</option>
+                                                <option value="boy">boy</option>
+                                                <option value="woman">woman</option>
+                                                <option value="person">person</option>
+                                                <option value="male">male</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="analogy-explanation hidden">
+                                        <strong>Pattern:</strong> Gender relationship. In vector space embeddings, 
+                                        king - queen ≈ man - woman
+                                    </div>
+                                </div>
+
+                                <div class="analogy-item">
+                                    <div class="analogy-format">
+                                        <span class="analogy-word">Paris</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-word">France</span>
+                                        <span class="analogy-equiv">::</span>
+                                        <span class="analogy-word">Tokyo</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-answer">
+                                            <select class="analogy-select" data-answer="Japan">
+                                                <option value="">?</option>
+                                                <option value="Asia">Asia</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="Japanese">Japanese</option>
+                                                <option value="City">City</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="analogy-explanation hidden">
+                                        <strong>Pattern:</strong> Capital-to-country relationship
+                                    </div>
+                                </div>
+
+                                <div class="analogy-item">
+                                    <div class="analogy-format">
+                                        <span class="analogy-word">hot</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-word">cold</span>
+                                        <span class="analogy-equiv">::</span>
+                                        <span class="analogy-word">fast</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-answer">
+                                            <select class="analogy-select" data-answer="slow">
+                                                <option value="">?</option>
+                                                <option value="quick">quick</option>
+                                                <option value="slow">slow</option>
+                                                <option value="speed">speed</option>
+                                                <option value="stop">stop</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="analogy-explanation hidden">
+                                        <strong>Pattern:</strong> Antonym (opposite) relationship
+                                    </div>
+                                </div>
+
+                                <div class="analogy-item">
+                                    <div class="analogy-format">
+                                        <span class="analogy-word">painter</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-word">brush</span>
+                                        <span class="analogy-equiv">::</span>
+                                        <span class="analogy-word">writer</span>
+                                        <span class="analogy-relation">:</span>
+                                        <span class="analogy-answer">
+                                            <select class="analogy-select" data-answer="pen">
+                                                <option value="">?</option>
+                                                <option value="book">book</option>
+                                                <option value="pen">pen</option>
+                                                <option value="paper">paper</option>
+                                                <option value="story">story</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="analogy-explanation hidden">
+                                        <strong>Pattern:</strong> Professional-to-tool relationship
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lab-actions">
+                                <button id="check-analogies" class="btn btn-primary">Check Answers</button>
+                                <button id="reveal-analogies" class="btn btn-secondary">Reveal Patterns</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>What This Demonstrates</h4>
+                        <ul>
+                            <li>
+                                <strong>Sequence patterns</strong> require detecting mathematical regularities—the 
+                                same task neural networks perform when learning from sequential data.
+                            </li>
+                            <li>
+                                <strong>Visual patterns</strong> require recognizing spatial relationships and 
+                                transformations—core to computer vision systems.
+                            </li>
+                            <li>
+                                <strong>Analogies</strong> require understanding relationships between concepts—
+                                remarkably, word embedding models (like Word2Vec) learn representations where 
+                                analogies can be solved through vector arithmetic.
+                            </li>
+                            <li>
+                                In all cases, the "answer" isn't stored explicitly—it must be <em>inferred</em> 
+                                from the pattern. This is the essence of generalization.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz Section -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">
+                                    What distinguishes a pattern from random noise in the context of machine learning?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q1" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Patterns are always visible to humans; noise is not</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Patterns have a compact description relative to the data they describe and enable prediction on new data</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Patterns are programmed explicitly; noise is learned</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">There is no technical difference; it depends on interpretation</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">
+                                    A model achieves 99% accuracy on training data but only 60% on test data. What is this phenomenon called and what does it indicate?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q2" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Underfitting—the model is too simple to capture the pattern</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Overfitting—the model has memorized training data rather than learning generalizable patterns</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Good generalization—the model has learned the true pattern</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Data leakage—test data was accidentally included in training</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">
+                                    Why was "learning representations automatically" considered a breakthrough in deep learning?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q3" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It eliminated the need for feature engineering—networks discover which features matter through optimization</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It made training faster</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It reduced the amount of data needed</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It allowed models to understand causation</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">
+                                    What does "invariance" mean in the context of pattern recognition?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q4" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The pattern never changes</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model's predictions remain stable despite irrelevant transformations of the input</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">All inputs produce the same output</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model cannot be modified after training</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">
+                                    A medical AI learns to predict pneumonia from X-rays. It achieves high accuracy but researchers discover it's actually detecting the text "PORTABLE" watermarked on X-rays taken with portable machines (used for sicker patients). What concept does this illustrate?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q5" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model has learned the true causal pattern</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model learned a spurious correlation—a predictive pattern that doesn't reflect the underlying medical reality</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model is underfitting</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">This is an example of good generalization</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module Navigation -->
+                <section class="module-navigation">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← What AI Actually Is</span>
+                    </a>
+                    <a href="module-1-3.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Probability & Uncertainty →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-1-2.js"></script>
+</body>
+</html>
+

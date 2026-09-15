@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Optimization & Gradients — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item active"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 21%"></div>
+                    </div>
+                    <span class="progress-text">4 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb">
+                    <span>Foundations</span>
+                    <span class="breadcrumb-sep">→</span>
+                    <span>Module 1.4</span>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <!-- Module Header -->
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Foundation</span>
+                        <span class="module-duration">~40 min</span>
+                    </div>
+                    <h1 class="module-title">Optimization & Gradients</h1>
+                    <p class="module-subtitle">
+                        The engine of learning: how gradient descent enables neural networks to find 
+                        good solutions in astronomically large parameter spaces, and why this mathematical 
+                        technique underlies virtually all modern AI.
+                    </p>
+                </section>
+
+                <!-- Learning Objectives -->
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand optimization as the core mechanism of machine learning</li>
+                        <li>Explain what gradients are and why they point toward improvement</li>
+                        <li>Visualize gradient descent on loss landscapes</li>
+                        <li>Recognize challenges: local minima, saddle points, and learning rates</li>
+                        <li>Connect optimization to how neural networks learn</li>
+                    </ul>
+                </section>
+
+                <!-- Main Content -->
+                <section class="content-section">
+                    <h2 class="section-heading">Learning as Optimization</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Core Insight</div>
+                        <p class="definition-text">
+                            <strong>Machine learning is, fundamentally, an optimization problem.</strong> 
+                            We define a <em>loss function</em> that measures how wrong our model's predictions 
+                            are, then use mathematical optimization to find model parameters that minimize 
+                            this loss.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Imagine you're blindfolded on a hilly landscape and want to reach the lowest 
+                                point (a valley). You can't see, but you can feel the slope beneath your feet. 
+                                The obvious strategy: always step in the direction that goes most steeply downhill.
+                            </p>
+                            <p>
+                                This is gradient descent. The "landscape" is the loss function—how wrong the 
+                                model is for different parameter values. The "slope" is the gradient—a vector 
+                                pointing in the direction of steepest increase. By stepping opposite to the 
+                                gradient, we descend toward better solutions.
+                            </p>
+                        </div>
+
+                        <div class="layer" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
+                            <span class="layer-badge" style="background: rgba(139, 92, 246, 0.15); color: #a78bfa;">📐 Quick Math Primer</span>
+                            <p style="margin-top: 0.75rem;">
+                                <strong>New to calculus?</strong> Here's all you need to know for this section:
+                            </p>
+                            <ul style="margin: 0.75rem 0; padding-left: 1.25rem; line-height: 1.8;">
+                                <li><strong>Derivative (∂f/∂x):</strong> "How much does f change when I nudge x?" If ∂f/∂x = 3, then increasing x by 1 increases f by ~3.</li>
+                                <li><strong>Gradient (∇f):</strong> A collection of derivatives for ALL variables. It's like asking "which way is uphill?" for every direction at once.</li>
+                                <li><strong>Negative gradient:</strong> Points DOWNHILL. That's the direction we want to go to reduce loss!</li>
+                            </ul>
+                            <p style="font-size: 0.875rem; color: var(--text-tertiary);">
+                                Need more detail? See the <a href="prerequisites/Mathematics/calculus.html" style="color: #a78bfa;">Calculus prerequisite</a>.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                For a function f(θ) where θ represents model parameters, the <strong>gradient</strong> 
+                                ∇f(θ) is a vector of partial derivatives:
+                            </p>
+                            <div class="formula-inline">
+                                ∇f(θ) = [∂f/∂θ₁, ∂f/∂θ₂, ..., ∂f/∂θₙ]
+                            </div>
+                            <p>
+                                Each component tells us how much f changes when we adjust that parameter slightly. 
+                                The gradient descent update rule is:
+                            </p>
+                            <div class="formula-inline">
+                                θ<sub>new</sub> = θ<sub>old</sub> - η · ∇f(θ<sub>old</sub>)
+                            </div>
+                            <p>
+                                Where η (eta) is the <strong>learning rate</strong>—how big a step we take. 
+                                Too small and progress is slow; too large and we overshoot minima or diverge.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                When training a neural network:
+                            </p>
+                            <ol class="technical-list">
+                                <li><strong>Forward pass:</strong> Input data flows through the network, producing predictions</li>
+                                <li><strong>Loss computation:</strong> Compare predictions to true labels using a loss function</li>
+                                <li><strong>Backward pass:</strong> Compute gradients of loss with respect to every parameter</li>
+                                <li><strong>Parameter update:</strong> Adjust each parameter in the direction that reduces loss</li>
+                                <li><strong>Repeat:</strong> Process many batches of data, gradually improving</li>
+                            </ol>
+                            <p>
+                                Modern networks have billions of parameters. GPT-3 has 175 billion. Optimization 
+                                must navigate a 175-billion-dimensional space to find good values—and remarkably, 
+                                gradient descent works.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Loss Function</h2>
+                    
+                    <p class="lead-paragraph">
+                        The loss function (also called cost function or objective function) quantifies 
+                        how wrong the model is. <strong>Choosing the right loss function is crucial</strong>—it 
+                        defines what "good" means for your model.
+                    </p>
+
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <h3 class="concept-title">Mean Squared Error (MSE)</h3>
+                            <p>For regression tasks—predicting continuous values:</p>
+                            <div class="formula-inline">
+                                L = (1/n) Σ (y<sub>pred</sub> - y<sub>true</sub>)²
+                            </div>
+                            <p>
+                                Squares the errors, so large errors are penalized more heavily than small ones. 
+                                Good for predictions where being "a little off" is okay but "very off" is bad.
+                            </p>
+                        </div>
+
+                        <div class="concept-card">
+                            <h3 class="concept-title">Cross-Entropy Loss</h3>
+                            <p>For classification tasks—predicting categories:</p>
+                            <div class="formula-inline">
+                                L = -Σ y<sub>true</sub> · log(y<sub>pred</sub>)
+                            </div>
+                            <p>
+                                Measures the difference between predicted probability distribution and true labels. 
+                                Heavily penalizes confident wrong predictions—if you predict 99% "cat" but it's 
+                                a dog, the loss is huge.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Loss Landscape</h4>
+                            <p>
+                                For a model with many parameters, the loss function defines a high-dimensional 
+                                "landscape." Training is a journey across this landscape, seeking low points. 
+                                The landscape's shape—its valleys, ridges, and plateaus—determines how easy 
+                                or hard the optimization problem is.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Why Gradients Work</h2>
+                    
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">The Mathematical Foundation</h3>
+                        <p>
+                            The gradient has a remarkable property: <strong>it points in the direction of 
+                            steepest ascent</strong>. This means -∇f points in the direction of steepest 
+                            descent. No other direction decreases the function faster (locally).
+                        </p>
+                        <p>
+                            This follows from calculus: the directional derivative (rate of change in any 
+                            direction) is maximized when that direction aligns with the gradient. Taking 
+                            the negative gives us the direction of maximum decrease.
+                        </p>
+                    </div>
+
+                    <div class="visual-concept">
+                        <h4>Gradient as Slope in Multiple Dimensions</h4>
+                        <div class="gradient-visualization">
+                            <div class="viz-description">
+                                <p>
+                                    In 2D, the gradient is a vector with two components: how steeply the 
+                                    function increases in the x-direction and the y-direction.
+                                </p>
+                                <ul>
+                                    <li>∂f/∂x > 0 means "increasing x increases loss" → move x negative</li>
+                                    <li>∂f/∂y < 0 means "increasing y decreases loss" → move y positive</li>
+                                </ul>
+                                <p>
+                                    The gradient combines these into one vector pointing "uphill." We go 
+                                    the opposite direction.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-table">
+                        <h4 class="table-title">Gradient Properties</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Meaning</th>
+                                    <th>Implication</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>∇f = 0</td>
+                                    <td>Gradient is zero (critical point)</td>
+                                    <td>Local minimum, maximum, or saddle point</td>
+                                </tr>
+                                <tr>
+                                    <td>Large |∇f|</td>
+                                    <td>Steep slope</td>
+                                    <td>Far from optimum; fast progress possible</td>
+                                </tr>
+                                <tr>
+                                    <td>Small |∇f|</td>
+                                    <td>Flat region</td>
+                                    <td>Near optimum or on a plateau; slow progress</td>
+                                </tr>
+                                <tr>
+                                    <td>∇f changes direction quickly</td>
+                                    <td>High curvature</td>
+                                    <td>Requires smaller learning rate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="worked-example">
+                        <h3 class="worked-example-title">🔢 Worked Example: Gradient Descent Step-by-Step</h3>
+                        
+                        <div class="example-setup">
+                            <h4>Setup</h4>
+                            <p>
+                                Let's minimize a simple 1D function: <strong>f(x) = x³ - 2x² + x</strong>
+                            </p>
+                            <ul>
+                                <li>Derivative: f'(x) = 3x² - 4x + 1</li>
+                                <li>Starting point: x₀ = 2.0</li>
+                                <li>Learning rate: η = 0.1</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-iterations">
+                            <h4>Iterations</h4>
+                            <table class="iteration-table">
+                                <thead>
+                                    <tr>
+                                        <th>Step</th>
+                                        <th>x</th>
+                                        <th>f(x)</th>
+                                        <th>f'(x)</th>
+                                        <th>Update (x - η·f'(x))</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>2.000</td>
+                                        <td>2.000</td>
+                                        <td>5.000</td>
+                                        <td>2.0 - 0.1×5.0 = <strong>1.500</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1.500</td>
+                                        <td>0.375</td>
+                                        <td>1.750</td>
+                                        <td>1.5 - 0.1×1.75 = <strong>1.325</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>1.325</td>
+                                        <td>0.067</td>
+                                        <td>0.726</td>
+                                        <td>1.325 - 0.1×0.726 = <strong>1.252</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>1.252</td>
+                                        <td>0.011</td>
+                                        <td>0.260</td>
+                                        <td>1.252 - 0.1×0.26 = <strong>1.226</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>1.226</td>
+                                        <td>0.001</td>
+                                        <td>0.085</td>
+                                        <td>1.226 - 0.1×0.085 = <strong>1.218</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="example-insights">
+                            <h4>What to Notice</h4>
+                            <ul>
+                                <li><strong>Loss decreases:</strong> f(x) goes from 2.0 → 0.001, approaching the minimum</li>
+                                <li><strong>Gradients shrink:</strong> As we approach the minimum, gradients get smaller (5.0 → 0.085)</li>
+                                <li><strong>Steps get smaller:</strong> Each update changes x less because gradient is smaller</li>
+                                <li><strong>Convergence:</strong> The true minimum is at x ≈ 1.215; we're approaching it</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-experiment">
+                            <h4>Try This</h4>
+                            <p>
+                                What happens with learning rate η = 0.01 (slower) or η = 0.5 (faster)? 
+                                Too small: progress is slow. Too large: may overshoot and oscillate!
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Challenges in Optimization</h2>
+                    
+                    <p class="lead-paragraph">
+                        Gradient descent isn't guaranteed to find the global optimum. Understanding its 
+                        failure modes helps us design better training procedures.
+                    </p>
+
+                    <div class="challenge-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-icon">⚑</div>
+                            <h3 class="challenge-title">Local Minima</h3>
+                            <p>
+                                A local minimum is a point where loss is lower than all immediate neighbors, 
+                                but not the lowest overall. Gradient descent stops here because the gradient is zero.
+                            </p>
+                            <p class="challenge-solution">
+                                <strong>Modern insight:</strong> In high dimensions, local minima are often 
+                                "good enough"—they perform nearly as well as the global minimum. The real 
+                                problem is usually saddle points.
+                            </p>
+                        </div>
+
+                        <div class="challenge-card">
+                            <div class="challenge-icon">⬛</div>
+                            <h3 class="challenge-title">Saddle Points</h3>
+                            <p>
+                                Points where the gradient is zero but it's neither a minimum nor maximum—like 
+                                a mountain pass. The function curves up in some directions and down in others.
+                            </p>
+                            <p class="challenge-solution">
+                                <strong>Impact:</strong> Optimization slows dramatically near saddle points. 
+                                Momentum-based optimizers help by carrying velocity through flat regions.
+                            </p>
+                        </div>
+
+                        <div class="challenge-card">
+                            <div class="challenge-icon">↔</div>
+                            <h3 class="challenge-title">Learning Rate Sensitivity</h3>
+                            <p>
+                                Too high: oscillation, overshooting, or divergence. Too low: extremely slow 
+                                convergence, getting stuck in shallow local minima.
+                            </p>
+                            <p class="challenge-solution">
+                                <strong>Solutions:</strong> Learning rate schedules (start high, decrease over time), 
+                                adaptive optimizers (Adam, RMSprop) that adjust rates per-parameter.
+                            </p>
+                        </div>
+
+                        <div class="challenge-card">
+                            <div class="challenge-icon">▓</div>
+                            <h3 class="challenge-title">Vanishing/Exploding Gradients</h3>
+                            <p>
+                                In deep networks, gradients can shrink exponentially (vanish) or grow 
+                                exponentially (explode) as they propagate backward through layers.
+                            </p>
+                            <p class="challenge-solution">
+                                <strong>Solutions:</strong> Careful initialization, batch normalization, 
+                                residual connections, gradient clipping.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Stochastic Gradient Descent</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Key Technique</div>
+                        <p class="definition-text">
+                            <strong>Stochastic Gradient Descent (SGD)</strong> computes gradients on small 
+                            random subsets (mini-batches) of data rather than the full dataset. This 
+                            introduces noise but enables much faster training.
+                        </p>
+                    </div>
+
+                    <div class="comparison-cards">
+                        <div class="sgd-card">
+                            <h3 class="card-title">Batch Gradient Descent</h3>
+                            <p class="card-subtitle">Use all data for each update</p>
+                            <div class="card-content">
+                                <ul>
+                                    <li>Exact gradient computation</li>
+                                    <li>Smooth convergence path</li>
+                                    <li>Computationally expensive per step</li>
+                                    <li>Can't escape sharp local minima</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="sgd-card">
+                            <h3 class="card-title">Stochastic (Mini-Batch) GD</h3>
+                            <p class="card-subtitle">Use small batches for each update</p>
+                            <div class="card-content">
+                                <ul>
+                                    <li>Noisy gradient estimate</li>
+                                    <li>Zigzag convergence path</li>
+                                    <li>Fast iterations, more of them</li>
+                                    <li>Noise helps escape bad minima</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        The noise in SGD is actually <em>beneficial</em>. It prevents getting stuck in 
+                        sharp minima that don't generalize well. Sharp minima correspond to solutions 
+                        that depend sensitively on specific training examples; flat minima are more robust.
+                    </p>
+
+                    <div class="example-block">
+                        <h4 class="example-title">Why Mini-Batches?</h4>
+                        <p>
+                            Consider training on 1 million images. Batch GD would require computing 
+                            predictions and gradients for all 1 million before making one parameter update. 
+                            With batch size 32, we make ~31,000 updates per pass through the data.
+                        </p>
+                        <p>
+                            Even though each update is noisier, the total learning per compute is much 
+                            higher. Modern training uses batch sizes from 32 to thousands, balanced against 
+                            available GPU memory.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Modern Optimizers</h2>
+                    
+                    <p class="lead-paragraph">
+                        Vanilla SGD has been augmented with techniques that accelerate convergence and 
+                        handle the challenges of deep network optimization.
+                    </p>
+
+                    <div class="optimizer-timeline">
+                        <div class="optimizer-item">
+                            <div class="optimizer-name">Momentum</div>
+                            <div class="optimizer-desc">
+                                Accumulates a "velocity" from past gradients. Helps traverse flat regions 
+                                faster and dampens oscillations in narrow valleys.
+                            </div>
+                            <div class="optimizer-formula">v = βv - η∇f; θ = θ + v</div>
+                        </div>
+
+                        <div class="optimizer-item">
+                            <div class="optimizer-name">RMSprop</div>
+                            <div class="optimizer-desc">
+                                Adapts learning rate per parameter based on recent gradient magnitudes. 
+                                Parameters with large gradients get smaller steps.
+                            </div>
+                            <div class="optimizer-formula">Divides by √(running average of squared gradients)</div>
+                        </div>
+
+                        <div class="optimizer-item">
+                            <div class="optimizer-name">Adam</div>
+                            <div class="optimizer-desc">
+                                Combines momentum and adaptive learning rates. The default choice for most 
+                                deep learning applications. Robust across many problems.
+                            </div>
+                            <div class="optimizer-formula">Momentum + RMSprop + bias correction</div>
+                        </div>
+
+                        <div class="optimizer-item">
+                            <div class="optimizer-name">AdamW</div>
+                            <div class="optimizer-desc">
+                                Adam with decoupled weight decay regularization. Often preferred for 
+                                training transformers and large language models.
+                            </div>
+                            <div class="optimizer-formula">Adam + proper L2 regularization</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Neural networks find the optimal solution"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Gradient descent finds <em>a</em> solution where gradients are small—not 
+                                necessarily the global optimum. Different random initializations lead to 
+                                different final solutions.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Training finds a good local solution. 
+                                In deep learning, many local minima perform comparably well, so this is 
+                                acceptable. The goal is finding solutions that generalize, not finding the 
+                                absolute minimum.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Faster convergence always means better results"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Reaching low training loss quickly can mean overfitting. The model might 
+                                find a solution that memorizes training data but doesn't generalize.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> What matters is test performance, not 
+                                training speed. Sometimes deliberately slowing down (lower learning rate, 
+                                larger batches) or adding noise improves generalization.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Zero loss is the goal"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Zero training loss often indicates overfitting—the model has memorized the 
+                                training data, including its noise and errors.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> The goal is low loss on unseen data 
+                                (generalization). Some training loss is healthy—it indicates the model hasn't 
+                                over-memorized. Early stopping and regularization prevent over-optimization.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Local minima are the main problem in deep learning"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Early theory worried about local minima, but empirical research shows that 
+                                in high dimensions, most critical points are saddle points, not local minima. 
+                                And most local minima have similar loss values.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> The main challenges are saddle points 
+                                (which slow convergence), choosing good learning rates, and the 
+                                generalization gap between training and test performance.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab Section -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Gradient Descent Visualizer
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Watch gradient descent in action on different loss landscapes. Adjust the 
+                            learning rate, choose different surfaces, and see how optimization behaves 
+                            in various scenarios.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="descent">Gradient Descent</button>
+                            <button class="lab-tab" data-tab="lr-explorer">Learning Rate Explorer</button>
+                            <button class="lab-tab" data-tab="sgd-compare">SGD vs Momentum</button>
+                            <button class="lab-tab code-view-tab" data-tab="code-view">
+                                <span class="code-icon">{ }</span> Code View
+                            </button>
+                        </div>
+
+                        <!-- Gradient Descent Visualizer -->
+                        <div class="lab-panel active" id="descent-panel">
+                            <div class="descent-controls">
+                                <div class="control-group">
+                                    <label>Loss Surface</label>
+                                    <select id="surface-select">
+                                        <option value="bowl">Simple Bowl (Convex)</option>
+                                        <option value="valley">Narrow Valley</option>
+                                        <option value="saddle">Saddle Point</option>
+                                        <option value="multimodal">Multiple Minima</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label>Learning Rate (η)</label>
+                                    <input type="range" id="lr-slider" min="1" max="100" value="30">
+                                    <span class="control-value" id="lr-value">0.030</span>
+                                </div>
+                                
+                                <div class="control-actions">
+                                    <button id="start-descent" class="btn btn-primary">Start</button>
+                                    <button id="step-descent" class="btn btn-secondary">Step</button>
+                                    <button id="reset-descent" class="btn btn-ghost">Reset</button>
+                                </div>
+                            </div>
+
+                            <div class="descent-visualization">
+                                <canvas id="descent-canvas" width="600" height="400"></canvas>
+                                <div class="descent-info">
+                                    <div class="info-item">
+                                        <span class="info-label">Step</span>
+                                        <span class="info-value" id="step-count">0</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Loss</span>
+                                        <span class="info-value" id="current-loss">—</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">|∇f|</span>
+                                        <span class="info-value" id="gradient-magnitude">—</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="descent-instructions">
+                                <p>Click on the surface to place the starting point, then watch gradient descent navigate to a minimum.</p>
+                            </div>
+                        </div>
+
+                        <!-- Learning Rate Explorer -->
+                        <div class="lab-panel" id="lr-explorer-panel">
+                            <div class="lr-description">
+                                <p>
+                                    See how different learning rates affect convergence on the same problem. 
+                                    Watch all three simultaneously to build intuition.
+                                </p>
+                            </div>
+
+                            <div class="lr-comparison">
+                                <div class="lr-track" data-lr="low">
+                                    <h4>η = 0.001 <span class="lr-label">(Too Low)</span></h4>
+                                    <canvas class="lr-canvas" width="200" height="200"></canvas>
+                                    <div class="lr-status">Steps: <span>0</span></div>
+                                </div>
+                                
+                                <div class="lr-track" data-lr="good">
+                                    <h4>η = 0.03 <span class="lr-label">(Good)</span></h4>
+                                    <canvas class="lr-canvas" width="200" height="200"></canvas>
+                                    <div class="lr-status">Steps: <span>0</span></div>
+                                </div>
+                                
+                                <div class="lr-track" data-lr="high">
+                                    <h4>η = 0.15 <span class="lr-label">(Too High)</span></h4>
+                                    <canvas class="lr-canvas" width="200" height="200"></canvas>
+                                    <div class="lr-status">Steps: <span>0</span></div>
+                                </div>
+                            </div>
+
+                            <div class="lr-actions">
+                                <button id="start-lr-comparison" class="btn btn-primary">Run Comparison</button>
+                                <button id="reset-lr-comparison" class="btn btn-secondary">Reset</button>
+                            </div>
+
+                            <div class="lr-observations">
+                                <h4>Observations</h4>
+                                <ul>
+                                    <li><strong>Too low:</strong> Makes progress but very slowly—may need thousands of steps</li>
+                                    <li><strong>Good:</strong> Steady progress toward minimum with reasonable speed</li>
+                                    <li><strong>Too high:</strong> Overshoots, oscillates, may diverge entirely</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- SGD vs Momentum -->
+                        <div class="lab-panel" id="sgd-compare-panel">
+                            <div class="sgd-description">
+                                <p>
+                                    Compare vanilla SGD with momentum-enhanced optimization. Momentum helps 
+                                    navigate narrow valleys and escape shallow local minima.
+                                </p>
+                            </div>
+
+                            <div class="sgd-comparison">
+                                <div class="sgd-track" data-optimizer="sgd">
+                                    <h4>Vanilla SGD</h4>
+                                    <canvas class="sgd-canvas" width="280" height="280"></canvas>
+                                    <div class="sgd-status">Steps: <span>0</span>, Loss: <span>—</span></div>
+                                </div>
+                                
+                                <div class="sgd-track" data-optimizer="momentum">
+                                    <h4>SGD + Momentum (β=0.9)</h4>
+                                    <canvas class="sgd-canvas" width="280" height="280"></canvas>
+                                    <div class="sgd-status">Steps: <span>0</span>, Loss: <span>—</span></div>
+                                </div>
+                            </div>
+
+                            <div class="sgd-controls">
+                                <div class="control-group">
+                                    <label>Surface Type</label>
+                                    <select id="sgd-surface-select">
+                                        <option value="valley">Narrow Valley (momentum advantage)</option>
+                                        <option value="bowl">Simple Bowl (similar performance)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="sgd-actions">
+                                <button id="start-sgd-comparison" class="btn btn-primary">Run Side-by-Side</button>
+                                <button id="reset-sgd-comparison" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </div>
+
+                        <!-- Code View Panel -->
+                        <div class="lab-panel" id="code-view-panel">
+                            <div class="code-view-intro">
+                                <p>
+                                    This is what the visualizations above would look like in actual PyTorch code. 
+                                    The sliders you adjust correspond to the hyperparameters below.
+                                </p>
+                            </div>
+
+                            <div class="code-block-with-comments">
+                                <div class="code-section">
+                                    <h4>Basic Gradient Descent</h4>
+                                    <pre><code class="language-python">import torch
+
+# Define a simple loss function (quadratic bowl)
+def loss_fn(x):
+    return x[0]**2 + x[1]**2
+
+# Initialize parameters
+x = torch.tensor([3.0, 4.0], requires_grad=True)
+
+# Hyperparameters
+<span class="code-highlight">learning_rate = 0.03  # ← Your slider controls this!</span>
+num_steps = 100
+
+# Gradient descent loop
+for step in range(num_steps):
+    # Forward pass: compute loss
+    loss = loss_fn(x)
+    
+    # Backward pass: compute gradients
+    loss.backward()
+    
+    # Update parameters (gradient descent step)
+    with torch.no_grad():
+        <span class="code-highlight">x -= learning_rate * x.grad  # x_new = x_old - η∇f</span>
+        x.grad.zero_()  # Reset gradients for next iteration
+    
+    print(f"Step {step}: x = {x.data}, loss = {loss.item():.4f}")</code></pre>
+                                </div>
+
+                                <div class="code-section">
+                                    <h4>SGD with Momentum</h4>
+                                    <pre><code class="language-python">import torch
+import torch.optim as optim
+
+# Define model parameters
+params = torch.tensor([3.0, 4.0], requires_grad=True)
+
+# Using PyTorch's built-in optimizer
+<span class="code-highlight">optimizer = optim.SGD([params], lr=0.03, momentum=0.9)</span>
+
+for step in range(100):
+    optimizer.zero_grad()  # Reset gradients
+    
+    loss = params[0]**2 + params[1]**2  # Loss function
+    loss.backward()  # Compute gradients
+    
+    <span class="code-highlight">optimizer.step()  # Update with momentum</span>
+    
+    # Momentum internally maintains velocity:
+    # v_t = β * v_{t-1} + ∇f(x)
+    # x_t = x_{t-1} - lr * v_t</code></pre>
+                                </div>
+
+                                <div class="code-section">
+                                    <h4>Adam Optimizer (Industry Standard)</h4>
+                                    <pre><code class="language-python">import torch
+import torch.optim as optim
+
+model = MyNeuralNetwork()  # Your model
+<span class="code-highlight">optimizer = optim.Adam(model.parameters(), lr=0.001)</span>
+
+# Adam combines:
+# - Momentum (first moment estimate)
+# - RMSprop (second moment estimate for adaptive learning rates)
+# - Bias correction for early steps
+
+for batch in dataloader:
+    optimizer.zero_grad()
+    outputs = model(batch.inputs)
+    loss = criterion(outputs, batch.targets)
+    loss.backward()
+    optimizer.step()  # Adam handles everything</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="code-view-note">
+                                <strong>Try it yourself:</strong> Copy this code into a Jupyter notebook or 
+                                <a href="https://colab.research.google.com" target="_blank">Google Colab</a> 
+                                to experiment with different learning rates and see the actual numbers.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Insights</h4>
+                        <ul>
+                            <li>
+                                <strong>Learning rate is critical:</strong> The single most important 
+                                hyperparameter. Too high causes instability; too low wastes computation.
+                            </li>
+                            <li>
+                                <strong>Surface shape matters:</strong> Narrow valleys cause oscillation 
+                                in vanilla SGD. Saddle points slow convergence dramatically.
+                            </li>
+                            <li>
+                                <strong>Momentum provides acceleration:</strong> By accumulating velocity, 
+                                momentum moves faster through flat regions and dampens oscillations.
+                            </li>
+                            <li>
+                                <strong>Multiple runs, different results:</strong> Different starting points 
+                                can lead to different final solutions—ensemble methods exploit this.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz Section -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">
+                                    What does the gradient ∇f(θ) represent in the context of optimization?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q1" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The current value of the loss function</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">A vector pointing in the direction of steepest increase of the function</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The optimal parameter values</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The difference between prediction and true value</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">
+                                    Why does stochastic gradient descent (SGD) use mini-batches instead of the full dataset?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q2" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Mini-batches provide exact gradients</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Mini-batches are faster per iteration, and the noise helps escape poor local minima</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The full dataset is never available during training</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Mini-batches prevent overfitting entirely</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">
+                                    What happens when the learning rate is too high?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q3" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Convergence is guaranteed but slow</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The optimizer may overshoot minima, oscillate, or diverge entirely</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The model trains faster with better accuracy</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Gradients become zero</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">
+                                    In high-dimensional optimization, what type of critical point is typically more problematic than local minima?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q4" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Global minima</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Saddle points—where gradients are zero but it's not a minimum</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Local maxima</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Inflection points</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">
+                                    How does momentum help gradient descent optimization?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q5" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It makes the gradient more accurate</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It accumulates velocity from past gradients, helping traverse flat regions faster and dampening oscillations</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It reduces the number of parameters in the model</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It automatically finds the optimal learning rate</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module Navigation -->
+                <section class="module-navigation">
+                    <a href="module-1-3.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Probability & Uncertainty</span>
+                    </a>
+                    <div class="nav-next completed-section">
+                        <span class="nav-direction">Section Complete!</span>
+                        <span class="nav-title">Continue to Core Methods →</span>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-1-4.js"></script>
+</body>
+</html>
+

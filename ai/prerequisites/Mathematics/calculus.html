@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Calculus foundations for AI: derivatives, partial derivatives, and the chain rule explained for machine learning.">
+    <title>Calculus for AI — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #d4a855;
+            --prereq-accent-glow: rgba(212, 168, 85, 0.15);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .prereq-page {
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+        
+        .prereq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: clamp(1rem, 5vw, 2.5rem);
+        }
+        
+        /* Sticky Header */
+        .prereq-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent);
+            border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .prereq-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .prereq-nav a:hover {
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav .nav-divider {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
+            padding: 0 0.25rem;
+        }
+        
+        /* Hero Section */
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            border: 1px solid var(--surface-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 1rem;
+            line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Learning Objectives */
+        .learning-objectives {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--prereq-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .learning-objectives ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .learning-objectives li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .learning-objectives li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Estimated Time */
+        .estimated-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Math Sections */
+        .math-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .math-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--prereq-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            font-size: 0.875rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .math-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary);
+            margin: 1.75rem 0 1rem;
+        }
+        
+        .math-section h4 {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin: 1.25rem 0 0.75rem;
+        }
+        
+        .math-section p {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin: 0 0 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .math-section ul, .math-section ol {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            padding-left: 1.5rem;
+            margin: 0 0 1rem;
+        }
+        
+        .math-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Formula Box */
+        .formula-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            margin: 1.25rem 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+        
+        .formula-box .formula {
+            font-family: var(--font-mono);
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: var(--prereq-accent);
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+        
+        .formula-box .formula-desc {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+        
+        /* Example Box */
+        .example-box {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .example-box h4 {
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .example-box code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: clamp(0.75rem, 2vw, 1rem);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.6;
+        }
+        
+        .example-box p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0.75rem 0 0;
+        }
+        
+        /* Intuition Box */
+        .intuition-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(212, 168, 85, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .intuition-box h4 {
+            color: var(--prereq-accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .intuition-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* AI Connection Box */
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(80, 184, 146, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 {
+            color: var(--accent-emerald);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ai-connection p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(217, 119, 119, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(217, 119, 119, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .warning-box h4 {
+            color: var(--accent-coral);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .warning-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Visual Diagram */
+        .visual-diagram {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            margin: 1.25rem 0;
+            overflow-x: auto;
+        }
+        
+        .visual-diagram pre {
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            line-height: 1.5;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .visual-diagram .diagram-caption {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Step by Step */
+        .step-by-step {
+            counter-reset: step;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent-glow);
+            border: 2px solid var(--prereq-accent);
+            color: var(--prereq-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .step h4 {
+            margin: 0 0 0.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .step p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Interactive Practice (styled) */
+        .practice-problem {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+        
+        .practice-problem h4 {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .problem {
+            background: var(--bg-elevated);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            font-family: var(--font-mono);
+            color: var(--text-primary);
+        }
+        
+        .practice-problem .solution {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--accent-emerald);
+        }
+        
+        .practice-problem .solution-header {
+            color: var(--accent-emerald);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .solution-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Key Takeaways */
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 {
+            color: var(--prereq-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .key-takeaways ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .key-takeaways li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Navigation Cards */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-card:hover {
+            border-color: var(--prereq-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card-label {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+        }
+        
+        .nav-card-title {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+        
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--surface-3);
+        }
+        
+        .progress-dot.active {
+            background: var(--prereq-accent);
+        }
+        
+        .progress-dot.completed {
+            background: var(--accent-emerald);
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 1rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-list a:hover {
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+        }
+        
+        .toc-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--surface-3);
+            color: var(--text-tertiary);
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .prereq-header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .back-link {
+                width: fit-content;
+            }
+            
+            .prereq-nav {
+                justify-content: center;
+            }
+            
+            .visual-diagram pre {
+                font-size: 0.65rem;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                padding-left: 2.5rem;
+            }
+            
+            .step::before {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus states for accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--prereq-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <!-- Sticky Header -->
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link">
+                        <span>←</span> Back to Course
+                    </a>
+                    <nav class="prereq-nav">
+                        <a href="math-foundations.html">Foundations</a>
+                        <a href="number-sense.html">Numbers</a>
+                        <a href="logic-basics.html">Logic</a>
+                        <span class="nav-divider">|</span>
+                        <a href="calculus.html" class="active">Calculus</a>
+                        <a href="linear-algebra.html">Linear Algebra</a>
+                        <a href="probability.html">Probability</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <!-- Hero Section -->
+            <div class="prereq-hero">
+                <span class="prereq-badge">📐 Prerequisite • Mathematics</span>
+                <h1 class="prereq-title">Calculus for AI</h1>
+                <p class="prereq-subtitle">
+                    Understanding derivatives is the key to understanding how neural networks learn. 
+                    Every time a model improves, calculus is working behind the scenes. This guide covers 
+                    exactly what you need to understand AI optimization—explained intuitively with real examples.
+                </p>
+                <div class="estimated-time">
+                    <span>⏱</span> Estimated reading time: 20-25 minutes
+                </div>
+            </div>
+            
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>What derivatives measure and why they matter for optimization</li>
+                    <li>How to compute derivatives using key rules (power, sum, product, chain)</li>
+                    <li>How partial derivatives handle functions with multiple inputs</li>
+                    <li>What gradients are and how they guide neural network learning</li>
+                    <li>Why the chain rule is the foundation of backpropagation</li>
+                </ul>
+            </div>
+            
+            <!-- Table of Contents -->
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#why-calculus"><span class="toc-number">1</span> Why Calculus Matters for AI</a></li>
+                    <li><a href="#derivatives"><span class="toc-number">2</span> Derivatives: Measuring Change</a></li>
+                    <li><a href="#derivative-rules"><span class="toc-number">3</span> Essential Derivative Rules</a></li>
+                    <li><a href="#partial-derivatives"><span class="toc-number">4</span> Partial Derivatives & Gradients</a></li>
+                    <li><a href="#chain-rule"><span class="toc-number">5</span> The Chain Rule & Backpropagation</a></li>
+                    <li><a href="#practice"><span class="toc-number">6</span> Practice Problems</a></li>
+                </ol>
+            </nav>
+            
+            <!-- Section 1: Why Calculus -->
+            <section class="math-section" id="why-calculus">
+                <h2><span class="section-number">1</span> Why Calculus Matters for AI</h2>
+                
+                <p>
+                    Machine learning is fundamentally about <strong>optimization</strong>—finding the best possible 
+                    parameters for a model. Imagine you're blindfolded on a hilly landscape, trying to find the 
+                    lowest valley. How do you know which direction to walk?
+                </p>
+                
+                <p>
+                    Calculus answers this question. Specifically, <strong>derivatives</strong> tell us the slope 
+                    of the ground beneath our feet. If we're on a slope going up to the right, we should walk left. 
+                    If it's going up to the left, we walk right. This simple idea—"follow the downhill slope"—is 
+                    the core of how neural networks learn.
+                </p>
+                
+                <div class="ai-connection">
+                    <h4>🤖 The AI Connection</h4>
+                    <p>
+                        Every neural network has millions (or billions!) of parameters. During training, the model 
+                        computes how changing each parameter would affect its errors. This computation uses derivatives. 
+                        The famous "backpropagation" algorithm is essentially clever application of the chain rule 
+                        to compute all these derivatives efficiently.
+                    </p>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 The Big Picture</h4>
+                    <p>
+                        Think of training a neural network as adjusting millions of knobs on a massive control panel. 
+                        Each knob affects the output. Calculus tells us: "Turn this knob clockwise to reduce the error" 
+                        or "Turn that knob counterclockwise." Without calculus, we'd be randomly guessing which way to turn each knob.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 2: Derivatives -->
+            <section class="math-section" id="derivatives">
+                <h2><span class="section-number">2</span> Derivatives: Measuring Change</h2>
+                
+                <p>
+                    A <strong>derivative</strong> measures how fast something changes. If you have a function f(x), 
+                    the derivative f'(x) tells you the <em>rate of change</em> at any point x.
+                </p>
+                
+                <h3>The Formal Definition</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">f'(x) = lim<sub>h→0</sub> [f(x+h) - f(x)] / h</div>
+                    <div class="formula-desc">The derivative is the slope of the tangent line at point x</div>
+                </div>
+                
+                <p>
+                    In plain English: take a tiny step h, see how much f changes, divide by the step size. As h gets 
+                    infinitely small, you get the instantaneous rate of change.
+                </p>
+                
+                <div class="intuition-box">
+                    <h4>💡 Real-World Intuition</h4>
+                    <p>
+                        Imagine driving a car. Your <strong>position</strong> changes over time. The derivative of 
+                        position is <strong>velocity</strong> (how fast position changes). The derivative of velocity 
+                        is <strong>acceleration</strong> (how fast velocity changes). Derivatives describe 
+                        "how fast something is changing."
+                    </p>
+                </div>
+                
+                <h3>What Does the Derivative Tell Us?</h3>
+                
+                <ul>
+                    <li><strong>Positive derivative</strong>: The function is increasing (going uphill)</li>
+                    <li><strong>Negative derivative</strong>: The function is decreasing (going downhill)</li>
+                    <li><strong>Zero derivative</strong>: The function is flat (at a peak, valley, or plateau)</li>
+                    <li><strong>Large magnitude</strong>: The function is changing rapidly (steep slope)</li>
+                    <li><strong>Small magnitude</strong>: The function is changing slowly (gentle slope)</li>
+                </ul>
+                
+                <div class="visual-diagram">
+                    <pre>
+        f(x)
+         │         ╱ ← Derivative positive (increasing)
+         │        ╱
+         │       ╱
+         │      •  ← Derivative = 0 (peak or valley)
+         │     ╱
+         │    ╱ ← Derivative negative (decreasing)  
+         │   ╱
+         └──────────────── x
+                    </pre>
+                    <p class="diagram-caption">The derivative describes the slope at each point on the curve</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Worked Example</h4>
+                    <p>For the function f(x) = x², let's compute f'(2):</p>
+                    <code>f(x) = x²
+f(2) = 4
+f(2.001) = 4.004001
+
+Approximate derivative:
+f'(2) ≈ (4.004001 - 4) / 0.001 = 4.001
+
+Exact answer: f'(x) = 2x, so f'(2) = 4</code>
+                    <p>
+                        At x = 2, the function x² is increasing at a rate of 4 units of output per 1 unit of input.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 3: Derivative Rules -->
+            <section class="math-section" id="derivative-rules">
+                <h2><span class="section-number">3</span> Essential Derivative Rules</h2>
+                
+                <p>
+                    Rather than computing limits every time, mathematicians have derived rules for common functions. 
+                    These rules let you quickly compute derivatives of any combination of basic functions.
+                </p>
+                
+                <h3>Rule 1: Power Rule</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">d/dx[x<sup>n</sup>] = n · x<sup>n-1</sup></div>
+                    <div class="formula-desc">Bring down the exponent, reduce it by one</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Examples</h4>
+                    <code>d/dx[x³] = 3x²
+d/dx[x²] = 2x
+d/dx[x]  = 1 · x⁰ = 1
+d/dx[x⁻¹] = -1 · x⁻² = -1/x²
+d/dx[√x] = d/dx[x^½] = ½ · x^(-½) = 1/(2√x)</code>
+                </div>
+                
+                <h3>Rule 2: Constant Rule</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">d/dx[c] = 0</div>
+                    <div class="formula-desc">The derivative of any constant is zero</div>
+                </div>
+                
+                <p>This makes sense—a constant doesn't change, so its rate of change is zero.</p>
+                
+                <h3>Rule 3: Sum & Difference Rules</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">d/dx[f(x) + g(x)] = f'(x) + g'(x)</div>
+                    <div class="formula-desc">Derivative of a sum = sum of derivatives</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Example</h4>
+                    <code>d/dx[x³ + 2x² - 5x + 7]
+= d/dx[x³] + d/dx[2x²] - d/dx[5x] + d/dx[7]
+= 3x² + 4x - 5 + 0
+= 3x² + 4x - 5</code>
+                </div>
+                
+                <h3>Rule 4: Constant Multiple Rule</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">d/dx[c · f(x)] = c · f'(x)</div>
+                    <div class="formula-desc">Constants can be "pulled out" of derivatives</div>
+                </div>
+                
+                <h3>Rule 5: Product Rule</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">d/dx[f(x) · g(x)] = f'(x) · g(x) + f(x) · g'(x)</div>
+                    <div class="formula-desc">"First times derivative of second, plus second times derivative of first"</div>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 Mnemonic</h4>
+                    <p>
+                        Think of it as: "Keep one function the same, differentiate the other, then switch roles and add."
+                    </p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Example</h4>
+                    <code>d/dx[x² · sin(x)]
+= (2x) · sin(x) + x² · cos(x)
+= 2x·sin(x) + x²·cos(x)</code>
+                </div>
+                
+                <h3>Rule 6: Quotient Rule</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">d/dx[f(x)/g(x)] = [f'(x)·g(x) - f(x)·g'(x)] / [g(x)]²</div>
+                    <div class="formula-desc">"Low d-high minus high d-low, over low squared"</div>
+                </div>
+                
+                <h3>Key Derivatives to Memorize</h3>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>Basic Functions</h4>
+                        <code>d/dx[e^x] = e^x
+d/dx[ln(x)] = 1/x
+d/dx[sin(x)] = cos(x)
+d/dx[cos(x)] = -sin(x)</code>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>AI-Specific Functions</h4>
+                        <code>d/dx[sigmoid(x)] = σ(x)·(1-σ(x))
+d/dx[ReLU(x)] = 1 if x>0, else 0
+d/dx[tanh(x)] = 1 - tanh²(x)
+d/dx[softplus(x)] = sigmoid(x)</code>
+                    </div>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Why These Matter for AI</h4>
+                    <p>
+                        Activation functions like ReLU, sigmoid, and tanh are used in every neural network. 
+                        Their derivatives determine how gradients flow during training. ReLU is popular partly 
+                        because its derivative is simple (0 or 1), making training efficient. Sigmoid's derivative 
+                        can get very small (near 0 or 1), causing "vanishing gradients"—a real problem in deep networks.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Partial Derivatives -->
+            <section class="math-section" id="partial-derivatives">
+                <h2><span class="section-number">4</span> Partial Derivatives & Gradients</h2>
+                
+                <p>
+                    So far, we've looked at functions with one input. But neural networks have millions of parameters! 
+                    <strong>Partial derivatives</strong> let us handle functions with multiple inputs by looking at 
+                    how the output changes with respect to <em>one variable at a time</em>, while treating others as constants.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">∂f/∂x = rate of change of f as x changes (holding y, z, ... constant)</div>
+                    <div class="formula-desc">The ∂ symbol (curly d) denotes partial derivatives</div>
+                </div>
+                
+                <h3>Computing Partial Derivatives</h3>
+                
+                <p>To find ∂f/∂x: treat all other variables as constants and differentiate normally with respect to x.</p>
+                
+                <div class="example-box">
+                    <h4>📝 Detailed Example</h4>
+                    <code>f(x, y) = x² + 3xy + y²
+
+To find ∂f/∂x:
+  - Treat y as a constant
+  - d/dx[x²] = 2x
+  - d/dx[3xy] = 3y  (y is constant, so 3xy is "3y times x")
+  - d/dx[y²] = 0   (y² is a constant w.r.t. x)
+  - ∂f/∂x = 2x + 3y
+
+To find ∂f/∂y:
+  - Treat x as a constant
+  - d/dy[x²] = 0
+  - d/dy[3xy] = 3x
+  - d/dy[y²] = 2y
+  - ∂f/∂y = 3x + 2y</code>
+                </div>
+                
+                <h3>The Gradient: All Partials Together</h3>
+                
+                <p>
+                    The <strong>gradient</strong> bundles all partial derivatives into a single vector. 
+                    It points in the direction of steepest increase.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">∇f = [∂f/∂x₁, ∂f/∂x₂, ..., ∂f/∂xₙ]</div>
+                    <div class="formula-desc">The gradient is a vector pointing "uphill"</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Example</h4>
+                    <code>For f(x, y) = x² + 3xy + y²:
+
+∇f = [∂f/∂x, ∂f/∂y] = [2x + 3y, 3x + 2y]
+
+At point (1, 2):
+∇f(1,2) = [2(1) + 3(2), 3(1) + 2(2)]
+        = [8, 7]
+
+This vector [8, 7] points in the direction of 
+steepest increase from point (1, 2).</code>
+                </div>
+                
+                <h3>Gradient Descent: The Learning Algorithm</h3>
+                
+                <p>
+                    <strong>Gradient descent</strong> is the core algorithm for training neural networks. 
+                    The idea is simple: to minimize a function, move opposite to the gradient (downhill).
+                </p>
+                
+                <div class="step-by-step">
+                    <div class="step">
+                        <h4>Start with initial parameters</h4>
+                        <p>Initialize your model's weights (often randomly).</p>
+                    </div>
+                    <div class="step">
+                        <h4>Compute the gradient</h4>
+                        <p>Calculate ∇L with respect to all parameters, where L is the loss function.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Update parameters</h4>
+                        <p>Move in the opposite direction: w_new = w_old - η · ∇L, where η is the learning rate.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Repeat</h4>
+                        <p>Continue until the loss stops decreasing (convergence).</p>
+                    </div>
+                </div>
+                
+                <div class="formula-box">
+                    <div class="formula">w := w - η · ∇L(w)</div>
+                    <div class="formula-desc">The gradient descent update rule</div>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+        Loss Surface (2D visualization)
+        
+             High Loss
+                ╱╲
+               ╱  ╲
+              ╱    ╲
+             ╱      ╲
+            ╱  • ←───── Starting point
+           ╱   ↓        
+          ╱    ↓ ←───── Gradient points uphill,
+         ╱     •        we move OPPOSITE (downhill)
+        ╱      ↓        
+       ╱       ↓        
+      ╱        • ←───── Getting closer to minimum
+     ╱         ↓        
+    ╱          ★ ←───── Minimum (goal!)
+   ──────────────────── 
+         Parameters (weights)
+                    </pre>
+                    <p class="diagram-caption">Gradient descent follows the downhill direction to find the minimum loss</p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 How This Works in Practice</h4>
+                    <p>
+                        In a neural network with 1 billion parameters, we compute 1 billion partial derivatives—one 
+                        for each parameter. This tells us how to adjust each weight to reduce the error. Modern 
+                        frameworks like PyTorch and TensorFlow do this automatically using "autograd" (automatic differentiation).
+                    </p>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>⚠️ Common Pitfalls</h4>
+                    <p>
+                        <strong>Learning rate too high:</strong> Steps are too big, you might "jump over" the minimum.<br>
+                        <strong>Learning rate too low:</strong> Training takes forever, might get stuck.<br>
+                        <strong>Local minima:</strong> You might find a valley that's not the deepest (though this is 
+                        less problematic in high dimensions than you might think).
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 5: Chain Rule -->
+            <section class="math-section" id="chain-rule">
+                <h2><span class="section-number">5</span> The Chain Rule & Backpropagation</h2>
+                
+                <p>
+                    The <strong>chain rule</strong> is arguably the most important calculus concept for AI. 
+                    It tells us how to compute derivatives of <em>composed functions</em>—functions inside functions—which 
+                    is exactly what a neural network is!
+                </p>
+                
+                <h3>The Basic Chain Rule</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">d/dx[f(g(x))] = f'(g(x)) · g'(x)</div>
+                    <div class="formula-desc">"Derivative of outer × derivative of inner"</div>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 Intuition</h4>
+                    <p>
+                        If <strong>x affects y</strong>, and <strong>y affects z</strong>, then to find how 
+                        <strong>x affects z</strong>, multiply the effects together:<br><br>
+                        (rate z changes per y) × (rate y changes per x) = (rate z changes per x)
+                    </p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Step-by-Step Example</h4>
+                    <code>Find the derivative of h(x) = (3x + 1)²
+
+Step 1: Identify inner and outer functions
+  Inner: g(x) = 3x + 1
+  Outer: f(u) = u²
+
+Step 2: Find their derivatives
+  g'(x) = 3
+  f'(u) = 2u
+
+Step 3: Apply chain rule
+  h'(x) = f'(g(x)) · g'(x)
+        = 2(3x + 1) · 3
+        = 6(3x + 1)
+        = 18x + 6</code>
+                </div>
+                
+                <h3>Chain Rule with Multiple Variables</h3>
+                
+                <p>
+                    When functions have multiple inputs and outputs, the chain rule extends naturally. 
+                    This is exactly what happens in neural networks.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">∂L/∂w = ∂L/∂y · ∂y/∂z · ∂z/∂w</div>
+                    <div class="formula-desc">Chain the derivatives through each layer</div>
+                </div>
+                
+                <h3>Backpropagation: The Chain Rule in Action</h3>
+                
+                <p>
+                    A neural network is just a composition of functions: input → layer 1 → layer 2 → ... → output → loss. 
+                    <strong>Backpropagation</strong> computes derivatives by applying the chain rule from output back to input.
+                </p>
+                
+                <div class="example-box" style="border-left-color: #10b981;">
+                    <h4 style="color: #10b981;">🔢 Numerical Example First (No Scary Notation!)</h4>
+                    <p style="margin-bottom: 0.75rem;">Let's trace through backprop with real numbers before introducing symbols:</p>
+                    <code>Simple network: y = 2x, then square it → output = (2x)²
+Input: x = 3
+
+FORWARD PASS (calculate step by step):
+  Step 1: z = 2 × 3 = 6
+  Step 2: output = 6² = 36
+
+BACKWARD PASS (how does changing x affect the output?):
+  If x increases by 1 → z increases by 2 (because z = 2x)
+  If z increases by 1 → output increases by 12 (derivative of z² at z=6 is 2×6=12)
+  
+  Combined: x↑1 → z↑2 → output↑24
+  
+So: changing x by 1 changes output by 24. That's the gradient!
+Check: d/dx[(2x)²] = d/dx[4x²] = 8x = 8×3 = 24 ✓</code>
+                    <p style="margin-top: 0.75rem; font-size: 0.875rem; color: var(--text-tertiary);">
+                        <strong>That's all backpropagation is:</strong> multiply how much each step affects the next, backwards through the chain.
+                    </p>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+FORWARD PASS (compute output):
+────────────────────────────────────────────────→
+
+  Input     Layer 1     Layer 2     Output    Loss
+    x    →    z₁    →     z₂    →    ŷ    →    L
+          W₁        W₂         W₃
+
+
+BACKWARD PASS (compute gradients via chain rule):
+←────────────────────────────────────────────────
+
+∂L/∂W₁ = ∂L/∂ŷ · ∂ŷ/∂z₂ · ∂z₂/∂z₁ · ∂z₁/∂W₁
+         ─────   ──────   ──────   ────────
+           │       │        │         │
+           └───────┴────────┴─────────┘
+             Multiply these "local gradients"
+                    </pre>
+                    <p class="diagram-caption">Backpropagation applies the chain rule layer by layer</p>
+                </div>
+                
+                <div class="step-by-step">
+                    <div class="step">
+                        <h4>Forward pass</h4>
+                        <p>Compute the output by feeding input through all layers. Store intermediate values.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Compute loss</h4>
+                        <p>Compare output to target, compute loss (e.g., squared error, cross-entropy).</p>
+                    </div>
+                    <div class="step">
+                        <h4>Backward pass</h4>
+                        <p>Starting from the loss, compute gradients layer by layer using the chain rule.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Update weights</h4>
+                        <p>Use gradient descent to adjust all weights in the direction that reduces loss.</p>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Concrete Example: Simple 2-Layer Network</h4>
+                    <code>Network: x → [Linear] → [ReLU] → [Linear] → ŷ
+                     w₁        w₂
+
+Forward:
+  z₁ = w₁ · x        (linear layer 1)
+  a₁ = ReLU(z₁)      (activation)
+  ŷ  = w₂ · a₁       (linear layer 2)
+  L  = (ŷ - y)²      (squared error loss)
+
+Backward (chain rule):
+  ∂L/∂ŷ  = 2(ŷ - y)
+  ∂ŷ/∂w₂ = a₁
+  ∂ŷ/∂a₁ = w₂
+  ∂a₁/∂z₁ = 1 if z₁ > 0, else 0  (ReLU derivative)
+  ∂z₁/∂w₁ = x
+
+Final gradients:
+  ∂L/∂w₂ = ∂L/∂ŷ · ∂ŷ/∂w₂ = 2(ŷ-y) · a₁
+  ∂L/∂w₁ = ∂L/∂ŷ · ∂ŷ/∂a₁ · ∂a₁/∂z₁ · ∂z₁/∂w₁
+         = 2(ŷ-y) · w₂ · ReLU'(z₁) · x</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Why Backpropagation is Efficient</h4>
+                    <p>
+                        Computing gradients naively would require O(n²) operations for n parameters. 
+                        Backpropagation is clever: it reuses intermediate computations from the forward pass, 
+                        achieving O(n) complexity. This efficiency is why we can train billion-parameter models. 
+                        Modern frameworks (PyTorch, TensorFlow, JAX) implement this automatically—you just define 
+                        the forward pass, and gradients are computed for free!
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 6: Practice Problems -->
+            <section class="math-section" id="practice">
+                <h2><span class="section-number">6</span> Practice Problems</h2>
+                
+                <p>Test your understanding with these problems. Try to solve them before revealing the solutions!</p>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 1: Basic Derivatives</h4>
+                    <div class="problem">Find d/dx[3x⁴ - 2x² + 5x - 7]</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>d/dx[3x⁴ - 2x² + 5x - 7]
+= 3·4x³ - 2·2x + 5·1 - 0
+= 12x³ - 4x + 5</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 2: Chain Rule</h4>
+                    <div class="problem">Find d/dx[sin(x²)]</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>Using chain rule with:
+  Outer: f(u) = sin(u), f'(u) = cos(u)
+  Inner: g(x) = x², g'(x) = 2x
+
+d/dx[sin(x²)] = cos(x²) · 2x = 2x·cos(x²)</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 3: Partial Derivatives</h4>
+                    <div class="problem">For f(x,y) = x²y + 3xy², find ∂f/∂x and ∂f/∂y</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>∂f/∂x: treat y as constant
+  ∂/∂x[x²y] = 2xy
+  ∂/∂x[3xy²] = 3y²
+  ∂f/∂x = 2xy + 3y²
+
+∂f/∂y: treat x as constant
+  ∂/∂y[x²y] = x²
+  ∂/∂y[3xy²] = 6xy
+  ∂f/∂y = x² + 6xy</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 4: Gradient</h4>
+                    <div class="problem">For f(x,y) = x² + y² (a bowl shape), compute ∇f at point (3, 4)</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>∂f/∂x = 2x
+∂f/∂y = 2y
+
+∇f = [2x, 2y]
+∇f(3,4) = [6, 8]
+
+This points away from the origin (uphill).
+To minimize f, move in direction [-6, -8].</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Key Takeaways -->
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Derivatives measure rate of change</strong>—they tell us the slope at each point</li>
+                    <li><strong>Partial derivatives</strong> handle multiple variables by varying one at a time</li>
+                    <li><strong>The gradient</strong> combines all partials into a vector pointing uphill</li>
+                    <li><strong>Gradient descent</strong> minimizes loss by moving opposite to the gradient</li>
+                    <li><strong>The chain rule</strong> lets us differentiate composed functions (neural networks!)</li>
+                    <li><strong>Backpropagation</strong> efficiently computes gradients via the chain rule</li>
+                </ul>
+            </div>
+            
+            <!-- Final Section -->
+            <section class="math-section">
+                <h2>You're Ready!</h2>
+                <p>
+                    With these concepts, you have the calculus foundation needed for the AI course. 
+                    You'll encounter these ideas throughout:
+                </p>
+                <ul>
+                    <li><strong>Module 1.4:</strong> Optimization & Gradients</li>
+                    <li><strong>Module 2.3:</strong> Backpropagation & Learning</li>
+                    <li><strong>Module 2.4:</strong> Loss Functions & Optimization</li>
+                </ul>
+                
+                <div class="nav-cards">
+                    <a href="linear-algebra.html" class="nav-card">
+                        <span class="nav-card-label">Next Prerequisite</span>
+                        <span class="nav-card-title">Linear Algebra →</span>
+                    </a>
+                    <a href="../../index.html" class="nav-card">
+                        <span class="nav-card-label">Ready to Learn?</span>
+                        <span class="nav-card-title">Start the Course →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+    <script>
+        // Simple toggle for practice problem solutions
+        document.querySelectorAll('.solution-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isHidden = content.style.display === 'none' || !content.style.display;
+                content.style.display = isHidden ? 'block' : 'none';
+                header.textContent = isHidden ? 'Click to hide solution ▲' : 'Click to reveal solution ▼';
+            });
+            // Initially hide solutions
+            header.nextElementSibling.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

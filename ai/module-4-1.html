@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Generative vs Discriminative Models — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item active"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 81%"></div></div>
+                    <span class="progress-text">14 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Generative AI</span><span class="breadcrumb-sep">→</span><span>Module 4.1</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Generative AI</span>
+                        <span class="module-duration">~45 min</span>
+                    </div>
+                    <h1 class="module-title">Generative vs Discriminative Models</h1>
+                    <p class="module-subtitle">
+                        The fundamental divide in machine learning: models that learn to classify 
+                        versus models that learn to create. Understanding this distinction is key 
+                        to grasping modern AI systems from GANs to GPT.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Distinguish generative from discriminative modeling at a mathematical level</li>
+                        <li>Understand when to use each approach and their relative strengths</li>
+                        <li>Explain the major generative model families: VAEs, GANs, autoregressive, flow-based, diffusion</li>
+                        <li>Connect generative modeling to modern applications: image synthesis, language models, drug discovery</li>
+                        <li>Understand the likelihood-based vs likelihood-free training distinction</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Two Fundamentally Different Questions</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">The Core Distinction</div>
+                        <p class="definition-text">
+                            <strong>Discriminative models</strong> learn P(y|x)—the probability of a label given 
+                            input. <strong>Generative models</strong> learn P(x) or P(x,y)—the probability 
+                            distribution over the data itself, enabling them to create new samples.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                <strong>Discriminative:</strong> Given a photo, is this a cat or a dog? 
+                                The model learns to draw boundaries between classes without understanding 
+                                what cats or dogs actually look like.
+                            </p>
+                            <p>
+                                <strong>Generative:</strong> What does a cat look like? The model learns 
+                                the full distribution of cat images—their shapes, textures, poses—well 
+                                enough to generate new, realistic cats that never existed.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Mathematical Framing</span>
+                            <p>
+                                Both approaches relate through Bayes' theorem:
+                            </p>
+                            <div class="formula-inline">
+                                P(y|x) = P(x|y)P(y) / P(x)
+                            </div>
+                            <p>
+                                <strong>Discriminative:</strong> Model P(y|x) directly. Simpler, often more 
+                                accurate for classification when you have labeled data.
+                            </p>
+                            <p>
+                                <strong>Generative:</strong> Model P(x|y) and P(y), or P(x) directly. More 
+                                powerful—can generate samples, detect anomalies, handle missing data—but 
+                                harder to train well.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                <strong>Discriminative examples:</strong> Logistic regression, SVMs, most neural 
+                                network classifiers, BERT for classification
+                            </p>
+                            <p>
+                                <strong>Generative examples:</strong> GPT (generates text), Stable Diffusion 
+                                (generates images), VAEs, GANs, language models
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Discriminative Models: Learning Boundaries</h2>
+                    
+                    <p class="lead-paragraph">
+                        Discriminative models focus entirely on the decision: given input x, what's the 
+                        most likely output y? They don't need to understand the data's full structure—just 
+                        enough to classify it.
+                    </p>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">What Discriminative Models Learn</h3>
+                        <div class="formula-block">
+                            <div class="formula-content">
+                                P(y|x) = f(x; θ)
+                            </div>
+                            <div class="formula-note">
+                                Map input directly to output probability
+                            </div>
+                        </div>
+                        <p>
+                            Training objective: maximize P(y|x) for training examples. The model learns 
+                            whatever features help distinguish classes, ignoring everything else.
+                        </p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Strengths</h4>
+                            <ul>
+                                <li><strong>Higher accuracy:</strong> Directly optimizes for the classification task</li>
+                                <li><strong>Sample efficient:</strong> Doesn't need to model irrelevant features</li>
+                                <li><strong>Simpler:</strong> Modeling P(y|x) is easier than modeling P(x)</li>
+                                <li><strong>Well-understood:</strong> Decades of theory and practice</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Limitations</h4>
+                            <ul>
+                                <li><strong>Can't generate:</strong> No way to sample new data points</li>
+                                <li><strong>Needs labels:</strong> Requires supervised data</li>
+                                <li><strong>Poor with missing data:</strong> Can't infer missing features</li>
+                                <li><strong>Overconfident:</strong> May give high confidence on OOD inputs</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example-block">
+                        <h4 class="example-title">Discriminative Model Examples</h4>
+                        <div class="example-grid">
+                            <div class="example-item">
+                                <span class="example-name">Logistic Regression</span>
+                                <span class="example-desc">Linear decision boundary, P(y|x) via sigmoid</span>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-name">Random Forests</span>
+                                <span class="example-desc">Ensemble of decision trees for classification</span>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-name">Neural Classifiers</span>
+                                <span class="example-desc">Deep networks ending in softmax</span>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-name">BERT (fine-tuned)</span>
+                                <span class="example-desc">Transformer encoder for classification</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Generative Models: Learning the Data Distribution</h2>
+                    
+                    <p class="lead-paragraph">
+                        Generative models learn the underlying distribution of the data itself. This is 
+                        fundamentally harder—but enables sampling, density estimation, and understanding 
+                        data structure.
+                    </p>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">What Generative Models Learn</h3>
+                        <div class="formula-block">
+                            <div class="formula-content">
+                                P(x) = ∫ P(x|z)P(z) dz
+                            </div>
+                            <div class="formula-note">
+                                Model the full data distribution, often with latent variables z
+                            </div>
+                        </div>
+                        <p>
+                            Training objective: maximize P(x) for training examples (likelihood-based), 
+                            or match generated samples to real data distribution (likelihood-free).
+                        </p>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Generative Model Promise</h4>
+                            <p>
+                                If you truly understand a data distribution, you can: (1) generate new 
+                                samples, (2) compute how likely any sample is, (3) fill in missing parts, 
+                                (4) detect anomalies, (5) learn useful representations without labels.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Strengths</h4>
+                            <ul>
+                                <li><strong>Generation:</strong> Create new, realistic samples</li>
+                                <li><strong>Unsupervised:</strong> Learn from unlabeled data</li>
+                                <li><strong>Density estimation:</strong> Know how likely any sample is</li>
+                                <li><strong>Missing data:</strong> Can impute missing features</li>
+                                <li><strong>Representation learning:</strong> Learn meaningful latent spaces</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Challenges</h4>
+                            <ul>
+                                <li><strong>Harder to train:</strong> Modeling P(x) is complex</li>
+                                <li><strong>Evaluation is hard:</strong> How do you measure generation quality?</li>
+                                <li><strong>Mode collapse:</strong> May miss parts of the distribution</li>
+                                <li><strong>Computationally expensive:</strong> Often slow to train/sample</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Generative Model Zoo</h2>
+                    
+                    <p class="lead-paragraph">
+                        There are many approaches to generative modeling, each with different trade-offs. 
+                        Understanding these families is crucial for choosing the right tool.
+                    </p>
+
+                    <div class="model-zoo">
+                        <div class="zoo-card autoregressive">
+                            <div class="zoo-header">
+                                <h3>Autoregressive Models</h3>
+                                <span class="zoo-examples">GPT, LLaMA, PixelCNN, WaveNet</span>
+                            </div>
+                            <div class="zoo-content">
+                                <p class="zoo-idea">
+                                    <strong>Key idea:</strong> Factor P(x) as a product of conditionals. 
+                                    Generate one element at a time, each conditioned on previous elements.
+                                </p>
+                                <div class="zoo-formula">P(x) = P(x₁)P(x₂|x₁)P(x₃|x₁,x₂)...</div>
+                                <div class="zoo-props">
+                                    <span class="prop-good">✓ Exact likelihood</span>
+                                    <span class="prop-good">✓ High quality</span>
+                                    <span class="prop-bad">✗ Sequential (slow)</span>
+                                    <span class="prop-bad">✗ Unidirectional</span>
+                                </div>
+                                <p class="zoo-note">
+                                    This is how GPT works: predict next token given all previous tokens. 
+                                    Extremely successful for language but slow for images.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="zoo-card vae">
+                            <div class="zoo-header">
+                                <h3>Variational Autoencoders (VAEs)</h3>
+                                <span class="zoo-examples">VAE, β-VAE, VQ-VAE</span>
+                            </div>
+                            <div class="zoo-content">
+                                <p class="zoo-idea">
+                                    <strong>Key idea:</strong> Learn a latent space z that captures data 
+                                    structure. Encoder maps x→z, decoder maps z→x.
+                                </p>
+                                <div class="zoo-formula">max E[log P(x|z)] - KL(Q(z|x) || P(z))</div>
+                                <div class="zoo-props">
+                                    <span class="prop-good">✓ Learned latent space</span>
+                                    <span class="prop-good">✓ Stable training</span>
+                                    <span class="prop-good">✓ Fast sampling</span>
+                                    <span class="prop-bad">✗ Blurry outputs</span>
+                                </div>
+                                <p class="zoo-note">
+                                    Great for learning representations. The latent space often has meaningful 
+                                    structure (interpolation, arithmetic). Limited by blurriness.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="zoo-card gan">
+                            <div class="zoo-header">
+                                <h3>Generative Adversarial Networks (GANs)</h3>
+                                <span class="zoo-examples">StyleGAN, BigGAN, CycleGAN</span>
+                            </div>
+                            <div class="zoo-content">
+                                <p class="zoo-idea">
+                                    <strong>Key idea:</strong> Two networks compete—generator creates fakes, 
+                                    discriminator tries to detect them. Both improve through competition.
+                                </p>
+                                <div class="zoo-formula">min_G max_D E[log D(x)] + E[log(1-D(G(z)))]</div>
+                                <div class="zoo-props">
+                                    <span class="prop-good">✓ Sharp, realistic outputs</span>
+                                    <span class="prop-good">✓ Fast sampling</span>
+                                    <span class="prop-bad">✗ Training instability</span>
+                                    <span class="prop-bad">✗ Mode collapse</span>
+                                    <span class="prop-bad">✗ No likelihood</span>
+                                </div>
+                                <p class="zoo-note">
+                                    Dominated image generation 2014-2021. Produces sharp images but training 
+                                    is notoriously difficult. Largely superseded by diffusion models.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="zoo-card flow">
+                            <div class="zoo-header">
+                                <h3>Normalizing Flows</h3>
+                                <span class="zoo-examples">RealNVP, Glow, Neural Spline Flows</span>
+                            </div>
+                            <div class="zoo-content">
+                                <p class="zoo-idea">
+                                    <strong>Key idea:</strong> Learn an invertible transformation from a 
+                                    simple distribution (Gaussian) to the data distribution.
+                                </p>
+                                <div class="zoo-formula">P(x) = P(f⁻¹(x)) |det(∂f⁻¹/∂x)|</div>
+                                <div class="zoo-props">
+                                    <span class="prop-good">✓ Exact likelihood</span>
+                                    <span class="prop-good">✓ Exact inference</span>
+                                    <span class="prop-good">✓ Invertible</span>
+                                    <span class="prop-bad">✗ Architectural constraints</span>
+                                    <span class="prop-bad">✗ Lower quality</span>
+                                </div>
+                                <p class="zoo-note">
+                                    Theoretically elegant: exact likelihood and exact latent inference. 
+                                    But invertibility constraints limit expressiveness.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="zoo-card diffusion">
+                            <div class="zoo-header">
+                                <h3>Diffusion Models</h3>
+                                <span class="zoo-examples">DDPM, Stable Diffusion, DALL-E 2/3, Sora</span>
+                            </div>
+                            <div class="zoo-content">
+                                <p class="zoo-idea">
+                                    <strong>Key idea:</strong> Gradually add noise until data becomes pure noise, 
+                                    then learn to reverse the process. Generate by denoising random noise.
+                                </p>
+                                <div class="zoo-formula">Learn to predict ε from x_t = √α_t x + √(1-α_t) ε</div>
+                                <div class="zoo-props">
+                                    <span class="prop-good">✓ State-of-the-art quality</span>
+                                    <span class="prop-good">✓ Stable training</span>
+                                    <span class="prop-good">✓ Mode coverage</span>
+                                    <span class="prop-bad">✗ Slow sampling</span>
+                                </div>
+                                <p class="zoo-note">
+                                    The current dominant paradigm for image/video generation. Combines 
+                                    VAE stability with GAN quality. Covered in depth in Module 4.2.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Likelihood-Based vs Likelihood-Free Training</h2>
+                    
+                    <div class="comparison-cards">
+                        <div class="training-card likelihood">
+                            <h3 class="card-title">Likelihood-Based</h3>
+                            <p class="card-subtitle">Directly maximize P(data)</p>
+                            <div class="card-content">
+                                <p>
+                                    <strong>Objective:</strong> Maximize log P(x) for training data. Requires 
+                                    being able to compute (or bound) the likelihood.
+                                </p>
+                                <p>
+                                    <strong>Examples:</strong> Autoregressive models, VAEs, normalizing flows, 
+                                    diffusion models (via ELBO)
+                                </p>
+                                <p>
+                                    <strong>Advantage:</strong> Principled, comparable across models (bits/dim), 
+                                    covers all modes
+                                </p>
+                                <p>
+                                    <strong>Limitation:</strong> High likelihood ≠ high quality samples. 
+                                    Can assign high probability to blurry averages.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="training-card likelihood-free">
+                            <h3 class="card-title">Likelihood-Free</h3>
+                            <p class="card-subtitle">Match distributions without explicit likelihood</p>
+                            <div class="card-content">
+                                <p>
+                                    <strong>Objective:</strong> Make generated samples indistinguishable from 
+                                    real samples, without computing P(x).
+                                </p>
+                                <p>
+                                    <strong>Examples:</strong> GANs (adversarial loss), energy-based models 
+                                    (contrastive divergence)
+                                </p>
+                                <p>
+                                    <strong>Advantage:</strong> Can produce sharper samples, more flexible 
+                                    architectures
+                                </p>
+                                <p>
+                                    <strong>Limitation:</strong> Training instability, mode collapse, hard 
+                                    to evaluate, no density estimation
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">When to Use Each Approach</h2>
+                    
+                    <div class="use-case-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Best Approach</th>
+                                    <th>Reasoning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Image classification</td>
+                                    <td class="discriminative">Discriminative</td>
+                                    <td>Only need P(label|image); discriminative is more accurate</td>
+                                </tr>
+                                <tr>
+                                    <td>Spam detection</td>
+                                    <td class="discriminative">Discriminative</td>
+                                    <td>Binary classification with labeled data</td>
+                                </tr>
+                                <tr>
+                                    <td>Image generation</td>
+                                    <td class="generative">Generative (Diffusion)</td>
+                                    <td>Need to sample from P(image); discriminative can't generate</td>
+                                </tr>
+                                <tr>
+                                    <td>Text generation</td>
+                                    <td class="generative">Generative (Autoregressive)</td>
+                                    <td>Need to produce coherent sequences; LLMs are autoregressive</td>
+                                </tr>
+                                <tr>
+                                    <td>Anomaly detection</td>
+                                    <td class="generative">Generative</td>
+                                    <td>Need P(x) to identify unlikely samples</td>
+                                </tr>
+                                <tr>
+                                    <td>Semi-supervised learning</td>
+                                    <td class="hybrid">Hybrid</td>
+                                    <td>Generative can leverage unlabeled data</td>
+                                </tr>
+                                <tr>
+                                    <td>Drug molecule design</td>
+                                    <td class="generative">Generative (VAE/Diffusion)</td>
+                                    <td>Need to generate novel molecules with desired properties</td>
+                                </tr>
+                                <tr>
+                                    <td>Missing data imputation</td>
+                                    <td class="generative">Generative</td>
+                                    <td>Need to model joint distribution to infer missing features</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Generative models are always better because they learn more"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Learning P(x) is harder and requires more data. For classification, a 
+                                discriminative model that ignores irrelevant features often outperforms 
+                                a generative one.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> "Better" depends on the task. For 
+                                classification with labeled data, discriminative usually wins. For generation, 
+                                anomaly detection, or semi-supervised learning, generative is necessary.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"GANs are the best generative models"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                GANs dominated 2014-2021, but diffusion models now achieve better quality, 
+                                more stable training, and better mode coverage. The field evolves rapidly.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Different generative families have 
+                                different strengths. Diffusion models currently lead for images; autoregressive 
+                                models lead for text. The "best" depends on the application.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"High likelihood means high-quality samples"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                A model can assign high likelihood to blurry, averaged images. Likelihood 
+                                measures coverage of the distribution, not perceptual quality.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Likelihood and sample quality are 
+                                different objectives that can conflict. Evaluation requires multiple metrics: 
+                                likelihood, FID, human evaluation, downstream task performance.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Generative vs Discriminative
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore the difference between discriminative and generative approaches 
+                            visually. See how each model type learns from the same data.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="boundary">Decision Boundary vs Density</button>
+                            <button class="lab-tab" data-tab="sample">Sampling from Generative Models</button>
+                        </div>
+
+                        <div class="lab-panel active" id="boundary-panel">
+                            <div class="boundary-lab">
+                                <div class="boundary-viz">
+                                    <div class="viz-column">
+                                        <h4>Discriminative (P(y|x))</h4>
+                                        <canvas id="disc-canvas" width="280" height="280"></canvas>
+                                        <p class="viz-desc">Learns the boundary between classes</p>
+                                    </div>
+                                    <div class="viz-column">
+                                        <h4>Generative (P(x|y) for each class)</h4>
+                                        <canvas id="gen-canvas" width="280" height="280"></canvas>
+                                        <p class="viz-desc">Learns the distribution of each class</p>
+                                    </div>
+                                </div>
+                                <div class="boundary-controls">
+                                    <button id="gen-new-data" class="btn btn-primary">Generate New Data</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="sample-panel">
+                            <div class="sample-lab">
+                                <div class="sample-description">
+                                    <p>
+                                        Watch how different generative model types produce samples. 
+                                        Each has a distinct generation process.
+                                    </p>
+                                </div>
+                                <div class="sample-grid">
+                                    <div class="sample-type">
+                                        <h4>Autoregressive</h4>
+                                        <canvas id="ar-canvas" width="180" height="180"></canvas>
+                                        <p>Generates pixel by pixel, left-to-right, top-to-bottom</p>
+                                    </div>
+                                    <div class="sample-type">
+                                        <h4>VAE</h4>
+                                        <canvas id="vae-canvas" width="180" height="180"></canvas>
+                                        <p>Samples latent z, decodes to image (often blurry)</p>
+                                    </div>
+                                    <div class="sample-type">
+                                        <h4>Diffusion</h4>
+                                        <canvas id="diff-canvas" width="180" height="180"></canvas>
+                                        <p>Starts with noise, gradually denoises</p>
+                                    </div>
+                                </div>
+                                <div class="sample-controls">
+                                    <button id="run-sampling" class="btn btn-primary">Generate Samples</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Discriminative models</strong> only learn the boundary—they don't "understand" the data distribution.</li>
+                            <li><strong>Generative models</strong> learn the full shape of each class, enabling sampling.</li>
+                            <li><strong>Autoregressive</strong> is sequential; VAE is parallel but blurry; diffusion iteratively refines.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What is the key mathematical difference between generative and discriminative models?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Generative models are always larger</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Discriminative models learn P(y|x); generative models learn P(x) or P(x,y)</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Generative models are supervised; discriminative are unsupervised</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Discriminative models generate data; generative models classify</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">Which generative model family does GPT belong to?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">Variational Autoencoder</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">Autoregressive</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">Generative Adversarial Network</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">Normalizing Flow</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">Why might a discriminative model outperform a generative model for classification?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">Discriminative models are always more accurate</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">Discriminative models directly optimize for the classification objective without modeling irrelevant features</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">Generative models cannot do classification</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">Discriminative models require less computation</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">What is a key advantage of diffusion models over GANs?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">Faster sampling</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">More stable training and better mode coverage</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">Smaller model size</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">No neural networks required</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">Which task requires a generative model rather than a discriminative one?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">Email spam classification</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">Creating new images of faces that don't exist</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">Predicting house prices</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">Sentiment analysis of reviews</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-3-4.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Large Language Models</span>
+                    </a>
+                    <a href="module-4-2.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Diffusion Models →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-4-1.js"></script>
+</body>
+</html>
+

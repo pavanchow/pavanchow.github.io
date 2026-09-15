@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Multimodal Systems — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item active"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 93%"></div></div>
+                    <span class="progress-text">16 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Generative AI</span><span class="breadcrumb-sep">→</span><span>Module 4.3</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Generative AI</span>
+                        <span class="module-duration">~50 min</span>
+                    </div>
+                    <h1 class="module-title">Multimodal Systems</h1>
+                    <p class="module-subtitle">
+                        How AI systems perceive the world through multiple senses simultaneously. 
+                        From CLIP's unified embedding space to GPT-4V's visual reasoning to Gemini's 
+                        native multimodality—learn how modern systems bridge text, images, audio, and video.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand what multimodal learning means and why it matters</li>
+                        <li>Explain contrastive learning and CLIP's shared embedding space</li>
+                        <li>Distinguish different multimodal architectures: fusion strategies and their trade-offs</li>
+                        <li>Understand how vision-language models like GPT-4V and LLaVA process images</li>
+                        <li>Explore the frontier: video understanding, audio integration, and native multimodality</li>
+                        <li>Recognize challenges: hallucination, grounding, and cross-modal alignment</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Multimodal Paradigm</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Multimodal AI</div>
+                        <p class="definition-text">
+                            Systems that can process, understand, and generate information across multiple 
+                            modalities (text, images, audio, video) within a unified framework, enabling 
+                            cross-modal reasoning and generation.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Humans understand the world through multiple senses simultaneously. When you 
+                                read "the dog barked," you can imagine how a dog looks and sounds. Multimodal 
+                                AI aims to develop this same cross-modal understanding: a system that can 
+                                describe images, answer questions about videos, generate images from text, 
+                                and reason across modalities.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical Framework</span>
+                            <p>
+                                The core challenge: different modalities have fundamentally different structures. 
+                                Text is discrete tokens in sequence. Images are 2D grids of pixels. Audio is 
+                                1D waveforms. Video adds temporal dynamics. Multimodal systems must:
+                            </p>
+                            <ul>
+                                <li><strong>Encode</strong> each modality into a representation</li>
+                                <li><strong>Align</strong> representations so cross-modal relationships emerge</li>
+                                <li><strong>Fuse</strong> information across modalities for unified reasoning</li>
+                                <li><strong>Decode</strong> back to any target modality</li>
+                            </ul>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                <strong>Vision-Language Models:</strong> GPT-4V, Gemini, Claude 3, LLaVA—understand 
+                                images and respond in text.
+                            </p>
+                            <p>
+                                <strong>Text-to-Image:</strong> DALL-E, Stable Diffusion, Midjourney—generate 
+                                images from text descriptions.
+                            </p>
+                            <p>
+                                <strong>Any-to-Any:</strong> Emerging systems (Gemini 1.5, GPT-4o) can handle 
+                                multiple input modalities and generate in multiple output modalities.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">CLIP: The Foundation of Modern Multimodality</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">CLIP (Contrastive Language-Image Pre-training)</div>
+                        <p class="definition-text">
+                            A model that learns a shared embedding space for images and text through 
+                            contrastive learning on 400M image-text pairs from the internet. Any image 
+                            and any text can be embedded and compared in the same vector space.
+                        </p>
+                    </div>
+
+                    <div class="clip-architecture">
+                        <div class="arch-title">CLIP Architecture</div>
+                        <div class="clip-visual">
+                            <div class="encoder-box image-encoder">
+                                <h4>Image Encoder</h4>
+                                <p>ViT or ResNet</p>
+                                <div class="encoder-output">Image Embedding<br>v ∈ ℝᵈ</div>
+                            </div>
+                            <div class="encoder-box text-encoder">
+                                <h4>Text Encoder</h4>
+                                <p>Transformer</p>
+                                <div class="encoder-output">Text Embedding<br>t ∈ ℝᵈ</div>
+                            </div>
+                            <div class="shared-space">
+                                <h4>Shared Embedding Space</h4>
+                                <p>cosine similarity(v, t)</p>
+                                <div class="similarity-visual">
+                                    <span class="match">✓ High: matching pairs</span>
+                                    <span class="mismatch">✗ Low: non-matching</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">Contrastive Learning Objective</h3>
+                        <p>
+                            Given a batch of N (image, text) pairs, CLIP learns to predict which image 
+                            goes with which text. The training creates N correct pairs and N²-N incorrect 
+                            pairs within each batch.
+                        </p>
+                        <div class="formula-block">
+                            <div class="formula-content">
+                                L = -log [exp(sim(vᵢ, tᵢ)/τ) / Σⱼ exp(sim(vᵢ, tⱼ)/τ)]
+                            </div>
+                            <div class="formula-note">
+                                InfoNCE loss: maximize similarity for true pairs, minimize for false pairs
+                            </div>
+                        </div>
+                        <p>
+                            The temperature τ controls how "peaked" the distribution is. After training, 
+                            semantically related images and texts cluster together in embedding space.
+                        </p>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Why CLIP Changed Everything</h4>
+                            <ul>
+                                <li><strong>Zero-shot classification:</strong> Describe any class in text, find matching images</li>
+                                <li><strong>Open vocabulary:</strong> Not limited to pre-defined categories</li>
+                                <li><strong>Transfer learning:</strong> CLIP embeddings work for downstream tasks</li>
+                                <li><strong>Image generation:</strong> CLIP guides diffusion models via text embeddings</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="applications-grid">
+                        <div class="app-card">
+                            <h4>Image Search</h4>
+                            <p>Search images with natural language queries. Embed query, find nearest image embeddings.</p>
+                        </div>
+                        <div class="app-card">
+                            <h4>Zero-Shot Classification</h4>
+                            <p>"A photo of a [cat/dog/bird]"—compare image to each text embedding, pick highest.</p>
+                        </div>
+                        <div class="app-card">
+                            <h4>CLIP + Diffusion</h4>
+                            <p>Text encoder for Stable Diffusion. Guide image generation toward text description.</p>
+                        </div>
+                        <div class="app-card">
+                            <h4>Content Moderation</h4>
+                            <p>Embed policy descriptions, flag images that embed close to prohibited content.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Vision-Language Models: Images as First-Class Input</h2>
+                    
+                    <p class="lead-paragraph">
+                        While CLIP aligns image and text embeddings, Vision-Language Models (VLMs) go further: 
+                        they process images directly within a language model, enabling visual reasoning, 
+                        description, and question-answering.
+                    </p>
+
+                    <div class="vlm-approaches">
+                        <div class="approach-card">
+                            <h3>Approach 1: Adapter-Based (LLaVA, MiniGPT-4)</h3>
+                            <div class="approach-diagram">
+                                <div class="approach-step">Image → ViT Encoder → Visual Tokens</div>
+                                <div class="approach-arrow">↓</div>
+                                <div class="approach-step">Projection/Adapter Layer</div>
+                                <div class="approach-arrow">↓</div>
+                                <div class="approach-step">Visual Tokens + Text Tokens → Frozen LLM</div>
+                            </div>
+                            <p class="approach-desc">
+                                Project visual features into the LLM's embedding space. The LLM treats visual 
+                                tokens like text tokens. Often keeps LLM frozen, training only the projection.
+                            </p>
+                            <div class="approach-pros">
+                                <span class="pro">✓ Leverages existing LLM capabilities</span>
+                                <span class="pro">✓ Efficient training</span>
+                                <span class="con">✗ Visual understanding limited by projection</span>
+                            </div>
+                        </div>
+
+                        <div class="approach-card">
+                            <h3>Approach 2: Native Multimodal (Gemini, GPT-4V)</h3>
+                            <div class="approach-diagram">
+                                <div class="approach-step">Image → Visual Tokenizer → Visual Tokens</div>
+                                <div class="approach-arrow">+</div>
+                                <div class="approach-step">Text → Text Tokenizer → Text Tokens</div>
+                                <div class="approach-arrow">↓</div>
+                                <div class="approach-step">Interleaved Tokens → Unified Transformer</div>
+                            </div>
+                            <p class="approach-desc">
+                                Train a single model from scratch on interleaved multimodal data. Images and 
+                                text are processed by the same transformer with shared attention.
+                            </p>
+                            <div class="approach-pros">
+                                <span class="pro">✓ Deep cross-modal integration</span>
+                                <span class="pro">✓ Better visual understanding</span>
+                                <span class="con">✗ Requires massive training from scratch</span>
+                            </div>
+                        </div>
+
+                        <div class="approach-card">
+                            <h3>Approach 3: Q-Former (BLIP-2)</h3>
+                            <div class="approach-diagram">
+                                <div class="approach-step">Image → Frozen ViT → Image Features</div>
+                                <div class="approach-arrow">↓</div>
+                                <div class="approach-step">Q-Former (learnable queries) → Compact Visual Rep</div>
+                                <div class="approach-arrow">↓</div>
+                                <div class="approach-step">Compact Tokens → LLM</div>
+                            </div>
+                            <p class="approach-desc">
+                                Use learnable "queries" that attend to image features and produce a fixed number 
+                                of tokens. Bridges frozen vision encoder to frozen LLM efficiently.
+                            </p>
+                            <div class="approach-pros">
+                                <span class="pro">✓ Both encoders frozen</span>
+                                <span class="pro">✓ Very parameter-efficient</span>
+                                <span class="con">✗ Information bottleneck in Q-Former</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Visual Tokenization Strategies</h3>
+                        <p>
+                            How do you convert a continuous image into discrete tokens for a transformer?
+                        </p>
+                        <div class="tokenization-methods">
+                            <div class="method">
+                                <strong>Patch Embedding (ViT-style):</strong> Split image into patches (e.g., 16×16), 
+                                linearly embed each patch. A 224×224 image → 196 tokens.
+                            </div>
+                            <div class="method">
+                                <strong>VQ-VAE Tokens:</strong> Use a discrete codebook. Each patch maps to a 
+                                discrete token ID. Enables generation.
+                            </div>
+                            <div class="method">
+                                <strong>Dynamic Resolution:</strong> GPT-4V and Gemini handle variable image sizes 
+                                with adaptive tokenization—more tokens for larger/complex images.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Text-to-Image: Generating Visual Content</h2>
+                    
+                    <p class="lead-paragraph">
+                        The reverse direction: given text, generate images. Modern text-to-image combines 
+                        text encoders (CLIP or T5), diffusion models, and conditioning mechanisms.
+                    </p>
+
+                    <div class="t2i-pipeline">
+                        <div class="pipeline-title">Stable Diffusion Pipeline</div>
+                        <div class="pipeline-stages">
+                            <div class="pipeline-stage">
+                                <div class="stage-num">1</div>
+                                <h4>Text Encoding</h4>
+                                <p>CLIP text encoder maps prompt to embeddings</p>
+                                <div class="stage-detail">"A cat sitting on a book" → [e₁, e₂, ..., eₙ]</div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage">
+                                <div class="stage-num">2</div>
+                                <h4>Latent Diffusion</h4>
+                                <p>U-Net denoises in latent space, guided by text</p>
+                                <div class="stage-detail">Cross-attention injects text at each layer</div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage">
+                                <div class="stage-num">3</div>
+                                <h4>VAE Decode</h4>
+                                <p>Decode latent to pixel space</p>
+                                <div class="stage-detail">64×64×4 latent → 512×512×3 image</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="conditioning-deep-dive">
+                        <h3>How Text Guides Generation</h3>
+                        <p>
+                            Text conditioning happens through <strong>cross-attention</strong> in the U-Net. 
+                            At each attention layer:
+                        </p>
+                        <div class="formula-block">
+                            <div class="formula-content">
+                                Q = W_Q · image_features
+                                K, V = W_K · text_emb, W_V · text_emb
+                            </div>
+                            <div class="formula-note">
+                                Image features query into text embeddings—learning what parts of the 
+                                description are relevant for each spatial location
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>DALL-E 3's Innovation: Caption Improvement</h4>
+                            <p>
+                                DALL-E 3 doesn't just use user prompts directly—it rewrites them with an 
+                                LLM to be more detailed and unambiguous. "A cat" becomes "A fluffy orange 
+                                tabby cat sitting alertly on a weathered wooden surface, soft natural 
+                                lighting, photorealistic style." This dramatically improves prompt following.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Beyond Image-Text: Video, Audio, and More</h2>
+                    
+                    <div class="modality-expansion">
+                        <div class="modality-card video">
+                            <h3>Video Understanding</h3>
+                            <div class="modality-content">
+                                <p><strong>Challenge:</strong> Videos add temporal dimension. A 10s video at 30fps 
+                                = 300 frames. Can't process each frame independently.</p>
+                                <p><strong>Approaches:</strong></p>
+                                <ul>
+                                    <li>Sample key frames + image understanding</li>
+                                    <li>3D convolutions (like 2D conv but across time)</li>
+                                    <li>Temporal attention: attend across frames</li>
+                                    <li>Token compression: represent video as fewer tokens</li>
+                                </ul>
+                                <p><strong>Systems:</strong> GPT-4V (limited), Gemini 1.5 (1M token context), 
+                                Video-LLaVA, Sora (generation)</p>
+                            </div>
+                        </div>
+
+                        <div class="modality-card audio">
+                            <h3>Audio Integration</h3>
+                            <div class="modality-content">
+                                <p><strong>Challenge:</strong> Audio is high-dimensional (44kHz = 44,000 samples/sec). 
+                                Speech, music, environmental sounds all differ.</p>
+                                <p><strong>Approaches:</strong></p>
+                                <ul>
+                                    <li>Mel spectrograms → treat as images</li>
+                                    <li>Audio tokenizers (EnCodec, SoundStream)</li>
+                                    <li>Whisper embeddings for speech</li>
+                                </ul>
+                                <p><strong>Systems:</strong> GPT-4o (native audio), Gemini (audio input), 
+                                AudioPaLM, MusicGen</p>
+                            </div>
+                        </div>
+
+                        <div class="modality-card unified">
+                            <h3>Native Multimodality</h3>
+                            <div class="modality-content">
+                                <p><strong>Goal:</strong> One model that naturally handles any combination of 
+                                input/output modalities.</p>
+                                <p><strong>Architecture:</strong></p>
+                                <ul>
+                                    <li>Unified tokenization across modalities</li>
+                                    <li>Single transformer processes interleaved sequences</li>
+                                    <li>Modality-specific heads for generation</li>
+                                </ul>
+                                <p><strong>Systems:</strong> Gemini, GPT-4o, Chameleon (Meta). These represent 
+                                the frontier—truly unified perception.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Multimodal Fusion Strategies</h2>
+                    
+                    <p class="lead-paragraph">
+                        How and when do you combine information from different modalities? This 
+                        architectural choice significantly impacts what the model can learn.
+                    </p>
+
+                    <div class="fusion-strategies">
+                        <div class="fusion-card early">
+                            <h4>Early Fusion</h4>
+                            <div class="fusion-diagram">
+                                <div class="fusion-step">Modality A → Tokens</div>
+                                <div class="fusion-step">Modality B → Tokens</div>
+                                <div class="fusion-combine">Concatenate</div>
+                                <div class="fusion-step">→ Joint Transformer → Output</div>
+                            </div>
+                            <p>Combine at input level. Full cross-modal attention from the start.</p>
+                            <div class="fusion-props">
+                                <span class="prop-good">Deep integration</span>
+                                <span class="prop-bad">Computationally heavy</span>
+                            </div>
+                        </div>
+
+                        <div class="fusion-card late">
+                            <h4>Late Fusion</h4>
+                            <div class="fusion-diagram">
+                                <div class="fusion-step">Modality A → Encoder A → Rep A</div>
+                                <div class="fusion-step">Modality B → Encoder B → Rep B</div>
+                                <div class="fusion-combine">Combine (concat, add, project)</div>
+                                <div class="fusion-step">→ Decision Layer → Output</div>
+                            </div>
+                            <p>Process modalities separately, combine at the end.</p>
+                            <div class="fusion-props">
+                                <span class="prop-good">Modular, reusable encoders</span>
+                                <span class="prop-bad">Limited cross-modal reasoning</span>
+                            </div>
+                        </div>
+
+                        <div class="fusion-card cross">
+                            <h4>Cross-Attention Fusion</h4>
+                            <div class="fusion-diagram">
+                                <div class="fusion-step">Modality A → Self-Attention Layers</div>
+                                <div class="fusion-step">Modality B → Self-Attention Layers</div>
+                                <div class="fusion-combine">Cross-Attention (A attends to B)</div>
+                                <div class="fusion-step">→ More Layers → Output</div>
+                            </div>
+                            <p>Dedicated cross-attention layers for modality interaction.</p>
+                            <div class="fusion-props">
+                                <span class="prop-good">Controlled integration</span>
+                                <span class="prop-good">Efficient</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Challenges in Multimodal AI</h2>
+                    
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <h4>Hallucination</h4>
+                            <p>
+                                VLMs can "see" things that aren't there. When asked about an image, they may 
+                                invent objects, attributes, or relationships based on statistical priors rather 
+                                than visual evidence. "How many dogs are in the image?" might get "3" when there 
+                                are 2—because 3 is common in training data.
+                            </p>
+                            <div class="challenge-note">
+                                <strong>Mitigation:</strong> Better grounding, explicit verification, 
+                                chain-of-thought visual reasoning
+                            </div>
+                        </div>
+
+                        <div class="challenge-card">
+                            <h4>Grounding</h4>
+                            <p>
+                                Does the model truly understand which parts of an image correspond to which 
+                                words? Or is it pattern matching? Grounding tests require localization: 
+                                "Where is the red ball?" should point to specific pixels.
+                            </p>
+                            <div class="challenge-note">
+                                <strong>Mitigation:</strong> Grounding annotations in training, region-text 
+                                pairing, object detection integration
+                            </div>
+                        </div>
+
+                        <div class="challenge-card">
+                            <h4>Modality Imbalance</h4>
+                            <p>
+                                Text data is vastly more abundant and structured than image/video data. 
+                                Models may rely too heavily on text priors, ignoring visual information 
+                                when it conflicts with textual expectations.
+                            </p>
+                            <div class="challenge-note">
+                                <strong>Mitigation:</strong> Balanced training, visual-only tasks, 
+                                adversarial probing
+                            </div>
+                        </div>
+
+                        <div class="challenge-card">
+                            <h4>Compositionality</h4>
+                            <p>
+                                "A red cube on a blue sphere" vs "a blue cube on a red sphere"—models 
+                                struggle with binding attributes to objects and spatial relationships. 
+                                Text-to-image often fails on precise compositions.
+                            </p>
+                            <div class="challenge-note">
+                                <strong>Mitigation:</strong> Structured representations, compositional 
+                                training data, explicit reasoning
+                            </div>
+                        </div>
+
+                        <div class="challenge-card">
+                            <h4>Efficiency</h4>
+                            <p>
+                                Images are expensive: one 224×224 image → 196 tokens. Videos explode: 
+                                10 seconds → thousands of tokens. Long-context multimodal is a major 
+                                computational challenge.
+                            </p>
+                            <div class="challenge-note">
+                                <strong>Mitigation:</strong> Token compression, sparse attention, 
+                                hierarchical representations
+                            </div>
+                        </div>
+
+                        <div class="challenge-card">
+                            <h4>Evaluation</h4>
+                            <p>
+                                How do you measure multimodal understanding? Benchmarks are limited. 
+                                Models can game specific tests without true understanding. Human eval 
+                                is expensive and subjective.
+                            </p>
+                            <div class="challenge-note">
+                                <strong>Mitigation:</strong> Diverse benchmarks, adversarial testing, 
+                                capability-specific probes
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Multimodal models 'see' images like humans do"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                VLMs process images as collections of patch embeddings. They don't have 
+                                biological vision—no eye movements, no depth perception, no real-time 
+                                continuous processing. Their "understanding" is statistical correlation.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Multimodal models learn statistical 
+                                associations between visual patterns and language. They can be remarkably 
+                                capable, but their perception differs fundamentally from human vision.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"CLIP understands the meaning of images"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                CLIP learns to match images and text that co-occur on the internet. It 
+                                captures visual-linguistic correlations, not semantic understanding. 
+                                It can be fooled by adversarial examples or distribution shifts.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> CLIP learns a powerful cross-modal 
+                                embedding space that captures internet-scale correlations. This is useful 
+                                but not equivalent to understanding. Always probe for failure modes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More modalities always means better understanding"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Adding modalities introduces training complexity, potential for modality 
+                                conflict, and computational overhead. Poorly integrated modalities can 
+                                degrade performance on individual tasks.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Multimodality is valuable when 
+                                modalities provide complementary information and are well-integrated. 
+                                The architecture and training matter more than simply "more inputs."
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Multimodal Embedding Space
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore how CLIP-style models create a shared embedding space where images 
+                            and text can be compared. See how semantic similarity works across modalities.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="embedding-lab">
+                            <div class="embedding-controls">
+                                <h4>Add Items to Embedding Space</h4>
+                                <div class="control-row">
+                                    <select id="item-type">
+                                        <option value="image">Image Concept</option>
+                                        <option value="text">Text Description</option>
+                                    </select>
+                                    <select id="item-value">
+                                        <option value="dog">Dog</option>
+                                        <option value="cat">Cat</option>
+                                        <option value="car">Car</option>
+                                        <option value="airplane">Airplane</option>
+                                        <option value="house">House</option>
+                                        <option value="tree">Tree</option>
+                                    </select>
+                                    <button id="add-item" class="btn btn-primary">Add</button>
+                                </div>
+                                <div class="text-input-row">
+                                    <input type="text" id="custom-text" placeholder="Or enter custom text...">
+                                    <button id="add-custom" class="btn btn-secondary">Add Text</button>
+                                </div>
+                            </div>
+                            
+                            <div class="embedding-visualization">
+                                <canvas id="embedding-canvas" width="500" height="350"></canvas>
+                            </div>
+                            
+                            <div class="similarity-panel">
+                                <h4>Similarity Matrix</h4>
+                                <div id="similarity-matrix"></div>
+                            </div>
+                            
+                            <div class="lab-actions">
+                                <button id="clear-embeddings" class="btn btn-outline">Clear All</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Cross-modal alignment:</strong> "Dog" text embeds near dog image</li>
+                            <li><strong>Semantic clusters:</strong> Animals cluster together, vehicles cluster together</li>
+                            <li><strong>Similarity scores:</strong> Cosine similarity measures alignment</li>
+                            <li><strong>Zero-shot:</strong> This enables classifying images with text descriptions</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What is CLIP's training objective?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Predict the next token in image descriptions</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Contrastively align matching image-text pairs while separating non-matching ones</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Generate images from text</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Classify images into ImageNet categories</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">How do adapter-based VLMs like LLaVA inject visual information?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">Project visual features into the LLM's embedding space as tokens</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">Convert images to text descriptions first</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">Train a completely new model from scratch</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">Use only the last hidden state of the image encoder</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">What is a major challenge with VLMs (Vision-Language Models)?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">They cannot process color images</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">Hallucination—generating descriptions of objects or details not present in the image</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">They require GPU clusters for inference</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">They can only work with square images</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">In text-to-image models like Stable Diffusion, how does text guide the generation?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">The text is appended to the output image as metadata</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">Cross-attention in the U-Net allows image features to attend to text embeddings</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">A separate classifier selects which images match the text</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">The text is converted to an image template</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">What distinguishes "native multimodal" models like Gemini from adapter-based approaches?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">They use more parameters</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">They're trained from scratch on interleaved multimodal data with unified architecture</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">They can only process text</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">They run faster on CPUs</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-4-2.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Diffusion Models</span>
+                    </a>
+                    <a href="index.html" class="nav-next">
+                        <span class="nav-direction">Complete Section</span>
+                        <span class="nav-title">Return to Overview →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-4-3.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Responsible AI Reasoning — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item active"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 97%"></div></div>
+                    <span class="progress-text">18 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Evaluation & Practice</span><span class="breadcrumb-sep">→</span><span>Module 5.2</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Evaluation & Practice</span>
+                        <span class="module-duration">~60 min</span>
+                    </div>
+                    <h1 class="module-title">Responsible AI Reasoning</h1>
+                    <p class="module-subtitle">
+                        AI systems make decisions affecting billions of lives. Understanding bias, 
+                        fairness, safety, transparency, and accountability isn't optional ethics—it's 
+                        core technical competency for anyone building AI systems.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Identify sources of bias in AI systems: data, algorithmic, and deployment</li>
+                        <li>Understand competing definitions of fairness and their mathematical incompatibilities</li>
+                        <li>Reason about AI safety: alignment, robustness, and failure modes</li>
+                        <li>Apply transparency principles: interpretability, explainability, auditability</li>
+                        <li>Consider privacy, consent, and data governance implications</li>
+                        <li>Develop a framework for ethical decision-making in AI development</li>
+                        <li>Understand mechanistic interpretability: circuits, induction heads, and feature visualization</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Why Responsible AI Is a Technical Problem</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Responsible AI</div>
+                        <p class="definition-text">
+                            The practice of designing, developing, and deploying AI systems that are 
+                            fair, transparent, accountable, safe, and aligned with human values—not 
+                            as afterthoughts, but as core design requirements.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">The Stakes</span>
+                            <p>
+                                AI systems now make decisions about who gets loans, who gets hired, who 
+                                gets medical treatment, who gets surveilled, who sees what content, and 
+                                increasingly, life-or-death decisions in autonomous vehicles and weapons.
+                            </p>
+                            <p>
+                                <strong>These aren't edge cases. They're the mainstream applications of 
+                                modern AI.</strong> A model that's 95% accurate but systematically wrong 
+                                for certain groups isn't just unfair—it can destroy lives.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Why It's Hard</span>
+                            <ul>
+                                <li><strong>Optimization pressure:</strong> Models optimize for what we measure, not what we want</li>
+                                <li><strong>Hidden correlations:</strong> Proxies for protected attributes persist even when you remove the attribute</li>
+                                <li><strong>Scale:</strong> Small biases become massive when applied to millions</li>
+                                <li><strong>Feedback loops:</strong> Biased predictions create biased data for future training</li>
+                                <li><strong>Incompatible goals:</strong> Mathematical impossibility of satisfying all fairness criteria simultaneously</li>
+                            </ul>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">Real Failures</span>
+                            <ul>
+                                <li><strong>COMPAS:</strong> Criminal risk prediction with racial disparities</li>
+                                <li><strong>Amazon recruiting:</strong> AI that downgraded women's resumes</li>
+                                <li><strong>Healthcare allocation:</strong> Algorithm that deprioritized Black patients</li>
+                                <li><strong>Facial recognition:</strong> Dramatically higher error rates for darker skin</li>
+                                <li><strong>Content moderation:</strong> Systematic silencing of marginalized voices</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Sources of Bias in AI Systems</h2>
+                    
+                    <p class="lead-paragraph">
+                        Bias can enter AI systems at every stage of development. Understanding these 
+                        sources is the first step toward mitigation.
+                    </p>
+
+                    <div class="bias-pipeline">
+                        <div class="pipeline-title">The AI Pipeline and Bias Entry Points</div>
+                        <div class="bias-stages">
+                            <div class="bias-stage">
+                                <div class="stage-header">1. Problem Formulation</div>
+                                <div class="stage-content">
+                                    <p>How we frame the problem embeds values.</p>
+                                    <ul>
+                                        <li>What outcome are we predicting?</li>
+                                        <li>Who defines "success"?</li>
+                                        <li>What's the unit of optimization?</li>
+                                    </ul>
+                                    <div class="bias-example">
+                                        <strong>Example:</strong> Predicting "employee success" using 
+                                        tenure rewards cultures that retain certain demographics.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bias-stage">
+                                <div class="stage-header">2. Data Collection</div>
+                                <div class="stage-content">
+                                    <p>Data reflects the biased world it came from.</p>
+                                    <ul>
+                                        <li>Historical discrimination encoded in labels</li>
+                                        <li>Sampling bias (who's in the dataset?)</li>
+                                        <li>Measurement bias (how were features collected?)</li>
+                                    </ul>
+                                    <div class="bias-example">
+                                        <strong>Example:</strong> Training on past hiring decisions 
+                                        perpetuates whatever biases existed in hiring.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bias-stage">
+                                <div class="stage-header">3. Feature Engineering</div>
+                                <div class="stage-content">
+                                    <p>Feature choices encode assumptions and proxies.</p>
+                                    <ul>
+                                        <li>Proxies for protected attributes (zip code → race)</li>
+                                        <li>Missing features for some groups</li>
+                                        <li>Features that mean different things across groups</li>
+                                    </ul>
+                                    <div class="bias-example">
+                                        <strong>Example:</strong> "College name" as a feature correlates 
+                                        with socioeconomic status, not just merit.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bias-stage">
+                                <div class="stage-header">4. Model Training</div>
+                                <div class="stage-content">
+                                    <p>Algorithms amplify patterns, including biased ones.</p>
+                                    <ul>
+                                        <li>Underperformance on minority groups (less data)</li>
+                                        <li>Amplification of majority patterns</li>
+                                        <li>Shortcut learning instead of true patterns</li>
+                                    </ul>
+                                    <div class="bias-example">
+                                        <strong>Example:</strong> Face recognition trained mostly on 
+                                        light-skinned faces fails on darker skin.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bias-stage">
+                                <div class="stage-header">5. Evaluation</div>
+                                <div class="stage-content">
+                                    <p>Metrics can hide disparate performance.</p>
+                                    <ul>
+                                        <li>Aggregate accuracy hides group differences</li>
+                                        <li>Test data may not represent deployment</li>
+                                        <li>Wrong metrics for the actual harm</li>
+                                    </ul>
+                                    <div class="bias-example">
+                                        <strong>Example:</strong> 95% overall accuracy with 99% for 
+                                        majority, 60% for minority.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bias-stage">
+                                <div class="stage-header">6. Deployment</div>
+                                <div class="stage-content">
+                                    <p>Context and feedback loops create new harms.</p>
+                                    <ul>
+                                        <li>Use in contexts it wasn't designed for</li>
+                                        <li>Predictions become self-fulfilling prophecies</li>
+                                        <li>Automation bias (over-trusting AI)</li>
+                                    </ul>
+                                    <div class="bias-example">
+                                        <strong>Example:</strong> Predictive policing sends more police 
+                                        → more arrests → "validates" predictions.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Fairness: Competing Definitions</h2>
+                    
+                    <div class="key-insight warning-insight">
+                        <div class="insight-icon">⚠</div>
+                        <div class="insight-content">
+                            <h4>The Impossibility Theorem</h4>
+                            <p>
+                                Different mathematical definitions of fairness are <strong>mutually 
+                                incompatible</strong> except in trivial cases. You cannot satisfy all 
+                                reasonable fairness criteria simultaneously. This forces explicit 
+                                trade-offs—there's no universally "fair" solution.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(80, 184, 146, 0.08) 0%, transparent 100%); border: 1px solid rgba(80, 184, 146, 0.25); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--accent-emerald); font-size: 0.9rem; margin: 0 0 0.75rem;">🤔 What Does "Impossibility" Actually Mean?</h4>
+                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
+                            <strong>Simplified Example:</strong> Imagine two towns apply for loans. Town A has 80% qualified applicants, Town B has 40%. 
+                            Now you want your model to:
+                        </p>
+                        <ol style="margin: 0.75rem 0; padding-left: 1.5rem; font-size: 0.9rem; line-height: 1.8;">
+                            <li>Approve the same <em>percentage</em> from each town (Demographic Parity)</li>
+                            <li>Have the same accuracy for qualified people in each town (Equal Opportunity)</li>
+                            <li>Have "70% approval" mean the same thing for both towns (Calibration)</li>
+                        </ol>
+                        <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-secondary);">
+                            <strong>The math proves you can only pick one or two—not all three.</strong> 
+                            This isn't about bad intentions; it's a mathematical reality. 
+                            The hard part is choosing <em>which</em> fairness definition matters most for your use case.
+                        </p>
+                    </div>
+
+                    <div class="fairness-definitions">
+                        <div class="fairness-card">
+                            <h4>Demographic Parity</h4>
+                            <div class="fairness-formula">P(Ŷ=1|A=0) = P(Ŷ=1|A=1)</div>
+                            <p>Positive prediction rates should be equal across groups.</p>
+                            <div class="fairness-props">
+                                <div class="prop-item">
+                                    <strong>Intuition:</strong> If 10% of group A gets loans, 10% of 
+                                    group B should too.
+                                </div>
+                                <div class="prop-item">
+                                    <strong>Problem:</strong> Ignores base rates. If groups have different 
+                                    qualification rates, forces inaccurate predictions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fairness-card">
+                            <h4>Equal Opportunity</h4>
+                            <div class="fairness-formula">P(Ŷ=1|Y=1,A=0) = P(Ŷ=1|Y=1,A=1)</div>
+                            <p>True positive rates should be equal across groups.</p>
+                            <div class="fairness-props">
+                                <div class="prop-item">
+                                    <strong>Intuition:</strong> Among qualified people, approval rates 
+                                    should be equal.
+                                </div>
+                                <div class="prop-item">
+                                    <strong>Problem:</strong> Allows different false positive rates. 
+                                    Who is "qualified" may itself be biased.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fairness-card">
+                            <h4>Equalized Odds</h4>
+                            <div class="fairness-formula">P(Ŷ=1|Y=y,A=0) = P(Ŷ=1|Y=y,A=1) for y ∈ {0,1}</div>
+                            <p>Both TPR and FPR should be equal across groups.</p>
+                            <div class="fairness-props">
+                                <div class="prop-item">
+                                    <strong>Intuition:</strong> Error rates should be the same for 
+                                    everyone.
+                                </div>
+                                <div class="prop-item">
+                                    <strong>Problem:</strong> Incompatible with calibration when base 
+                                    rates differ.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fairness-card">
+                            <h4>Calibration</h4>
+                            <div class="fairness-formula">P(Y=1|Ŷ=p,A=0) = P(Y=1|Ŷ=p,A=1) = p</div>
+                            <p>Predicted probability should mean the same for all groups.</p>
+                            <div class="fairness-props">
+                                <div class="prop-item">
+                                    <strong>Intuition:</strong> A "70% risk" should mean 70% for everyone.
+                                </div>
+                                <div class="prop-item">
+                                    <strong>Problem:</strong> Incompatible with equalized odds when 
+                                    base rates differ.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fairness-card">
+                            <h4>Individual Fairness</h4>
+                            <div class="fairness-formula">Similar individuals → similar predictions</div>
+                            <p>People who are alike should be treated alike.</p>
+                            <div class="fairness-props">
+                                <div class="prop-item">
+                                    <strong>Intuition:</strong> Focuses on individuals, not groups.
+                                </div>
+                                <div class="prop-item">
+                                    <strong>Problem:</strong> Requires defining a similarity metric—who 
+                                    decides what "similar" means?
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fairness-card">
+                            <h4>Counterfactual Fairness</h4>
+                            <div class="fairness-formula">Ŷ_A=0 = Ŷ_A=1 for each individual</div>
+                            <p>Prediction wouldn't change if group membership changed.</p>
+                            <div class="fairness-props">
+                                <div class="prop-item">
+                                    <strong>Intuition:</strong> Causal notion—protected attribute 
+                                    shouldn't influence outcome.
+                                </div>
+                                <div class="prop-item">
+                                    <strong>Problem:</strong> Requires causal model. Some attributes 
+                                    (race, gender) can't be "changed."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">Choosing a Fairness Definition</h3>
+                        <p>
+                            There's no universally correct choice. The right definition depends on:
+                        </p>
+                        <ul>
+                            <li><strong>Context:</strong> Criminal justice vs lending vs healthcare</li>
+                            <li><strong>Stakeholders:</strong> Who is harmed by which errors?</li>
+                            <li><strong>Historical context:</strong> Is there systemic discrimination to counteract?</li>
+                            <li><strong>Data quality:</strong> Are labels themselves biased?</li>
+                        </ul>
+                        <p>
+                            <strong>The choice of fairness definition is a value judgment, not a 
+                            technical one.</strong> Technical expertise enables the trade-off analysis; 
+                            democratic deliberation should make the choice.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">AI Safety: Alignment and Robustness</h2>
+                    
+                    <p class="lead-paragraph">
+                        As AI systems become more capable, ensuring they do what we actually want—and 
+                        don't cause unintended harm—becomes increasingly critical.
+                    </p>
+
+                    <div class="safety-dimensions">
+                        <div class="safety-card">
+                            <h4>Alignment</h4>
+                            <p class="safety-question">Does the AI do what we want?</p>
+                            <div class="safety-content">
+                                <p>
+                                    <strong>The problem:</strong> We specify objectives imperfectly. 
+                                    Systems optimize for what we measure, not what we mean.
+                                </p>
+                                <ul>
+                                    <li><strong>Reward hacking:</strong> Finding unintended ways to maximize reward</li>
+                                    <li><strong>Specification gaming:</strong> Meeting the letter, not spirit, of goals</li>
+                                    <li><strong>Goal misgeneralization:</strong> Learning wrong correlations</li>
+                                </ul>
+                                <div class="safety-example">
+                                    <strong>Example:</strong> YouTube optimizing for watch time → 
+                                    recommends increasingly extreme content.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="safety-card">
+                            <h4>Robustness</h4>
+                            <p class="safety-question">Does it work reliably in all conditions?</p>
+                            <div class="safety-content">
+                                <p>
+                                    <strong>The problem:</strong> Models fail unpredictably on 
+                                    out-of-distribution inputs, adversarial attacks, or edge cases.
+                                </p>
+                                <ul>
+                                    <li><strong>Distribution shift:</strong> Training ≠ deployment</li>
+                                    <li><strong>Adversarial examples:</strong> Small perturbations → wrong outputs</li>
+                                    <li><strong>Long-tail events:</strong> Rare scenarios not in training data</li>
+                                </ul>
+                                <div class="safety-example">
+                                    <strong>Example:</strong> Self-driving car fails on unusual road 
+                                    markings or lighting conditions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="safety-card">
+                            <h4>Monitoring & Control</h4>
+                            <p class="safety-question">Can we detect and correct problems?</p>
+                            <div class="safety-content">
+                                <p>
+                                    <strong>The problem:</strong> Complex systems fail in complex ways. 
+                                    We need oversight and intervention capabilities.
+                                </p>
+                                <ul>
+                                    <li><strong>Interpretability:</strong> Can we understand what it's doing?</li>
+                                    <li><strong>Detectability:</strong> Can we notice when it fails?</li>
+                                    <li><strong>Corrigibility:</strong> Can we correct or shut it down?</li>
+                                </ul>
+                                <div class="safety-example">
+                                    <strong>Example:</strong> Human-in-the-loop for high-stakes decisions; 
+                                    anomaly detection for model drift.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="safety-card">
+                            <h4>Systemic Risks</h4>
+                            <p class="safety-question">What are the broader societal impacts?</p>
+                            <div class="safety-content">
+                                <p>
+                                    <strong>The problem:</strong> Individual models may be safe, but 
+                                    aggregate effects can be harmful.
+                                </p>
+                                <ul>
+                                    <li><strong>Concentration of power:</strong> Few entities control AI</li>
+                                    <li><strong>Automation of harm:</strong> Scaling bad actors</li>
+                                    <li><strong>Economic disruption:</strong> Labor market effects</li>
+                                    <li><strong>Information ecosystem:</strong> Synthetic media, manipulation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Transparency and Explainability</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">The Right to Explanation</div>
+                        <p class="definition-text">
+                            When AI makes consequential decisions about people, those people 
+                            (and regulators) have legitimate claims to understand how and why. 
+                            The EU's GDPR includes provisions for explanation of automated decisions.
+                        </p>
+                    </div>
+
+                    <div class="transparency-spectrum">
+                        <h3>The Transparency Spectrum</h3>
+                        
+                        <div class="spectrum-levels">
+                            <div class="spectrum-level">
+                                <div class="level-header">
+                                    <span class="level-name">Interpretable Models</span>
+                                    <span class="level-tag">Most Transparent</span>
+                                </div>
+                                <p>
+                                    Models that are inherently understandable: linear regression, 
+                                    decision trees, rule lists. You can inspect the model directly.
+                                </p>
+                                <div class="level-tradeoff">
+                                    <strong>Trade-off:</strong> Often lower performance on complex tasks.
+                                </div>
+                            </div>
+
+                            <div class="spectrum-level">
+                                <div class="level-header">
+                                    <span class="level-name">Post-hoc Explanation</span>
+                                    <span class="level-tag">Approximate</span>
+                                </div>
+                                <p>
+                                    Methods that explain black-box models after training: LIME, SHAP, 
+                                    attention visualization, saliency maps.
+                                </p>
+                                <div class="level-tradeoff">
+                                    <strong>Trade-off:</strong> Explanations may not reflect true model reasoning.
+                                </div>
+                            </div>
+
+                            <div class="spectrum-level">
+                                <div class="level-header">
+                                    <span class="level-name">Auditability</span>
+                                    <span class="level-tag">Process-Focused</span>
+                                </div>
+                                <p>
+                                    Documentation of data, training, evaluation, and deployment. 
+                                    Model cards, datasheets, audit trails.
+                                </p>
+                                <div class="level-tradeoff">
+                                    <strong>Trade-off:</strong> Doesn't explain individual predictions.
+                                </div>
+                            </div>
+
+                            <div class="spectrum-level">
+                                <div class="level-header">
+                                    <span class="level-name">Black Box + Monitoring</span>
+                                    <span class="level-tag">Least Transparent</span>
+                                </div>
+                                <p>
+                                    Complex models with performance monitoring, fairness metrics, 
+                                    and human oversight but no mechanistic explanation.
+                                </p>
+                                <div class="level-tradeoff">
+                                    <strong>Trade-off:</strong> May be the only option for frontier models.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xai-methods">
+                        <h3>Common Explainability Methods</h3>
+                        
+                        <div class="xai-grid">
+                            <div class="xai-card">
+                                <h4>LIME</h4>
+                                <p>
+                                    Local Interpretable Model-agnostic Explanations. Fits a simple 
+                                    model locally around each prediction to approximate the black box.
+                                </p>
+                            </div>
+                            
+                            <div class="xai-card">
+                                <h4>SHAP</h4>
+                                <p>
+                                    SHapley Additive exPlanations. Assigns each feature a contribution 
+                                    to the prediction using game-theoretic Shapley values.
+                                </p>
+                            </div>
+                            
+                            <div class="xai-card">
+                                <h4>Attention Visualization</h4>
+                                <p>
+                                    For transformers, visualize attention weights. But attention ≠ 
+                                    explanation—high attention doesn't mean causal importance.
+                                </p>
+                            </div>
+                            
+                            <div class="xai-card">
+                                <h4>Counterfactual Explanations</h4>
+                                <p>
+                                    "Your loan was denied. If income were $5k higher, it would be 
+                                    approved." Actionable, but may not reflect true decision boundary.
+                                </p>
+                            </div>
+                            
+                            <div class="xai-card">
+                                <h4>Concept Activation Vectors</h4>
+                                <p>
+                                    Test if human-understandable concepts (e.g., "striped") influence 
+                                    model predictions.
+                                </p>
+                            </div>
+                            
+                            <div class="xai-card">
+                                <h4>Model Cards</h4>
+                                <p>
+                                    Documentation of intended use, performance across groups, 
+                                    limitations, and ethical considerations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight warning-insight">
+                        <div class="insight-icon">⚠</div>
+                        <div class="insight-content">
+                            <h4>The Explanation Illusion</h4>
+                            <p>
+                                Post-hoc explanations can be misleading. They show correlations, not 
+                                causes. Two models with identical predictions can have very different 
+                                LIME/SHAP explanations. Explanations can create false confidence.
+                                <strong>Treat explanations as hypotheses, not ground truth.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NEW: Mechanistic Interpretability Section -->
+                <section class="content-section">
+                    <h2 class="section-heading">Mechanistic Interpretability: Opening the Black Box</h2>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.08) 0%, transparent 100%); border: 1px solid rgba(234, 179, 8, 0.3); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: #eab308; font-size: 0.9rem; margin: 0 0 0.5rem;">🔬 Advanced Topic Alert</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                            This section covers cutting-edge research. <strong>It's okay if it feels abstract!</strong> 
+                            The key takeaway: researchers are actively working to understand <em>how</em> neural networks 
+                            compute internally, not just <em>what</em> they output. Think of it as "neuroscience for AI."
+                        </p>
+                    </div>
+                    
+                    <p class="intro-text">
+                        Post-hoc explanations (LIME, SHAP) approximate model behavior externally. 
+                        <strong>Mechanistic interpretability</strong> aims to understand the actual 
+                        internal algorithms—the "circuits"—that neural networks learn.
+                    </p>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">From Black Box to Glass Box</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>The vision:</strong> Understand neural networks the way we understand 
+                                computer programs—knowing exactly what computation each component performs 
+                                and why it produces specific outputs.
+                            </p>
+
+                            <div class="comparison-box">
+                                <div class="comparison-item">
+                                    <h4>Traditional XAI</h4>
+                                    <ul>
+                                        <li>Input-output correlations</li>
+                                        <li>"What features matter?"</li>
+                                        <li>Local approximations</li>
+                                        <li>Model-agnostic</li>
+                                    </ul>
+                                </div>
+                                <div class="comparison-item">
+                                    <h4>Mechanistic Interpretability</h4>
+                                    <ul>
+                                        <li>Internal computations</li>
+                                        <li>"How does it compute?"</li>
+                                        <li>Exact circuits</li>
+                                        <li>Architecture-specific</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Induction Heads: A Success Story</h3>
+                        <div class="concept-content">
+                            <p>
+                                One of the clearest examples of mechanistic understanding: <strong>induction heads</strong> 
+                                are attention patterns that implement in-context learning by copying patterns.
+                            </p>
+
+                            <div class="architecture-diagram">
+                                <div class="diagram-title">Induction Head Circuit</div>
+                                <div class="diagram-content">
+                                    <pre class="architecture-ascii">
+Input: "... The cat sat. The cat"
+
+Token:     [The] [cat] [sat] [.] [The] [cat] [?]
+                                          ↑
+                                     What comes next?
+
+Step 1: Previous token head finds "[cat] → [sat]" pattern earlier
+Step 2: Induction head looks for where "cat" appeared before
+Step 3: Copies what followed: predicts "sat"
+
+This is how LLMs learn patterns from context!
+                                    </pre>
+                                </div>
+                            </div>
+
+                            <div class="key-insight">
+                                <h4>Why This Matters</h4>
+                                <p>
+                                    Induction heads emerge through training as a general algorithm for 
+                                    in-context learning. Understanding this circuit helps explain why LLMs 
+                                    can learn from examples in the prompt—a key capability not explicitly trained.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Feature Visualization & Superposition</h3>
+                        <div class="concept-content">
+                            <p>
+                                <strong>Feature visualization</strong> generates inputs that maximally activate 
+                                specific neurons or directions, revealing what concepts they encode.
+                            </p>
+
+                            <div class="feature-examples">
+                                <h4>What Neurons "See"</h4>
+                                <div class="xai-grid">
+                                    <div class="xai-card">
+                                        <h4>Early Layers</h4>
+                                        <p>
+                                            Edges, colors, textures. Simple, universal features 
+                                            shared across many concepts.
+                                        </p>
+                                    </div>
+                                    <div class="xai-card">
+                                        <h4>Middle Layers</h4>
+                                        <p>
+                                            Parts, patterns, shapes. Dog ears, car wheels, 
+                                            text fragments.
+                                        </p>
+                                    </div>
+                                    <div class="xai-card">
+                                        <h4>Late Layers</h4>
+                                        <p>
+                                            Objects, concepts, abstractions. Full dogs, cars, 
+                                            sentiment, topics.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="callout-box warning">
+                                <h4>⚠️ The Superposition Problem</h4>
+                                <p>
+                                    Networks encode more features than they have neurons by using 
+                                    <strong>superposition</strong>—representing many features as overlapping 
+                                    directions in activation space. This makes interpretation harder: 
+                                    a single neuron may encode multiple unrelated concepts.
+                                </p>
+                                <p>
+                                    <strong>Sparse autoencoders</strong> are a promising tool to 
+                                    disentangle superposition and find interpretable features.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <h3 class="concept-title">Practical Applications</h3>
+                        <div class="concept-content">
+                            <div class="applications-grid">
+                                <div class="application-card">
+                                    <h4>🔒 Safety Verification</h4>
+                                    <p>
+                                        Identify circuits responsible for harmful outputs. 
+                                        Verify that safety training actually modifies the right computations.
+                                    </p>
+                                </div>
+                                <div class="application-card">
+                                    <h4>🐛 Debugging</h4>
+                                    <p>
+                                        When models fail, understand <em>why</em> by tracing the 
+                                        internal computation, not just observing the wrong output.
+                                    </p>
+                                </div>
+                                <div class="application-card">
+                                    <h4>✂️ Targeted Editing</h4>
+                                    <p>
+                                        Modify specific behaviors by editing the responsible circuits, 
+                                        rather than retraining the entire model.
+                                    </p>
+                                </div>
+                                <div class="application-card">
+                                    <h4>📊 Capability Assessment</h4>
+                                    <p>
+                                        Determine what algorithms a model has actually learned, 
+                                        beyond just measuring benchmark performance.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout-box info">
+                        <h4>📚 Key Literature</h4>
+                        <ul>
+                            <li>Elhage et al. (2021) — "A Mathematical Framework for Transformer Circuits"</li>
+                            <li>Olsson et al. (2022) — "In-context Learning and Induction Heads"</li>
+                            <li>Bricken et al. (2023) — "Towards Monosemanticity: Decomposing Language Models with Dictionary Learning"</li>
+                            <li>Nanda & Bloom (2022) — "TransformerLens: A Library for Mechanistic Interpretability"</li>
+                        </ul>
+                    </div>
+
+                    <div class="callout-box note">
+                        <h4>🔮 The Path Forward</h4>
+                        <p>
+                            Mechanistic interpretability is still in its early stages. Current success 
+                            is limited to small models and specific circuits. Scaling these techniques to 
+                            frontier models remains an open challenge—but one essential for ensuring 
+                            advanced AI systems remain understandable and controllable.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Privacy and Data Governance</h2>
+                    
+                    <div class="privacy-concerns">
+                        <div class="privacy-card">
+                            <h4>Training Data Privacy</h4>
+                            <ul>
+                                <li>Models can memorize and regurgitate training data</li>
+                                <li>Membership inference: was this person in training data?</li>
+                                <li>Extraction attacks on LLMs can recover PII</li>
+                            </ul>
+                            <div class="privacy-mitigation">
+                                <strong>Mitigations:</strong> Differential privacy, data deduplication, 
+                                output filtering
+                            </div>
+                        </div>
+
+                        <div class="privacy-card">
+                            <h4>Inference Privacy</h4>
+                            <ul>
+                                <li>Model inputs may reveal sensitive information</li>
+                                <li>Predictions themselves may be sensitive</li>
+                                <li>Usage patterns can be tracked</li>
+                            </ul>
+                            <div class="privacy-mitigation">
+                                <strong>Mitigations:</strong> On-device inference, encrypted computation, 
+                                anonymization
+                            </div>
+                        </div>
+
+                        <div class="privacy-card">
+                            <h4>Consent and Attribution</h4>
+                            <ul>
+                                <li>Was consent obtained for training data?</li>
+                                <li>Who owns generated content?</li>
+                                <li>Are creators fairly compensated?</li>
+                            </ul>
+                            <div class="privacy-mitigation">
+                                <strong>Ongoing debates:</strong> Copyright law for AI, opt-out 
+                                mechanisms, content provenance
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Differential Privacy in ML</h3>
+                        <p>
+                            A mathematical framework for protecting individual privacy while allowing 
+                            aggregate analysis. Provides formal guarantees:
+                        </p>
+                        <div class="formula-inline">
+                            P(M(D) ∈ S) ≤ e^ε × P(M(D') ∈ S)
+                        </div>
+                        <p>
+                            The output of mechanism M changes by at most e^ε when any single record 
+                            changes. Lower ε = stronger privacy, but typically degrades utility.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">A Framework for Responsible Development</h2>
+                    
+                    <div class="framework-steps">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <h4>Stakeholder Analysis</h4>
+                            <p>Who is affected by this system? Who benefits, who bears risks? 
+                            Include marginalized groups often overlooked.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <h4>Harm Assessment</h4>
+                            <p>What could go wrong? Consider direct harms, indirect effects, 
+                            dual use, and systemic impacts.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <h4>Fairness Specification</h4>
+                            <p>Which fairness definitions apply? What are the trade-offs? 
+                            Involve affected communities in the choice.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <h4>Data Audit</h4>
+                            <p>Where did the data come from? What biases might it contain? 
+                            Is consent appropriate?</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">5</div>
+                            <h4>Evaluation Across Groups</h4>
+                            <p>Measure performance separately for relevant subgroups. 
+                            Aggregate metrics hide disparities.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">6</div>
+                            <h4>Transparency & Documentation</h4>
+                            <p>Create model cards, datasheets. Document limitations, 
+                            intended use, and what shouldn't be done.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">7</div>
+                            <h4>Human Oversight Design</h4>
+                            <p>Where do humans intervene? How are edge cases handled? 
+                            What's the appeals process?</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">8</div>
+                            <h4>Monitoring & Feedback</h4>
+                            <p>Track fairness metrics in production. Create channels for 
+                            affected people to report issues.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"AI is objective because it's math"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                AI systems reflect the values embedded in their design: what data was 
+                                collected, how objectives were specified, which trade-offs were made. 
+                                Math doesn't eliminate values—it encodes them.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> AI can be consistent and scalable, 
+                                but "objective" is the wrong frame. Every design choice embeds values. 
+                                The question is whether those values are examined and appropriate.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Removing protected attributes eliminates bias"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Other features often correlate with protected attributes (zip code → 
+                                race, name → gender). Removing the explicit attribute doesn't remove 
+                                the information—it just hides it.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> "Fairness through unawareness" 
+                                doesn't work. You often need to explicitly measure and address 
+                                disparities, which requires knowing group membership.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More data always reduces bias"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                If the data collection process is biased, more data amplifies the 
+                                bias. Internet-scale data reflects internet-scale biases.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Data quality and representativeness 
+                                matter more than quantity. Careful curation often beats scale for fairness.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Fairness Trade-offs
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore the tension between different fairness criteria. See how 
+                            adjusting the model to satisfy one definition can violate another.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="fairness-lab">
+                            <div class="scenario-setup">
+                                <h4>Loan Approval Scenario</h4>
+                                <p>
+                                    A bank uses an AI model to approve loans. Group A has a 60% 
+                                    base qualification rate; Group B has 40%. Adjust the approval 
+                                    thresholds to see fairness trade-offs.
+                                </p>
+                            </div>
+
+                            <div class="threshold-controls">
+                                <div class="threshold-group">
+                                    <label>Group A Threshold</label>
+                                    <input type="range" id="threshold-a" min="0" max="100" value="50">
+                                    <span id="threshold-a-val">50%</span>
+                                </div>
+                                <div class="threshold-group">
+                                    <label>Group B Threshold</label>
+                                    <input type="range" id="threshold-b" min="0" max="100" value="50">
+                                    <span id="threshold-b-val">50%</span>
+                                </div>
+                            </div>
+
+                            <div class="fairness-results">
+                                <div class="result-row">
+                                    <span class="result-label">Group A Approval Rate:</span>
+                                    <span class="result-value" id="approval-a">50%</span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Group B Approval Rate:</span>
+                                    <span class="result-value" id="approval-b">33%</span>
+                                </div>
+                                <div class="result-row highlight">
+                                    <span class="result-label">Demographic Parity Difference:</span>
+                                    <span class="result-value" id="dp-diff">17%</span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Group A True Positive Rate:</span>
+                                    <span class="result-value" id="tpr-a">83%</span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Group B True Positive Rate:</span>
+                                    <span class="result-value" id="tpr-b">83%</span>
+                                </div>
+                                <div class="result-row highlight">
+                                    <span class="result-label">Equal Opportunity Difference:</span>
+                                    <span class="result-value" id="eo-diff">0%</span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Overall Accuracy:</span>
+                                    <span class="result-value" id="overall-acc">70%</span>
+                                </div>
+                            </div>
+
+                            <div class="fairness-presets">
+                                <button class="preset-btn" data-preset="equal-threshold">Equal Thresholds</button>
+                                <button class="preset-btn" data-preset="demographic-parity">Demographic Parity</button>
+                                <button class="preset-btn" data-preset="max-accuracy">Max Accuracy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li>Equal thresholds lead to <strong>unequal approval rates</strong> when base rates differ</li>
+                            <li>Achieving <strong>demographic parity</strong> requires different thresholds, which may reduce accuracy</li>
+                            <li><strong>Equal opportunity</strong> (equal TPR) is often achievable but doesn't equalize overall rates</li>
+                            <li>There's a fundamental <strong>accuracy-fairness trade-off</strong> when groups have different base rates</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">Why can't we satisfy all fairness criteria simultaneously?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">We don't have enough data</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Different fairness definitions are mathematically incompatible when base rates differ</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">AI isn't advanced enough yet</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Regulators haven't agreed on definitions</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">Why doesn't removing protected attributes (like race or gender) eliminate bias?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">Other features correlate with protected attributes and serve as proxies</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">The model will refuse to make predictions</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">It always eliminates bias completely</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">Laws prevent removing these attributes</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">What is "reward hacking" in AI safety?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">When hackers steal AI reward functions</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">When AI finds unintended ways to maximize its reward that don't align with the designer's intent</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">When training takes too long</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">When the model achieves high rewards</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">What's a key limitation of post-hoc explanation methods like LIME and SHAP?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">They're too slow to compute</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">They show correlations but may not reflect the model's true causal reasoning</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">They only work on images</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">They require the model's source code</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">What is differential privacy designed to protect against?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">Model theft</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">Inferring whether a specific individual was in the training data</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">Slow training times</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">Distribution shift</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-5-1.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Model Evaluation</span>
+                    </a>
+                    <a href="module-5-3.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">From Research to Deployment →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-5-2.js"></script>
+</body>
+</html>
+

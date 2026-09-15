@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<title>Logwatch Installation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+.asdf{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+
+.menu {
+  display: none;
+}
+</style>
+<body>
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+      <a href="../index.html" class="w3-button w3-block w3-black">HOME</a>
+  </div>
+</div>
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">How to change apache2 localhost location?</span></h5>
+    <p>Follow the below steps to change apache2 localhost location:</p><br>
+    <p>First open up your terminal and go the follwing location using terminal</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>cd /etc/apache2/sites-available</i></p>
+    </div>
+    <p>Once you have navigated to the above mentioned location, will find 2 files in there</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>000-default.conf <br> default-ssl.conf</i></p>
+    </div>
+    <p>Open both files one after other and make the following changes. Replace the location to your new location  </p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>DocumentRoot /var/www/html</i></p>
+    </div>
+   
+    <p>To (Insert the location where you want your apacheserver to be redirected)  </p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>DocumentRoot /home/user/Desktop/YourFolderName</i></p>
+    </div>
+    <p>After making the change, go a step back (back to apache folder)</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>cd ..</i></p>
+    </div>
+    <p>Or</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>cd /etc/apache2</i></p>
+    </div>
+    <p>Now open up apache config file and add the following lines</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>
+    Directory /home/user/Desktop/YourFolderName
+	Options Indexes FollowSymLinks <br>
+	AllowOverride None<br>
+	Require all granted<br>
+	/Directory</i></p>
+    </div>
+    <p>Add the above lines right below </p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>
+    Directory /var/www/ <br>
+	Options Indexes FollowSymLinks<br> 
+	AllowOverride None<br>
+	Require all granted<br>
+	/Directory
+	</i></p>
+    </div>
+    <p>Now restart apache service with the following command </p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>sudo service apache2 restart</i></p>
+    </div>
+    <p>You are good to go.</p>
+  </div>
+</div>
+<!-- Contact/Area Container -->
+<div class="w3-container" id="where" style="padding-bottom:32px;">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide asdf">CONTACT ME</span></h5>
+    <p>Feel free to contact me @</p>
+    <p><i class="fa fa-envelope" aria-hidden="true"></i> pavankumarpre@gmail.com</p>
+    <p><i class="fa fa-phone" aria-hidden="true"></i> +91 701 309 1943</p>
+    <div class="jumbotron-social">
+       <center>
+          <span class="ul-social">
+            <span class="li-social-links">
+              <a class="social" href="https://gitlab.com/pavanchow" target="_blank"><i class="fa fa-gitlab" aria-hidden="true"></i></a>
+            </span>
+            <span class="li-social-links">
+              <a class="social" href="https://www.linkedin.com/in/pavanchow/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </span>
+            <span class="li-social-links">
+              <a class="social" href="https://t.me/Pavan_Chowdary" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>
+            </span>
+            <span class="li-social-links">
+              <a class="social" href="https://twitter.com/pavan_chow_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </span>
+          </span>
+        </center>
+    </div>
+
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p class="w3-tag w3-wide asdf">Copyright  &copy; Pavan Nallamothu 2019</p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>

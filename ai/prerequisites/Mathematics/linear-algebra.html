@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Linear Algebra foundations for AI: vectors, matrices, dot products, and matrix operations explained for machine learning.">
+    <title>Linear Algebra for AI — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #6699cc;
+            --prereq-accent-glow: rgba(102, 153, 204, 0.15);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .prereq-page {
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+        
+        .prereq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: clamp(1rem, 5vw, 2.5rem);
+        }
+        
+        /* Sticky Header */
+        .prereq-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent);
+            border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .prereq-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .prereq-nav a:hover {
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav .nav-divider {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
+            padding: 0 0.25rem;
+        }
+        
+        /* Hero Section */
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            border: 1px solid var(--surface-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 1rem;
+            line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Learning Objectives */
+        .learning-objectives {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--prereq-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .learning-objectives ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .learning-objectives li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Estimated Time */
+        .estimated-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Math Sections */
+        .math-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .math-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--prereq-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            font-size: 0.875rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .math-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary);
+            margin: 1.75rem 0 1rem;
+        }
+        
+        .math-section h4 {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin: 1.25rem 0 0.75rem;
+        }
+        
+        .math-section p {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin: 0 0 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .math-section ul, .math-section ol {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            padding-left: 1.5rem;
+            margin: 0 0 1rem;
+        }
+        
+        .math-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Formula Box */
+        .formula-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            margin: 1.25rem 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+        
+        .formula-box .formula {
+            font-family: var(--font-mono);
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: var(--prereq-accent);
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+        
+        .formula-box .formula-desc {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+        
+        /* Example Box */
+        .example-box {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .example-box h4 {
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .example-box code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: clamp(0.75rem, 2vw, 1rem);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.6;
+        }
+        
+        .example-box p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0.75rem 0 0;
+        }
+        
+        /* Intuition Box */
+        .intuition-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(102, 153, 204, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .intuition-box h4 {
+            color: var(--prereq-accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .intuition-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* AI Connection Box */
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(80, 184, 146, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 {
+            color: var(--accent-emerald);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ai-connection p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(217, 119, 119, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(217, 119, 119, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .warning-box h4 {
+            color: var(--accent-coral);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .warning-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Visual Diagram */
+        .visual-diagram {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            margin: 1.25rem 0;
+            overflow-x: auto;
+        }
+        
+        .visual-diagram pre {
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+            line-height: 1.4;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .visual-diagram .diagram-caption {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Key Takeaways */
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 {
+            color: var(--prereq-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .key-takeaways ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .key-takeaways li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Navigation Cards */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-card:hover {
+            border-color: var(--prereq-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card-label {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+        }
+        
+        .nav-card-title {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 1rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-list a:hover {
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+        }
+        
+        .toc-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--surface-3);
+            color: var(--text-tertiary);
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Practice Problems */
+        .practice-problem {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+        
+        .practice-problem h4 {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .problem {
+            background: var(--bg-elevated);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            font-family: var(--font-mono);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+        
+        .practice-problem .solution {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--accent-emerald);
+        }
+        
+        .practice-problem .solution-header {
+            color: var(--accent-emerald);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .solution-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .practice-problem .solution-content code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .prereq-header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .back-link {
+                width: fit-content;
+            }
+            
+            .prereq-nav {
+                justify-content: center;
+            }
+            
+            .visual-diagram pre {
+                font-size: 0.55rem;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus states for accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--prereq-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <!-- Sticky Header -->
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link">
+                        <span>←</span> Back to Course
+                    </a>
+                    <nav class="prereq-nav">
+                        <a href="math-foundations.html">Foundations</a>
+                        <a href="number-sense.html">Numbers</a>
+                        <a href="logic-basics.html">Logic</a>
+                        <span class="nav-divider">|</span>
+                        <a href="calculus.html">Calculus</a>
+                        <a href="linear-algebra.html" class="active">Linear Algebra</a>
+                        <a href="probability.html">Probability</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <!-- Hero Section -->
+            <div class="prereq-hero">
+                <span class="prereq-badge">🔢 Prerequisite • Mathematics</span>
+                <h1 class="prereq-title">Linear Algebra for AI</h1>
+                <p class="prereq-subtitle">
+                    Neural networks are built on matrix operations. Every layer, every transformation, every 
+                    attention mechanism is linear algebra at its core. Understanding vectors and matrices 
+                    unlocks the language of modern AI—from embeddings to transformers.
+                </p>
+                <div class="estimated-time">
+                    <span>⏱</span> Estimated reading time: 25-30 minutes
+                </div>
+            </div>
+            
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>What vectors represent and how to perform operations on them</li>
+                    <li>How dot products measure similarity (the foundation of attention)</li>
+                    <li>What matrices are and why they represent transformations</li>
+                    <li>How matrix multiplication works and why it's the core of neural networks</li>
+                    <li>Key concepts: norms, normalization, broadcasting, and tensor shapes</li>
+                </ul>
+            </div>
+            
+            <!-- Table of Contents -->
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#why-linear-algebra"><span class="toc-number">1</span> Why Linear Algebra Matters</a></li>
+                    <li><a href="#vectors"><span class="toc-number">2</span> Vectors: The Building Blocks</a></li>
+                    <li><a href="#dot-product"><span class="toc-number">3</span> Dot Product: Measuring Similarity</a></li>
+                    <li><a href="#matrices"><span class="toc-number">4</span> Matrices: Tables of Numbers</a></li>
+                    <li><a href="#matrix-multiplication"><span class="toc-number">5</span> Matrix Multiplication</a></li>
+                    <li><a href="#key-concepts"><span class="toc-number">6</span> Key Concepts for AI</a></li>
+                    <li><a href="#practice"><span class="toc-number">7</span> Practice Problems</a></li>
+                </ol>
+            </nav>
+            
+            <!-- Section 1: Why Linear Algebra -->
+            <section class="math-section" id="why-linear-algebra">
+                <h2><span class="section-number">1</span> Why Linear Algebra Matters for AI</h2>
+                
+                <p>
+                    Everything in deep learning is a <strong>tensor</strong>—a multi-dimensional array of numbers. 
+                    Images, text, audio, model weights—all are represented as tensors. Linear algebra is the 
+                    mathematical language for manipulating these structures.
+                </p>
+                
+                <div class="example-box">
+                    <h4>📝 Everything is a Tensor</h4>
+                    <code>Images:  [batch, channels, height, width]    e.g., [32, 3, 224, 224]
+Text:    [batch, sequence_length, embedding]   e.g., [16, 512, 768]
+Audio:   [batch, channels, samples]            e.g., [8, 1, 16000]
+Weights: [input_features, output_features]     e.g., [768, 3072]</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 The AI Connection</h4>
+                    <p>
+                        A single neural network layer is literally: <code>y = Wx + b</code> — a matrix multiplication 
+                        plus a bias. When you hear "GPT has 175 billion parameters," those are 175 billion numbers 
+                        stored in matrices. Modern GPUs exist specifically because they're incredibly fast at 
+                        matrix operations.
+                    </p>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 Why Matrices?</h4>
+                    <p>
+                        Matrices let us apply the same transformation to many inputs at once (parallelization). 
+                        Instead of processing one data point, we process a whole batch. This is why AI models 
+                        run efficiently on GPUs—they're designed for parallel matrix operations.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 2: Vectors -->
+            <section class="math-section" id="vectors">
+                <h2><span class="section-number">2</span> Vectors: The Building Blocks</h2>
+                
+                <p>
+                    A <strong>vector</strong> is an ordered list of numbers. In AI, vectors represent practically 
+                    everything: words, images, features, gradients, and model parameters. The key insight is that 
+                    vectors live in a <em>space</em> where geometric intuitions apply.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">v = [v₁, v₂, v₃, ..., vₙ]</div>
+                    <div class="formula-desc">A vector with n components (lives in n-dimensional space)</div>
+                </div>
+                
+                <h3>Geometric Interpretation</h3>
+                
+                <div class="visual-diagram">
+                    <pre>
+      ↑ y
+      │
+    4 ┼─────────────→ v = [3, 4]
+      │           ╱
+      │         ╱
+      │       ╱  ← Length (magnitude) = √(3² + 4²) = 5
+      │     ╱
+      │   ╱
+      │ ╱ ← Direction = arctan(4/3) ≈ 53°
+    ──┼─────────────→ x
+      0             3
+      
+    A 2D vector has both magnitude (length) and direction.
+    AI uses vectors with hundreds or thousands of dimensions!
+                    </pre>
+                    <p class="diagram-caption">A vector represents a point in space or a direction with magnitude</p>
+                </div>
+                
+                <h3>Vector Operations</h3>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Addition</h4>
+                        <code>[1, 2, 3] + [4, 5, 6] = [5, 7, 9]</code>
+                        <p>Add corresponding elements. Geometrically: chain the arrows head-to-tail.</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Scalar Multiplication</h4>
+                        <code>2 × [1, 2, 3] = [2, 4, 6]</code>
+                        <p>Multiply each element. Geometrically: stretch or shrink the vector.</p>
+                    </div>
+                </div>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Subtraction</h4>
+                        <code>[5, 7, 9] - [1, 2, 3] = [4, 5, 6]</code>
+                        <p>Subtract corresponding elements. Gives the "difference" vector.</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Element-wise Multiplication</h4>
+                        <code>[1, 2, 3] ⊙ [4, 5, 6] = [4, 10, 18]</code>
+                        <p>Multiply corresponding elements. Also called Hadamard product.</p>
+                    </div>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Word Embeddings</h4>
+                    <p>
+                        In NLP, every word is represented as a vector (typically 256-1024 dimensions). 
+                        Similar words have similar vectors. The famous example: <br>
+                        <code>vector("king") - vector("man") + vector("woman") ≈ vector("queen")</code><br>
+                        This works because vector arithmetic captures semantic relationships!
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 3: Dot Product -->
+            <section class="math-section" id="dot-product">
+                <h2><span class="section-number">3</span> Dot Product: Measuring Similarity</h2>
+                
+                <p>
+                    The <strong>dot product</strong> (also called inner product or scalar product) is perhaps 
+                    the most important operation in AI. It takes two vectors and returns a single number that 
+                    measures how "aligned" they are.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">a · b = a₁b₁ + a₂b₂ + ... + aₙbₙ = Σᵢ aᵢbᵢ</div>
+                    <div class="formula-desc">Multiply corresponding elements, then sum everything</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Step-by-Step Example</h4>
+                    <code>a = [1, 2, 3]
+b = [4, 5, 6]
+
+a · b = (1 × 4) + (2 × 5) + (3 × 6)
+      = 4 + 10 + 18
+      = 32</code>
+                </div>
+                
+                <h3>Geometric Meaning</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">a · b = |a| × |b| × cos(θ)</div>
+                    <div class="formula-desc">Dot product = magnitudes × cosine of angle between them</div>
+                </div>
+                
+                <div class="intuition-box" style="background: linear-gradient(135deg, rgba(102, 153, 204, 0.1) 0%, transparent 100%); border: 1px solid rgba(102, 153, 204, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.25rem 0;">
+                    <h4 style="color: var(--prereq-accent); font-size: 0.8rem; margin: 0 0 0.5rem;">💡 What is Cosine (cos)?</h4>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.925rem; line-height: 1.7;">
+                        <strong>Cosine</strong> is a function that converts an <strong>angle</strong> into a number between -1 and +1.
+                        It measures "how much two directions align":<br><br>
+                        • <code>cos(0°) = 1</code> → same direction (perfect alignment)<br>
+                        • <code>cos(90°) = 0</code> → perpendicular (no alignment)<br>
+                        • <code>cos(180°) = -1</code> → opposite directions<br><br>
+                        You don't need to calculate angles directly—the formula above does it for you.
+                        Just remember: <strong>cosine ≈ "how aligned are these vectors?"</strong>
+                    </p>
+                </div>
+                
+                <p>This formula reveals what the dot product actually measures:</p>
+                
+                <ul>
+                    <li><strong>a · b > 0</strong>: Vectors point in similar directions (angle < 90°)</li>
+                    <li><strong>a · b = 0</strong>: Vectors are perpendicular/orthogonal (angle = 90°)</li>
+                    <li><strong>a · b < 0</strong>: Vectors point in opposite directions (angle > 90°)</li>
+                </ul>
+                
+                <div class="visual-diagram">
+                    <pre>
+    Same direction       Perpendicular        Opposite direction
+    (a · b > 0)          (a · b = 0)          (a · b < 0)
+    
+        ↗ b                  ↑ b                    ↗ a
+       ╱                     │
+      ╱                      │
+     ↗ a                   → a                   ↙ b
+    
+    "Similar"            "Unrelated"           "Dissimilar"
+                    </pre>
+                    <p class="diagram-caption">The dot product measures alignment between vectors</p>
+                </div>
+                
+                <h3>Cosine Similarity</h3>
+                
+                <p>
+                    To measure similarity independent of vector length, we normalize by the magnitudes:
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">cos(θ) = (a · b) / (|a| × |b|)</div>
+                    <div class="formula-desc">Cosine similarity: ranges from -1 (opposite) to +1 (same direction)</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Computing Cosine Similarity</h4>
+                    <code>a = [1, 2, 3]
+b = [4, 5, 6]
+
+|a| = √(1² + 2² + 3²) = √14 ≈ 3.74
+|b| = √(4² + 5² + 6²) = √77 ≈ 8.77
+
+cos(θ) = 32 / (3.74 × 8.77) = 32 / 32.79 ≈ 0.975
+
+These vectors are very similar! (close to 1)</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Where Dot Products Appear in AI</h4>
+                    <p>
+                        <strong>Attention Mechanisms:</strong> "How relevant is token A to token B?" is computed as 
+                        a dot product of their representations.<br>
+                        <strong>Semantic Search:</strong> Find documents similar to a query by comparing embedding dot products.<br>
+                        <strong>Recommendations:</strong> "How much will user U like item I?" is often a dot product of their embeddings.<br>
+                        <strong>Every neural network layer</strong> uses dot products to combine inputs with weights.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Matrices -->
+            <section class="math-section" id="matrices">
+                <h2><span class="section-number">4</span> Matrices: Tables of Numbers</h2>
+                
+                <p>
+                    A <strong>matrix</strong> is a 2D grid of numbers arranged in rows and columns. 
+                    Think of it as a collection of vectors, or as a transformation that can rotate, 
+                    scale, or project vectors.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+                         ← n columns →
+                         
+         ┌                           ┐
+     ↑   │  a₁₁   a₁₂   ...   a₁ₙ   │
+     │   │  a₂₁   a₂₂   ...   a₂ₙ   │
+  m rows │  ...   ...   ...   ...   │
+     │   │  aₘ₁   aₘ₂   ...   aₘₙ   │
+     ↓   └                           ┘
+     
+     Matrix A has shape (m × n): m rows, n columns
+     Element aᵢⱼ is in row i, column j
+                    </pre>
+                    <p class="diagram-caption">A matrix is a 2D array of numbers with m rows and n columns</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Notation Examples</h4>
+                    <code>A ∈ ℝ³ˣ² means A is a 3×2 matrix (3 rows, 2 columns)
+
+    ┌     ┐
+A = │ 1 2 │   A₁₁ = 1,  A₁₂ = 2
+    │ 3 4 │   A₂₁ = 3,  A₂₂ = 4
+    │ 5 6 │   A₃₁ = 5,  A₃₂ = 6
+    └     ┘</code>
+                </div>
+                
+                <h3>Special Matrices</h3>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Identity Matrix (I)</h4>
+                        <code>    ┌       ┐
+I = │ 1 0 0 │
+    │ 0 1 0 │
+    │ 0 0 1 │
+    └       ┘</code>
+                        <p>1s on diagonal, 0s elsewhere. A × I = I × A = A (does nothing).</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Transpose (Aᵀ)</h4>
+                        <code>    ┌     ┐       ┌       ┐
+A = │ 1 2 │  Aᵀ = │ 1 3 5 │
+    │ 3 4 │       │ 2 4 6 │
+    │ 5 6 │       └       ┘
+    └     ┘</code>
+                        <p>Rows become columns, columns become rows. Shape (m×n) → (n×m).</p>
+                    </div>
+                </div>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Zero Matrix</h4>
+                        <code>    ┌       ┐
+0 = │ 0 0 0 │
+    │ 0 0 0 │
+    └       ┘</code>
+                        <p>All elements are zero. A + 0 = A.</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Diagonal Matrix</h4>
+                        <code>    ┌         ┐
+D = │ d₁ 0  0  │
+    │ 0  d₂ 0  │
+    │ 0  0  d₃ │
+    └         ┘</code>
+                        <p>Non-zero only on diagonal. Scales each dimension independently.</p>
+                    </div>
+                </div>
+                
+                <h3>Matrix as Transformation</h3>
+                
+                <p>
+                    A key insight: multiplying a vector by a matrix <strong>transforms</strong> that vector. 
+                    Different matrices perform different transformations: rotation, scaling, projection, etc.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+Original vectors:           After transformation by A:
+
+    ↑ y                         ↑ y
+    │    →                      │      ↗
+    │   ╱                       │    ╱
+    │  ↑                        │  ↗
+    │                           │↗
+    └──────→ x                  └──────→ x
+    
+    A matrix can rotate, stretch, shrink, flip, or shear vectors.
+                    </pre>
+                    <p class="diagram-caption">Matrices transform vectors in various ways</p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Weight Matrices in Neural Networks</h4>
+                    <p>
+                        Each layer in a neural network has a weight matrix W. When input x passes through, 
+                        the matrix transforms it: <code>z = Wx</code>. The network <em>learns</em> what 
+                        transformation to apply by adjusting the values in W during training. A "7 billion 
+                        parameter model" has 7 billion numbers distributed across many weight matrices.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 5: Matrix Multiplication -->
+            <section class="math-section" id="matrix-multiplication">
+                <h2><span class="section-number">5</span> Matrix Multiplication</h2>
+                
+                <p>
+                    Matrix multiplication is <strong>THE</strong> fundamental operation in deep learning. 
+                    Every neural network layer, every attention head, every linear transformation is a 
+                    matrix multiplication. Master this, and you understand the computational heart of AI.
+                </p>
+                
+                <h3>The Rule: Dot Products of Rows and Columns</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">Cᵢⱼ = (row i of A) · (column j of B)</div>
+                    <div class="formula-desc">Each element of C is a dot product</div>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+        A (2×3)         B (3×2)         C (2×2)
+    ┌         ┐     ┌       ┐     ┌                   ┐
+    │ 1  2  3 │  ×  │ 7  8  │  =  │ C₁₁   C₁₂        │
+    │ 4  5  6 │     │ 9  10 │     │ C₂₁   C₂₂        │
+    └         ┘     │ 11 12 │     └                   ┘
+                    └       ┘
+    
+    C₁₁ = [1,2,3] · [7,9,11]  = 1×7 + 2×9 + 3×11 = 58
+    C₁₂ = [1,2,3] · [8,10,12] = 1×8 + 2×10 + 3×12 = 64
+    C₂₁ = [4,5,6] · [7,9,11]  = 4×7 + 5×9 + 6×11 = 139
+    C₂₂ = [4,5,6] · [8,10,12] = 4×8 + 5×10 + 6×12 = 154
+    
+             ┌         ┐
+        C =  │ 58   64 │
+             │ 139 154 │
+             └         ┘
+                    </pre>
+                    <p class="diagram-caption">Each element of C comes from a dot product of a row from A and column from B</p>
+                </div>
+                
+                <h3>Shape Rules (Critical!)</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">(m × n) × (n × p) = (m × p)</div>
+                    <div class="formula-desc">Inner dimensions must match! Result has outer dimensions.</div>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>⚠️ The #1 Bug in Deep Learning</h4>
+                    <p>
+                        Shape mismatches cause most errors in neural network code. If A is (64, 512) and B is (256, 128), 
+                        you <em>cannot</em> multiply them—the inner dimensions (512 and 256) don't match. 
+                        Always check shapes: <code>print(tensor.shape)</code> is your best debugging tool.
+                    </p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Shape Practice</h4>
+                    <code>Can we multiply? What's the result shape?
+
+(3 × 4) × (4 × 2) = (3 × 2)    ✓ Valid, inner = 4
+(5 × 3) × (3 × 7) = (5 × 7)    ✓ Valid, inner = 3
+(2 × 5) × (3 × 4) = ???        ✗ Invalid! 5 ≠ 3
+(4 × 4) × (4 × 4) = (4 × 4)    ✓ Square matrices</code>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>⚠️ Pitfall: Matrix Multiplication Dimensions</h4>
+                    <p>
+                        You can <strong>only</strong> multiply matrices A and B if the <strong>inner dimensions match</strong>:<br><br>
+                        • Matrix A is (m × n)<br>
+                        • Matrix B is (n × p)<br>
+                        • The result is (m × p)<br><br>
+                        If the inner dimensions do <strong>not match</strong>, the multiplication is <strong>not defined</strong>.<br><br>
+                        <strong>Valid examples:</strong><br>
+                        • (2×3) · (3×4) → (2×4) ✓ (inner dimensions: 3 and 3 match)<br>
+                        • (5×2) · (2×1) → (5×1) ✓ (inner dimensions: 2 and 2 match)<br><br>
+                        <strong>Invalid examples:</strong><br>
+                        • (2×3) · (2×4) → ❌ (inner dimensions: 3 and 2 do not match)<br>
+                        • (4×5) · (3×2) → ❌ (inner dimensions: 5 and 3 do not match)
+                    </p>
+                </div>
+                
+                <h3>Matrix-Vector Multiplication</h3>
+                
+                <p>
+                    A special and very common case: multiplying a matrix by a vector. 
+                    This is exactly what happens in a neural network layer.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+     Neural Network Layer: y = Wx + b
+     
+         W (3×2)         x (2×1)           b (3×1)      y (3×1)
+     ┌         ┐       ┌     ┐           ┌     ┐     ┌     ┐
+     │ w₁₁ w₁₂│       │ x₁  │           │ b₁  │     │ y₁  │
+     │ w₂₁ w₂₂│   ×   │ x₂  │     +     │ b₂  │  =  │ y₂  │
+     │ w₃₁ w₃₂│       └     ┘           │ b₃  │     │ y₃  │
+     └         ┘                        └     ┘     └     ┘
+     
+     y₁ = w₁₁·x₁ + w₁₂·x₂ + b₁
+     y₂ = w₂₁·x₁ + w₂₂·x₂ + b₂
+     y₃ = w₃₁·x₁ + w₃₂·x₂ + b₃
+     
+     Transforms 2D input → 3D output
+                    </pre>
+                    <p class="diagram-caption">A neural network layer is just a matrix-vector multiplication</p>
+                </div>
+                
+                <h3>Important Properties</h3>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Not Commutative!</h4>
+                        <code>AB ≠ BA (in general)
+
+Order matters! Applying transform A 
+then B is different from B then A.</code>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Associative</h4>
+                        <code>(AB)C = A(BC)
+
+Order of operations doesn't matter
+(useful for optimization).</code>
+                    </div>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Why GPUs Excel at Matrix Multiplication</h4>
+                    <p>
+                        Matrix multiplication is "embarrassingly parallel"—each element of the output can be 
+                        computed independently. A GPU has thousands of cores that can compute these dot products 
+                        simultaneously. A 4090 GPU can perform ~80 trillion operations per second, mostly 
+                        matrix multiplications. This is why training large models requires GPUs.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 6: Key Concepts for AI -->
+            <section class="math-section" id="key-concepts">
+                <h2><span class="section-number">6</span> Key Concepts for AI</h2>
+                
+                <h3>Vector Norms (Length/Magnitude)</h3>
+                
+                <p>
+                    The <strong>norm</strong> of a vector measures its "size" or length. Different norms 
+                    measure size differently.
+                </p>
+                
+                <div class="two-column">
+                    <div class="formula-box">
+                        <div class="formula">||v||₂ = √(v₁² + v₂² + ... + vₙ²)</div>
+                        <div class="formula-desc">L2 norm (Euclidean length) — most common</div>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula">||v||₁ = |v₁| + |v₂| + ... + |vₙ|</div>
+                        <div class="formula-desc">L1 norm (Manhattan distance)</div>
+                    </div>
+                </div>
+                
+                <h3>Normalization</h3>
+                
+                <p>
+                    <strong>Normalizing</strong> a vector means scaling it to have length 1 (a unit vector). 
+                    This is crucial for stable training and fair comparisons.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">v̂ = v / ||v||₂</div>
+                    <div class="formula-desc">Divide by length to get a unit vector</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Normalizing a Vector</h4>
+                    <code>v = [3, 4]
+||v||₂ = √(9 + 16) = 5
+v̂ = [3/5, 4/5] = [0.6, 0.8]
+
+Check: |v̂| = √(0.36 + 0.64) = √1 = 1 ✓</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Layer Normalization</h4>
+                    <p>
+                        Transformers use "layer normalization" which normalizes activations. This stabilizes 
+                        training by keeping values in a reasonable range. Without normalization, values can 
+                        explode (overflow) or vanish (underflow) as they pass through many layers.
+                    </p>
+                </div>
+                
+                <h3>Broadcasting <span style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.08) 100%); color: #f59e0b; padding: 0.2rem 0.5rem; border-radius: var(--radius-sm); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; vertical-align: middle; margin-left: 0.5rem;">Advanced</span></h3>
+                
+                <p>
+                    <strong>Broadcasting</strong> is a NumPy/PyTorch feature that lets you perform operations 
+                    on arrays with different shapes. The smaller array is "broadcast" (virtually replicated) 
+                    to match the larger one. <em style="color: var(--text-tertiary);">(You'll use this later—just know it exists for now.)</em>
+                </p>
+                
+                <div class="example-box">
+                    <h4>📝 Broadcasting Examples</h4>
+                    <code># Matrix + Vector (vector added to each row)
+A = [[1, 2, 3],      v = [10, 20, 30]
+     [4, 5, 6]]
+
+A + v = [[11, 22, 33],
+         [14, 25, 36]]
+
+# Scalar operations
+A * 2 = [[2, 4, 6],
+         [8, 10, 12]]
+
+# Different but compatible shapes
+(3, 4, 1) + (1, 4, 5) → (3, 4, 5)  ← expanded to match</code>
+                </div>
+                
+                <h3>Common Tensor Shapes in AI</h3>
+                
+                <div class="example-box">
+                    <h4>📝 Shape Reference</h4>
+                    <code># Data Shapes
+Image batch:       (batch, channels, height, width)    [32, 3, 224, 224]
+Text batch:        (batch, sequence_len, embed_dim)    [16, 512, 768]
+Audio batch:       (batch, samples)                    [8, 16000]
+
+# Model Parameter Shapes
+Linear layer:      (in_features, out_features)         [768, 3072]
+Embedding table:   (vocab_size, embed_dim)             [50000, 768]
+Attention weights: (batch, heads, seq, seq)            [16, 12, 512, 512]
+
+# Named Dimensions (helpful convention)
+B = batch size
+T = sequence length (time)
+D = embedding dimension
+H = number of attention heads
+V = vocabulary size</code>
+                </div>
+            </section>
+            
+            <!-- Section 7: Practice -->
+            <section class="math-section" id="practice">
+                <h2><span class="section-number">7</span> Practice Problems</h2>
+                
+                <p>Test your understanding with these problems!</p>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 1: Dot Product</h4>
+                    <div class="problem">Compute: [2, -1, 3] · [4, 2, -1]</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>[2, -1, 3] · [4, 2, -1]
+= (2 × 4) + (-1 × 2) + (3 × -1)
+= 8 + (-2) + (-3)
+= 3</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 2: Matrix Multiplication Shape</h4>
+                    <div class="problem">If A is (4, 3) and B is (3, 5), what is the shape of AB?</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>(4 × 3) × (3 × 5) = (4 × 5)
+
+Inner dimensions (3, 3) match ✓
+Result has shape (4, 5)</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 3: Matrix Multiplication</h4>
+                    <div class="problem">
+Compute AB where:
+A = [[1, 2],    B = [[5, 6],
+     [3, 4]]         [7, 8]]</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>AB₁₁ = [1,2]·[5,7] = 5+14 = 19
+AB₁₂ = [1,2]·[6,8] = 6+16 = 22
+AB₂₁ = [3,4]·[5,7] = 15+28 = 43
+AB₂₂ = [3,4]·[6,8] = 18+32 = 50
+
+AB = [[19, 22],
+      [43, 50]]</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 4: Cosine Similarity</h4>
+                    <div class="problem">Find the cosine similarity between [1, 0] and [1, 1]</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>a = [1, 0], b = [1, 1]
+
+a · b = 1×1 + 0×1 = 1
+|a| = √(1² + 0²) = 1
+|b| = √(1² + 1²) = √2 ≈ 1.414
+
+cos(θ) = 1 / (1 × 1.414) ≈ 0.707
+
+This corresponds to a 45° angle.</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Key Takeaways -->
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Vectors</strong> are ordered lists of numbers that represent points or directions in space</li>
+                    <li><strong>Dot products</strong> measure similarity/alignment—they're the foundation of attention</li>
+                    <li><strong>Matrices</strong> are 2D arrays that represent transformations</li>
+                    <li><strong>Matrix multiplication</strong> (m×n) × (n×p) = (m×p)—inner dimensions must match</li>
+                    <li><strong>A neural network layer</strong> is just: y = Wx + b (matrix multiply + bias)</li>
+                    <li><strong>Shape debugging</strong> is the most common task—always check tensor.shape</li>
+                </ul>
+            </div>
+            
+            <!-- Final Section -->
+            <section class="math-section">
+                <h2>You're Ready!</h2>
+                <p>
+                    With these linear algebra foundations, you're prepared for the AI course. 
+                    You'll use these ideas throughout:
+                </p>
+                <ul>
+                    <li><strong>Module 2.1-2.2:</strong> Neural network architecture (matrix operations)</li>
+                    <li><strong>Module 3.1:</strong> Embeddings (vectors representing meaning)</li>
+                    <li><strong>Module 3.2-3.3:</strong> Attention mechanisms (dot products for similarity)</li>
+                    <li><strong>Module 4.1-4.2:</strong> Generative models (latent vector spaces)</li>
+                </ul>
+                
+                <div class="nav-cards">
+                    <a href="probability.html" class="nav-card">
+                        <span class="nav-card-label">Next Prerequisite</span>
+                        <span class="nav-card-title">Probability →</span>
+                    </a>
+                    <a href="../../index.html" class="nav-card">
+                        <span class="nav-card-label">Ready to Learn?</span>
+                        <span class="nav-card-title">Start the Course →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+    <script>
+        // Toggle solutions
+        document.querySelectorAll('.solution-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isHidden = content.style.display === 'none' || !content.style.display;
+                content.style.display = isHidden ? 'block' : 'none';
+                header.textContent = isHidden ? 'Click to hide solution ▲' : 'Click to reveal solution ▼';
+            });
+            header.nextElementSibling.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

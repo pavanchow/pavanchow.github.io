@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Embeddings & Vector Spaces — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item active"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 56%"></div></div>
+                    <span class="progress-text">10 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Modern Architectures</span><span class="breadcrumb-sep">→</span><span>Module 3.1</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Modern Architectures</span>
+                        <span class="module-duration">~40 min</span>
+                    </div>
+                    <h1 class="module-title">Embeddings & Vector Spaces</h1>
+                    <p class="module-subtitle">
+                        How neural networks learn to represent discrete concepts (words, users, items) 
+                        as continuous vectors—enabling semantic reasoning and forming the foundation 
+                        of modern language models.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand embeddings as learned continuous representations of discrete items</li>
+                        <li>Explain how semantic similarity maps to geometric proximity in embedding space</li>
+                        <li>Perform and interpret vector arithmetic on embeddings</li>
+                        <li>Connect embedding techniques to modern language models</li>
+                        <li>Understand how embeddings enable transfer learning</li>
+                    </ul>
+                </section>
+
+                <section class="content-section inductive-bias-intro">
+                    <h2 class="section-heading">Section III: The Architecture Question</h2>
+                    
+                    <div class="context-banner">
+                        <div class="context-icon">◈</div>
+                        <div class="context-content">
+                            <h3>Before We Begin: Why Architecture Matters</h3>
+                            <p>
+                                In Module 2, we learned that neural networks are universal function approximators—they 
+                                can learn <em>any</em> pattern given enough data. But in practice, we don't have 
+                                infinite data. So how do we choose which network to use?
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">Inductive Bias</div>
+                        <p class="definition-text">
+                            The <strong>inductive bias</strong> of a model is the set of assumptions it makes about 
+                            the structure of the problem. These assumptions guide learning when data is limited, 
+                            but can hurt performance when they don't match the actual data structure.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">The Trade-off</span>
+                            <p>
+                                Imagine learning to play chess. A <strong>weak</strong> prior assumes nothing—you 
+                                must discover every rule from scratch. A <strong>strong</strong> prior says "pieces 
+                                move in specific patterns, capture by replacement, king must be protected." The 
+                                strong prior helps you learn faster, but if you're actually learning Go, it hurts.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Architecture Spectrum</span>
+                            <div class="architecture-spectrum">
+                                <div class="spectrum-item">
+                                    <h4>MLPs (Dense Networks)</h4>
+                                    <p class="bias-level">Weak Bias</p>
+                                    <p>No structural assumptions. Must learn all patterns from data. Need lots of data.</p>
+                                </div>
+                                <div class="spectrum-arrow">→</div>
+                                <div class="spectrum-item highlighted-cnn">
+                                    <h4>CNNs</h4>
+                                    <p class="bias-level">Strong Spatial Bias</p>
+                                    <p>Assumes <strong>translation invariance</strong> (a cat is a cat anywhere in the image) 
+                                    and <strong>local structure</strong> (nearby pixels are related). Excellent for images.</p>
+                                </div>
+                                <div class="spectrum-arrow">→</div>
+                                <div class="spectrum-item highlighted-rnn">
+                                    <h4>RNNs/LSTMs</h4>
+                                    <p class="bias-level">Strong Sequential Bias</p>
+                                    <p>Assumes <strong>sequential dependence</strong> (position matters, earlier tokens affect later ones). 
+                                    Good for text, time series.</p>
+                                </div>
+                                <div class="spectrum-arrow">→</div>
+                                <div class="spectrum-item highlighted-transformer">
+                                    <h4>Transformers</h4>
+                                    <p class="bias-level">Flexible Bias</p>
+                                    <p>Learns which positions relate to which via <strong>attention</strong>. No hard-coded locality 
+                                    or sequence assumptions. Can handle anything—with enough data.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">Why Transformers Won</span>
+                            <p>
+                                In the 2010s, CNNs dominated vision and RNNs dominated language—their biases matched 
+                                the data well. But as datasets grew enormous (billions of examples), Transformers' 
+                                <strong>flexibility</strong> became an advantage. They could learn the "right" 
+                                inductive bias from data rather than having it hard-coded.
+                            </p>
+                            <p>
+                                <strong>Key insight:</strong> Transformers didn't prove CNNs/RNNs "wrong"—they showed 
+                                that with enough data, learned biases outperform hand-designed ones.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>This Section's Journey</h4>
+                            <p>
+                                Module 3 follows the path from MLPs to Transformers: <strong>3.1 Embeddings</strong> 
+                                (how to represent discrete data), <strong>3.2 Attention</strong> (how to learn which 
+                                positions matter), <strong>3.3 Transformers</strong> (putting it together), and 
+                                <strong>3.4 LLMs</strong> (what happens at scale).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="legacy-architectures-summary">
+                        <h3>Understanding CNNs & RNNs (Pre-Transformer Era)</h3>
+                        <p class="summary-intro">
+                            While Transformers dominate modern AI, understanding CNNs and RNNs is essential—not for 
+                            history, but because their inductive biases encode fundamental concepts that recur everywhere.
+                        </p>
+
+                        <div class="legacy-grid">
+                            <div class="legacy-card cnn">
+                                <div class="legacy-header">
+                                    <h4>Convolutional Neural Networks (CNNs)</h4>
+                                    <span class="legacy-domain">Vision, Images, Grids</span>
+                                </div>
+                                <div class="legacy-content">
+                                    <div class="core-concept">
+                                        <strong>Key Insight:</strong> Spatial structure matters. A cat in the top-left 
+                                        of an image should be detected the same way as a cat in the bottom-right.
+                                    </div>
+                                    <div class="mechanism">
+                                        <strong>Mechanism:</strong> Convolution
+                                        <ul>
+                                            <li><strong>Local receptive fields:</strong> Each neuron only "sees" a small patch (e.g., 3×3 pixels)</li>
+                                            <li><strong>Weight sharing:</strong> The same filter is applied across the entire image</li>
+                                            <li><strong>Translation invariance:</strong> Features detected anywhere in the image produce the same response</li>
+                                        </ul>
+                                    </div>
+                                    <div class="formula-box">
+                                        <code>Output[i,j] = Σ Input[i+m, j+n] × Filter[m,n]</code>
+                                        <span class="formula-note">The same Filter slides across all positions</span>
+                                    </div>
+                                    <div class="legacy-note">
+                                        <strong>Why it worked:</strong> Images have strong spatial locality—nearby pixels are correlated. 
+                                        CNNs exploit this structure with far fewer parameters than dense networks.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="legacy-card rnn">
+                                <div class="legacy-header">
+                                    <h4>Recurrent Neural Networks (RNNs/LSTMs)</h4>
+                                    <span class="legacy-domain">Sequences, Text, Time Series</span>
+                                </div>
+                                <div class="legacy-content">
+                                    <div class="core-concept">
+                                        <strong>Key Insight:</strong> Sequential structure matters. "The dog bit the man" and 
+                                        "The man bit the dog" have the same words but different meanings—order matters.
+                                    </div>
+                                    <div class="mechanism">
+                                        <strong>Mechanism:</strong> Hidden State Memory
+                                        <ul>
+                                            <li><strong>Recurrence:</strong> Process one token at a time, maintaining a "hidden state" that summarizes history</li>
+                                            <li><strong>Sequential dependency:</strong> Each output depends on all previous inputs (through the hidden state)</li>
+                                            <li><strong>LSTMs:</strong> Add "gates" to control what to remember/forget (solved vanishing gradient problem)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="formula-box">
+                                        <code>h_t = f(W_h · h_{t-1} + W_x · x_t + b)</code>
+                                        <span class="formula-note">Hidden state h_t carries information from all past steps</span>
+                                    </div>
+                                    <div class="legacy-note">
+                                        <strong>Limitation:</strong> Information must flow sequentially—long-range dependencies 
+                                        are hard. Transformers solve this with parallel attention.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transformer-contrast">
+                            <h4>How Transformers Differ</h4>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Aspect</th>
+                                        <th>CNNs</th>
+                                        <th>RNNs</th>
+                                        <th>Transformers</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Receptive Field</td>
+                                        <td>Local (grows with depth)</td>
+                                        <td>All past tokens</td>
+                                        <td>All tokens (via attention)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Parallelism</td>
+                                        <td>Fully parallel</td>
+                                        <td>Sequential</td>
+                                        <td>Fully parallel</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Position Handling</td>
+                                        <td>Implicit (spatial)</td>
+                                        <td>Implicit (order)</td>
+                                        <td>Explicit (positional encoding)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inductive Bias</td>
+                                        <td>Locality, translation invariance</td>
+                                        <td>Sequential, recency</td>
+                                        <td>Minimal (learned via attention)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">The Representation Problem</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">The Challenge</div>
+                        <p class="definition-text">
+                            Neural networks operate on continuous vectors, but many real-world entities 
+                            are discrete: words, users, products, genes. <strong>Embeddings</strong> bridge 
+                            this gap by mapping discrete items to dense, low-dimensional vectors where 
+                            similarity has meaning.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Think of a map: cities exist as discrete points on Earth, but by assigning 
+                                coordinates (latitude, longitude), we can measure distances and directions. 
+                                Paris is "close to" Lyon in a way that matches geographic reality.
+                            </p>
+                            <p>
+                                Embeddings do this for abstract concepts. Words like "king" and "queen" 
+                                get coordinates in a vector space where proximity reflects semantic similarity. 
+                                The network learns these coordinates by observing how concepts are used.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                An embedding is a learned lookup table E ∈ ℝ^(V×d) where V is vocabulary 
+                                size and d is embedding dimension. For item i with one-hot encoding e_i:
+                            </p>
+                            <div class="formula-inline">
+                                embedding(i) = E^T e_i = E[i] (the i-th row of E)
+                            </div>
+                            <p>
+                                The embedding matrix E is trained end-to-end with the rest of the network. 
+                                Gradients flow back through the embedding lookup, updating only the row 
+                                corresponding to each input item.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                Pre-trained embeddings (Word2Vec, GloVe, BERT) capture general linguistic 
+                                knowledge and can be used as starting points for specific tasks. Modern LLMs 
+                                learn embeddings as their first layer, mapping tokens to the vectors that 
+                                feed into transformer layers.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">From One-Hot to Dense</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Problem with One-Hot Encoding</h4>
+                            <p>
+                                A vocabulary of 50,000 words represented as one-hot vectors means each 
+                                word is a 50,000-dimensional vector with a single 1 and 49,999 zeros. 
+                                This is wasteful and captures no similarity—"cat" and "dog" are as 
+                                different as "cat" and "quantum".
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="comparison-cards">
+                        <div class="encoding-card onehot">
+                            <h3 class="card-title">One-Hot Encoding</h3>
+                            <div class="encoding-example">
+                                <div class="word-vector">
+                                    <span class="word">"cat"</span>
+                                    <span class="vector">[1, 0, 0, 0, ..., 0]</span>
+                                </div>
+                                <div class="word-vector">
+                                    <span class="word">"dog"</span>
+                                    <span class="vector">[0, 1, 0, 0, ..., 0]</span>
+                                </div>
+                                <div class="word-vector">
+                                    <span class="word">"quantum"</span>
+                                    <span class="vector">[0, 0, 1, 0, ..., 0]</span>
+                                </div>
+                            </div>
+                            <ul class="encoding-props">
+                                <li>Dimension: vocabulary size (huge)</li>
+                                <li>All pairs equidistant</li>
+                                <li>No semantic information</li>
+                                <li>Sparse (mostly zeros)</li>
+                            </ul>
+                        </div>
+
+                        <div class="encoding-card embedding">
+                            <h3 class="card-title">Dense Embeddings</h3>
+                            <div class="encoding-example">
+                                <div class="word-vector">
+                                    <span class="word">"cat"</span>
+                                    <span class="vector">[0.21, -0.45, 0.89, ...]</span>
+                                </div>
+                                <div class="word-vector">
+                                    <span class="word">"dog"</span>
+                                    <span class="vector">[0.19, -0.42, 0.85, ...]</span>
+                                </div>
+                                <div class="word-vector">
+                                    <span class="word">"quantum"</span>
+                                    <span class="vector">[-0.71, 0.33, 0.12, ...]</span>
+                                </div>
+                            </div>
+                            <ul class="encoding-props">
+                                <li>Dimension: chosen (50-1024)</li>
+                                <li>Similar items nearby</li>
+                                <li>Captures semantic relations</li>
+                                <li>Dense (all values meaningful)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Learning Embeddings: The Word2Vec Idea</h2>
+                    
+                    <p class="lead-paragraph">
+                        The breakthrough insight: words that appear in similar contexts have similar 
+                        meanings. By training to predict context from words (or vice versa), the network 
+                        learns embeddings where semantically related words cluster together.
+                    </p>
+
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <h3 class="concept-title">Skip-gram</h3>
+                            <p>
+                                Given a center word, predict surrounding context words. The sentence 
+                                "The cat sat on the mat" trains to predict "sat", "on" from "cat".
+                            </p>
+                            <div class="concept-formula">P(context | center)</div>
+                            <p class="concept-note">
+                                Forces the embedding to capture what concepts typically appear together.
+                            </p>
+                        </div>
+
+                        <div class="concept-card">
+                            <h3 class="concept-title">CBOW</h3>
+                            <p>
+                                Continuous Bag of Words: given context words, predict the center word. 
+                                From "The ___ sat on", predict "cat".
+                            </p>
+                            <div class="concept-formula">P(center | context)</div>
+                            <p class="concept-note">
+                                Often faster to train; good for frequent words.
+                            </p>
+                        </div>
+
+                        <div class="concept-card">
+                            <h3 class="concept-title">Negative Sampling</h3>
+                            <p>
+                                Instead of full softmax over vocabulary, contrast real context pairs 
+                                against random "negative" pairs. Much more efficient.
+                            </p>
+                            <div class="concept-formula">Maximize: σ(v_c · v_w) for real pairs</div>
+                            <p class="concept-note">
+                                Makes training tractable for large vocabularies.
+                            </p>
+                        </div>
+
+                        <div class="concept-card">
+                            <h3 class="concept-title">The Result</h3>
+                            <p>
+                                After training on billions of words, embeddings capture syntactic 
+                                and semantic patterns—without any labeled data.
+                            </p>
+                            <div class="concept-formula">Similar contexts → similar vectors</div>
+                            <p class="concept-note">
+                                "King" and "queen" cluster; "run" and "ran" cluster.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section unsupervised-section">
+                    <h2 class="section-heading">Unsupervised Learning: Finding Structure Without Labels</h2>
+                    
+                    <p class="lead-paragraph">
+                        Embeddings learn to cluster similar concepts together—but how do we verify this, and 
+                        what techniques let us explore high-dimensional spaces? This is the domain of 
+                        <strong>unsupervised learning</strong>.
+                    </p>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">Unsupervised Learning</div>
+                        <p class="definition-text">
+                            Learning to find structure, patterns, or groupings in data <strong>without explicit 
+                            labels</strong>. The algorithm discovers organization that wasn't provided by humans.
+                        </p>
+                    </div>
+
+                    <div class="unsupervised-methods">
+                        <div class="method-block">
+                            <h4>Clustering: K-Means</h4>
+                            <p>
+                                Groups data points into K clusters based on similarity (distance in embedding space).
+                            </p>
+                            <div class="method-detail">
+                                <strong>Algorithm:</strong>
+                                <ol>
+                                    <li>Initialize K cluster centers randomly</li>
+                                    <li>Assign each point to nearest center</li>
+                                    <li>Recompute centers as mean of assigned points</li>
+                                    <li>Repeat until convergence</li>
+                                </ol>
+                            </div>
+                            <div class="method-code">
+                                <pre><code class="language-python">from sklearn.cluster import KMeans
+
+# Cluster word embeddings
+kmeans = KMeans(n_clusters=10)
+clusters = kmeans.fit_predict(embeddings)
+
+# Words in same cluster are semantically related!</code></pre>
+                            </div>
+                            <p class="method-use">
+                                <strong>Why it matters:</strong> If embeddings are good, K-Means on word vectors 
+                                will produce sensible semantic groups (animals, verbs, places) automatically.
+                            </p>
+                        </div>
+
+                        <div class="method-block">
+                            <h4>Dimensionality Reduction: PCA & t-SNE</h4>
+                            <p>
+                                Embeddings live in high dimensions (300-768+). To visualize them, we project 
+                                to 2D/3D while preserving structure.
+                            </p>
+                            
+                            <div class="reduction-comparison">
+                                <div class="reduction-method">
+                                    <h5>PCA (Principal Component Analysis)</h5>
+                                    <ul>
+                                        <li>Finds directions of maximum variance</li>
+                                        <li>Linear projection—fast and deterministic</li>
+                                        <li>Preserves global structure</li>
+                                        <li>Good for initial exploration</li>
+                                    </ul>
+                                </div>
+                                <div class="reduction-method">
+                                    <h5>t-SNE / UMAP</h5>
+                                    <ul>
+                                        <li>Non-linear—can unfold complex manifolds</li>
+                                        <li>Preserves local neighborhoods</li>
+                                        <li>Creates visually compelling clusters</li>
+                                        <li>Distances between clusters less meaningful</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="method-code">
+                                <pre><code class="language-python">from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+
+# Reduce 512-dim embeddings to 2D
+tsne = TSNE(n_components=2, perplexity=30)
+embeddings_2d = tsne.fit_transform(embeddings)
+
+# Plot—semantic clusters should be visible!
+plt.scatter(embeddings_2d[:, 0], embeddings_2d[:, 1])</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Embedding Quality Test</h4>
+                            <p>
+                                Good embeddings should pass the "clustering test": run t-SNE + K-Means on your 
+                                embeddings. If semantically similar items cluster together without any label 
+                                information, your embeddings have captured meaningful structure.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Vector Arithmetic: Semantic Algebra</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Famous Analogy</h4>
+                            <p>
+                                <strong>king - man + woman ≈ queen</strong>
+                            </p>
+                            <p>
+                                This isn't cherry-picked magic—it's a consequence of how embeddings 
+                                encode relationships. The vector from "man" to "king" captures "royalty", 
+                                and adding it to "woman" lands near "queen".
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="arithmetic-examples">
+                        <div class="analogy-example">
+                            <div class="analogy-equation">
+                                <span class="analogy-term">Paris</span>
+                                <span class="analogy-op">−</span>
+                                <span class="analogy-term">France</span>
+                                <span class="analogy-op">+</span>
+                                <span class="analogy-term">Japan</span>
+                                <span class="analogy-op">≈</span>
+                                <span class="analogy-result">Tokyo</span>
+                            </div>
+                            <p class="analogy-explanation">
+                                The "capital-of" relationship is encoded as a consistent direction in 
+                                embedding space.
+                            </p>
+                        </div>
+
+                        <div class="analogy-example">
+                            <div class="analogy-equation">
+                                <span class="analogy-term">walking</span>
+                                <span class="analogy-op">−</span>
+                                <span class="analogy-term">walk</span>
+                                <span class="analogy-op">+</span>
+                                <span class="analogy-term">swim</span>
+                                <span class="analogy-op">≈</span>
+                                <span class="analogy-result">swimming</span>
+                            </div>
+                            <p class="analogy-explanation">
+                                Grammatical relations (present → present participle) also have consistent 
+                                vector offsets.
+                            </p>
+                        </div>
+
+                        <div class="analogy-example">
+                            <div class="analogy-equation">
+                                <span class="analogy-term">bigger</span>
+                                <span class="analogy-op">−</span>
+                                <span class="analogy-term">big</span>
+                                <span class="analogy-op">+</span>
+                                <span class="analogy-term">small</span>
+                                <span class="analogy-op">≈</span>
+                                <span class="analogy-result">smaller</span>
+                            </div>
+                            <p class="analogy-explanation">
+                                Comparative forms are encoded systematically.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        These patterns emerge from statistics—the network was never explicitly told 
+                        about capitals, grammar, or comparatives. Regularities in language use become 
+                        regularities in embedding geometry.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Measuring Similarity</h2>
+                    
+                    <p class="lead-paragraph">
+                        The most common similarity measure in embedding spaces is <strong>cosine similarity</strong>—the 
+                        cosine of the angle between vectors, ignoring magnitude.
+                    </p>
+
+                    <div class="formula-block">
+                        <div class="formula-content">
+                            cos(θ) = (A · B) / (||A|| × ||B||)
+                        </div>
+                        <div class="formula-note">
+                            Ranges from -1 (opposite) through 0 (orthogonal) to +1 (identical direction)
+                        </div>
+                    </div>
+
+                    <div class="comparison-table">
+                        <h4 class="table-title">Similarity Measures Compared</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Measure</th>
+                                    <th>Formula</th>
+                                    <th>Properties</th>
+                                    <th>Use Case</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cosine Similarity</td>
+                                    <td>A·B / (||A||||B||)</td>
+                                    <td>Direction-only, scale-invariant</td>
+                                    <td>Text, semantic search</td>
+                                </tr>
+                                <tr>
+                                    <td>Euclidean Distance</td>
+                                    <td>||A - B||</td>
+                                    <td>Considers magnitude</td>
+                                    <td>Spatial data, clustering</td>
+                                </tr>
+                                <tr>
+                                    <td>Dot Product</td>
+                                    <td>A · B</td>
+                                    <td>Unbounded, considers magnitude</td>
+                                    <td>Recommendation, attention</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">From Word2Vec to Modern Embeddings</h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2013</div>
+                            <div class="timeline-content">
+                                <h4>Word2Vec</h4>
+                                <p>Static embeddings: one vector per word, regardless of context. 
+                                "Bank" has the same embedding in "river bank" and "bank account".</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2014</div>
+                            <div class="timeline-content">
+                                <h4>GloVe</h4>
+                                <p>Global Vectors: combines local context (like Word2Vec) with global 
+                                co-occurrence statistics. Often performs better on analogy tasks.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2018</div>
+                            <div class="timeline-content">
+                                <h4>ELMo</h4>
+                                <p>Contextual embeddings: different vectors for the same word in 
+                                different contexts. "Bank" now depends on surrounding words.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2018+</div>
+                            <div class="timeline-content">
+                                <h4>BERT / GPT / Transformers</h4>
+                                <p>Deep contextual embeddings: each token's representation is computed 
+                                by attention over all other tokens. The foundation of modern LLMs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Embeddings understand meaning like humans do"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Embeddings capture statistical co-occurrence patterns, not true understanding. 
+                                They can produce the "right" answer to analogies while encoding problematic 
+                                biases or failing on reasoning tasks.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Embeddings are useful statistical 
+                                summaries of language use. They capture patterns humans created but don't 
+                                represent human-like comprehension or reasoning.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Vector arithmetic always works cleanly"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                The king-queen analogy is famous because it works well. Many other 
+                                analogies fail or give nonsensical results. Results depend heavily on 
+                                training data and are often brittle.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Vector arithmetic works for some 
+                                relationships that are consistently expressed in training data. It's a 
+                                useful property, not a universal reasoning mechanism.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Higher-dimensional embeddings are always better"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Very high dimensions increase computational cost and can lead to overfitting. 
+                                There's typically diminishing returns beyond a certain dimension.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Optimal embedding dimension depends 
+                                on vocabulary size, task complexity, and available data. Common choices 
+                                range from 50-1024, with diminishing returns beyond task-specific optima.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Embedding Explorer
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore word embeddings in 2D. See how similar words cluster together 
+                            and experiment with vector arithmetic.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="space">Embedding Space</button>
+                            <button class="lab-tab" data-tab="arithmetic">Vector Arithmetic</button>
+                            <button class="lab-tab" data-tab="similarity">Similarity Search</button>
+                        </div>
+
+                        <div class="lab-panel active" id="space-panel">
+                            <div class="space-lab">
+                                <div class="space-canvas-container">
+                                    <canvas id="embedding-canvas" width="600" height="450"></canvas>
+                                </div>
+                                <div class="space-controls">
+                                    <div class="control-group">
+                                        <label>Category Highlight</label>
+                                        <select id="highlight-category">
+                                            <option value="all">All Words</option>
+                                            <option value="animals">Animals</option>
+                                            <option value="countries">Countries</option>
+                                            <option value="verbs">Verbs</option>
+                                            <option value="royalty">Royalty</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-actions">
+                                        <button id="randomize-view" class="btn btn-secondary">Randomize View</button>
+                                    </div>
+                                </div>
+                                <div class="space-info">
+                                    <p>
+                                        <strong>Note:</strong> This is a simplified 2D projection. Real 
+                                        embeddings exist in 50-1000+ dimensions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="arithmetic-panel">
+                            <div class="arithmetic-lab">
+                                <div class="arithmetic-input">
+                                    <select id="term-a" class="term-select">
+                                        <option value="king">king</option>
+                                        <option value="man">man</option>
+                                        <option value="paris">Paris</option>
+                                        <option value="walking">walking</option>
+                                    </select>
+                                    <span class="op">−</span>
+                                    <select id="term-b" class="term-select">
+                                        <option value="man">man</option>
+                                        <option value="king">king</option>
+                                        <option value="france">France</option>
+                                        <option value="walk">walk</option>
+                                    </select>
+                                    <span class="op">+</span>
+                                    <select id="term-c" class="term-select">
+                                        <option value="woman">woman</option>
+                                        <option value="queen">queen</option>
+                                        <option value="japan">Japan</option>
+                                        <option value="swim">swim</option>
+                                    </select>
+                                    <span class="op">=</span>
+                                    <span id="arithmetic-result" class="result">?</span>
+                                </div>
+                                <div class="arithmetic-viz">
+                                    <canvas id="arithmetic-canvas" width="500" height="400"></canvas>
+                                </div>
+                                <button id="compute-analogy" class="btn btn-primary">Compute</button>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="similarity-panel">
+                            <div class="similarity-lab">
+                                <div class="similarity-search">
+                                    <label>Find words similar to:</label>
+                                    <select id="similarity-word">
+                                        <option value="cat">cat</option>
+                                        <option value="king">king</option>
+                                        <option value="france">France</option>
+                                        <option value="happy">happy</option>
+                                        <option value="computer">computer</option>
+                                    </select>
+                                    <button id="find-similar" class="btn btn-primary">Find Similar</button>
+                                </div>
+                                <div class="similarity-results" id="similarity-results">
+                                    Select a word and click "Find Similar"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Semantic clustering:</strong> Animals group together, countries group together.</li>
+                            <li><strong>Relationship directions:</strong> Male→female, country→capital are consistent vectors.</li>
+                            <li><strong>Similarity is relative:</strong> "Dog" is similar to "cat" in the animal sense, but also to "pet" in another sense.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What is the main advantage of embeddings over one-hot encoding?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Embeddings are faster to compute</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Embeddings capture semantic similarity—similar items have similar vectors</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Embeddings use more dimensions</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">One-hot vectors cannot represent rare words</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">How does Word2Vec learn word embeddings?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">By having humans label word similarities</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">By training to predict context words from center words (or vice versa)</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">By counting word frequencies in documents</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">By using dictionary definitions</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">Why does "king - man + woman ≈ queen" work in embedding space?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">The model was explicitly taught gender relationships</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">The relationship "male royalty to female royalty" is encoded as a consistent direction because these words appear in similar contexts</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">The words are all four letters long</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">This is random coincidence</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">What is the key difference between Word2Vec and BERT embeddings?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">BERT uses larger vectors</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">BERT produces contextual embeddings—the same word gets different vectors in different contexts</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">Word2Vec is trained on more data</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">BERT only works for English</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">Why is cosine similarity commonly used for embeddings?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">It's the fastest to compute</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">It measures direction similarity regardless of vector magnitude, which is meaningful for semantic comparison</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">It always gives values between 0 and 1</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">It works only in 2D</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-2-4.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Generalization & Regularization</span>
+                    </a>
+                    <a href="module-3-2.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Attention Mechanisms →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-3-1.js"></script>
+</body>
+</html>
+

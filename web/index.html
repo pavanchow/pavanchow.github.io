@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Web and Dark Web - Pavan Nallamothu</title>
+<link rel="canonical" href="https://pavanchow.github.io/web/">
+<link rel="icon" type="image/svg+xml" href="/img/icon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/icon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/icon/favicon-16.png">
+<link rel="apple-touch-icon" href="/img/icon/apple-touch-icon.png">
+<meta name="description" content="The surface, deep, and dark web, and TOR: what each layer is, how it is reached, and how a Tor hidden service is set up, by Pavan Nallamothu.">
+<meta name="author" content="Pavan Nallamothu">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1f2328;--muted:#59636e;--accent:#0969da;--border:#e1e4e8;--code:#f6f8fa}
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0d1117;--card:#161b22;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--border:#2d333b;--code:#0a0e14}
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  .wrap{max-width:780px;margin:0 auto;padding:40px 22px 80px}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  .back{font-size:.9rem;color:var(--muted)}
+  h1{font-size:1.75rem;line-height:1.22;margin:16px 0 10px;letter-spacing:-.01em;font-weight:800}
+  .lead{color:var(--muted);font-size:1.03rem;margin-bottom:26px}
+  h2{font-size:1.12rem;margin:32px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+  h2:first-of-type{border-top:none;padding-top:0}
+  h3{font-size:.98rem;margin:20px 0 6px;color:var(--text)}
+  p{color:var(--muted);font-size:.95rem;margin:9px 0}
+  ul{color:var(--muted);font-size:.95rem;margin:9px 0 9px 20px}
+  li{margin-bottom:6px}
+  strong{color:var(--text)}
+  img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:8px;margin:12px 0;display:block}
+  .figs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  @media(max-width:640px){.figs{grid-template-columns:1fr}}
+  .figs img{margin:0}
+  pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:12px 14px;overflow-x:auto;font-family:"SF Mono",Menlo,monospace;font-size:.83rem;color:var(--text);margin:12px 0}
+  code{font-family:"SF Mono",Menlo,monospace;background:var(--code);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-size:.86em}
+  .dl{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+  .dl a{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.9rem;font-weight:600}
+  .dl a:hover{border-color:var(--accent);text-decoration:none}
+  footer{margin-top:44px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="/">&larr; Pavan Nallamothu</a></p>
+  <h1>Deep Web and Dark Web</h1>
+  <p class="lead">A short primer on the three layers of the web and on TOR: what distinguishes them, how each is reached, and how to stand up a Tor hidden service on your own machine.</p>
+
+  <div class="dl">
+    <a href="Deepweb.pdf">Slides (PDF)</a>
+    <a href="Deepweb.pptx">Slides (PPTX)</a>
+  </div>
+
+  <h2>The web, and its three layers</h2>
+  <p>The internet is a huge network of connected computers. The world wide web is a collection of webpages found on that network, and a browser uses the internet to reach them. Within it there are three practical layers.</p>
+
+  <h3>Surface web</h3>
+  <p>The common internet everyone uses to read articles, news, and shop. This is the regularly indexed internet: Google, Twitter, YouTube and the rest. You search for something and land on a page that a search engine has already indexed and can see.</p>
+  <p><strong>Accessing it:</strong> search for anything in any search engine. Google itself is part of the surface web.</p>
+
+  <h3>Deep web</h3>
+  <p>The deep web, or invisible web, is the part of the web whose contents are not indexed by standard search engines. You have to go to those places directly rather than find them by searching. It holds databases, social media, academic information, and government resources.</p>
+  <p><strong>Accessing it:</strong> you need the exact address or URL, because these pages are not indexed and cannot be searched.</p>
+
+  <h3>Dark web</h3>
+  <p>The dark web is a subset of the deep web that is not only unindexed but also requires something special to reach it, such as specific proxying software or authentication, for example TOR. These pages need an additional sub-network such as Freenet, I2P, or TOR.</p>
+  <p>It is often associated with criminal activity of various degrees: selling drugs and weapons, gambling, and worse. Every coin has two sides, though, and there are legitimate uses, the majority of them in journalism, where reporters are required to protect their identity.</p>
+  <p><strong>Accessing it:</strong> special software (TOR) plus the exact address or URL of the page.</p>
+
+  <div class="figs">
+    <img src="deepweb1.jpg" alt="Diagram of the surface, deep, and dark web layers" loading="lazy">
+    <img src="deepweb2.png" alt="Illustration of how much of the web is indexed versus hidden" loading="lazy">
+  </div>
+
+  <h2>What TOR is</h2>
+  <p>Tor is free and open-source software for enabling anonymous communication. It directs internet traffic through a free, worldwide, volunteer overlay network of more than seven thousand relays, concealing a user's location and usage from anyone conducting network surveillance or traffic analysis. That makes internet activity harder to trace, including visits to websites, online posts, instant messages, and other forms of communication. Tor's intended use is to protect the personal privacy of its users and their freedom to conduct confidential communication without being monitored.</p>
+
+  <div class="figs">
+    <img src="ppt_img/tor.png" alt="The Tor network and its relays" loading="lazy">
+    <img src="ppt_img/TorUsers.jpg" alt="Who uses Tor" loading="lazy">
+  </div>
+
+  <h2>Why TOR</h2>
+  <ul>
+    <li>The Tor Browser is free to access and supports all major operating systems.</li>
+    <li>It was originally called The Onion Router, because it uses onion routing to conceal information about user activity.</li>
+    <li>Encrypted messages travel from host to receiver through several nodes.</li>
+    <li>It is open source, so the code can be inspected by anyone, which reduces the risk of hidden backdoors.</li>
+    <li>It lets users circumvent censorship, providing security by routing traffic through three relays (an entry, a middle, and an exit), roughly the equivalent of three proxies.</li>
+    <li>It supports <code>.onion</code> sites, which cannot be opened in ordinary browsers.</li>
+    <li>It hides the IP address you are accessing the deep or dark web from, making your address impractical to track.</li>
+  </ul>
+
+  <h2>Setting up a Tor hidden service</h2>
+  <p>Download and extract the <a href="https://www.torproject.org/download/" target="_blank" rel="noopener">Tor Browser</a>. Then locate the <code>torrc</code> file:</p>
+  <pre>locate torrc</pre>
+  <p>Inside the Tor Browser bundle it sits under <code>tor-browser_en-US/Browser/TorBrowser/Data/Tor</code>. Open it and add the following lines, adjusting the directory and the port to match your own server:</p>
+  <pre>HiddenServiceStatistics 0
+HiddenServiceDir /path/to/tor-browser_en-US/Browser/TorBrowser/Data/Tor/
+HiddenServicePort 80 127.0.0.1:80</pre>
+  <p>Make sure a server is running on the right port, in this case Apache on port 80. Restart Tor and it will write the hostname and private key into the hidden service directory, giving you the <code>.onion</code> address for the service.</p>
+
+  <footer>
+    Pavan Nallamothu, independent security researcher.
+    <a href="/">Home</a> &middot; <a href="https://github.com/pavanchow">GitHub</a>
+  </footer>
+</div>
+</body>
+</html>

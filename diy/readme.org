@@ -1,0 +1,2 @@
+* About this directory
+  - This contains all the files related to games and fun on this page.

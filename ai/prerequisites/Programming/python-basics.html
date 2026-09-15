@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Python basics for AI: variables, data types, and operators explained for machine learning beginners.">
+    <title>Python Basics for AI — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #3b82f6;
+            --prereq-accent-glow: rgba(59, 130, 246, 0.15);
+            --python-yellow: #ffd43b;
+            --python-blue: #306998;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .prereq-page {
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+        
+        .prereq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: clamp(1rem, 5vw, 2.5rem);
+        }
+        
+        /* Sticky Header */
+        .prereq-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent);
+            border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .prereq-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .prereq-nav a:hover {
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav .nav-divider {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
+            padding: 0 0.25rem;
+        }
+        
+        /* Hero Section */
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            border: 1px solid var(--surface-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 1rem;
+            line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Learning Objectives */
+        .learning-objectives {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--prereq-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .learning-objectives ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .learning-objectives li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Estimated Time */
+        .estimated-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Code Sections */
+        .code-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .code-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--prereq-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.875rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .code-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary);
+            margin: 1.75rem 0 1rem;
+        }
+        
+        .code-section p {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin: 0 0 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .code-section ul, .code-section ol {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            padding-left: 1.5rem;
+            margin: 0 0 1rem;
+        }
+        
+        .code-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Code Block */
+        .code-block {
+            background: #1a1d23;
+            border-radius: var(--radius-md);
+            margin: 1.25rem 0;
+            overflow: hidden;
+        }
+        
+        .code-block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: #252830;
+            border-bottom: 1px solid #333;
+        }
+        
+        .code-block-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #888;
+            font-weight: 500;
+        }
+        
+        .code-block-lang .python-icon {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, var(--python-blue) 50%, var(--python-yellow) 50%);
+            border-radius: 3px;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            font-family: var(--font-mono);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+        
+        /* Syntax Highlighting */
+        .code-block .keyword { color: #c678dd; }
+        .code-block .string { color: #98c379; }
+        .code-block .number { color: #d19a66; }
+        .code-block .comment { color: #5c6370; font-style: italic; }
+        .code-block .function { color: #61afef; }
+        .code-block .builtin { color: #e5c07b; }
+        .code-block .operator { color: #56b6c2; }
+        
+        /* Output Block */
+        .output-block {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: var(--radius-md);
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .output-block-header {
+            padding: 0.5rem 1rem;
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            font-size: 0.75rem;
+            color: #8b949e;
+            font-weight: 500;
+        }
+        
+        .output-block pre {
+            margin: 0;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #58a6ff;
+        }
+        
+        /* Concept Box */
+        .concept-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .concept-box h4 {
+            color: var(--prereq-accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .concept-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* AI Connection Box */
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(80, 184, 146, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 {
+            color: var(--accent-emerald);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ai-connection p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(217, 119, 119, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(217, 119, 119, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .warning-box h4 {
+            color: var(--accent-coral);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .warning-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Tip Box */
+        .tip-box {
+            background: linear-gradient(135deg, rgba(212, 168, 85, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(212, 168, 85, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tip-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Data Type Table */
+        .type-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+        }
+        
+        .type-table th,
+        .type-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--surface-3);
+        }
+        
+        .type-table th {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: var(--bg-tertiary);
+        }
+        
+        .type-table td {
+            color: var(--text-secondary);
+        }
+        
+        .type-table td:first-child {
+            font-weight: 500;
+            color: var(--prereq-accent);
+            font-family: var(--font-mono);
+        }
+        
+        /* Key Takeaways */
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 {
+            color: var(--prereq-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .key-takeaways ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .key-takeaways li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Navigation Cards */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-card:hover {
+            border-color: var(--prereq-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card-label {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+        }
+        
+        .nav-card-title {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 1rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-list a:hover {
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+        }
+        
+        .toc-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--surface-3);
+            color: var(--text-tertiary);
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Practice Problems */
+        .practice-problem {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+        
+        .practice-problem h4 {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .problem {
+            background: var(--bg-elevated);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+        
+        .practice-problem .solution {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--accent-emerald);
+        }
+        
+        .practice-problem .solution-header {
+            color: var(--accent-emerald);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .solution-content {
+            display: none;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .prereq-header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .back-link {
+                width: fit-content;
+            }
+            
+            .prereq-nav {
+                justify-content: center;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .type-table {
+                font-size: 0.7rem;
+            }
+            
+            .type-table th,
+            .type-table td {
+                padding: 0.5rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus states for accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--prereq-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <!-- Sticky Header -->
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link">
+                        <span>←</span> Back to Course
+                    </a>
+                    <nav class="prereq-nav">
+                        <a href="programming-foundations.html">Foundations</a>
+                        <span class="nav-divider">|</span>
+                        <a href="python-basics.html" class="active">Python Basics</a>
+                        <a href="control-flow.html">Control Flow</a>
+                        <a href="functions-data.html">Functions & Data</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <!-- Hero Section -->
+            <div class="prereq-hero">
+                <span class="prereq-badge">🐍 Prerequisite • Programming</span>
+                <h1 class="prereq-title">Python Basics for AI</h1>
+                <p class="prereq-subtitle">
+                    Python is the language of AI. Understanding variables, data types, and basic operations 
+                    is the foundation for reading and writing machine learning code. This guide teaches 
+                    you the essentials—no prior programming experience required.
+                </p>
+                <div class="estimated-time">
+                    <span>⏱</span> Estimated reading time: 20-25 minutes
+                </div>
+            </div>
+            
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>How to create and use variables to store data</li>
+                    <li>Python's core data types: numbers, strings, and booleans</li>
+                    <li>Arithmetic, comparison, and logical operators</li>
+                    <li>How to format and print output</li>
+                    <li>Type conversion and common operations</li>
+                </ul>
+            </div>
+            
+            <!-- Table of Contents -->
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#why-python"><span class="toc-number">1</span> Why Python for AI?</a></li>
+                    <li><a href="#variables"><span class="toc-number">2</span> Variables: Storing Data</a></li>
+                    <li><a href="#data-types"><span class="toc-number">3</span> Data Types</a></li>
+                    <li><a href="#operators"><span class="toc-number">4</span> Operators</a></li>
+                    <li><a href="#strings"><span class="toc-number">5</span> Working with Strings</a></li>
+                    <li><a href="#practice"><span class="toc-number">6</span> Practice Exercises</a></li>
+                </ol>
+            </nav>
+            
+            <!-- Section 1: Why Python -->
+            <section class="code-section" id="why-python">
+                <h2><span class="section-number">1</span> Why Python for AI?</h2>
+                
+                <p>
+                    Python has become the dominant language in AI and machine learning for several reasons:
+                </p>
+                
+                <ul>
+                    <li><strong>Readability:</strong> Python code looks almost like English, making it easy to learn and understand</li>
+                    <li><strong>Rich Ecosystem:</strong> Libraries like NumPy, PyTorch, and TensorFlow make AI development efficient</li>
+                    <li><strong>Community:</strong> Massive community means tutorials, answers, and pre-built solutions for everything</li>
+                    <li><strong>Flexibility:</strong> Quick prototyping and experimentation</li>
+                </ul>
+                
+                <div class="ai-connection">
+                    <h4>🤖 The AI Connection</h4>
+                    <p>
+                        Almost all AI research papers include Python code. PyTorch, TensorFlow, Hugging Face, 
+                        LangChain—the tools you'll use to build AI applications are all Python-first. Even 
+                        if you primarily understand concepts, reading Python helps you understand 
+                        implementations.
+                    </p>
+                </div>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># A simple AI example: loading and using a model</span>
+<span class="keyword">from</span> transformers <span class="keyword">import</span> pipeline
+
+<span class="comment"># Create a sentiment analysis pipeline</span>
+classifier = <span class="function">pipeline</span>(<span class="string">"sentiment-analysis"</span>)
+
+<span class="comment"># Use it!</span>
+result = <span class="function">classifier</span>(<span class="string">"Python makes AI accessible!"</span>)
+<span class="function">print</span>(result)  <span class="comment"># [{'label': 'POSITIVE', 'score': 0.9998}]</span></code></pre>
+                </div>
+                
+                <p>
+                    Don't worry if this looks complex now—by the end of these prerequisites, you'll 
+                    understand every line.
+                </p>
+            </section>
+            
+            <!-- Section 2: Variables -->
+            <section class="code-section" id="variables">
+                <h2><span class="section-number">2</span> Variables: Storing Data</h2>
+                
+                <p>
+                    A <strong>variable</strong> is a name that refers to a value. Think of it as a labeled 
+                    box that holds data. You create a variable by assigning a value to a name.
+                </p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Creating variables</span>
+learning_rate = <span class="number">0.001</span>
+epochs = <span class="number">100</span>
+model_name = <span class="string">"gpt-4"</span>
+is_training = <span class="keyword">True</span>
+
+<span class="comment"># Using variables</span>
+<span class="function">print</span>(learning_rate)     <span class="comment"># 0.001</span>
+<span class="function">print</span>(model_name)        <span class="comment"># gpt-4</span></code></pre>
+                </div>
+                
+                <h3>Variable Naming Rules</h3>
+                
+                <ul>
+                    <li>Must start with a letter or underscore (_)</li>
+                    <li>Can contain letters, numbers, and underscores</li>
+                    <li>Case-sensitive: <code>Model</code> and <code>model</code> are different</li>
+                    <li>Cannot use Python keywords (<code>if</code>, <code>for</code>, <code>class</code>, etc.)</li>
+                </ul>
+                
+                <div class="two-column">
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-block-lang">✓ Good Names</span>
+                        </div>
+                        <pre><code>learning_rate = <span class="number">0.01</span>
+batch_size = <span class="number">32</span>
+num_epochs = <span class="number">10</span>
+model_v2 = <span class="string">"improved"</span>
+_hidden = <span class="number">768</span></code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-block-lang">✗ Invalid Names</span>
+                        </div>
+                        <pre><code><span class="comment"># 2nd_model = "x"  # Can't start with number</span>
+<span class="comment"># learning-rate = 0.01  # No hyphens</span>
+<span class="comment"># class = "A"  # 'class' is a keyword</span>
+<span class="comment"># my variable = 5  # No spaces</span></code></pre>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    <h4>💡 Python Convention</h4>
+                    <p>
+                        Use <code>snake_case</code> for variable names (words separated by underscores). 
+                        This is the standard style in Python and makes code more readable: 
+                        <code>learning_rate</code>, <code>batch_size</code>, <code>num_layers</code>.
+                    </p>
+                </div>
+                
+                <h3>Reassigning Variables</h3>
+                
+                <p>Variables can be changed (reassigned) at any time:</p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>accuracy = <span class="number">0.75</span>
+<span class="function">print</span>(accuracy)  <span class="comment"># 0.75</span>
+
+accuracy = <span class="number">0.92</span>  <span class="comment"># Reassign to new value</span>
+<span class="function">print</span>(accuracy)  <span class="comment"># 0.92</span>
+
+<span class="comment"># Even change type (dynamic typing)</span>
+accuracy = <span class="string">"high"</span>
+<span class="function">print</span>(accuracy)  <span class="comment"># high</span></code></pre>
+                </div>
+            </section>
+            
+            <!-- Section 3: Data Types -->
+            <section class="code-section" id="data-types">
+                <h2><span class="section-number">3</span> Data Types</h2>
+                
+                <p>
+                    Every value in Python has a <strong>type</strong> that determines what operations 
+                    you can perform on it. Python is "dynamically typed"—you don't declare types explicitly.
+                </p>
+                
+                <table class="type-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>int</td>
+                            <td>Whole numbers</td>
+                            <td>42, -7, 0, 1000000</td>
+                        </tr>
+                        <tr>
+                            <td>float</td>
+                            <td>Decimal numbers</td>
+                            <td>3.14, -0.001, 2.0, 1e-5</td>
+                        </tr>
+                        <tr>
+                            <td>str</td>
+                            <td>Text (strings)</td>
+                            <td>"hello", 'AI', "123"</td>
+                        </tr>
+                        <tr>
+                            <td>bool</td>
+                            <td>True or False</td>
+                            <td>True, False</td>
+                        </tr>
+                        <tr>
+                            <td>None</td>
+                            <td>No value / null</td>
+                            <td>None</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Numbers: int and float</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Integers (whole numbers)</span>
+batch_size = <span class="number">32</span>
+num_layers = <span class="number">12</span>
+vocab_size = <span class="number">50000</span>
+
+<span class="comment"># Floats (decimals)</span>
+learning_rate = <span class="number">0.001</span>
+accuracy = <span class="number">0.9543</span>
+loss = <span class="number">2.3e-4</span>  <span class="comment"># Scientific notation: 0.00023</span>
+
+<span class="comment"># Check the type</span>
+<span class="function">print</span>(<span class="builtin">type</span>(batch_size))    <span class="comment"># &lt;class 'int'&gt;</span>
+<span class="function">print</span>(<span class="builtin">type</span>(learning_rate)) <span class="comment"># &lt;class 'float'&gt;</span></code></pre>
+                </div>
+                
+                <h3>Strings: Text Data</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Strings can use single or double quotes</span>
+model = <span class="string">"GPT-4"</span>
+task = <span class="string">'classification'</span>
+
+<span class="comment"># Multi-line strings with triple quotes</span>
+prompt = <span class="string">"""
+You are a helpful AI assistant.
+Please answer the following question:
+"""</span>
+
+<span class="comment"># Empty string</span>
+empty = <span class="string">""</span></code></pre>
+                </div>
+                
+                <h3>Booleans: True/False</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Boolean values (note: capitalized)</span>
+is_training = <span class="keyword">True</span>
+use_gpu = <span class="keyword">False</span>
+
+<span class="comment"># Booleans from comparisons</span>
+<span class="function">print</span>(<span class="number">5</span> > <span class="number">3</span>)     <span class="comment"># True</span>
+<span class="function">print</span>(<span class="number">10</span> == <span class="number">10</span>)  <span class="comment"># True</span>
+<span class="function">print</span>(<span class="number">2</span> != <span class="number">2</span>)    <span class="comment"># False</span></code></pre>
+                </div>
+                
+                <h3>Type Conversion</h3>
+                
+                <p>Convert between types using built-in functions:</p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># String to number</span>
+x = <span class="builtin">int</span>(<span class="string">"42"</span>)       <span class="comment"># 42 (integer)</span>
+y = <span class="builtin">float</span>(<span class="string">"3.14"</span>)   <span class="comment"># 3.14 (float)</span>
+
+<span class="comment"># Number to string</span>
+s = <span class="builtin">str</span>(<span class="number">100</span>)        <span class="comment"># "100"</span>
+
+<span class="comment"># Float to int (truncates, doesn't round!)</span>
+n = <span class="builtin">int</span>(<span class="number">3.9</span>)        <span class="comment"># 3 (not 4!)</span>
+
+<span class="comment"># Boolean conversion</span>
+<span class="function">print</span>(<span class="builtin">bool</span>(<span class="number">1</span>))       <span class="comment"># True</span>
+<span class="function">print</span>(<span class="builtin">bool</span>(<span class="number">0</span>))       <span class="comment"># False</span>
+<span class="function">print</span>(<span class="builtin">bool</span>(<span class="string">""</span>))      <span class="comment"># False (empty string)</span>
+<span class="function">print</span>(<span class="builtin">bool</span>(<span class="string">"hello"</span>)) <span class="comment"># True</span></code></pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Types in AI Code</h4>
+                    <p>
+                        In AI, you'll work extensively with <code>float</code> for model weights, loss values, 
+                        and probabilities. Libraries like NumPy and PyTorch add specialized types like 
+                        <code>float32</code> and <code>float16</code> (half precision) for efficient GPU computation.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Operators -->
+            <section class="code-section" id="operators">
+                <h2><span class="section-number">4</span> Operators</h2>
+                
+                <h3>Arithmetic Operators</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>a = <span class="number">10</span>
+b = <span class="number">3</span>
+
+<span class="function">print</span>(a + b)   <span class="comment"># 13   Addition</span>
+<span class="function">print</span>(a - b)   <span class="comment"># 7    Subtraction</span>
+<span class="function">print</span>(a * b)   <span class="comment"># 30   Multiplication</span>
+<span class="function">print</span>(a / b)   <span class="comment"># 3.33 Division (always float)</span>
+<span class="function">print</span>(a // b)  <span class="comment"># 3    Floor division (integer)</span>
+<span class="function">print</span>(a % b)   <span class="comment"># 1    Modulo (remainder)</span>
+<span class="function">print</span>(a ** b)  <span class="comment"># 1000 Exponentiation (10³)</span></code></pre>
+                </div>
+                
+                <h3>Comparison Operators</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>x = <span class="number">5</span>
+y = <span class="number">10</span>
+
+<span class="function">print</span>(x == y)  <span class="comment"># False  Equal to</span>
+<span class="function">print</span>(x != y)  <span class="comment"># True   Not equal to</span>
+<span class="function">print</span>(x < y)   <span class="comment"># True   Less than</span>
+<span class="function">print</span>(x > y)   <span class="comment"># False  Greater than</span>
+<span class="function">print</span>(x <= y)  <span class="comment"># True   Less than or equal</span>
+<span class="function">print</span>(x >= y)  <span class="comment"># False  Greater than or equal</span></code></pre>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>⚠️ Common Mistake</h4>
+                    <p>
+                        <code>=</code> is assignment, <code>==</code> is comparison! Writing 
+                        <code>if x = 5</code> instead of <code>if x == 5</code> is a syntax error.
+                    </p>
+                </div>
+                
+                <h3>Logical Operators</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>is_trained = <span class="keyword">True</span>
+has_gpu = <span class="keyword">False</span>
+accuracy = <span class="number">0.95</span>
+
+<span class="comment"># and: both must be True</span>
+<span class="function">print</span>(is_trained <span class="keyword">and</span> has_gpu)    <span class="comment"># False</span>
+
+<span class="comment"># or: at least one must be True</span>
+<span class="function">print</span>(is_trained <span class="keyword">or</span> has_gpu)     <span class="comment"># True</span>
+
+<span class="comment"># not: inverts the boolean</span>
+<span class="function">print</span>(<span class="keyword">not</span> has_gpu)               <span class="comment"># True</span>
+
+<span class="comment"># Combining with comparisons</span>
+is_good_model = is_trained <span class="keyword">and</span> accuracy > <span class="number">0.9</span>
+<span class="function">print</span>(is_good_model)             <span class="comment"># True</span></code></pre>
+                </div>
+                
+                <h3>Assignment Operators (Shortcuts)</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>loss = <span class="number">10.0</span>
+
+loss = loss - <span class="number">0.1</span>   <span class="comment"># Subtract and reassign</span>
+loss -= <span class="number">0.1</span>         <span class="comment"># Same thing, shorter!</span>
+
+<span class="comment"># Other shortcuts</span>
+x = <span class="number">5</span>
+x += <span class="number">3</span>   <span class="comment"># x = x + 3  →  8</span>
+x *= <span class="number">2</span>   <span class="comment"># x = x * 2  →  16</span>
+x /= <span class="number">4</span>   <span class="comment"># x = x / 4  →  4.0</span>
+x **= <span class="number">2</span>  <span class="comment"># x = x ** 2 →  16.0</span></code></pre>
+                </div>
+            </section>
+            
+            <!-- Section 5: Strings -->
+            <section class="code-section" id="strings">
+                <h2><span class="section-number">5</span> Working with Strings</h2>
+                
+                <h3>String Operations</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code><span class="comment"># Concatenation (joining)</span>
+first = <span class="string">"Hello"</span>
+second = <span class="string">"World"</span>
+combined = first + <span class="string">" "</span> + second  <span class="comment"># "Hello World"</span>
+
+<span class="comment"># Repetition</span>
+dash = <span class="string">"-"</span> * <span class="number">20</span>  <span class="comment"># "--------------------"</span>
+
+<span class="comment"># Length</span>
+<span class="function">print</span>(<span class="builtin">len</span>(<span class="string">"Python"</span>))  <span class="comment"># 6</span></code></pre>
+                </div>
+                
+                <h3>String Indexing and Slicing</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>text = <span class="string">"Python"</span>
+<span class="comment">#       012345  (index from 0)</span>
+<span class="comment">#      -6-5-4-3-2-1 (negative index from end)</span>
+
+<span class="comment"># Accessing characters</span>
+<span class="function">print</span>(text[<span class="number">0</span>])    <span class="comment"># P (first character)</span>
+<span class="function">print</span>(text[<span class="number">-1</span>])   <span class="comment"># n (last character)</span>
+
+<span class="comment"># Slicing [start:end] (end is exclusive)</span>
+<span class="function">print</span>(text[<span class="number">0</span>:<span class="number">2</span>])  <span class="comment"># Py</span>
+<span class="function">print</span>(text[<span class="number">2</span>:])   <span class="comment"># thon (from index 2 to end)</span>
+<span class="function">print</span>(text[:<span class="number">3</span>])   <span class="comment"># Pyt (from start to index 3)</span>
+<span class="function">print</span>(text[::<span class="number">2</span>])  <span class="comment"># Pto (every 2nd character)</span></code></pre>
+                </div>
+                
+                <h3>String Methods</h3>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>text = <span class="string">"  Hello, World!  "</span>
+
+<span class="comment"># Case conversion</span>
+<span class="function">print</span>(text.lower())      <span class="comment"># "  hello, world!  "</span>
+<span class="function">print</span>(text.upper())      <span class="comment"># "  HELLO, WORLD!  "</span>
+
+<span class="comment"># Whitespace removal</span>
+<span class="function">print</span>(text.strip())      <span class="comment"># "Hello, World!"</span>
+
+<span class="comment"># Search and replace</span>
+<span class="function">print</span>(text.replace(<span class="string">"World"</span>, <span class="string">"AI"</span>))  <span class="comment"># "  Hello, AI!  "</span>
+
+<span class="comment"># Split into list</span>
+words = <span class="string">"apple,banana,cherry"</span>.split(<span class="string">","</span>)
+<span class="function">print</span>(words)  <span class="comment"># ['apple', 'banana', 'cherry']</span>
+
+<span class="comment"># Join list into string</span>
+<span class="function">print</span>(<span class="string">" "</span>.join(words))  <span class="comment"># "apple banana cherry"</span></code></pre>
+                </div>
+                
+                <h3>f-Strings (Formatted Strings)</h3>
+                
+                <p>
+                    f-strings are the modern way to embed variables and expressions in strings:
+                </p>
+                
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang"><span class="python-icon"></span> Python</span>
+                    </div>
+                    <pre><code>model = <span class="string">"GPT-4"</span>
+accuracy = <span class="number">0.9543</span>
+epoch = <span class="number">10</span>
+
+<span class="comment"># f-string: prefix with f, use {variable}</span>
+message = <span class="string">f"Model: <span class="operator">{</span>model<span class="operator">}</span>, Accuracy: <span class="operator">{</span>accuracy<span class="operator">}</span>"</span>
+<span class="function">print</span>(message)  <span class="comment"># Model: GPT-4, Accuracy: 0.9543</span>
+
+<span class="comment"># Formatting numbers</span>
+<span class="function">print</span>(<span class="string">f"Accuracy: <span class="operator">{</span>accuracy:.2f<span class="operator">}</span>"</span>)    <span class="comment"># 0.95 (2 decimal places)</span>
+<span class="function">print</span>(<span class="string">f"Accuracy: <span class="operator">{</span>accuracy:.1%<span class="operator">}</span>"</span>)    <span class="comment"># 95.4% (as percentage)</span>
+<span class="function">print</span>(<span class="string">f"Epoch: <span class="operator">{</span>epoch:03d<span class="operator">}</span>"</span>)           <span class="comment"># 010 (zero-padded)</span>
+
+<span class="comment"># Expressions inside f-strings</span>
+<span class="function">print</span>(<span class="string">f"Loss reduced by <span class="operator">{</span><span class="number">100</span> * (<span class="number">1</span> - accuracy):.1f<span class="operator">}</span>%"</span>)</code></pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Strings in AI</h4>
+                    <p>
+                        Strings are everywhere in AI: prompts for language models, tokenized text, 
+                        file paths for datasets, logging training progress. f-strings make it easy 
+                        to create readable log messages: <code>f"Epoch {epoch}: loss={loss:.4f}"</code>
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 6: Practice -->
+            <section class="code-section" id="practice">
+                <h2><span class="section-number">6</span> Practice Exercises</h2>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 1: Variables and Types</h4>
+                    <div class="problem">
+                        Create variables for: model name ("BERT"), number of parameters (110 million), 
+                        whether it's pre-trained (yes). Print each variable and its type.
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code>model_name = <span class="string">"BERT"</span>
+num_params = <span class="number">110_000_000</span>  <span class="comment"># Underscores for readability!</span>
+is_pretrained = <span class="keyword">True</span>
+
+<span class="function">print</span>(model_name, <span class="builtin">type</span>(model_name))
+<span class="function">print</span>(num_params, <span class="builtin">type</span>(num_params))
+<span class="function">print</span>(is_pretrained, <span class="builtin">type</span>(is_pretrained))</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 2: Arithmetic</h4>
+                    <div class="problem">
+                        A model trains for 50 epochs. Each epoch takes 3.5 minutes. 
+                        Calculate total training time in hours.
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code>epochs = <span class="number">50</span>
+minutes_per_epoch = <span class="number">3.5</span>
+
+total_minutes = epochs * minutes_per_epoch
+total_hours = total_minutes / <span class="number">60</span>
+
+<span class="function">print</span>(<span class="string">f"Total training time: <span class="operator">{</span>total_hours:.2f<span class="operator">}</span> hours"</span>)
+<span class="comment"># Output: Total training time: 2.92 hours</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Exercise 3: String Formatting</h4>
+                    <div class="problem">
+                        Create a training log message: "Epoch 5/100 - Loss: 0.2341 - Accuracy: 89.2%"
+                        Use variables: epoch=5, total_epochs=100, loss=0.2341, accuracy=0.892
+                    </div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <div class="code-block">
+                                <pre><code>epoch = <span class="number">5</span>
+total_epochs = <span class="number">100</span>
+loss = <span class="number">0.2341</span>
+accuracy = <span class="number">0.892</span>
+
+message = <span class="string">f"Epoch <span class="operator">{</span>epoch<span class="operator">}</span>/<span class="operator">{</span>total_epochs<span class="operator">}</span> - Loss: <span class="operator">{</span>loss:.4f<span class="operator">}</span> - Accuracy: <span class="operator">{</span>accuracy:.1%<span class="operator">}</span>"</span>
+<span class="function">print</span>(message)
+<span class="comment"># Output: Epoch 5/100 - Loss: 0.2341 - Accuracy: 89.2%</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Key Takeaways -->
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Variables</strong> store data and use <code>snake_case</code> naming</li>
+                    <li><strong>Data types:</strong> int, float, str, bool, None—Python is dynamically typed</li>
+                    <li><strong>Operators:</strong> arithmetic (+, -, *, /, //, %, **), comparison (==, !=, <, >), logical (and, or, not)</li>
+                    <li><strong>Strings</strong> support indexing, slicing, and many useful methods</li>
+                    <li><strong>f-strings</strong> embed variables: <code>f"Value: {x:.2f}"</code></li>
+                    <li><strong>type()</strong> tells you what type a value is</li>
+                </ul>
+            </div>
+            
+            <!-- Final Section -->
+            <section class="code-section">
+                <h2>Next Steps</h2>
+                <p>
+                    Now that you understand variables, types, and operators, you're ready to learn 
+                    control flow—how to make decisions and repeat actions in your code.
+                </p>
+                
+                <div class="nav-cards">
+                    <a href="control-flow.html" class="nav-card">
+                        <span class="nav-card-label">Next Topic</span>
+                        <span class="nav-card-title">Control Flow →</span>
+                    </a>
+                    <a href="../../index.html" class="nav-card">
+                        <span class="nav-card-label">Back to Course</span>
+                        <span class="nav-card-title">Foundations of AI</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+    <script>
+        // Toggle solutions
+        document.querySelectorAll('.solution-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isHidden = content.style.display === 'none' || !content.style.display;
+                content.style.display = isHidden ? 'block' : 'none';
+                header.textContent = isHidden ? 'Click to hide solution ▲' : 'Click to reveal solution ▼';
+            });
+        });
+    </script>
+</body>
+</html>
+

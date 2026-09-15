@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Specialized Architectures: CNNs, RNNs & Unsupervised Learning — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item active"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 47%"></div></div>
+                    <span class="progress-text">9 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Core Methods</span><span class="breadcrumb-sep">→</span><span>Module 2.5</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag bridge-tag">Bridge Module</span>
+                        <span class="module-duration">~55 min</span>
+                    </div>
+                    <h1 class="module-title">Specialized Architectures & Unsupervised Learning</h1>
+                    <p class="module-subtitle">
+                        Before Transformers dominated, CNNs conquered vision and RNNs ruled sequences. Understanding 
+                        these architectures reveals why structure-aware design matters—and when to use each approach today.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand Convolutional Neural Networks (CNNs) and why they excel at image tasks</li>
+                        <li>Explain Recurrent Neural Networks (RNNs) and LSTMs for sequential data</li>
+                        <li>Compare inductive biases: locality (CNNs) vs. sequence (RNNs) vs. learned (Transformers)</li>
+                        <li>Apply unsupervised learning techniques: clustering and dimensionality reduction</li>
+                        <li>Know when to use each architecture in modern practice</li>
+                    </ul>
+                </section>
+
+                <section class="content-section context-section">
+                    <h2 class="section-heading">Why This Module Matters</h2>
+                    
+                    <div class="bridge-context">
+                        <div class="context-icon">🌉</div>
+                        <div class="context-content">
+                            <h3>The Bridge to Modern Architectures</h3>
+                            <p>
+                                You've learned that MLPs are universal function approximators (Module 2.2). But MLPs 
+                                treat every input dimension independently—they don't "know" that pixels next to each 
+                                other are related, or that words form sequences.
+                            </p>
+                            <p>
+                                <strong>CNNs and RNNs solved this</strong> by building structure into the architecture. 
+                                Understanding their design choices prepares you for Transformers, which take a different 
+                                approach: learning structure from data rather than hard-coding it.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="definition-block">
+                        <div class="definition-marker">Inductive Bias</div>
+                        <p class="definition-text">
+                            The <strong>inductive bias</strong> of an architecture is the set of assumptions it makes 
+                            about data structure. These assumptions guide learning, reducing the amount of data needed—but 
+                            can hurt performance when assumptions don't match reality.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- PART 1: CNNs -->
+                <section class="content-section">
+                    <h2 class="section-heading">Part 1: Convolutional Neural Networks (CNNs)</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">CNN</div>
+                        <p class="definition-text">
+                            A <strong>Convolutional Neural Network</strong> is a neural network that uses convolution 
+                            operations to exploit spatial structure in data—particularly images. It assumes that 
+                            patterns are local (nearby pixels are related) and translation-invariant (a cat is a 
+                            cat regardless of where it appears).
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Imagine looking at a photo through a small sliding window. As you move the window 
+                                across the image, you look for specific patterns: edges, textures, shapes. You don't 
+                                need to see the whole image at once—local patterns combine to form global understanding.
+                            </p>
+                            <p>
+                                This is exactly what CNNs do. Small "filters" slide across the image, detecting 
+                                local patterns. Early layers find edges; deeper layers combine edges into shapes; 
+                                final layers recognize objects.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical: The Convolution Operation</span>
+                            <p>
+                                A convolution applies a small filter (kernel) to every location in the input:
+                            </p>
+                            <div class="formula-block">
+                                <code>Output[i,j] = Σₘ Σₙ Input[i+m, j+n] × Filter[m,n]</code>
+                            </div>
+                            <p>
+                                The same filter is applied everywhere (<strong>weight sharing</strong>), meaning:
+                            </p>
+                            <ul class="technical-list">
+                                <li>Far fewer parameters than a fully-connected layer</li>
+                                <li>Translation invariance: pattern detection is position-independent</li>
+                                <li>Local connectivity: each output depends only on a small input region</li>
+                            </ul>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                A typical CNN stacks: <strong>Conv → ReLU → Pool → Conv → ReLU → Pool → ... → Flatten → Dense</strong>
+                            </p>
+                            <p>
+                                <strong>Pooling</strong> (max or average) reduces spatial dimensions, creating a 
+                                hierarchical representation: pixel → edge → texture → part → object.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="architecture-diagram">
+                        <h4>CNN Architecture Flow</h4>
+                        <div class="cnn-flow">
+                            <div class="cnn-stage">
+                                <div class="stage-box input-stage">Input Image<br><span class="dim">[224×224×3]</span></div>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="cnn-stage">
+                                <div class="stage-box conv-stage">Conv + ReLU<br><span class="dim">[224×224×64]</span></div>
+                                <div class="stage-label">64 filters, 3×3</div>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="cnn-stage">
+                                <div class="stage-box pool-stage">Max Pool<br><span class="dim">[112×112×64]</span></div>
+                                <div class="stage-label">2×2, stride 2</div>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="cnn-stage">
+                                <div class="stage-box conv-stage">Conv + ReLU<br><span class="dim">[112×112×128]</span></div>
+                                <div class="stage-label">128 filters, 3×3</div>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="cnn-stage">
+                                <div class="stage-box pool-stage">Max Pool<br><span class="dim">[56×56×128]</span></div>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="cnn-stage">
+                                <div class="stage-box dense-stage">Flatten → Dense<br><span class="dim">[1000]</span></div>
+                                <div class="stage-label">Classification</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section-standalone">
+                        <h4>PyTorch CNN Implementation</h4>
+                        <pre><code class="language-python">import torch.nn as nn
+
+class SimpleCNN(nn.Module):
+    def __init__(self, num_classes=10):
+        super().__init__()
+        self.features = nn.Sequential(
+            # Conv Block 1
+            nn.Conv2d(3, 64, kernel_size=3, padding=1),  # [B, 3, H, W] → [B, 64, H, W]
+            nn.ReLU(),
+            nn.MaxPool2d(2),  # [B, 64, H/2, W/2]
+            
+            # Conv Block 2
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),  # [B, 128, H/4, W/4]
+            
+            # Conv Block 3
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.AdaptiveAvgPool2d(1)  # Global average pooling → [B, 256, 1, 1]
+        )
+        self.classifier = nn.Linear(256, num_classes)
+    
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)  # Flatten
+        return self.classifier(x)
+
+# Key insight: Conv2d has ~3×3×C_in×C_out parameters
+# Much smaller than Dense: H×W×C_in × H×W×C_out</code></pre>
+                    </div>
+
+                    <div class="landmark-models">
+                        <h4>Landmark CNN Architectures</h4>
+                        <div class="model-timeline">
+                            <div class="model-card">
+                                <span class="model-year">2012</span>
+                                <h5>AlexNet</h5>
+                                <p>Won ImageNet by a huge margin. Proved deep learning works at scale.</p>
+                            </div>
+                            <div class="model-card">
+                                <span class="model-year">2014</span>
+                                <h5>VGGNet</h5>
+                                <p>Showed that depth matters. Simple 3×3 convolutions stacked deep.</p>
+                            </div>
+                            <div class="model-card">
+                                <span class="model-year">2015</span>
+                                <h5>ResNet</h5>
+                                <p>Introduced skip connections. Enabled training of 100+ layer networks.</p>
+                            </div>
+                            <div class="model-card">
+                                <span class="model-year">2017</span>
+                                <h5>EfficientNet</h5>
+                                <p>Balanced depth, width, resolution. State-of-the-art efficiency.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PART 2: RNNs -->
+                <section class="content-section">
+                    <h2 class="section-heading">Part 2: Recurrent Neural Networks (RNNs)</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">RNN</div>
+                        <p class="definition-text">
+                            A <strong>Recurrent Neural Network</strong> processes sequences by maintaining a hidden 
+                            state that accumulates information from previous time steps. It assumes that data has 
+                            sequential structure where earlier elements influence later ones.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Reading a sentence word-by-word, you build up context. When you see "The dog 
+                                chased the ___", your understanding of the sentence so far influences your 
+                                expectation for the next word.
+                            </p>
+                            <p>
+                                RNNs formalize this: a hidden state vector is updated at each time step, carrying 
+                                forward information from the past. The same weights process each step—the network 
+                                learns a reusable "update rule" for any sequence length.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical: The Recurrence Equation</span>
+                            <p>
+                                At each time step t, the RNN updates its hidden state:
+                            </p>
+                            <div class="formula-block">
+                                <code>h_t = tanh(W_h · h_{t-1} + W_x · x_t + b)</code>
+                            </div>
+                            <p>
+                                The same weights (W_h, W_x, b) are used at every step—this is <strong>weight sharing 
+                                across time</strong>, analogous to CNN weight sharing across space.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">The Vanishing Gradient Problem</span>
+                            <p>
+                                <strong>Problem:</strong> During backpropagation through many time steps, gradients 
+                                shrink exponentially (vanishing) or explode. Long-range dependencies are hard to learn.
+                            </p>
+                            <p>
+                                <strong>Solution:</strong> LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) 
+                                add gates that control information flow, allowing gradients to flow unchanged over 
+                                many steps.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="architecture-diagram">
+                        <h4>RNN Unrolled Through Time</h4>
+                        <div class="rnn-flow">
+                            <div class="rnn-step">
+                                <div class="rnn-input">x₀</div>
+                                <div class="rnn-cell">
+                                    <span>RNN Cell</span>
+                                    <span class="cell-eq">h₀ = f(x₀, h₋₁)</span>
+                                </div>
+                                <div class="rnn-hidden">h₀</div>
+                            </div>
+                            <div class="time-arrow">→</div>
+                            <div class="rnn-step">
+                                <div class="rnn-input">x₁</div>
+                                <div class="rnn-cell">
+                                    <span>RNN Cell</span>
+                                    <span class="cell-eq">h₁ = f(x₁, h₀)</span>
+                                </div>
+                                <div class="rnn-hidden">h₁</div>
+                            </div>
+                            <div class="time-arrow">→</div>
+                            <div class="rnn-step">
+                                <div class="rnn-input">x₂</div>
+                                <div class="rnn-cell">
+                                    <span>RNN Cell</span>
+                                    <span class="cell-eq">h₂ = f(x₂, h₁)</span>
+                                </div>
+                                <div class="rnn-hidden">h₂</div>
+                            </div>
+                            <div class="time-arrow">→</div>
+                            <div class="rnn-step final">
+                                <div class="rnn-input">x_T</div>
+                                <div class="rnn-cell">
+                                    <span>RNN Cell</span>
+                                    <span class="cell-eq">h_T = f(x_T, h_{T-1})</span>
+                                </div>
+                                <div class="rnn-hidden">h_T</div>
+                                <div class="rnn-output">→ Output</div>
+                            </div>
+                        </div>
+                        <p class="diagram-note">Same weights at every step. Hidden state h carries information forward.</p>
+                    </div>
+
+                    <div class="lstm-explainer">
+                        <h4>LSTM: Solving the Memory Problem</h4>
+                        <p>
+                            LSTMs add a separate "cell state" C that runs through time like a conveyor belt. 
+                            Three gates control what to forget, what to add, and what to output:
+                        </p>
+                        <div class="gate-grid">
+                            <div class="gate-card forget">
+                                <h5>Forget Gate</h5>
+                                <code>f_t = σ(W_f · [h_{t-1}, x_t])</code>
+                                <p>What to remove from cell state</p>
+                            </div>
+                            <div class="gate-card input">
+                                <h5>Input Gate</h5>
+                                <code>i_t = σ(W_i · [h_{t-1}, x_t])</code>
+                                <p>What new info to store</p>
+                            </div>
+                            <div class="gate-card output">
+                                <h5>Output Gate</h5>
+                                <code>o_t = σ(W_o · [h_{t-1}, x_t])</code>
+                                <p>What to output from cell state</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section-standalone">
+                        <h4>PyTorch LSTM Implementation</h4>
+                        <pre><code class="language-python">import torch.nn as nn
+
+class LSTMClassifier(nn.Module):
+    def __init__(self, vocab_size, embed_dim, hidden_dim, num_classes):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+        self.lstm = nn.LSTM(
+            input_size=embed_dim,
+            hidden_size=hidden_dim,
+            num_layers=2,
+            batch_first=True,
+            dropout=0.3,
+            bidirectional=True  # Process both directions
+        )
+        # Bidirectional doubles the output dimension
+        self.classifier = nn.Linear(hidden_dim * 2, num_classes)
+    
+    def forward(self, x):
+        # x: [batch, seq_len] token indices
+        embedded = self.embedding(x)  # [batch, seq_len, embed_dim]
+        
+        # LSTM returns: output (all hidden states), (h_n, c_n)
+        lstm_out, (h_n, c_n) = self.lstm(embedded)
+        
+        # Use final hidden state for classification
+        # h_n: [num_layers*2, batch, hidden_dim] for bidirectional
+        # Concatenate forward and backward final states
+        final_hidden = torch.cat([h_n[-2], h_n[-1]], dim=1)
+        
+        return self.classifier(final_hidden)
+
+# Key limitation: Sequential processing = no parallelization
+# This is why Transformers replaced RNNs for most NLP tasks</code></pre>
+                    </div>
+                </section>
+
+                <!-- PART 3: Unsupervised Learning -->
+                <section class="content-section">
+                    <h2 class="section-heading">Part 3: Unsupervised Learning</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Unsupervised Learning</div>
+                        <p class="definition-text">
+                            <strong>Unsupervised learning</strong> finds structure in data without explicit labels. 
+                            The algorithm discovers patterns, groupings, or representations that weren't provided 
+                            by humans—essential for understanding data before building models.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Why It Matters</span>
+                            <p>
+                                Most real-world data is unlabeled—labels are expensive. Unsupervised learning lets you:
+                            </p>
+                            <ul class="concept-list">
+                                <li><strong>Explore</strong>: Discover natural groupings in customer data</li>
+                                <li><strong>Compress</strong>: Reduce dimensionality while preserving structure</li>
+                                <li><strong>Pre-train</strong>: Learn representations that transfer to supervised tasks</li>
+                                <li><strong>Detect anomalies</strong>: Find points that don't fit any cluster</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Clustering -->
+                    <div class="unsupervised-method">
+                        <h3>Clustering: Finding Natural Groups</h3>
+                        
+                        <div class="method-content">
+                            <div class="method-explanation">
+                                <h4>K-Means Clustering</h4>
+                                <p>
+                                    Partitions data into K clusters by minimizing within-cluster variance. 
+                                    Each point belongs to the cluster with the nearest centroid.
+                                </p>
+                                <div class="algorithm-steps">
+                                    <div class="step">
+                                        <span class="step-num">1</span>
+                                        <span>Initialize K centroids randomly</span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">2</span>
+                                        <span>Assign each point to nearest centroid</span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">3</span>
+                                        <span>Recompute centroids as cluster means</span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">4</span>
+                                        <span>Repeat until convergence</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="method-code">
+                                <pre><code class="language-python">from sklearn.cluster import KMeans
+import numpy as np
+
+# Cluster customer data
+X = load_customer_features()  # [n_customers, n_features]
+
+kmeans = KMeans(n_clusters=5, random_state=42)
+cluster_labels = kmeans.fit_predict(X)
+
+# Find cluster centers
+centers = kmeans.cluster_centers_
+
+# Evaluate clustering quality
+from sklearn.metrics import silhouette_score
+score = silhouette_score(X, cluster_labels)
+print(f"Silhouette Score: {score:.3f}")  # Higher is better</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="clustering-variations">
+                            <h4>Other Clustering Methods</h4>
+                            <div class="variation-grid">
+                                <div class="variation">
+                                    <h5>Hierarchical</h5>
+                                    <p>Builds tree of clusters. No need to specify K upfront.</p>
+                                </div>
+                                <div class="variation">
+                                    <h5>DBSCAN</h5>
+                                    <p>Density-based. Finds clusters of arbitrary shape. Handles outliers.</p>
+                                </div>
+                                <div class="variation">
+                                    <h5>Gaussian Mixture</h5>
+                                    <p>Soft clustering. Points have probabilities of belonging to each cluster.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dimensionality Reduction -->
+                    <div class="unsupervised-method">
+                        <h3>Dimensionality Reduction: Compressing Information</h3>
+                        
+                        <div class="method-content">
+                            <div class="method-explanation">
+                                <h4>Principal Component Analysis (PCA)</h4>
+                                <p>
+                                    Finds directions of maximum variance in data and projects onto them. 
+                                    The first few principal components often capture most of the information.
+                                </p>
+                                <div class="pca-insight">
+                                    <strong>Key Insight:</strong> If your 100-dimensional data mostly lies on a 
+                                    3-dimensional surface (manifold), PCA finds that surface.
+                                </div>
+                            </div>
+                            <div class="method-code">
+                                <pre><code class="language-python">from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Reduce dimensions for visualization
+pca = PCA(n_components=2)
+X_2d = pca.fit_transform(X)
+
+# How much variance is explained?
+print(f"Explained variance: {pca.explained_variance_ratio_.sum():.1%}")
+
+# Visualize
+plt.scatter(X_2d[:, 0], X_2d[:, 1], c=labels, cmap='viridis')
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.title('Data in Principal Component Space')</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="reduction-comparison">
+                            <h4>PCA vs. t-SNE vs. UMAP</h4>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>Type</th>
+                                        <th>Preserves</th>
+                                        <th>Best For</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>PCA</strong></td>
+                                        <td>Linear</td>
+                                        <td>Global structure, variance</td>
+                                        <td>Fast exploration, preprocessing</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>t-SNE</strong></td>
+                                        <td>Non-linear</td>
+                                        <td>Local neighborhoods</td>
+                                        <td>Visualization, finding clusters</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>UMAP</strong></td>
+                                        <td>Non-linear</td>
+                                        <td>Local + some global</td>
+                                        <td>Visualization + downstream ML</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Autoencoders -->
+                    <div class="unsupervised-method">
+                        <h3>Autoencoders: Neural Network Compression</h3>
+                        
+                        <div class="method-content">
+                            <div class="method-explanation">
+                                <h4>Learn to Compress and Reconstruct</h4>
+                                <p>
+                                    An autoencoder learns to compress input into a small latent code, then 
+                                    reconstruct the original. The bottleneck forces it to learn the most 
+                                    important features.
+                                </p>
+                                <div class="autoencoder-flow">
+                                    <div class="ae-stage">Input x</div>
+                                    <div class="ae-arrow">→</div>
+                                    <div class="ae-stage encoder">Encoder</div>
+                                    <div class="ae-arrow">→</div>
+                                    <div class="ae-stage latent">z (latent)</div>
+                                    <div class="ae-arrow">→</div>
+                                    <div class="ae-stage decoder">Decoder</div>
+                                    <div class="ae-arrow">→</div>
+                                    <div class="ae-stage">x̂ ≈ x</div>
+                                </div>
+                            </div>
+                            <div class="method-code">
+                                <pre><code class="language-python">class Autoencoder(nn.Module):
+    def __init__(self, input_dim, latent_dim):
+        super().__init__()
+        self.encoder = nn.Sequential(
+            nn.Linear(input_dim, 256),
+            nn.ReLU(),
+            nn.Linear(256, latent_dim)
+        )
+        self.decoder = nn.Sequential(
+            nn.Linear(latent_dim, 256),
+            nn.ReLU(),
+            nn.Linear(256, input_dim)
+        )
+    
+    def forward(self, x):
+        z = self.encoder(x)  # Compress
+        return self.decoder(z)  # Reconstruct
+
+# Training: minimize reconstruction loss
+loss = F.mse_loss(model(x), x)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Comparison Section -->
+                <section class="content-section">
+                    <h2 class="section-heading">When to Use What: Architecture Decision Guide</h2>
+                    
+                    <div class="decision-guide">
+                        <div class="guide-row">
+                            <div class="data-type">
+                                <span class="type-icon">🖼️</span>
+                                <span class="type-name">Images</span>
+                            </div>
+                            <div class="recommendations">
+                                <div class="rec primary">CNN (ResNet, EfficientNet)</div>
+                                <div class="rec alternative">Vision Transformer (ViT) if you have lots of data</div>
+                            </div>
+                        </div>
+                        <div class="guide-row">
+                            <div class="data-type">
+                                <span class="type-icon">📝</span>
+                                <span class="type-name">Text/Language</span>
+                            </div>
+                            <div class="recommendations">
+                                <div class="rec primary">Transformer (BERT, GPT)</div>
+                                <div class="rec alternative">LSTM for low-resource scenarios</div>
+                            </div>
+                        </div>
+                        <div class="guide-row">
+                            <div class="data-type">
+                                <span class="type-icon">📈</span>
+                                <span class="type-name">Time Series</span>
+                            </div>
+                            <div class="recommendations">
+                                <div class="rec primary">LSTM / GRU</div>
+                                <div class="rec alternative">1D CNN, Temporal Fusion Transformer</div>
+                            </div>
+                        </div>
+                        <div class="guide-row">
+                            <div class="data-type">
+                                <span class="type-icon">🎵</span>
+                                <span class="type-name">Audio</span>
+                            </div>
+                            <div class="recommendations">
+                                <div class="rec primary">CNN on spectrograms</div>
+                                <div class="rec alternative">Wav2Vec (Transformer on raw audio)</div>
+                            </div>
+                        </div>
+                        <div class="guide-row">
+                            <div class="data-type">
+                                <span class="type-icon">📊</span>
+                                <span class="type-name">Tabular Data</span>
+                            </div>
+                            <div class="recommendations">
+                                <div class="rec primary">Gradient Boosting (XGBoost, LightGBM)</div>
+                                <div class="rec alternative">MLP with proper regularization</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Modern Reality</h4>
+                            <p>
+                                Transformers are increasingly used everywhere—Vision Transformers for images, 
+                                Audio Transformers for speech. But CNNs and RNNs remain valuable:
+                            </p>
+                            <ul class="insight-list">
+                                <li><strong>CNNs:</strong> Faster inference, less data needed, edge deployment</li>
+                                <li><strong>RNNs:</strong> Streaming data, memory-efficient for long sequences</li>
+                                <li><strong>Transformers:</strong> Maximum quality when data/compute are available</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Architecture Explorer
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore how different architectures process data. See the convolution operation in action, 
+                            watch an RNN accumulate state, and visualize clustering.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="conv-viz">Convolution Visualizer</button>
+                            <button class="lab-tab" data-tab="rnn-viz">RNN State Flow</button>
+                            <button class="lab-tab" data-tab="cluster-viz">Clustering Demo</button>
+                        </div>
+
+                        <div class="lab-panel active" id="conv-viz-panel">
+                            <div class="conv-lab">
+                                <div class="conv-controls">
+                                    <div class="control-group">
+                                        <label>Filter Type</label>
+                                        <select id="filter-select">
+                                            <option value="edge-h">Horizontal Edge</option>
+                                            <option value="edge-v">Vertical Edge</option>
+                                            <option value="blur">Blur (Average)</option>
+                                            <option value="sharpen">Sharpen</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="conv-visualization">
+                                    <div class="conv-grid-container">
+                                        <div class="conv-input">
+                                            <h5>Input (5×5)</h5>
+                                            <div class="pixel-grid" id="input-grid"></div>
+                                        </div>
+                                        <div class="conv-filter">
+                                            <h5>Filter (3×3)</h5>
+                                            <div class="pixel-grid" id="filter-grid"></div>
+                                        </div>
+                                        <div class="conv-output">
+                                            <h5>Output (3×3)</h5>
+                                            <div class="pixel-grid" id="output-grid"></div>
+                                        </div>
+                                    </div>
+                                    <div class="conv-animation-controls">
+                                        <button id="animate-conv" class="btn btn-primary">Animate Convolution</button>
+                                        <button id="reset-conv" class="btn btn-secondary">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="rnn-viz-panel">
+                            <div class="rnn-lab">
+                                <div class="rnn-input-sequence">
+                                    <h5>Input Sequence</h5>
+                                    <div class="sequence-tokens">
+                                        <span class="token" data-idx="0">The</span>
+                                        <span class="token" data-idx="1">cat</span>
+                                        <span class="token" data-idx="2">sat</span>
+                                        <span class="token" data-idx="3">on</span>
+                                        <span class="token" data-idx="4">the</span>
+                                        <span class="token" data-idx="5">mat</span>
+                                    </div>
+                                </div>
+                                <div class="rnn-state-viz">
+                                    <h5>Hidden State Evolution</h5>
+                                    <canvas id="rnn-state-canvas" width="500" height="200"></canvas>
+                                </div>
+                                <div class="rnn-controls">
+                                    <button id="step-rnn" class="btn btn-primary">Step Through</button>
+                                    <button id="reset-rnn" class="btn btn-secondary">Reset</button>
+                                </div>
+                                <div class="rnn-insight">
+                                    <p>Watch how the hidden state changes as each word is processed. 
+                                    Information from earlier words influences the representation of later words.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="cluster-viz-panel">
+                            <div class="cluster-lab">
+                                <div class="cluster-controls">
+                                    <div class="control-group">
+                                        <label>Number of Clusters (K)</label>
+                                        <input type="range" id="k-clusters" min="2" max="8" value="3">
+                                        <span class="control-value" id="k-value">3</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Data Pattern</label>
+                                        <select id="data-pattern">
+                                            <option value="blobs">Gaussian Blobs</option>
+                                            <option value="moons">Two Moons</option>
+                                            <option value="circles">Concentric Circles</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="cluster-visualization">
+                                    <canvas id="cluster-canvas" width="500" height="400"></canvas>
+                                </div>
+                                <div class="cluster-actions">
+                                    <button id="generate-data" class="btn btn-secondary">Generate Data</button>
+                                    <button id="run-kmeans" class="btn btn-primary">Run K-Means</button>
+                                    <button id="step-kmeans" class="btn btn-secondary">Step</button>
+                                </div>
+                                <div class="cluster-info">
+                                    <span>Iteration: <strong id="kmeans-iter">0</strong></span>
+                                    <span>Inertia: <strong id="kmeans-inertia">—</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Convolution:</strong> The same filter detects the same pattern everywhere—translation invariance.</li>
+                            <li><strong>RNN:</strong> Hidden state accumulates context; later tokens have access to earlier information.</li>
+                            <li><strong>K-Means:</strong> Converges quickly but can find different solutions depending on initialization.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">What is the main advantage of weight sharing in CNNs?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Faster training</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Translation invariance and fewer parameters</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Better accuracy on text data</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Handling variable-length sequences</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">Why were LSTMs developed to replace vanilla RNNs?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">LSTMs are faster to train</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">To solve the vanishing gradient problem and learn long-range dependencies</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">LSTMs use fewer parameters</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">To process images instead of sequences</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">In K-Means clustering, what does the algorithm minimize?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">The number of clusters</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">The within-cluster variance (distance to centroids)</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">The between-cluster distance</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">The number of iterations</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">When should you prefer a CNN over a Transformer for image tasks?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">When you have unlimited training data</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">When you need the highest possible accuracy</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">When data is limited, inference speed matters, or deploying on edge devices</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">Never—Transformers are always better</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <button class="btn btn-primary" id="check-quiz">Check Answers</button>
+                        <div class="quiz-results" id="quiz-results"></div>
+                    </div>
+                </section>
+
+                <!-- Navigation -->
+                <nav class="module-nav">
+                    <a href="module-2-4.html" class="nav-btn prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">Generalization & Regularization</span>
+                    </a>
+                    <a href="module-3-1.html" class="nav-btn next">
+                        <span class="nav-direction">Next</span>
+                        <span class="nav-title">Embeddings & Vector Spaces</span>
+                    </a>
+                </nav>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-2-5.js"></script>
+</body>
+</html>
+

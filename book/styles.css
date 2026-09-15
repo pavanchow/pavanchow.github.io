@@ -1,0 +1,147 @@
+/* styles.css */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.section-hidden {
+    display: none;
+}
+
+.section-active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-break-before {
+    page-break-before: always !important;
+}
+
+@media print {
+    .page-break-before {
+        page-break-before: always !important;
+    }
+    #navigationContainer, #stepIndicator, header, #showInstructionsBtn,
+    #previewModal, #infoModal, #instructionsModal, #loadingIndicator {
+        display: none !important;
+    }
+    body { margin: 0; background-color: white !important; }
+    .container { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+    main#appContainer { box-shadow: none !important; padding: 20mm !important; border: none !important; }
+}
+
+/* Styling for Code Blocks */
+.prose pre,
+#previewContentContainer pre,
+#instructionsContent pre {
+    @apply bg-slate-800 text-slate-100 p-4 rounded-md overflow-x-auto my-4 text-sm shadow-md;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+}
+.prose pre code,
+#previewContentContainer pre code,
+#instructionsContent pre code {
+    @apply bg-transparent p-0 text-slate-100;
+    font-size: inherit; 
+}
+.prose code:not(pre > code), 
+#previewContentContainer code:not(pre > code),
+#instructionsContent code:not(pre > code) { /* Added instructions content inline code */
+    @apply bg-sky-100 text-sky-700 px-1.5 py-0.5 rounded-md text-sm font-medium;
+}
+
+
+/* Styling for Blockquotes (Prompts) */
+.prose blockquote,
+#previewContentContainer blockquote {
+    @apply border-l-4 border-sky-500 bg-sky-50 p-4 my-6 italic text-slate-700 rounded-r-md shadow; 
+}
+.prose blockquote p:first-of-type,
+#previewContentContainer blockquote p:first-of-type {
+    @apply mt-0;
+}
+.prose blockquote p:last-of-type,
+#previewContentContainer blockquote p:last-of-type {
+    @apply mb-0;
+}
+.prose blockquote p strong:first-child, 
+#previewContentContainer blockquote p strong:first-child {
+    @apply text-sky-600 not-italic font-semibold; 
+}
+
+
+#previewContentContainer h1,
+#previewContentContainer h2,
+#previewContentContainer h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    text-align: center; 
+}
+#previewContentContainer p { margin-bottom: 1em; line-height: 1.6; }
+#previewContentContainer ul,
+#previewContentContainer ol { margin-left: 1.5em; margin-bottom: 1em; }
+#previewContentContainer li { margin-bottom: 0.25em; }
+
+.prose h1 { @apply text-3xl font-bold mb-4 mt-6 text-center; }
+.prose h2 { @apply text-2xl font-semibold mb-3 mt-5 text-center; }
+.prose h3 { @apply text-xl font-semibold mb-2 mt-4 text-center; }
+
+.prose p { @apply mb-4 leading-relaxed; }
+.prose ul { @apply list-disc pl-5 mb-4; }
+.prose ol { @apply list-decimal pl-5 mb-4; }
+
+.prose table { @apply min-w-full divide-y divide-slate-200 my-4 border border-slate-300 shadow-sm; }
+.prose thead { @apply bg-slate-100; }
+.prose th { @apply px-4 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider border-b border-slate-300; } 
+.prose tbody { @apply bg-white divide-y divide-slate-200; }
+.prose td { @apply px-4 py-3 text-sm text-slate-700 border-b border-slate-300; } 
+
+
+#infoModalContent a {
+    @apply text-sky-600 hover:text-sky-700 underline;
+}
+#instructionsContent ul { @apply list-disc pl-6 space-y-1; } 
+#instructionsContent ul ul { @apply list-['-_'] pl-5 mt-1 mb-1; } /* Example for nested list marker */
+#instructionsContent li { @apply mb-1; }
+#instructionsContent h4 { @apply text-lg font-semibold text-sky-700 mt-5 mb-2 border-b border-slate-300 pb-1; } 
+/* #instructionsContent code is handled by the general .prose code style now */
+#instructionsContent pre { /* Handled by general .prose pre style */ }
+
+
+#instructionsModal > div { 
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+button { /* Base button styling, can be extended by Tailwind */
+    @apply transition-all duration-150 ease-in-out rounded-lg shadow hover:shadow-md;
+    /* Default padding and font if not overridden by more specific Tailwind classes */
+    @apply px-4 py-2 text-sm font-medium;
+}
+
+label {
+    @apply select-none; 
+}
+
+/* Section Management UI Styles */
+.structure-item {
+    /* Tailwind classes are applied dynamically in JS, 
+       but you can add base styles here if needed.
+       Example: ensure consistent vertical alignment if content varies wildly. */
+}
+
+#structureListContainer .structure-item button {
+    @apply shadow-sm hover:shadow-md; /* Ensure consistent shadow on structure buttons */
+}
+
+/* Cover Preview Style */
+#coverPreview {
+    max-height: 4rem; /* 64px */
+    /* Tailwind classes handle the rest: h-16 w-auto border border-slate-300 rounded-sm object-contain */
+}

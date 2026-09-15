@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<title>How To</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+    .asdf {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    body,
+    html {
+        height: 100%;
+        font-family: "Inconsolata", sans-serif;
+    }
+    
+    .bgimg {
+        background-position: center;
+        background-size: cover;
+        background-image: url("/img/700.png");
+        min-height: 75%;
+    }
+    
+    .menu {
+        display: none;
+    }
+</style>
+
+<body>
+    <!-- Links (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-row w3-padding w3-black">
+            <div class="w3-col s3">
+                <a href="#" class="w3-button w3-block w3-black">HOME</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#menu" class="w3-button w3-block w3-black">TRICKS AND TIPS</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#where" class="w3-button w3-block w3-black">CONTACT ME</a>
+            </div>
+        </div>
+    </div>
+    <!-- Header with image -->
+    <header class="bgimg w3-display-container w3-grayscale-min" id="home">
+        <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+            <span class="w3-tag"><a href="index.html">Pavan Nallamothu</a> </span>
+        </div>
+        <div class="w3-display-middle w3-center">
+            <span class="w3-text-white asdf w3-tag" style="font-size:90px;">HOW TO</span>
+        </div>
+        <!--   <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white">15 Adr street, 5015</span>
+  </div> -->
+    </header>
+    <!-- Add a background color and large text to the whole page -->
+    <div class="w3-sand w3-grayscale w3-large">
+        <!-- Menu Container -->
+        <div class="w3-container" id="menu">
+            <div class="w3-content" style="max-width:700px">
+
+                <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">How to - TRICKS & TIPS</span></h5>
+
+                <div class="w3-row w3-center w3-card w3-padding">
+                    <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+                        <div class="w3-col s6 tablink">General</div>
+                    </a>
+                    <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+                        <div class="w3-col s6 tablink">Linux</div>
+                    </a>
+                </div>
+                <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+                    <h5><a href="/how-to/logwatch.html" style="text-decoration: none" target="_blank">How to install and configure Logwatch in your linux based systems?</a> </h5>
+                    <p class="w3-text-grey"><a href="/how-to/logwatch.html" style="text-decoration: none" target="_blank">Logwatch is a customizable, pluggable log-monitoring system. It will go through your logs for a given period of time and make a report in the areas that you wish with the detail that you wish.</a>                        </p><br>
+                    <h5><a href="/how-to/apache2-location.html" style="text-decoration: none" target="_blank">How to change apache2 localhost location?</a> </h5>
+                    <p class="w3-text-grey"><a href="/how-to/apache2-location.html" style="text-decoration: none" target="_blank">Apache is the most widely used web server software. Developed and maintained by Apache Software Foundation, Apache is an open source software available for free. It runs on 67% of all webservers in the world. It is fast, reliable, and secure.</a>                        </p><br>
+                    <h5>Delete gmail account</h5>
+                    <p class="w3-text-grey">
+                        <ul>
+                            <li>Go to Google Account Settings.</li>
+                            <li>Select Data & Personalization.</li>
+                            <li>In the page that appears, scroll down to Download, delete, or make a plan for your data.</li>
+                            <li>Click Delete a service or your account. ... </li>
+                            <li>Then choose Delete a service on the next page as well.</li>
+                        </ul>
+                    </p><br>
+                </div>
+                <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+                    <h5>Displaying the Current Date and Time</h5>
+                    <p class="w3-text-grey">~$ date</p>
+                    <p class="w3-text-grey">~$ timedatectl</p><br>
+                </div>
+            </div>
+        </div>
+        <!-- About Container -->
+        <div class="w3-container" id="about">
+            <div class="w3-content" style="max-width:700px">
+                <h5 class="w3-center w3-padding-64 asdf"><span class="w3-tag w3-wide">ABOUT THIS PAGE</span></h5>
+                <p>Discover ways to get out of your computer problems on this page.</p>
+                <div class="w3-panel w3-leftbar w3-light-grey">
+                    <p><i>"I find it interesting to solve the little problems that people face on computers." </i></p>
+                    <p>Owner and Editor: <a href="https://pavanchow.gitlab.io/">Pavan Nallamothus</a> </p>
+                </div>
+                <!-- <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
+    <p><strong>Address:</strong> 15 Adr street, 5015, NY</p> -->
+            </div>
+        </div>
+        <!-- Contact/Area Container -->
+        <div class="w3-container" id="where" style="padding-bottom:32px;">
+            <div class="w3-content" style="max-width:700px">
+                <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">CONTACT ME</span></h5>
+                <p>Feel free to contact me @</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> pavankumarpre@gmail.com</p>
+
+                <div class="jumbotron-social">
+                    <center>
+                        <span class="ul-social">
+            <span class="li-social-links">
+              <a class="social" href="https://gitlab.com/pavanchow" target="_blank"><i class="fa fa-gitlab" aria-hidden="true"></i></a>
+            </span>
+                        <span class="li-social-links">
+              <a class="social" href="https://www.linkedin.com/in/pavanchow/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </span>
+                        <span class="li-social-links">
+              <a class="social" href="https://t.me/Pavan_Chowdary" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>
+            </span>
+                        <span class="li-social-links">
+              <a class="social" href="https://twitter.com/pavan_chow_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </span>
+                        </span>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+        <!-- End page content -->
+    </div>
+    <!-- Footer -->
+    <footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+        <p>Copyright <a style="text-decoration: none" href="index.html">&copy; Pavan Nallamothu</a> 2019</p>
+    </footer>
+    <!-- End of Footer -->
+    <script>
+        // Tabbed Menu
+        function openMenu(evt, menuName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("menu");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+            }
+            document.getElementById(menuName).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+        }
+        document.getElementById("myLink").click();
+    </script>
+</body>
+
+</html>

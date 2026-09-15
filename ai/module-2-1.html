@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Decision Boundaries — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item active"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 31%"></div>
+                    </div>
+                    <span class="progress-text">5 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb">
+                    <span>Core Methods</span>
+                    <span class="breadcrumb-sep">→</span>
+                    <span>Module 2.1</span>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Core Methods</span>
+                        <span class="module-duration">~35 min</span>
+                    </div>
+                    <h1 class="module-title">Decision Boundaries</h1>
+                    <p class="module-subtitle">
+                        How classifiers divide the input space: understanding the geometric intuition 
+                        behind classification, from linear separability to the complex boundaries 
+                        learned by deep networks.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand decision boundaries as the geometric output of classifiers</li>
+                        <li>Distinguish between linearly separable and non-linearly separable problems</li>
+                        <li>Explain how different models create different boundary shapes</li>
+                        <li>Connect boundary complexity to model capacity and overfitting risk</li>
+                        <li>Visualize how neural networks compose simple boundaries into complex ones</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">First: Preparing Your Data</h2>
+                    
+                    <div class="key-insight warning-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The 80/20 Rule of ML</h4>
+                            <p>
+                                In practice, <strong>80% of ML work is data preparation</strong>, 20% is modeling. 
+                                Raw data is messy: missing values, different scales, inconsistent formats. 
+                                Before any model sees your data, it needs preprocessing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="preprocessing-grid">
+                        <div class="preprocess-card">
+                            <h4>1. Data Cleaning</h4>
+                            <p>Handle the messiness in real-world data:</p>
+                            <ul>
+                                <li><strong>Missing values:</strong> Drop rows, impute with mean/median, or use indicators</li>
+                                <li><strong>Outliers:</strong> Detect (z-score, IQR), decide whether to remove or cap</li>
+                                <li><strong>Duplicates:</strong> Identify and remove exact or near-duplicates</li>
+                                <li><strong>Inconsistent formatting:</strong> Standardize dates, units, categories</li>
+                            </ul>
+                        </div>
+
+                        <div class="preprocess-card">
+                            <h4>2. Feature Scaling</h4>
+                            <p>Many algorithms are sensitive to feature magnitudes:</p>
+                            <ul>
+                                <li><strong>Standardization (Z-score):</strong> μ=0, σ=1. Good for most cases</li>
+                                <li><strong>Min-Max Scaling:</strong> Range [0,1]. Good for bounded features</li>
+                                <li><strong>Robust Scaling:</strong> Uses median/IQR. Handles outliers better</li>
+                            </ul>
+                            <p class="preprocess-warning">
+                                <strong>Critical:</strong> Fit scaler on training data only, then transform val/test
+                            </p>
+                        </div>
+
+                        <div class="preprocess-card">
+                            <h4>3. Categorical Encoding</h4>
+                            <p>Convert categories to numbers:</p>
+                            <ul>
+                                <li><strong>One-Hot Encoding:</strong> Binary column per category. No ordinal assumption</li>
+                                <li><strong>Label Encoding:</strong> Integer per category. Only for ordinal data</li>
+                                <li><strong>Target Encoding:</strong> Replace with mean target. Powerful but leak risk</li>
+                            </ul>
+                        </div>
+
+                        <div class="preprocess-card">
+                            <h4>4. Class Imbalance</h4>
+                            <p>When one class dominates (fraud: 0.1%, normal: 99.9%):</p>
+                            <ul>
+                                <li><strong>Oversampling:</strong> SMOTE creates synthetic minority examples</li>
+                                <li><strong>Undersampling:</strong> Reduce majority class (loses information)</li>
+                                <li><strong>Class Weights:</strong> Penalize majority class errors more in loss</li>
+                                <li><strong>Stratified Splits:</strong> Maintain class ratios in train/val/test</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Why Preprocessing Matters for Decision Boundaries</h3>
+                        <p>
+                            Unscaled features distort the geometry that classifiers learn. If feature A ranges 
+                            0-1 and feature B ranges 0-1000, the decision boundary will be dominated by B 
+                            simply because its scale is larger. After standardization, both features contribute 
+                            equally, and the boundary reflects their true importance.
+                        </p>
+                        <p>
+                            <strong>The decision boundary you learn is only as good as the data you feed in.</strong> 
+                            Garbage in, garbage boundary out.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">What is a Decision Boundary?</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Definition</div>
+                        <p class="definition-text">
+                            A <strong>decision boundary</strong> is the hypersurface in feature space that 
+                            separates regions assigned to different classes by a classifier. Points on one 
+                            side are classified as class A; points on the other side as class B.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Imagine a map where you're trying to draw a border between two countries. 
+                                The border is your decision boundary—everything on the left belongs to 
+                                Country A, everything on the right to Country B.
+                            </p>
+                            <p>
+                                In classification, the "countries" are classes (spam/not-spam, cat/dog, 
+                                tumor/healthy) and the "map" is the space of all possible inputs. The 
+                                classifier's job is to learn where to draw the border based on training examples.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                For a binary classifier outputting a score f(x), the decision boundary is 
+                                defined by the set of points where:
+                            </p>
+                            <div class="formula-inline">
+                                Decision Boundary = {x : f(x) = threshold}
+                            </div>
+                            <p>
+                                For probabilistic classifiers (like neural networks with softmax), the 
+                                boundary typically occurs where P(class A | x) = P(class B | x) = 0.5.
+                            </p>
+                            <p>
+                                In higher dimensions, this "boundary" is actually a <strong>hypersurface</strong>—a 
+                                surface of dimension (d-1) in a d-dimensional space. In 2D it's a curve; 
+                                in 3D it's a surface; in 100D it's a 99-dimensional manifold.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                When you use a spam filter, it implicitly computes features of your email 
+                                (word frequencies, sender reputation, link counts) and checks which side 
+                                of a learned boundary your email falls on.
+                            </p>
+                            <p>
+                                The boundary isn't drawn by a human—it emerges from optimization. The 
+                                training process adjusts model parameters until the boundary separates 
+                                training examples as well as possible (while hopefully generalizing to new data).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Linear vs. Non-Linear Boundaries</h2>
+                    
+                    <p class="lead-paragraph">
+                        The shape of the decision boundary depends on the model. Simple models produce 
+                        simple boundaries; complex models can produce intricate boundaries that weave 
+                        through the feature space.
+                    </p>
+
+                    <div class="comparison-cards">
+                        <div class="boundary-card linear">
+                            <h3 class="card-title">Linear Boundaries</h3>
+                            <p class="card-subtitle">Straight lines, planes, and hyperplanes</p>
+                            <div class="card-content">
+                                <p>
+                                    <strong>Models:</strong> Logistic regression, linear SVM, perceptron
+                                </p>
+                                <p>
+                                    The boundary is defined by a linear equation:
+                                </p>
+                                <div class="formula-inline">
+                                    w₁x₁ + w₂x₂ + ... + wₙxₙ + b = 0
+                                </div>
+                                <p>
+                                    <strong>Pros:</strong> Fast, interpretable, low variance, works well 
+                                    when classes are actually linearly separable.
+                                </p>
+                                <p>
+                                    <strong>Cons:</strong> Cannot capture complex relationships. If the 
+                                    true boundary is curved, a linear model will have high bias (systematic errors).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="boundary-card nonlinear">
+                            <h3 class="card-title">Non-Linear Boundaries</h3>
+                            <p class="card-subtitle">Curves, surfaces, and complex manifolds</p>
+                            <div class="card-content">
+                                <p>
+                                    <strong>Models:</strong> Neural networks, kernel SVM, decision trees, 
+                                    random forests, k-nearest neighbors
+                                </p>
+                                <p>
+                                    The boundary can take any shape the model architecture allows—circles, 
+                                    spirals, disconnected regions, or arbitrarily complex surfaces.
+                                </p>
+                                <p>
+                                    <strong>Pros:</strong> Can fit any pattern given enough capacity. 
+                                    Necessary for most real-world problems.
+                                </p>
+                                <p>
+                                    <strong>Cons:</strong> Risk of overfitting—the boundary might contort 
+                                    to fit noise in training data rather than true patterns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The XOR Problem</h4>
+                            <p>
+                                A famous example: the XOR (exclusive-or) function outputs 1 when exactly 
+                                one input is 1. The four points (0,0)→0, (0,1)→1, (1,0)→1, (1,1)→0 cannot 
+                                be separated by any straight line. This simple problem requires a non-linear 
+                                boundary—and historically, solving XOR helped drive the development of 
+                                multi-layer neural networks.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">How Different Models Create Boundaries</h2>
+                    
+                    <div class="model-comparison">
+                        <div class="model-card">
+                            <div class="model-icon">━</div>
+                            <h3>Logistic Regression</h3>
+                            <p>
+                                Learns a single linear boundary. The weights define a hyperplane; the sigmoid 
+                                function converts distance-from-boundary into probability. Fast and interpretable, 
+                                but fundamentally limited to linearly separable problems.
+                            </p>
+                            <div class="boundary-shape">Boundary shape: Straight line / hyperplane</div>
+                        </div>
+
+                        <div class="model-card">
+                            <div class="model-icon">◇</div>
+                            <h3>Decision Trees</h3>
+                            <p>
+                                Create axis-aligned rectangular regions by making sequential threshold 
+                                decisions (if x₁ > 5, go left; else go right). Each leaf is a rectangular 
+                                region. Can approximate any boundary but tend to be "blocky."
+                            </p>
+                            <div class="boundary-shape">Boundary shape: Axis-aligned rectangles</div>
+                        </div>
+
+                        <div class="model-card">
+                            <div class="model-icon">◯</div>
+                            <h3>K-Nearest Neighbors</h3>
+                            <p>
+                                Classifies based on majority vote of k closest training points. The boundary 
+                                is implicit—defined by the Voronoi regions around training points. Very 
+                                flexible but computationally expensive and sensitive to noise.
+                            </p>
+                            <div class="boundary-shape">Boundary shape: Piecewise linear (Voronoi)</div>
+                        </div>
+
+                        <div class="model-card">
+                            <div class="model-icon">∿</div>
+                            <h3>Neural Networks</h3>
+                            <p>
+                                Compose multiple linear transformations with non-linear activations. Each 
+                                layer can be thought of as folding and warping space. Deep networks can 
+                                create arbitrarily complex boundaries through this composition.
+                            </p>
+                            <div class="boundary-shape">Boundary shape: Arbitrary smooth manifolds</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Neural Networks: Composing Boundaries</h2>
+                    
+                    <p class="lead-paragraph">
+                        Neural networks achieve complex boundaries by <strong>composing simple operations</strong>. 
+                        Each neuron computes a linear boundary; layers of neurons, connected through non-linear 
+                        activations, can combine these into any shape.
+                    </p>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">The Composition Principle</h3>
+                        <p>
+                            A single neuron with a step activation (or sigmoid) creates a linear boundary—it 
+                            divides space into two half-spaces. But when you:
+                        </p>
+                        <ol class="technical-list">
+                            <li>Combine multiple neurons in one layer → multiple linear boundaries, creating convex regions</li>
+                            <li>Stack multiple layers → compositions of regions, creating arbitrary shapes</li>
+                        </ol>
+                        <p>
+                            This is the fundamental insight: <strong>depth gives neural networks their 
+                            representational power</strong>. A two-layer network with enough neurons can 
+                            approximate any continuous function (Universal Approximation Theorem), but 
+                            deeper networks can often do so more efficiently.
+                        </p>
+                    </div>
+
+                    <div class="visual-example">
+                        <h4>Building XOR from Linear Pieces</h4>
+                        <div class="xor-demo">
+                            <div class="xor-step">
+                                <div class="step-label">Layer 1, Neuron 1</div>
+                                <div class="step-content">Creates boundary: x + y = 0.5</div>
+                                <div class="step-note">Separates (0,0) from others</div>
+                            </div>
+                            <div class="xor-arrow">+</div>
+                            <div class="xor-step">
+                                <div class="step-label">Layer 1, Neuron 2</div>
+                                <div class="step-content">Creates boundary: x + y = 1.5</div>
+                                <div class="step-note">Separates (1,1) from others</div>
+                            </div>
+                            <div class="xor-arrow">→</div>
+                            <div class="xor-step">
+                                <div class="step-label">Layer 2</div>
+                                <div class="step-content">Combines: "between both boundaries"</div>
+                                <div class="step-note">XOR region isolated!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Each ReLU activation in a modern network creates a "fold" in space—where the 
+                        function transitions from linear to flat (or vice versa). A network with many 
+                        ReLU neurons has many folds, allowing it to carve out intricate decision regions.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Boundary Complexity and Overfitting</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Bias-Variance Trade-off</h4>
+                            <p>
+                                A model that can only produce simple boundaries has <strong>high bias</strong>—it 
+                                may systematically misclassify if the true boundary is complex. A model that 
+                                can produce very complex boundaries has <strong>high variance</strong>—it may 
+                                overfit to noise, producing a boundary that perfectly fits training data but 
+                                fails on new data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="comparison-table">
+                        <h4 class="table-title">Boundary Complexity Effects</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Boundary Type</th>
+                                    <th>Bias</th>
+                                    <th>Variance</th>
+                                    <th>Risk</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Too simple (underfitting)</td>
+                                    <td>High</td>
+                                    <td>Low</td>
+                                    <td>Systematic errors on all data</td>
+                                </tr>
+                                <tr>
+                                    <td>Appropriate complexity</td>
+                                    <td>Balanced</td>
+                                    <td>Balanced</td>
+                                    <td>Good generalization</td>
+                                </tr>
+                                <tr>
+                                    <td>Too complex (overfitting)</td>
+                                    <td>Low</td>
+                                    <td>High</td>
+                                    <td>Fits noise, poor on new data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="example-block">
+                        <h4 class="example-title">Visual Signs of Overfitting</h4>
+                        <p>
+                            An overfit boundary often looks "wiggly"—it contorts to wrap around individual 
+                            training points rather than finding a smooth separation. If you see a boundary 
+                            that makes sharp turns to include specific points, that's likely overfitting.
+                        </p>
+                        <p>
+                            A well-generalized boundary is usually simpler than it could be—it captures 
+                            the broad pattern without chasing outliers.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"More complex boundaries are always better"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                A perfectly complex boundary can achieve 100% training accuracy by wrapping 
+                                around every single training point—but this almost never generalizes well.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> The best boundary is the simplest one 
+                                that captures the true pattern. Complexity should match the problem's actual 
+                                structure, not the noise in your training data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"The boundary is just a line—easy to understand"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                In 2D, boundaries are curves we can visualize. Real problems have hundreds 
+                                or thousands of features—the boundary is a high-dimensional surface that 
+                                cannot be directly visualized or easily intuited.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> 2D visualizations are pedagogical 
+                                tools, not representations of real ML. In high dimensions, the boundary is 
+                                a complex manifold whose properties we study through metrics (accuracy, 
+                                margin, smoothness) rather than direct visualization.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Neural networks always find the optimal boundary"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Neural networks find <em>a</em> boundary that reduces training loss, not 
+                                necessarily the best possible boundary. Different initializations, 
+                                architectures, and hyperparameters produce different boundaries.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Training finds a good local solution 
+                                in parameter space, which corresponds to a particular boundary. This boundary 
+                                depends on many factors including random initialization, and there's often 
+                                no way to verify it's globally optimal.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab Section -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Exploring Decision Boundaries
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Experiment with different classifier types and see how they create different 
+                            decision boundaries. Add points, switch models, and observe how complexity 
+                            affects the boundary shape.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="compare">Model Comparison</button>
+                            <button class="lab-tab" data-tab="compose">Neural Composition</button>
+                            <button class="lab-tab" data-tab="overfit">Overfitting Demo</button>
+                            <button class="lab-tab code-view-tab" data-tab="code-view">
+                                <span class="code-icon">{ }</span> Code View
+                            </button>
+                        </div>
+
+                        <!-- Model Comparison Lab -->
+                        <div class="lab-panel active" id="compare-panel">
+                            <div class="boundary-lab-controls">
+                                <div class="control-group">
+                                    <label>Dataset Pattern</label>
+                                    <select id="dataset-select">
+                                        <option value="linear">Linearly Separable</option>
+                                        <option value="circles">Circular</option>
+                                        <option value="moons">Two Moons</option>
+                                        <option value="xor">XOR Pattern</option>
+                                        <option value="spiral">Spiral</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label>Noise Level</label>
+                                    <input type="range" id="noise-slider" min="0" max="30" value="10">
+                                    <span class="control-value" id="noise-value">10%</span>
+                                </div>
+                                <div class="control-actions">
+                                    <button id="generate-data" class="btn btn-primary">Generate Data</button>
+                                </div>
+                            </div>
+
+                            <div class="model-grid">
+                                <div class="model-viz" data-model="logistic">
+                                    <h4>Logistic Regression</h4>
+                                    <canvas class="boundary-canvas" width="250" height="250"></canvas>
+                                    <div class="model-stats">
+                                        <span>Accuracy: <span class="acc-value">—</span></span>
+                                    </div>
+                                </div>
+                                <div class="model-viz" data-model="tree">
+                                    <h4>Decision Tree</h4>
+                                    <canvas class="boundary-canvas" width="250" height="250"></canvas>
+                                    <div class="model-stats">
+                                        <span>Accuracy: <span class="acc-value">—</span></span>
+                                    </div>
+                                </div>
+                                <div class="model-viz" data-model="knn">
+                                    <h4>K-Nearest Neighbors</h4>
+                                    <canvas class="boundary-canvas" width="250" height="250"></canvas>
+                                    <div class="model-stats">
+                                        <span>Accuracy: <span class="acc-value">—</span></span>
+                                    </div>
+                                </div>
+                                <div class="model-viz" data-model="neural">
+                                    <h4>Neural Network</h4>
+                                    <canvas class="boundary-canvas" width="250" height="250"></canvas>
+                                    <div class="model-stats">
+                                        <span>Accuracy: <span class="acc-value">—</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Neural Composition Lab -->
+                        <div class="lab-panel" id="compose-panel">
+                            <div class="compose-description">
+                                <p>
+                                    See how a neural network builds complex boundaries by composing simple 
+                                    linear operations. Watch each layer transform the space.
+                                </p>
+                            </div>
+
+                            <div class="compose-controls">
+                                <div class="control-group">
+                                    <label>Hidden Neurons</label>
+                                    <input type="range" id="neurons-slider" min="2" max="16" value="4">
+                                    <span class="control-value" id="neurons-value">4</span>
+                                </div>
+                                <div class="control-group">
+                                    <label>Hidden Layers</label>
+                                    <input type="range" id="layers-slider" min="1" max="4" value="2">
+                                    <span class="control-value" id="layers-value">2</span>
+                                </div>
+                                <div class="control-actions">
+                                    <button id="train-network" class="btn btn-primary">Train Network</button>
+                                    <button id="reset-network" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </div>
+
+                            <div class="layer-transforms">
+                                <div class="transform-viz" data-layer="input">
+                                    <h4>Input Space</h4>
+                                    <canvas class="transform-canvas" width="200" height="200"></canvas>
+                                </div>
+                                <div class="transform-arrow">→</div>
+                                <div class="transform-viz" data-layer="hidden1">
+                                    <h4>After Layer 1</h4>
+                                    <canvas class="transform-canvas" width="200" height="200"></canvas>
+                                </div>
+                                <div class="transform-arrow">→</div>
+                                <div class="transform-viz" data-layer="output">
+                                    <h4>Final Boundary</h4>
+                                    <canvas class="transform-canvas" width="200" height="200"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="compose-insight">
+                                <p>
+                                    <strong>What you're seeing:</strong> The network "unfolds" the data by 
+                                    applying linear transformations followed by ReLU activations. In the 
+                                    transformed space, a complex problem can become linearly separable.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Overfitting Demo -->
+                        <div class="lab-panel" id="overfit-panel">
+                            <div class="overfit-description">
+                                <p>
+                                    See how model complexity affects the decision boundary. Too simple 
+                                    underfits; too complex overfits. Find the sweet spot.
+                                </p>
+                            </div>
+
+                            <div class="overfit-controls">
+                                <div class="control-group">
+                                    <label>Model Complexity (Polynomial Degree)</label>
+                                    <input type="range" id="complexity-slider" min="1" max="15" value="1">
+                                    <span class="control-value" id="complexity-value">1</span>
+                                </div>
+                                <div class="control-actions">
+                                    <button id="fit-model" class="btn btn-primary">Fit Model</button>
+                                    <button id="reset-overfit" class="btn btn-secondary">New Data</button>
+                                </div>
+                            </div>
+
+                            <div class="overfit-viz">
+                                <canvas id="overfit-canvas" width="500" height="350"></canvas>
+                            </div>
+
+                            <div class="overfit-metrics">
+                                <div class="metric-card">
+                                    <span class="metric-label">Training Accuracy</span>
+                                    <span class="metric-value" id="train-acc">—</span>
+                                </div>
+                                <div class="metric-card">
+                                    <span class="metric-label">Test Accuracy</span>
+                                    <span class="metric-value" id="test-acc">—</span>
+                                </div>
+                                <div class="metric-card">
+                                    <span class="metric-label">Complexity</span>
+                                    <span class="metric-value" id="complexity-metric">—</span>
+                                </div>
+                            </div>
+
+                            <div class="overfit-interpretation" id="overfit-interpretation"></div>
+                        </div>
+
+                        <!-- Code View Panel -->
+                        <div class="lab-panel" id="code-view-panel">
+                            <div class="code-view-intro">
+                                <p>
+                                    Here's how to implement the classifiers you're visualizing above using 
+                                    scikit-learn and PyTorch. These are production-ready patterns.
+                                </p>
+                            </div>
+
+                            <div class="code-block-with-comments">
+                                <div class="code-section">
+                                    <h4>Logistic Regression (scikit-learn)</h4>
+                                    <pre><code class="language-python">from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+
+# Always scale features for linear models
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X_train)
+
+# Train logistic regression
+<span class="code-highlight">model = LogisticRegression()</span>
+model.fit(X_scaled, y_train)
+
+# Predict
+y_pred = model.predict(scaler.transform(X_test))
+accuracy = (y_pred == y_test).mean()
+
+# The decision boundary is: w·x + b = 0
+# w = model.coef_, b = model.intercept_</code></pre>
+                                </div>
+
+                                <div class="code-section">
+                                    <h4>Neural Network Classifier (PyTorch)</h4>
+                                    <pre><code class="language-python">import torch
+import torch.nn as nn
+
+class BinaryClassifier(nn.Module):
+    def __init__(self, input_dim, hidden_dim=32):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            <span class="code-highlight">nn.ReLU(),  # Non-linearity enables curved boundaries</span>
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, 1),
+            nn.Sigmoid()  # Output probability in [0, 1]
+        )
+    
+    def forward(self, x):
+        return self.net(x)
+
+# Training
+model = BinaryClassifier(input_dim=2)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+<span class="code-highlight">criterion = nn.BCELoss()  # Binary Cross-Entropy</span>
+
+for epoch in range(100):
+    y_pred = model(X_train)
+    loss = criterion(y_pred, y_train)
+    
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()</code></pre>
+                                </div>
+
+                                <div class="code-section">
+                                    <h4>Visualizing Decision Boundaries</h4>
+                                    <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+def plot_decision_boundary(model, X, y):
+    # Create mesh grid
+    h = 0.02  # Step size
+    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
+    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
+    xx, yy = np.meshgrid(
+        np.arange(x_min, x_max, h),
+        np.arange(y_min, y_max, h)
+    )
+    
+    # Predict on every point in the grid
+    <span class="code-highlight">Z = model.predict(np.c_[xx.ravel(), yy.ravel()])</span>
+    Z = Z.reshape(xx.shape)
+    
+    # Plot
+    plt.contourf(xx, yy, Z, alpha=0.3, cmap='coolwarm')
+    plt.scatter(X[:, 0], X[:, 1], c=y, cmap='coolwarm', edgecolors='black')
+    plt.title('Decision Boundary')
+    plt.show()</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="code-view-note">
+                                <strong>Key Pattern:</strong> The decision boundary's shape is determined by the 
+                                model's <em>inductive bias</em>. Logistic regression = linear, trees = axis-aligned 
+                                rectangles, neural nets = smooth curves (controlled by architecture).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li>
+                                <strong>Logistic regression</strong> always produces a straight line—it 
+                                can't adapt to curved patterns.
+                            </li>
+                            <li>
+                                <strong>Decision trees</strong> create rectangular regions—good for some 
+                                patterns, awkward for circular ones.
+                            </li>
+                            <li>
+                                <strong>K-NN</strong> creates highly local boundaries that conform closely 
+                                to training points—flexible but noisy.
+                            </li>
+                            <li>
+                                <strong>Neural networks</strong> can create smooth, complex boundaries—but 
+                                need proper regularization to avoid overfitting.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz Section -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">
+                                    What type of decision boundary can logistic regression produce?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q1" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Any shape, depending on the data</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Only linear boundaries (straight lines/hyperplanes)</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Only circular boundaries</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Rectangular regions only</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">
+                                    Why couldn't a single-layer perceptron solve the XOR problem?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q2" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">XOR requires too much computation</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The XOR classes are not linearly separable—no single line can divide them</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">XOR has too many classes</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Perceptrons can only handle continuous data</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">
+                                    What is a key sign that a decision boundary is overfitting?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q3" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The boundary is a straight line</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The boundary is highly irregular, making sharp turns to wrap around individual training points</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The training accuracy is low</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The boundary passes through the center of the data</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">
+                                    How do neural networks create complex decision boundaries?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q4" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">By memorizing all training examples</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">By composing multiple linear transformations with non-linear activations across layers</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">By using polynomial equations directly</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">They cannot create complex boundaries</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">
+                                    What does it mean for a classification problem to be "linearly separable"?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q5" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The features are linearly correlated</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">A hyperplane (straight line in 2D) exists that can perfectly separate the classes</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The data points are arranged in a line</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Linear regression can be used</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module Navigation -->
+                <section class="module-navigation">
+                    <a href="module-1-4.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Optimization & Gradients</span>
+                    </a>
+                    <a href="module-2-2.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Neural Networks as Function Approximators →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-2-1.js"></script>
+</body>
+</html>
+

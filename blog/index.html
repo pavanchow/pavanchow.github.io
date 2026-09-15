@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<title>BLOG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+    .asdf {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    body,
+    html {
+        height: 100%;
+        font-family: "Inconsolata", sans-serif;
+    }
+    
+    .bgimg {
+        background-position: center;
+        background-size: cover;
+        background-image: url("/img/700.png");
+        min-height: 75%;
+    }
+    
+    .menu {
+        display: none;
+    }
+</style>
+
+<body>
+    <!-- Links (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-row w3-padding w3-black">
+            <div class="w3-col s3">
+                <a href="../index.html" class="w3-button w3-block w3-black">HOME</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#menu" class="w3-button w3-block w3-black">Topics</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#where" class="w3-button w3-block w3-black">CONTACT ME</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add a background color and large text to the whole page -->
+    <div class="w3-sand w3-grayscale w3-large">
+        <!-- Menu Container -->
+        <div class="w3-container" id="menu">
+            <div class="w3-content" style="max-width:700px">
+
+                <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Topics</span></h5>
+
+                <div class="w3-row w3-center w3-card w3-padding">
+                    <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+                        <div class="w3-col s6 tablink">Linux</div>
+                    </a>
+                    <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+                        <div class="w3-col s6 tablink">General</div>
+                    </a>
+                </div>
+                <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+                    <h5><a href="./shell/shell.html" style="text-decoration: none" target="_blank">The Shell Scripting</a> </h5>
+                    <p class="w3-text-grey"><a href="./shell/shell.html" style="text-decoration: none" target="_blank">SHELL SCRIPTING is writing a series of commands for the shell to execute. It can combine lengthy and repetitive sequences of commands into a single and simple script, which can be stored and executed anytime. This reduces the effort required by the end user.</a>                        </p><br>
+
+                    <h5><a href="./docker/docker.html" style="text-decoration: none" target="_blank">Docker</a> </h5>
+                    <p class="w3-text-grey"><a href="./docker/docker.html" style="text-decoration: none" target="_blank">Docker is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and deploy it as one package.</a>                        </p><br>
+
+                    <h5><a href="./yaml/yaml.html" style="text-decoration: none" target="_blank">YAML</a> </h5>
+                    <p class="w3-text-grey"><a href="./yaml/yaml.html" style="text-decoration: none" target="_blank">YAML is a human-readable data-serialization language. It is commonly used for configuration files and in applications where data is being stored or transmitted. YAML targets many of the same communications applications as Extensible Markup Language but has a minimal syntax which intentionally differs from SGML.</a>                        </p><br>
+
+                    <h5><a href="./kubernetes/kubernetes.html" style="text-decoration: none" target="_blank">Kubernetes</a> </h5>
+                    <p class="w3-text-grey"><a href="./kubernetes/kubernetes.html" style="text-decoration: none" target="_blank">Kubernetes is an open-source container-orchestration system for automating application deployment, scaling, and management.</a> </p><br>
+                </div>
+                <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+
+                    <h5><a href="./negotiation/negotiation.html" style="text-decoration: none" target="_blank">Art Of Negotiation</a> </h5>
+                    <p class="w3-text-grey"><a href="./negotiation/negotiation.html" style="text-decoration: none" target="_blank">
+          The adversary is not the person across the table; the adversary is the situation.
+        </a> </p><br>
+
+                    <h5>Displaying the Current Date and Time</h5>
+                    <p class="w3-text-grey">~$ date</p>
+                    <p class="w3-text-grey">~$ timedatectl</p><br>
+                </div>
+            </div>
+        </div>
+        <!-- About Container -->
+        <div class="w3-container" id="about">
+            <div class="w3-content" style="max-width:700px">
+                <h5 class="w3-center w3-padding-64 asdf"><span class="w3-tag w3-wide">ABOUT THIS PAGE</span></h5>
+                <p>Discover ways to get out of your computer problems on this page.</p>
+                <div class="w3-panel w3-leftbar w3-light-grey">
+                    <p><i>"I find it interesting to solve the little problems that people face on computers." </i></p>
+                    <p>Owner and Editor: <a href="https://pavanchow.gitlab.io/">Pavan Nallamothus</a> </p>
+                </div>
+                <!-- <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
+    <p><strong>Address:</strong> 15 Adr street, 5015, NY</p> -->
+            </div>
+        </div>
+        <!-- Contact/Area Container -->
+        <div class="w3-container" id="where" style="padding-bottom:32px;">
+            <div class="w3-content" style="max-width:700px">
+                <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">CONTACT ME</span></h5>
+                <p>Feel free to contact me @</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> pavankumarpre@gmail.com</p>
+                <!-- <p><i class="fa fa-phone" aria-hidden="true"></i></p> -->
+                <div class="jumbotron-social">
+                    <center>
+                        <span class="ul-social">
+            <span class="li-social-links">
+              <a class="social" href="https://gitlab.com/pavanchow" target="_blank"><i class="fa fa-gitlab" aria-hidden="true"></i></a>
+            </span>
+                        <span class="li-social-links">
+              <a class="social" href="https://www.linkedin.com/in/pavanchow/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </span>
+                        <span class="li-social-links">
+              <a class="social" href="https://t.me/Pavan_Chowdary" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>
+            </span>
+                        <span class="li-social-links">
+              <a class="social" href="https://twitter.com/pavan_chow_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </span>
+                        </span>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+        <!-- End page content -->
+    </div>
+    <!-- Footer -->
+    <footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+        <p>Copyright <a style="text-decoration: none" href="index.html">&copy; Pavan Nallamothu</a> 2019</p>
+    </footer>
+    <!-- End of Footer -->
+    <script>
+        // Tabbed Menu
+        function openMenu(evt, menuName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("menu");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+            }
+            document.getElementById(menuName).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+        }
+        document.getElementById("myLink").click();
+    </script>
+</body>
+
+</html>

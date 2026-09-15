@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Model Evaluation — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item active"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 94%"></div></div>
+                    <span class="progress-text">17 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Evaluation & Practice</span><span class="breadcrumb-sep">→</span><span>Module 5.1</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Evaluation & Practice</span>
+                        <span class="module-duration">~55 min</span>
+                    </div>
+                    <h1 class="module-title">Model Evaluation</h1>
+                    <p class="module-subtitle">
+                        The science of knowing whether your model actually works. Beyond accuracy lies 
+                        a rich landscape of metrics, methodologies, and potential pitfalls that separate 
+                        rigorous ML practice from dangerous self-deception.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Master the taxonomy of evaluation metrics for classification, regression, and generation</li>
+                        <li>Understand the precision-recall trade-off and when each matters</li>
+                        <li>Design proper train/validation/test splits and avoid data leakage</li>
+                        <li>Interpret confusion matrices and ROC/AUC curves correctly</li>
+                        <li>Evaluate generative models: perplexity, FID, human evaluation</li>
+                        <li>Recognize common evaluation pitfalls and how to avoid them</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Why Evaluation Is Harder Than It Looks</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Model Evaluation</div>
+                        <p class="definition-text">
+                            The systematic process of measuring how well a model performs its intended 
+                            task, using metrics and methodologies that honestly reflect real-world 
+                            performance and generalization capability.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">The Problem</span>
+                            <p>
+                                A model that achieves 99% accuracy sounds impressive—until you learn the 
+                                dataset was 99% one class. A language model with low perplexity might 
+                                still generate nonsense. An image classifier that works perfectly on 
+                                ImageNet might fail catastrophically on real-world photos.
+                            </p>
+                            <p>
+                                <strong>Evaluation isn't just measurement—it's the art of asking the 
+                                right questions about your model's behavior.</strong>
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Core Challenges</span>
+                            <ul>
+                                <li><strong>Distribution shift:</strong> Test data may not reflect deployment</li>
+                                <li><strong>Metric mismatch:</strong> What you optimize ≠ what you care about</li>
+                                <li><strong>Data leakage:</strong> Test data contaminating training</li>
+                                <li><strong>Class imbalance:</strong> Rare events distort simple metrics</li>
+                                <li><strong>Goodhart's Law:</strong> When a metric becomes a target, it ceases to be a good metric</li>
+                            </ul>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">Real Consequences</span>
+                            <p>
+                                Poor evaluation has led to: medical AI that works on hospital A but 
+                                fails at hospital B (distribution shift), hiring algorithms that 
+                                discriminate (proxy metrics), and self-driving cars that can't handle 
+                                edge cases (insufficient coverage).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Classification Metrics: Beyond Accuracy</h2>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(80, 184, 146, 0.08) 0%, transparent 100%); border: 1px solid rgba(80, 184, 146, 0.25); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--accent-emerald); font-size: 0.9rem; margin: 0 0 0.75rem;">😰 Feeling Overwhelmed by Metrics? Start Here</h4>
+                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
+                            You don't need to memorize every metric! Here's the <strong>beginner's shortcut</strong>:
+                        </p>
+                        <ul style="margin: 0.75rem 0 0; padding-left: 1.5rem; font-size: 0.9rem; line-height: 1.8;">
+                            <li><strong>Balanced dataset?</strong> Use <em>Accuracy</em></li>
+                            <li><strong>Imbalanced dataset?</strong> Use <em>F1 Score</em></li>
+                            <li><strong>False positives are costly?</strong> Focus on <em>Precision</em></li>
+                            <li><strong>Missing positives is costly?</strong> Focus on <em>Recall</em></li>
+                            <li><strong>Need to compare models?</strong> Use <em>ROC-AUC</em></li>
+                        </ul>
+                        <p style="margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--text-tertiary);">
+                            Read the rest when you need it. This section is a reference—not a checklist to memorize.
+                        </p>
+                    </div>
+                    
+                    <p class="lead-paragraph">
+                        Accuracy—the percentage of correct predictions—is often the worst metric to 
+                        use. Here's why, and what to use instead.
+                    </p>
+
+                    <div class="confusion-matrix-section">
+                        <h3>The Confusion Matrix: Foundation of Classification Metrics</h3>
+                        <div class="matrix-visual">
+                            <div class="matrix-grid">
+                                <div class="matrix-header-row">
+                                    <div class="matrix-corner"></div>
+                                    <div class="matrix-col-header">Predicted Negative</div>
+                                    <div class="matrix-col-header">Predicted Positive</div>
+                                </div>
+                                <div class="matrix-row">
+                                    <div class="matrix-row-header">Actual Negative</div>
+                                    <div class="matrix-cell tn">TN<br><span class="cell-desc">True Negative</span></div>
+                                    <div class="matrix-cell fp">FP<br><span class="cell-desc">False Positive<br>(Type I Error)</span></div>
+                                </div>
+                                <div class="matrix-row">
+                                    <div class="matrix-row-header">Actual Positive</div>
+                                    <div class="matrix-cell fn">FN<br><span class="cell-desc">False Negative<br>(Type II Error)</span></div>
+                                    <div class="matrix-cell tp">TP<br><span class="cell-desc">True Positive</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h4>Accuracy</h4>
+                            <div class="metric-formula">(TP + TN) / (TP + TN + FP + FN)</div>
+                            <p>Percentage correct overall.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Use when:</span> Classes are balanced, all errors equally costly
+                            </div>
+                            <div class="metric-when">
+                                <span class="when-bad">✗ Avoid when:</span> Class imbalance (99% one class = 99% accuracy by predicting majority)
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Precision</h4>
+                            <div class="metric-formula">TP / (TP + FP)</div>
+                            <p>Of all positive predictions, how many were correct?</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Use when:</span> False positives are costly (spam filter, fraud detection)
+                            </div>
+                            <p class="metric-intuition">"When I say yes, am I right?"</p>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Recall (Sensitivity)</h4>
+                            <div class="metric-formula">TP / (TP + FN)</div>
+                            <p>Of all actual positives, how many did we find?</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Use when:</span> Missing positives is costly (disease screening, security threats)
+                            </div>
+                            <p class="metric-intuition">"Did I find all the real positives?"</p>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>F1 Score</h4>
+                            <div class="metric-formula">2 × (Precision × Recall) / (Precision + Recall)</div>
+                            <p>Harmonic mean of precision and recall.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Use when:</span> You need a single number balancing both
+                            </div>
+                            <p class="metric-intuition">Punishes extreme imbalance between P and R</p>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Specificity</h4>
+                            <div class="metric-formula">TN / (TN + FP)</div>
+                            <p>Of all actual negatives, how many did we correctly identify?</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Use when:</span> False alarms are costly (medical tests, security alerts)
+                            </div>
+                            <p class="metric-intuition">"How well do I identify true negatives?"</p>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Matthews Correlation Coefficient</h4>
+                            <div class="metric-formula">(TP×TN - FP×FN) / √[(TP+FP)(TP+FN)(TN+FP)(TN+FN)]</div>
+                            <p>Balanced measure even with imbalanced classes.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Use when:</span> Severe class imbalance; ranges -1 to +1
+                            </div>
+                            <p class="metric-intuition">Gold standard for imbalanced binary classification</p>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Precision-Recall Trade-off</h4>
+                            <p>
+                                By adjusting your classification threshold, you can trade precision for 
+                                recall and vice versa. A lower threshold catches more positives (higher 
+                                recall) but also more false positives (lower precision). There's no free 
+                                lunch—the right balance depends on the cost of each error type.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">ROC Curves and AUC: Threshold-Independent Evaluation</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">ROC Curve</div>
+                        <p class="definition-text">
+                            A plot of True Positive Rate (Recall) vs False Positive Rate (1-Specificity) 
+                            at every possible classification threshold. Shows how well the model 
+                            separates classes regardless of threshold choice.
+                        </p>
+                    </div>
+
+                    <div class="roc-explanation">
+                        <div class="roc-visual-placeholder">
+                            <canvas id="roc-canvas" width="400" height="300"></canvas>
+                        </div>
+                        
+                        <div class="roc-interpretations">
+                            <div class="roc-case">
+                                <h4>Perfect Model</h4>
+                                <p>AUC = 1.0. Curve goes straight up then right. Perfect separation.</p>
+                            </div>
+                            <div class="roc-case">
+                                <h4>Good Model</h4>
+                                <p>AUC = 0.8-0.9. Curve bows toward upper-left. Strong discrimination.</p>
+                            </div>
+                            <div class="roc-case">
+                                <h4>Random Guessing</h4>
+                                <p>AUC = 0.5. Diagonal line. Model has no predictive power.</p>
+                            </div>
+                            <div class="roc-case">
+                                <h4>Worse Than Random</h4>
+                                <p>AUC < 0.5. Below diagonal. Flip predictions to improve!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">When to Use AUC vs Precision-Recall AUC</h3>
+                        <div class="comparison-mini">
+                            <div class="compare-item">
+                                <h4>ROC-AUC</h4>
+                                <ul>
+                                    <li>Balanced classes</li>
+                                    <li>Care about both FP and FN equally</li>
+                                    <li>Comparing models across thresholds</li>
+                                </ul>
+                            </div>
+                            <div class="compare-item">
+                                <h4>PR-AUC</h4>
+                                <ul>
+                                    <li>Severe class imbalance</li>
+                                    <li>Positive class is rare and important</li>
+                                    <li>ROC-AUC can be misleadingly high</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Regression Metrics</h2>
+                    
+                    <p class="lead-paragraph">
+                        When predicting continuous values, we need different metrics that capture 
+                        how far off our predictions are.
+                    </p>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h4>Mean Squared Error (MSE)</h4>
+                            <div class="metric-formula">MSE = (1/n) Σ(yᵢ - ŷᵢ)²</div>
+                            <p>Average squared difference between predictions and actuals.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Properties:</span> Penalizes large errors heavily; differentiable
+                            </div>
+                            <div class="metric-when">
+                                <span class="when-bad">✗ Limitation:</span> Sensitive to outliers; units are squared
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Root Mean Squared Error (RMSE)</h4>
+                            <div class="metric-formula">RMSE = √MSE</div>
+                            <p>Square root of MSE—same units as the target variable.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Properties:</span> Interpretable scale; still penalizes large errors
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Mean Absolute Error (MAE)</h4>
+                            <div class="metric-formula">MAE = (1/n) Σ|yᵢ - ŷᵢ|</div>
+                            <p>Average absolute difference.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Properties:</span> Robust to outliers; intuitive
+                            </div>
+                            <div class="metric-when">
+                                <span class="when-bad">✗ Limitation:</span> Not differentiable at zero
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>R² (Coefficient of Determination)</h4>
+                            <div class="metric-formula">R² = 1 - (SS_res / SS_tot)</div>
+                            <p>Proportion of variance explained by the model.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Properties:</span> Scale-independent; 1.0 = perfect fit
+                            </div>
+                            <div class="metric-when">
+                                <span class="when-bad">✗ Limitation:</span> Can be negative; doesn't measure calibration
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Mean Absolute Percentage Error (MAPE)</h4>
+                            <div class="metric-formula">MAPE = (100/n) Σ|yᵢ - ŷᵢ| / |yᵢ|</div>
+                            <p>Percentage error—scale independent.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Properties:</span> Easy to interpret as percentage
+                            </div>
+                            <div class="metric-when">
+                                <span class="when-bad">✗ Limitation:</span> Undefined when y=0; asymmetric
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <h4>Quantile Loss</h4>
+                            <div class="metric-formula">L_q = q(y - ŷ)⁺ + (1-q)(ŷ - y)⁺</div>
+                            <p>For probabilistic forecasts and prediction intervals.</p>
+                            <div class="metric-when">
+                                <span class="when-good">✓ Properties:</span> Captures uncertainty; asymmetric loss
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Evaluating Generative Models</h2>
+                    
+                    <p class="lead-paragraph">
+                        Generative models present unique evaluation challenges: what does it mean 
+                        for generated content to be "good"? There's no single ground truth to compare against.
+                    </p>
+
+                    <div class="gen-eval-section">
+                        <div class="gen-eval-category">
+                            <h3>Language Model Metrics</h3>
+                            
+                            <div class="gen-metric">
+                                <h4>Perplexity</h4>
+                                <div class="metric-formula">PPL = exp(-1/N Σ log P(wᵢ|w₁...wᵢ₋₁))</div>
+                                <p>
+                                    How "surprised" the model is by the test data. Lower = better. 
+                                    Perplexity of k means the model is as uncertain as choosing 
+                                    uniformly among k options per token.
+                                </p>
+                                <div class="metric-caveats">
+                                    <strong>Caveats:</strong> Only measures likelihood, not quality. 
+                                    A model can have low perplexity but generate repetitive or 
+                                    nonsensical text.
+                                </div>
+                            </div>
+
+                            <div class="gen-metric">
+                                <h4>BLEU Score</h4>
+                                <p>
+                                    N-gram overlap between generated and reference text. Used for 
+                                    translation, summarization. Ranges 0-100.
+                                </p>
+                                <div class="metric-caveats">
+                                    <strong>Caveats:</strong> Penalizes valid paraphrases; correlates 
+                                    poorly with human judgment for open-ended generation.
+                                </div>
+                            </div>
+
+                            <div class="gen-metric">
+                                <h4>ROUGE</h4>
+                                <p>
+                                    Recall-oriented n-gram overlap. ROUGE-L uses longest common 
+                                    subsequence. Better for summarization.
+                                </p>
+                            </div>
+
+                            <div class="gen-metric">
+                                <h4>BERTScore</h4>
+                                <p>
+                                    Semantic similarity using BERT embeddings. Captures meaning 
+                                    beyond exact word matches.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="gen-eval-category">
+                            <h3>Image Generation Metrics</h3>
+                            
+                            <div class="gen-metric">
+                                <h4>Fréchet Inception Distance (FID)</h4>
+                                <p>
+                                    Distance between feature distributions of real and generated 
+                                    images using InceptionNet. Lower = better.
+                                </p>
+                                <div class="metric-formula">FID = ||μ_r - μ_g||² + Tr(Σ_r + Σ_g - 2√(Σ_rΣ_g))</div>
+                                <div class="metric-caveats">
+                                    <strong>Caveats:</strong> Requires many samples (~50k); sensitive to 
+                                    image preprocessing; InceptionNet biases toward ImageNet-like images.
+                                </div>
+                            </div>
+
+                            <div class="gen-metric">
+                                <h4>Inception Score (IS)</h4>
+                                <p>
+                                    Measures quality (confident classifications) and diversity 
+                                    (varied classifications across samples).
+                                </p>
+                                <div class="metric-caveats">
+                                    <strong>Caveats:</strong> Doesn't compare to real data; mode dropping 
+                                    can still achieve high IS.
+                                </div>
+                            </div>
+
+                            <div class="gen-metric">
+                                <h4>CLIP Score</h4>
+                                <p>
+                                    Measures alignment between generated image and text prompt 
+                                    using CLIP embeddings.
+                                </p>
+                                <div class="metric-caveats">
+                                    <strong>Caveats:</strong> Only measures text alignment, not image quality 
+                                    or realism per se.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gen-eval-category">
+                            <h3>Human Evaluation</h3>
+                            
+                            <div class="gen-metric">
+                                <p>
+                                    Often the gold standard, but expensive, slow, and subjective. 
+                                    Common approaches:
+                                </p>
+                                <ul class="human-eval-list">
+                                    <li><strong>A/B testing:</strong> Which output is better?</li>
+                                    <li><strong>Likert scales:</strong> Rate quality 1-5</li>
+                                    <li><strong>Turing tests:</strong> Is this human or AI?</li>
+                                    <li><strong>Task success:</strong> Can humans use the output?</li>
+                                    <li><strong>Red teaming:</strong> Adversarial probing for failures</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>LLM Evaluation Is an Open Problem</h4>
+                            <p>
+                                Evaluating large language models remains deeply challenging. Benchmarks 
+                                like MMLU, HumanEval, and BigBench capture narrow capabilities. 
+                                Models can be excellent at benchmarks but fail in deployment. The 
+                                field is moving toward: capability-specific evals, adversarial testing, 
+                                and LLM-as-judge (using one LLM to evaluate another).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Data Splits and Cross-Validation</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">The Golden Rule</div>
+                        <p class="definition-text">
+                            Never evaluate on data the model has seen during training or hyperparameter 
+                            tuning. The test set must be a true hold-out that simulates deployment.
+                        </p>
+                    </div>
+
+                    <div class="split-strategies">
+                        <div class="split-card">
+                            <h4>Train / Validation / Test Split</h4>
+                            <div class="split-visual">
+                                <div class="split-bar train" style="width: 70%">Train (70%)</div>
+                                <div class="split-bar val" style="width: 15%">Val (15%)</div>
+                                <div class="split-bar test" style="width: 15%">Test (15%)</div>
+                            </div>
+                            <ul>
+                                <li><strong>Train:</strong> Fit model parameters</li>
+                                <li><strong>Validation:</strong> Tune hyperparameters, early stopping</li>
+                                <li><strong>Test:</strong> Final evaluation only—never peek!</li>
+                            </ul>
+                        </div>
+
+                        <div class="split-card">
+                            <h4>K-Fold Cross-Validation</h4>
+                            <div class="kfold-visual">
+                                <div class="fold-row"><span class="fold-test">Test</span><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-train">Train</span></div>
+                                <div class="fold-row"><span class="fold-train">Train</span><span class="fold-test">Test</span><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-train">Train</span></div>
+                                <div class="fold-row"><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-test">Test</span><span class="fold-train">Train</span><span class="fold-train">Train</span></div>
+                                <div class="fold-row"><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-test">Test</span><span class="fold-train">Train</span></div>
+                                <div class="fold-row"><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-train">Train</span><span class="fold-test">Test</span></div>
+                            </div>
+                            <p>
+                                Every data point gets to be in the test set once. Average performance 
+                                across folds. More reliable estimate, especially for small datasets.
+                            </p>
+                        </div>
+
+                        <div class="split-card">
+                            <h4>Stratified Splits</h4>
+                            <p>
+                                Maintain class proportions in each split. Critical for imbalanced data 
+                                to ensure rare classes appear in all folds.
+                            </p>
+                        </div>
+
+                        <div class="split-card">
+                            <h4>Time-Series Splits</h4>
+                            <p>
+                                Never use future data to predict the past. Train on past, test on 
+                                future. Rolling window or expanding window approaches.
+                            </p>
+                        </div>
+
+                        <div class="split-card">
+                            <h4>Group Splits</h4>
+                            <p>
+                                When data points are correlated (e.g., multiple samples from same 
+                                patient), ensure groups don't span train/test. GroupKFold prevents leakage.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Evaluation Pitfalls</h2>
+                    
+                    <div class="pitfalls-grid">
+                        <div class="pitfall-card">
+                            <div class="pitfall-icon">⚠</div>
+                            <h4>Data Leakage</h4>
+                            <p>
+                                Information from test set "leaks" into training. Examples: scaling 
+                                before splitting, feature engineering on full data, target leakage 
+                                (features that encode the label).
+                            </p>
+                            <div class="pitfall-fix">
+                                <strong>Fix:</strong> Split first, then preprocess. Use pipelines.
+                            </div>
+                        </div>
+
+                        <div class="pitfall-card">
+                            <div class="pitfall-icon">⚠</div>
+                            <h4>Test Set Contamination</h4>
+                            <p>
+                                For LLMs, test benchmarks may appear in training data (internet 
+                                scale). GPT-4 might have "seen" your eval questions.
+                            </p>
+                            <div class="pitfall-fix">
+                                <strong>Fix:</strong> Use held-out dates, contamination detection, 
+                                novel test sets.
+                            </div>
+                        </div>
+
+                        <div class="pitfall-card">
+                            <div class="pitfall-icon">⚠</div>
+                            <h4>Overfitting to Validation Set</h4>
+                            <p>
+                                Running hundreds of experiments, selecting the best on validation, 
+                                can overfit to validation randomness.
+                            </p>
+                            <div class="pitfall-fix">
+                                <strong>Fix:</strong> Final test set is sacred. Report confidence 
+                                intervals. Use fresh test sets for final claims.
+                            </div>
+                        </div>
+
+                        <div class="pitfall-card">
+                            <div class="pitfall-icon">⚠</div>
+                            <h4>Cherry-Picking Results</h4>
+                            <p>
+                                Only reporting the metric that looks good. Running until you get 
+                                a good random seed. Selective ablations.
+                            </p>
+                            <div class="pitfall-fix">
+                                <strong>Fix:</strong> Pre-register metrics. Report all relevant 
+                                metrics. Multiple seeds with error bars.
+                            </div>
+                        </div>
+
+                        <div class="pitfall-card">
+                            <div class="pitfall-icon">⚠</div>
+                            <h4>Distribution Mismatch</h4>
+                            <p>
+                                Test data doesn't match deployment. Clean lab data vs messy real 
+                                world. Geographic or demographic differences.
+                            </p>
+                            <div class="pitfall-fix">
+                                <strong>Fix:</strong> Evaluate on production-like data. Domain 
+                                adaptation. Monitor post-deployment.
+                            </div>
+                        </div>
+
+                        <div class="pitfall-card">
+                            <div class="pitfall-icon">⚠</div>
+                            <h4>Wrong Metric for the Task</h4>
+                            <p>
+                                Optimizing accuracy when false negatives are catastrophic. Using 
+                                BLEU for creative writing. Perplexity for helpfulness.
+                            </p>
+                            <div class="pitfall-fix">
+                                <strong>Fix:</strong> Start with the business/safety goal. Work 
+                                backwards to metrics that align.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Statistical Significance and Confidence</h2>
+                    
+                    <p class="lead-paragraph">
+                        "Model A got 85.2% and Model B got 84.9%"—is A actually better, or is this 
+                        just noise? Statistical rigor separates real improvements from random fluctuation.
+                    </p>
+
+                    <div class="stats-concepts">
+                        <div class="stat-concept">
+                            <h4>Confidence Intervals</h4>
+                            <p>
+                                Report 95% CI: "Accuracy = 85.2% ± 1.3%". If CIs overlap substantially, 
+                                the difference may not be meaningful.
+                            </p>
+                            <div class="stat-method">
+                                <strong>Methods:</strong> Bootstrap (resample with replacement), 
+                                Wilson score interval (for proportions)
+                            </div>
+                        </div>
+
+                        <div class="stat-concept">
+                            <h4>Paired Tests</h4>
+                            <p>
+                                When comparing models on the same test set, use paired tests (McNemar's 
+                                test, paired t-test, Wilcoxon signed-rank) for more statistical power.
+                            </p>
+                        </div>
+
+                        <div class="stat-concept">
+                            <h4>Multiple Comparisons</h4>
+                            <p>
+                                Testing many hypotheses inflates false positives. If comparing 10 models, 
+                                apply Bonferroni correction or control false discovery rate.
+                            </p>
+                        </div>
+
+                        <div class="stat-concept">
+                            <h4>Effect Size</h4>
+                            <p>
+                                Statistical significance ≠ practical significance. A 0.01% improvement 
+                                can be "significant" with enough data but useless in practice.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Reporting Best Practices</h3>
+                        <ul class="best-practices-list">
+                            <li>Report mean and standard deviation across multiple runs/seeds</li>
+                            <li>Include confidence intervals or significance tests</li>
+                            <li>Report multiple relevant metrics, not just the best one</li>
+                            <li>Describe the test set clearly (size, source, potential biases)</li>
+                            <li>Be transparent about hyperparameter search scope</li>
+                            <li>Compare to strong, well-tuned baselines</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Calibration: When Confidence Lies</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Critical Safety Issue</div>
+                        <p class="definition-text">
+                            <strong>Calibration</strong> measures whether predicted probabilities reflect 
+                            actual frequencies. A model is <em>well-calibrated</em> if, among all predictions 
+                            with 80% confidence, approximately 80% are actually correct.
+                        </p>
+                    </div>
+
+                    <div class="key-insight warning-insight">
+                        <div class="insight-icon">⚠</div>
+                        <div class="insight-content">
+                            <h4>Neural Networks Are Typically Overconfident</h4>
+                            <p>
+                                This isn't a minor problem—it's a fundamental failure mode. Modern deep networks 
+                                can be <strong>99% confident while wrong 50% of the time</strong>. Cross-entropy 
+                                loss training drives softmax outputs toward extreme probabilities (near 0 or 1), 
+                                even when uncertainty should be high.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="calibration-section">
+                        <h3>Understanding Calibration Plots</h3>
+                        <div class="calibration-explanation">
+                            <p>
+                                A <strong>calibration plot</strong> (reliability diagram) plots predicted 
+                                confidence against actual accuracy. Perfect calibration = diagonal line.
+                            </p>
+                            <div class="calibration-examples">
+                                <div class="cal-example">
+                                    <h4>Well-Calibrated</h4>
+                                    <p>Points follow the diagonal. 70% confidence → 70% accurate.</p>
+                                </div>
+                                <div class="cal-example">
+                                    <h4>Overconfident (Common)</h4>
+                                    <p>Curve below diagonal. Model says 90% confident but only 60% accurate.</p>
+                                </div>
+                                <div class="cal-example">
+                                    <h4>Underconfident (Rare)</h4>
+                                    <p>Curve above diagonal. Model says 60% confident but actually 80% accurate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metrics-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="metric-card">
+                            <h4>Expected Calibration Error (ECE)</h4>
+                            <div class="metric-formula">ECE = Σ (|Bₘ|/n) × |acc(Bₘ) - conf(Bₘ)|</div>
+                            <p>
+                                Weighted average of calibration gap across confidence bins. Lower is better. 
+                                Quantifies overall miscalibration in a single number.
+                            </p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Temperature Scaling</h4>
+                            <div class="metric-formula">p = softmax(z/T)</div>
+                            <p>
+                                Post-hoc fix: divide logits by temperature T > 1 before softmax. Softens 
+                                probabilities, reducing overconfidence. Simple, effective, doesn't change predictions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Why This Matters for Deployment</h3>
+                        <p>
+                            In high-stakes domains, <strong>trust in probabilities is essential</strong>:
+                        </p>
+                        <ul class="concept-list">
+                            <li><strong>Medical diagnosis:</strong> A 95% cancer prediction should mean something</li>
+                            <li><strong>Autonomous vehicles:</strong> Uncertainty triggers human takeover</li>
+                            <li><strong>Decision support:</strong> Humans calibrate trust based on stated confidence</li>
+                        </ul>
+                        <p>
+                            Miscalibrated models lead to automation bias (trusting overconfident wrong predictions) 
+                            or unnecessary caution (distrusting correct predictions with understated confidence).
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Hyperparameter Tuning</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Key Distinction</div>
+                        <p class="definition-text">
+                            <strong>Parameters</strong> are learned from data (weights, biases). 
+                            <strong>Hyperparameters</strong> are set by the practitioner and control the 
+                            learning process itself (learning rate, regularization strength, architecture choices).
+                        </p>
+                    </div>
+
+                    <div class="hyperparameter-examples">
+                        <h3>Common Hyperparameters</h3>
+                        <div class="hyperparam-grid">
+                            <div class="hyperparam-card">
+                                <h4>Learning Rate</h4>
+                                <p>Step size for gradient descent. Too high → divergence. Too low → slow/stuck.</p>
+                                <span class="hyperparam-range">Typical: 10⁻⁴ to 10⁻¹</span>
+                            </div>
+                            <div class="hyperparam-card">
+                                <h4>Batch Size</h4>
+                                <p>Samples per gradient update. Affects noise, speed, memory, generalization.</p>
+                                <span class="hyperparam-range">Typical: 16 to 512</span>
+                            </div>
+                            <div class="hyperparam-card">
+                                <h4>Regularization (λ)</h4>
+                                <p>Penalty strength for weight magnitudes. Trades training fit for generalization.</p>
+                                <span class="hyperparam-range">Typical: 10⁻⁵ to 10⁻¹</span>
+                            </div>
+                            <div class="hyperparam-card">
+                                <h4>Architecture</h4>
+                                <p>Number of layers, units per layer, activation functions, dropout rate.</p>
+                                <span class="hyperparam-range">Problem-dependent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-strategies">
+                        <h3>Search Strategies</h3>
+                        <div class="strategy-comparison">
+                            <div class="strategy-item">
+                                <h4>Grid Search</h4>
+                                <p>
+                                    Try all combinations of specified values. Exhaustive but exponential 
+                                    in number of hyperparameters. Works for ≤3 hyperparameters.
+                                </p>
+                            </div>
+                            <div class="strategy-item">
+                                <h4>Random Search</h4>
+                                <p>
+                                    Sample random combinations. Often finds good solutions faster than grid 
+                                    search because it explores more unique values per hyperparameter.
+                                </p>
+                            </div>
+                            <div class="strategy-item">
+                                <h4>Bayesian Optimization</h4>
+                                <p>
+                                    Build a probabilistic model of the objective function. Choose next point 
+                                    to maximize expected improvement. More efficient for expensive evaluations.
+                                </p>
+                            </div>
+                            <div class="strategy-item">
+                                <h4>Learning Rate Schedules</h4>
+                                <p>
+                                    Start high, decay over time. Warmup schedules, cosine annealing, reduce 
+                                    on plateau. Often more important than finding a single optimal LR.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Meta-Validation Problem</h4>
+                            <p>
+                                Hyperparameters are tuned on the <strong>validation set</strong>, not test set. 
+                                But extensive tuning can overfit to validation data too. Best practice: 
+                                limit total number of experiments, use cross-validation for stability, and 
+                                report the hyperparameter search budget honestly.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Higher accuracy is always better"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                In a cancer screening with 1% disease prevalence, always predicting 
+                                "healthy" gives 99% accuracy while missing every cancer case.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Accuracy is only meaningful with 
+                                balanced classes. For imbalanced data, use precision, recall, F1, 
+                                MCC, or AUC-PR depending on what errors matter most.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Good test performance means the model will work in production"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Test sets are static snapshots. The real world has distribution shift, 
+                                adversarial inputs, edge cases, and evolving data patterns.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Test performance is necessary 
+                                but not sufficient. Production needs monitoring, graceful degradation, 
+                                human-in-the-loop fallbacks, and continuous evaluation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"FID is the definitive measure of image generation quality"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                FID measures distributional similarity, not individual image quality. 
+                                It's computed on InceptionNet features trained on ImageNet—biased 
+                                toward that domain. It requires 50k+ samples for stability.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> FID is one useful signal among many. 
+                                Combine with CLIP score for text alignment, human evaluation for 
+                                subjective quality, and diversity metrics for mode coverage.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Confusion Matrix Explorer
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore how changing the confusion matrix values affects different 
+                            classification metrics. See the precision-recall trade-off in action.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="confusion-lab">
+                            <div class="confusion-editor">
+                                <h4>Adjust Confusion Matrix</h4>
+                                <div class="editor-grid">
+                                    <div class="editor-row">
+                                        <div class="editor-label"></div>
+                                        <div class="editor-header">Pred -</div>
+                                        <div class="editor-header">Pred +</div>
+                                    </div>
+                                    <div class="editor-row">
+                                        <div class="editor-label">Actual -</div>
+                                        <div class="editor-cell">
+                                            <label>TN</label>
+                                            <input type="number" id="tn-input" value="850" min="0" max="1000">
+                                        </div>
+                                        <div class="editor-cell">
+                                            <label>FP</label>
+                                            <input type="number" id="fp-input" value="50" min="0" max="1000">
+                                        </div>
+                                    </div>
+                                    <div class="editor-row">
+                                        <div class="editor-label">Actual +</div>
+                                        <div class="editor-cell">
+                                            <label>FN</label>
+                                            <input type="number" id="fn-input" value="20" min="0" max="1000">
+                                        </div>
+                                        <div class="editor-cell">
+                                            <label>TP</label>
+                                            <input type="number" id="tp-input" value="80" min="0" max="1000">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="preset-scenarios">
+                                    <h4>Try These Scenarios</h4>
+                                    <button class="preset-btn" data-tn="450" data-fp="50" data-fn="50" data-tp="450">Balanced (90% acc)</button>
+                                    <button class="preset-btn" data-tn="950" data-fp="5" data-fn="40" data-tp="5">Imbalanced (96% acc, poor recall)</button>
+                                    <button class="preset-btn" data-tn="800" data-fp="100" data-fn="5" data-tp="95">High Recall (95%)</button>
+                                    <button class="preset-btn" data-tn="890" data-fp="10" data-fn="50" data-tp="50">High Precision (83%)</button>
+                                </div>
+                            </div>
+                            
+                            <div class="metrics-display">
+                                <h4>Computed Metrics</h4>
+                                <div class="metric-result">
+                                    <span class="metric-name">Accuracy</span>
+                                    <span class="metric-value" id="accuracy-val">93.0%</span>
+                                </div>
+                                <div class="metric-result">
+                                    <span class="metric-name">Precision</span>
+                                    <span class="metric-value" id="precision-val">61.5%</span>
+                                </div>
+                                <div class="metric-result">
+                                    <span class="metric-name">Recall</span>
+                                    <span class="metric-value" id="recall-val">80.0%</span>
+                                </div>
+                                <div class="metric-result">
+                                    <span class="metric-name">F1 Score</span>
+                                    <span class="metric-value" id="f1-val">69.6%</span>
+                                </div>
+                                <div class="metric-result">
+                                    <span class="metric-name">Specificity</span>
+                                    <span class="metric-value" id="specificity-val">94.4%</span>
+                                </div>
+                                <div class="metric-result">
+                                    <span class="metric-name">MCC</span>
+                                    <span class="metric-value" id="mcc-val">0.67</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Imbalanced data:</strong> High accuracy can coexist with terrible recall</li>
+                            <li><strong>Precision vs Recall:</strong> Reducing FP improves precision; reducing FN improves recall</li>
+                            <li><strong>F1 Score:</strong> Harmonic mean punishes large imbalances</li>
+                            <li><strong>MCC:</strong> More robust to class imbalance than accuracy</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">A disease screening model has 99% accuracy, but only 10% of actual disease cases are detected. Which metric best reveals this problem?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Accuracy</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Recall (Sensitivity)</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Specificity</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Precision</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">What does an AUC-ROC of 0.5 indicate?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">Perfect classification</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">The model performs no better than random guessing</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">50% accuracy</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">The model is well-calibrated</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">What is data leakage?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">When training data is too small</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">When information from test/deployment data contaminates training</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">When the model overfits</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">When data is shared publicly</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">For evaluating image generation quality, what does FID (Fréchet Inception Distance) measure?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">Pixel-level similarity to training images</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">Distance between feature distributions of real and generated images</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">The number of unique images generated</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">Human preference scores</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">Why is the Matthews Correlation Coefficient (MCC) often preferred over accuracy for imbalanced classification?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">It's faster to compute</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">It accounts for all four confusion matrix quadrants and is balanced even when classes are imbalanced</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">It only considers true positives</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">It ranges from 0 to 100</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-4-3.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Multimodal Systems</span>
+                    </a>
+                    <a href="module-5-2.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Responsible AI Reasoning →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-5-1.js"></script>
+</body>
+</html>
+

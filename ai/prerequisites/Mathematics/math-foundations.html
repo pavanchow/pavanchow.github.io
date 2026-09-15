@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Beginner math foundations for AI: functions, variables, graphs, and basic algebra explained from scratch.">
+    <title>Math Foundations — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #8b5cf6;
+            --prereq-accent-glow: rgba(139, 92, 246, 0.15);
+        }
+        
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; }
+        
+        .prereq-page { min-height: 100vh; background: var(--bg-primary); }
+        .prereq-container { max-width: 900px; margin: 0 auto; padding: clamp(1rem, 5vw, 2.5rem); }
+        
+        .prereq-header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0; margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-tertiary); text-decoration: none; font-size: 0.875rem;
+            padding: 0.5rem 1rem; border-radius: var(--radius-md);
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent); border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .prereq-nav a {
+            padding: 0.5rem 0.75rem; background: var(--bg-elevated);
+            border: 1px solid var(--surface-3); border-radius: var(--radius-md);
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.75rem; font-weight: 500; transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        .prereq-nav a:hover { border-color: var(--prereq-accent); color: var(--prereq-accent); }
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent); color: var(--prereq-accent);
+        }
+        .prereq-nav .nav-divider {
+            display: flex; align-items: center; color: var(--text-tertiary);
+            font-size: 0.7rem; padding: 0 0.25rem;
+        }
+        
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl); padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem; border: 1px solid var(--surface-3);
+            position: relative; overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--prereq-accent-glow); color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem; border-radius: var(--radius-sm);
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600; color: var(--text-primary);
+            margin: 0 0 1rem; line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary); max-width: 600px;
+            line-height: 1.7; margin: 0;
+        }
+        
+        .estimated-time {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-tertiary); font-size: 0.8rem; margin-top: 1rem;
+            padding: 0.5rem 0.75rem; background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        .learning-objectives {
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem; font-weight: 600; color: var(--prereq-accent);
+            text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem;
+        }
+        
+        .learning-objectives ul { margin: 0; padding-left: 1.25rem; }
+        .learning-objectives li {
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 0.5rem;
+        }
+        
+        .toc {
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 2rem;
+        }
+        .toc h3 {
+            font-size: 0.8rem; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.075em; margin: 0 0 1rem;
+        }
+        .toc-list { list-style: none; padding: 0; margin: 0; }
+        .toc-list li { margin-bottom: 0.5rem; }
+        .toc-list a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        .toc-list a:hover { background: var(--prereq-accent-glow); color: var(--prereq-accent); }
+        .toc-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 1.5rem; height: 1.5rem; background: var(--surface-3);
+            color: var(--text-tertiary); border-radius: 50%;
+            font-size: 0.75rem; font-weight: 600;
+        }
+        
+        .content-section {
+            background: var(--bg-secondary); border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem); margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .content-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary); margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem; border-bottom: 2px solid var(--prereq-accent);
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2rem; height: 2rem; background: var(--prereq-accent);
+            color: white; border-radius: 50%;
+            font-size: 0.875rem; font-weight: 600; flex-shrink: 0;
+        }
+        
+        .content-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary); margin: 1.75rem 0 1rem;
+        }
+        
+        .content-section p {
+            color: var(--text-secondary); line-height: 1.75;
+            margin: 0 0 1rem; font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .content-section ul, .content-section ol {
+            color: var(--text-secondary); line-height: 1.75;
+            padding-left: 1.5rem; margin: 0 0 1rem;
+        }
+        .content-section li { margin-bottom: 0.5rem; }
+        
+        .example-box {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .example-box h4 {
+            color: var(--accent-gold); font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.075em;
+            margin: 0 0 0.75rem;
+        }
+        
+        .example-box code {
+            display: block; background: var(--bg-tertiary);
+            padding: clamp(0.75rem, 2vw, 1rem); border-radius: var(--radius-sm);
+            font-family: var(--font-mono); font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: var(--text-primary); margin: 0.5rem 0;
+            overflow-x: auto; white-space: pre; line-height: 1.6;
+        }
+        
+        .example-box p {
+            font-size: 0.875rem; color: var(--text-secondary); margin: 0.75rem 0 0;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .concept-box h4 {
+            color: var(--prereq-accent); font-size: 0.8rem; font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .concept-box p {
+            color: var(--text-secondary); margin: 0;
+            font-size: 0.925rem; line-height: 1.7;
+        }
+        
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(80, 184, 146, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 {
+            color: var(--accent-emerald); font-size: 0.8rem; font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .ai-connection p {
+            color: var(--text-secondary); margin: 0;
+            font-size: 0.925rem; line-height: 1.7;
+        }
+        
+        .visual-diagram {
+            background: var(--bg-tertiary); border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem); margin: 1.25rem 0;
+            overflow-x: auto;
+        }
+        
+        .visual-diagram pre {
+            font-family: var(--font-mono); color: var(--text-secondary);
+            font-size: clamp(0.7rem, 2vw, 0.85rem); line-height: 1.5;
+            margin: 0; white-space: pre;
+        }
+        
+        .visual-diagram .diagram-caption {
+            font-size: 0.8rem; color: var(--text-tertiary);
+            text-align: center; margin-top: 1rem; font-style: italic;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3); border-radius: var(--radius-lg);
+            padding: 1.5rem; margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 {
+            color: var(--prereq-accent); font-size: 0.9rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem;
+        }
+        
+        .key-takeaways ul { margin: 0; padding-left: 1.25rem; }
+        .key-takeaways li {
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 0.5rem;
+        }
+        
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem; margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--bg-elevated); border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md); padding: 1.25rem;
+            text-decoration: none; transition: all var(--transition-fast);
+        }
+        
+        .nav-card:hover {
+            border-color: var(--prereq-accent); transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card-label {
+            font-size: 0.7rem; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.075em;
+        }
+        
+        .nav-card-title {
+            font-size: 1rem; color: var(--text-primary);
+            font-weight: 500; margin-top: 0.25rem;
+        }
+        
+        @media (max-width: 640px) {
+            .prereq-header-inner { flex-direction: column; align-items: stretch; }
+            .back-link { width: fit-content; }
+            .prereq-nav { justify-content: flex-start; overflow-x: auto; }
+            .two-column { grid-template-columns: 1fr; }
+        }
+        
+        html { scroll-behavior: smooth; }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--prereq-accent); outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link"><span>←</span> Back to Course</a>
+                    <nav class="prereq-nav">
+                        <a href="math-foundations.html" class="active">Foundations</a>
+                        <a href="number-sense.html">Numbers</a>
+                        <a href="logic-basics.html">Logic</a>
+                        <span class="nav-divider">|</span>
+                        <a href="calculus.html">Calculus</a>
+                        <a href="linear-algebra.html">Linear Algebra</a>
+                        <a href="probability.html">Probability</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="prereq-hero">
+                <span class="prereq-badge">🌱 Beginner • Mathematics</span>
+                <h1 class="prereq-title">Math Foundations for AI</h1>
+                <p class="prereq-subtitle">
+                    Starting from zero? Perfect. This guide introduces the essential mathematical concepts 
+                    you'll need before diving into calculus and linear algebra. No prior math background 
+                    required—just curiosity.
+                </p>
+                <div class="estimated-time"><span>⏱</span> 15-20 minutes</div>
+            </div>
+            
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>What a function is and why it's the heart of AI</li>
+                    <li>Variables, constants, and mathematical notation</li>
+                    <li>How to read graphs and the coordinate plane</li>
+                    <li>The intuition behind "rate of change" (preparation for calculus)</li>
+                    <li>Basic algebra: solving equations and manipulating expressions</li>
+                    <li>What vectors are in everyday terms</li>
+                </ul>
+            </div>
+            
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#functions"><span class="toc-number">1</span> What is a Function?</a></li>
+                    <li><a href="#variables"><span class="toc-number">2</span> Variables & Constants</a></li>
+                    <li><a href="#graphs"><span class="toc-number">3</span> Graphs & the Coordinate Plane</a></li>
+                    <li><a href="#rate-of-change"><span class="toc-number">4</span> Rate of Change (Intuition)</a></li>
+                    <li><a href="#algebra"><span class="toc-number">5</span> Basic Algebra</a></li>
+                    <li><a href="#vectors-intro"><span class="toc-number">6</span> What is a Vector?</a></li>
+                </ol>
+            </nav>
+            
+            <!-- Section 1: Functions -->
+            <section class="content-section" id="functions">
+                <h2><span class="section-number">1</span> What is a Function?</h2>
+                
+                <p>
+                    A <strong>function</strong> is a rule that takes an input and produces an output. 
+                    Think of it as a machine: you put something in, the machine does something to it, 
+                    and you get something out.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        Input             Function             Output
+          │                  │                   │
+          ▼                  ▼                   ▼
+        ┌───┐           ┌─────────┐           ┌───┐
+        │ 3 │  ───────▶ │ × 2 + 1 │  ───────▶ │ 7 │
+        └───┘           └─────────┘           └───┘
+        
+        f(x) = 2x + 1
+        f(3) = 2(3) + 1 = 7
+                    </pre>
+                    <p class="diagram-caption">A function transforms inputs into outputs following a specific rule</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h4>💡 Key Insight</h4>
+                    <p>
+                        The same input always gives the same output. If you put 3 into f(x) = 2x + 1, 
+                        you'll always get 7. This predictability is what makes functions useful.
+                    </p>
+                </div>
+                
+                <h3>Real-World Examples</h3>
+                
+                <ul>
+                    <li><strong>Temperature conversion:</strong> F(C) = (9/5)C + 32 converts Celsius to Fahrenheit</li>
+                    <li><strong>Pricing:</strong> cost(items) = 5 × items calculates total cost at $5 per item</li>
+                    <li><strong>Distance:</strong> distance(time) = speed × time tells you how far you've traveled</li>
+                </ul>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Why Functions Matter for AI</h4>
+                    <p>
+                        A neural network IS a function! It takes inputs (like an image) and produces outputs 
+                        (like "cat" or "dog"). The entire goal of training is to find the right function 
+                        that maps inputs to correct outputs. Everything in AI is about learning, representing, 
+                        or applying functions.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 2: Variables & Constants -->
+            <section class="content-section" id="variables">
+                <h2><span class="section-number">2</span> Variables & Constants</h2>
+                
+                <p>
+                    In math, we use letters to represent numbers. This makes it easy to write general 
+                    rules that work for any value.
+                </p>
+                
+                <h3>Variables</h3>
+                <p>
+                    A <strong>variable</strong> is a symbol (usually a letter) that can take different values. 
+                    Think of it as a container that can hold any number.
+                </p>
+                
+                <div class="example-box">
+                    <h4>📝 Variables in Action</h4>
+                    <code>x = 5        → x is a variable holding the value 5
+y = x + 3    → y depends on x, so y = 8
+x = 10       → now x is 10
+y = x + 3    → and y = 13</code>
+                </div>
+                
+                <h3>Constants</h3>
+                <p>
+                    A <strong>constant</strong> is a value that never changes. Famous constants include:
+                </p>
+                <ul>
+                    <li><strong>π (pi) ≈ 3.14159</strong> — the ratio of a circle's circumference to its diameter</li>
+                    <li><strong>e ≈ 2.71828</strong> — the base of natural logarithms (very important in AI!)</li>
+                </ul>
+                
+                <h3>Common Notation</h3>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Symbols You'll See</h4>
+                        <code>x, y, z    — common variables
+a, b, c    — often constants or coefficients
+n, m, k    — often counts or indices
+i, j       — loop counters
+θ (theta)  — often parameters in AI
+α (alpha)  — often learning rate</code>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Operations</h4>
+                        <code>+    addition
+−    subtraction
+×, · multiplication (or just xy)
+÷, / division
+^, ** exponent (2³ = 8)
+√    square root
+=    equals
+≠    not equal
+≈    approximately equal</code>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 3: Graphs -->
+            <section class="content-section" id="graphs">
+                <h2><span class="section-number">3</span> Graphs & the Coordinate Plane</h2>
+                
+                <p>
+                    A <strong>graph</strong> is a visual representation of a function. It shows how the 
+                    output changes as the input changes. Graphs are drawn on a <strong>coordinate plane</strong>.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        y (vertical axis)
+        ↑
+      4 ┼─────────────────•
+        │               ╱
+      3 ┼─────────────•
+        │           ╱
+      2 ┼─────────•
+        │       ╱
+      1 ┼─────•
+        │   ╱
+      0 ┼─•─────────────────→ x (horizontal axis)
+        0   1   2   3   4
+        
+        This is f(x) = x + 1
+        When x = 0, y = 1
+        When x = 3, y = 4
+                    </pre>
+                    <p class="diagram-caption">Each point (x, y) shows an input-output pair</p>
+                </div>
+                
+                <h3>Reading a Graph</h3>
+                <ul>
+                    <li><strong>x-axis (horizontal):</strong> represents the input values</li>
+                    <li><strong>y-axis (vertical):</strong> represents the output values</li>
+                    <li><strong>Point (x, y):</strong> means "when input is x, output is y"</li>
+                    <li><strong>Origin (0, 0):</strong> where the axes cross</li>
+                </ul>
+                
+                <h3>Common Graph Shapes</h3>
+                
+                <div class="visual-diagram">
+                    <pre>
+   Linear (straight)     Quadratic (curved)      Exponential (growth)
+   
+        y                      y                       y
+        │    ╱                 │     ╱╲                │         ╱
+        │  ╱                   │    ╱  ╲               │        ╱
+        │╱                     │   ╱    ╲              │      ╱
+        ─────→ x               │──╱──────╲──→ x        │────╱────→ x
+                               │╱          ╲           │__╱
+        
+     y = 2x              y = x²                 y = 2ˣ
+                    </pre>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Graphs in AI</h4>
+                    <p>
+                        AI uses graphs constantly: loss curves show how error decreases during training, 
+                        activation functions are visualized as graphs, and decision boundaries separate 
+                        classes in a coordinate space. Learning to read graphs is essential.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Rate of Change -->
+            <section class="content-section" id="rate-of-change">
+                <h2><span class="section-number">4</span> Rate of Change (Intuition)</h2>
+                
+                <p>
+                    <strong>Rate of change</strong> tells you how fast something is changing. This is the 
+                    core idea behind derivatives (which you'll learn in calculus), but let's start with intuition.
+                </p>
+                
+                <div class="concept-box">
+                    <h4>💡 Real-World Examples</h4>
+                    <p>
+                        <strong>Speed</strong> is a rate of change: how fast your position changes over time.<br>
+                        <strong>Interest rate</strong> is how fast your money grows.<br>
+                        <strong>Learning rate</strong> in AI is how fast the model updates its knowledge.
+                    </p>
+                </div>
+                
+                <h3>Calculating Rate of Change</h3>
+                
+                <p>
+                    To calculate rate of change, pick <strong>two points</strong> on a graph and measure 
+                    how much the output (y) changes compared to the input (x):
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        Rate of change = (change in output) / (change in input)
+        
+             y
+             │          • B (4, 8)     ← Point B: x=4, y=8
+             │        ╱
+             │      ╱
+             │    ╱  ↑ rise = 8 - 2 = 6  (B's y minus A's y)
+             │  • A (1, 2)            ← Point A: x=1, y=2
+             │  └────→
+             │    run = 4 - 1 = 3    (B's x minus A's x)
+             └─────────────→ x
+             
+        Rate of change = rise / run = 6 / 3 = 2
+        
+        This means: for every 1 unit x increases, y increases by 2
+                    </pre>
+                    <p class="diagram-caption">We measure from point A to point B to find the rate</p>
+                </div>
+                
+                <h3>What Different Rates Mean</h3>
+                
+                <ul>
+                    <li><strong>Positive rate:</strong> output increases as input increases (uphill)</li>
+                    <li><strong>Negative rate:</strong> output decreases as input increases (downhill)</li>
+                    <li><strong>Zero rate:</strong> output stays the same (flat)</li>
+                    <li><strong>Larger rate:</strong> steeper change (fast)</li>
+                    <li><strong>Smaller rate:</strong> gentler change (slow)</li>
+                </ul>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Why This Matters for AI</h4>
+                    <p>
+                        Training a neural network means finding out: "If I change this weight, how does the 
+                        error change?" That's a rate of change! The whole field of deep learning is built on 
+                        computing these rates (called gradients) and using them to improve the model.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 5: Basic Algebra -->
+            <section class="content-section" id="algebra">
+                <h2><span class="section-number">5</span> Basic Algebra</h2>
+                
+                <p>
+                    Algebra is about working with equations—finding unknown values and manipulating expressions. 
+                    Here are the essential skills you'll need.
+                </p>
+                
+                <h3>Solving Simple Equations</h3>
+                
+                <p>
+                    The goal: get the variable by itself on one side. Whatever you do to one side, do to the other.
+                </p>
+                
+                <div class="example-box">
+                    <h4>📝 Example: Solve for x</h4>
+                    <code>2x + 5 = 13
+
+Step 1: Subtract 5 from both sides
+        2x + 5 - 5 = 13 - 5
+        2x = 8
+
+Step 2: Divide both sides by 2
+        2x / 2 = 8 / 2
+        x = 4
+
+Check: 2(4) + 5 = 8 + 5 = 13 ✓</code>
+                </div>
+                
+                <h3>Manipulating Expressions</h3>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Distribution</h4>
+                        <code>a(b + c) = ab + ac
+
+Example:
+3(x + 2) = 3x + 6</code>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Combining Like Terms</h4>
+                        <code>3x + 2x = 5x
+4y - y = 3y
+
+Example:
+2x + 3 + 5x - 1 = 7x + 2</code>
+                    </div>
+                </div>
+                
+                <h3>Order of Operations (PEMDAS)</h3>
+                <ol>
+                    <li><strong>P</strong>arentheses first</li>
+                    <li><strong>E</strong>xponents (powers)</li>
+                    <li><strong>M</strong>ultiplication and <strong>D</strong>ivision (left to right)</li>
+                    <li><strong>A</strong>ddition and <strong>S</strong>ubtraction (left to right)</li>
+                </ol>
+                
+                <div class="example-box">
+                    <h4>📝 Order of Operations Example</h4>
+                    <code>2 + 3 × 4² = ?
+
+Step 1: Exponent first    → 4² = 16
+Step 2: Multiplication    → 3 × 16 = 48
+Step 3: Addition          → 2 + 48 = 50</code>
+                </div>
+            </section>
+            
+            <!-- Section 6: Vectors Intro -->
+            <section class="content-section" id="vectors-intro">
+                <h2><span class="section-number">6</span> What is a Vector?</h2>
+                
+                <p>
+                    A <strong>vector</strong> is a quantity that has both <em>magnitude</em> (size) and 
+                    <em>direction</em>. Think of it as an arrow pointing somewhere with a certain length.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        SCALAR (just a number)      VECTOR (number + direction)
+        
+              "5"                        5 units north
+                                              ↑
+                                              │
+              A scalar tells              ────┘
+              you HOW MUCH
+                                         A vector tells you
+                                         HOW MUCH and WHERE
+                    </pre>
+                </div>
+                
+                <h3>Real-World Vectors</h3>
+                
+                <ul>
+                    <li><strong>Velocity:</strong> not just "60 mph" but "60 mph heading north"</li>
+                    <li><strong>Force:</strong> not just "10 newtons" but "10 newtons pushing right"</li>
+                    <li><strong>Displacement:</strong> not just "5 km" but "5 km east"</li>
+                </ul>
+                
+                <h3>Vectors as Lists of Numbers</h3>
+                
+                <p>
+                    In math and AI, we represent vectors as lists of numbers. Each number represents a 
+                    component in a different dimension.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        2D Vector: [3, 4]          3D Vector: [1, 2, 3]
+        
+             y                          y
+             ↑                          ↑   
+           4 ┼───────•                  │ • (1, 2, 3)
+             │     ╱                    │╱
+             │   ╱                      └───────→ x
+             │ ╱                       ╱
+             ┼───────→ x              z
+                   3
+             
+        "Go 3 units right,         "Go 1 right, 2 up,
+         then 4 units up"           3 forward"
+                    </pre>
+                </div>
+                
+                <div class="concept-box">
+                    <h4>💡 Magnitude (Length)</h4>
+                    <p>
+                        For a 2D vector [x, y], the length is √(x² + y²).<br>
+                        Example: [3, 4] has length √(9 + 16) = √25 = 5
+                    </p>
+                    <p style="margin-top: 0.75rem; font-size: 0.875rem; color: var(--text-tertiary);">
+                        <strong>Why this formula?</strong> It's the Pythagorean theorem! 
+                        The vector forms a right triangle, and the length is the hypotenuse: a² + b² = c².
+                    </p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Vectors in AI</h4>
+                    <p>
+                        AI represents almost everything as vectors! A word becomes a 300-dimensional vector. 
+                        An image becomes a vector of pixel values. Model parameters are stored in vectors. 
+                        You'll work with vectors constantly in AI, so getting comfortable with them is essential.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Key Takeaways -->
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Functions</strong> are input-output machines—neural networks ARE functions</li>
+                    <li><strong>Variables</strong> hold values that can change; constants stay the same</li>
+                    <li><strong>Graphs</strong> visualize how outputs change with inputs</li>
+                    <li><strong>Rate of change</strong> measures how fast something changes—the foundation of gradients</li>
+                    <li><strong>Algebra</strong> helps us manipulate equations and solve for unknowns</li>
+                    <li><strong>Vectors</strong> are lists of numbers representing magnitude and direction</li>
+                </ul>
+            </div>
+            
+            <!-- Navigation -->
+            <section class="content-section">
+                <h2>What's Next?</h2>
+                <p>
+                    Now that you have the foundations, continue building your math toolkit:
+                </p>
+                
+                <div class="nav-cards">
+                    <a href="number-sense.html" class="nav-card">
+                        <span class="nav-card-label">Next Beginner Topic</span>
+                        <span class="nav-card-title">Number Sense →</span>
+                    </a>
+                    <a href="calculus.html" class="nav-card">
+                        <span class="nav-card-label">Ready for More?</span>
+                        <span class="nav-card-title">Calculus →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+</body>
+</html>
+

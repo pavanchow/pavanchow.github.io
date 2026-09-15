@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Probability foundations for AI: basic probability, conditional probability, Bayes' theorem, and expectation for machine learning.">
+    <title>Probability for AI — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #9370db;
+            --prereq-accent-glow: rgba(147, 112, 219, 0.15);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .prereq-page {
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+        
+        .prereq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: clamp(1rem, 5vw, 2.5rem);
+        }
+        
+        /* Sticky Header */
+        .prereq-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent);
+            border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .prereq-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .prereq-nav a:hover {
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent);
+            color: var(--prereq-accent);
+        }
+        
+        .prereq-nav .nav-divider {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
+            padding: 0 0.25rem;
+        }
+        
+        /* Hero Section */
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            border: 1px solid var(--surface-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 1rem;
+            line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Learning Objectives */
+        .learning-objectives {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--prereq-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .learning-objectives ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .learning-objectives li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Estimated Time */
+        .estimated-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Math Sections */
+        .math-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .math-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--prereq-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--prereq-accent);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            font-size: 0.875rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .math-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary);
+            margin: 1.75rem 0 1rem;
+        }
+        
+        .math-section h4 {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin: 1.25rem 0 0.75rem;
+        }
+        
+        .math-section p {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin: 0 0 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .math-section ul, .math-section ol {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            padding-left: 1.5rem;
+            margin: 0 0 1rem;
+        }
+        
+        .math-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Formula Box */
+        .formula-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            margin: 1.25rem 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+        
+        .formula-box .formula {
+            font-family: var(--font-mono);
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: var(--prereq-accent);
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+        
+        .formula-box .formula-desc {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+        
+        /* Example Box */
+        .example-box {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .example-box h4 {
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .example-box code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: clamp(0.75rem, 2vw, 1rem);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.6;
+        }
+        
+        .example-box p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0.75rem 0 0;
+        }
+        
+        /* Intuition Box */
+        .intuition-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(147, 112, 219, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .intuition-box h4 {
+            color: var(--prereq-accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .intuition-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* AI Connection Box */
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(80, 184, 146, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 {
+            color: var(--accent-emerald);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ai-connection p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(217, 119, 119, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(217, 119, 119, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem);
+            margin: 1.25rem 0;
+        }
+        
+        .warning-box h4 {
+            color: var(--accent-coral);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .warning-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+        
+        /* Visual Diagram */
+        .visual-diagram {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            margin: 1.25rem 0;
+            overflow-x: auto;
+        }
+        
+        .visual-diagram pre {
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+            line-height: 1.4;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .visual-diagram .diagram-caption {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Key Takeaways */
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 {
+            color: var(--prereq-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .key-takeaways ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        
+        .key-takeaways li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Navigation Cards */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-card:hover {
+            border-color: var(--prereq-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card-label {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+        }
+        
+        .nav-card-title {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            margin: 0 0 1rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-list a:hover {
+            background: var(--prereq-accent-glow);
+            color: var(--prereq-accent);
+        }
+        
+        .toc-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--surface-3);
+            color: var(--text-tertiary);
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Practice Problems */
+        .practice-problem {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--surface-3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+        
+        .practice-problem h4 {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .problem {
+            background: var(--bg-elevated);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            font-family: var(--font-mono);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+        
+        .practice-problem .solution {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--accent-emerald);
+        }
+        
+        .practice-problem .solution-header {
+            color: var(--accent-emerald);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .practice-problem .solution-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .practice-problem .solution-content code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        
+        /* Probability Table */
+        .prob-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+        }
+        
+        .prob-table th,
+        .prob-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--surface-3);
+        }
+        
+        .prob-table th {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: var(--bg-tertiary);
+        }
+        
+        .prob-table td {
+            color: var(--text-secondary);
+        }
+        
+        .prob-table td:first-child {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .prereq-header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .back-link {
+                width: fit-content;
+            }
+            
+            .prereq-nav {
+                justify-content: center;
+            }
+            
+            .visual-diagram pre {
+                font-size: 0.55rem;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .prob-table {
+                font-size: 0.7rem;
+            }
+            
+            .prob-table th,
+            .prob-table td {
+                padding: 0.5rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus states for accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--prereq-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <!-- Sticky Header -->
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link">
+                        <span>←</span> Back to Course
+                    </a>
+                    <nav class="prereq-nav">
+                        <a href="math-foundations.html">Foundations</a>
+                        <a href="number-sense.html">Numbers</a>
+                        <a href="logic-basics.html">Logic</a>
+                        <span class="nav-divider">|</span>
+                        <a href="calculus.html">Calculus</a>
+                        <a href="linear-algebra.html">Linear Algebra</a>
+                        <a href="probability.html" class="active">Probability</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <!-- Hero Section -->
+            <div class="prereq-hero">
+                <span class="prereq-badge">🎲 Prerequisite • Mathematics</span>
+                <h1 class="prereq-title">Probability for AI</h1>
+                <p class="prereq-subtitle">
+                    AI systems reason under uncertainty. When a language model says "I'm 80% confident," 
+                    when a classifier outputs class probabilities, when a diffusion model generates images—probability 
+                    theory is the foundation. Understanding it transforms AI from magic to mathematics.
+                </p>
+                <div class="estimated-time">
+                    <span>⏱</span> Estimated reading time: 25-30 minutes
+                </div>
+            </div>
+            
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>What probability represents and the basic rules of combining probabilities</li>
+                    <li>Conditional probability and why it's the language of prediction</li>
+                    <li>Bayes' Theorem—how to update beliefs with new evidence</li>
+                    <li>Expected value and why neural networks minimize expected loss</li>
+                    <li>Key distributions (Gaussian, softmax) and cross-entropy loss</li>
+                </ul>
+            </div>
+            
+            <!-- Table of Contents -->
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#why-probability"><span class="toc-number">1</span> Why Probability Matters</a></li>
+                    <li><a href="#basic-probability"><span class="toc-number">2</span> Basic Probability</a></li>
+                    <li><a href="#conditional-probability"><span class="toc-number">3</span> Conditional Probability</a></li>
+                    <li><a href="#bayes-theorem"><span class="toc-number">4</span> Bayes' Theorem</a></li>
+                    <li><a href="#expected-value"><span class="toc-number">5</span> Expected Value</a></li>
+                    <li><a href="#distributions"><span class="toc-number">6</span> Key Distributions & Loss</a></li>
+                    <li><a href="#practice"><span class="toc-number">7</span> Practice Problems</a></li>
+                </ol>
+            </nav>
+            
+            <!-- Section 1: Why Probability -->
+            <section class="math-section" id="why-probability">
+                <h2><span class="section-number">1</span> Why Probability Matters for AI</h2>
+                
+                <p>
+                    The real world is uncertain. Sensors are noisy, data is incomplete, and the future is unpredictable. 
+                    AI systems must handle this gracefully—expressing confidence levels rather than false certainty.
+                </p>
+                
+                <div class="example-box">
+                    <h4>📝 AI Outputs Are Probabilities</h4>
+                    <code>Image Classifier Output:
+  P(cat)    = 0.82
+  P(dog)    = 0.15
+  P(rabbit) = 0.03
+
+Language Model (next token):
+  P("the")  = 0.23
+  P("a")    = 0.18
+  P("an")   = 0.07
+  P(".")    = 0.05
+  ... 50,000 more tokens ...</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 The AI Connection</h4>
+                    <p>
+                        Machine learning is fundamentally about <strong>learning probability distributions from data</strong>:<br>
+                        • <strong>Classification:</strong> Learn P(class | input)<br>
+                        • <strong>Language Models:</strong> Learn P(next token | context)<br>
+                        • <strong>Generative Models:</strong> Learn P(data) to sample new examples<br>
+                        Every prediction, every generation, every decision involves probability.
+                    </p>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 Why Not Just Yes/No?</h4>
+                    <p>
+                        Hard decisions lose information. If a medical AI says "cancer: yes" vs "cancer: 51% likely," 
+                        the doctor makes very different decisions. Probabilities let downstream systems make 
+                        informed choices—a self-driving car should slow down at "30% chance of pedestrian" 
+                        even if it wouldn't fully brake.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 2: Basic Probability -->
+            <section class="math-section" id="basic-probability">
+                <h2><span class="section-number">2</span> Basic Probability</h2>
+                
+                <p>
+                    <strong>Probability</strong> measures how likely an event is to occur, on a scale from 
+                    0 (impossible) to 1 (certain). It formalizes our intuitive notion of "chance."
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">0 ≤ P(A) ≤ 1</div>
+                    <div class="formula-desc">Probabilities are always between 0 and 1</div>
+                </div>
+                
+                <h3>The Basic Formula</h3>
+                
+                <p>For equally likely outcomes:</p>
+                
+                <div class="formula-box">
+                    <div class="formula">P(A) = (favorable outcomes) / (total outcomes)</div>
+                    <div class="formula-desc">What fraction of possibilities result in A?</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Example: Rolling a Die</h4>
+                    <code>P(rolling 4)     = 1/6 ≈ 0.167  (one favorable, six total)
+P(rolling even)  = 3/6 = 0.5    (2, 4, 6 are favorable)
+P(rolling < 7)   = 6/6 = 1.0    (certain—all outcomes work)
+P(rolling 7)     = 0/6 = 0.0    (impossible with standard die)</code>
+                </div>
+                
+                <h3>Key Probability Rules</h3>
+                
+                <div class="two-column">
+                    <div class="formula-box">
+                        <div class="formula">P(not A) = 1 - P(A)</div>
+                        <div class="formula-desc">Complement rule</div>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula">P(A or B) = P(A) + P(B) - P(A and B)</div>
+                        <div class="formula-desc">Addition rule (general)</div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Using the Rules</h4>
+                    <code>P(not rolling 6) = 1 - P(rolling 6) = 1 - 1/6 = 5/6
+
+P(rolling 1 or 6) = P(1) + P(6) - P(1 and 6)
+                  = 1/6 + 1/6 - 0  (can't roll both)
+                  = 2/6 = 1/3</code>
+                </div>
+                
+                <h3>Probability Distributions</h3>
+                
+                <p>
+                    A <strong>probability distribution</strong> assigns probabilities to all possible outcomes. 
+                    The key constraint: all probabilities must sum to 1 (something must happen).
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+DISCRETE Distribution          CONTINUOUS Distribution
+(e.g., dice, classifications)   (e.g., heights, model outputs)
+
+  P(x)                           p(x)
+   ↑                              ↑
+  1/6 ├──┬──┬──┬──┬──┬──┐            ╱╲
+      │▓▓│▓▓│▓▓│▓▓│▓▓│▓▓│           ╱  ╲
+      └──┴──┴──┴──┴──┴──┴→ x       ╱    ╲
+        1  2  3  4  5  6          ╱      ╲
+                                 ╱        ╲
+  All bars sum to 1.0           ╱──────────╲──→ x
+                                  μ (mean)
+                               
+                              Area under curve = 1.0
+                    </pre>
+                    <p class="diagram-caption">Discrete vs continuous distributions—both sum/integrate to 1</p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Softmax Creates Distributions</h4>
+                    <p>
+                        Neural networks output raw numbers ("logits") that can be any value. 
+                        The <strong>softmax</strong> function converts these to a valid probability distribution 
+                        (positive, sums to 1). Every classification and language model uses softmax at the output.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 3: Conditional Probability -->
+            <section class="math-section" id="conditional-probability">
+                <h2><span class="section-number">3</span> Conditional Probability</h2>
+                
+                <p>
+                    <strong>Conditional probability</strong> is perhaps the most important concept for AI. 
+                    It answers: "What's the probability of A, <em>given that we know B happened</em>?"
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">P(A | B) = P(A and B) / P(B)</div>
+                    <div class="formula-desc">"Probability of A given B" — The vertical bar | means "given"</div>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 Intuition</h4>
+                    <p>
+                        P(A|B) restricts our view to only scenarios where B is true, then asks: 
+                        "What fraction of those have A?" It's like zooming in on a subset of possibilities.
+                    </p>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+    All Possible Outcomes
+    ┌─────────────────────────────┐
+    │                             │
+    │     ┌───────┐               │
+    │     │   A   │  P(A) = A/total
+    │     │  ┌────┼────┐          │
+    │     │  │ A∩B│    │          │
+    │     └──┼────┘    │          │
+    │        │    B    │  P(B) = B/total
+    │        └─────────┘          │
+    │                             │
+    └─────────────────────────────┘
+    
+    P(A|B) = P(A∩B) / P(B)  ← Focus only on B region
+    
+    "Of the B outcomes, what fraction are also A?"
+                    </pre>
+                    <p class="diagram-caption">Conditional probability zooms in on the B region</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Concrete Example</h4>
+                    <code>A deck of 52 cards. Draw one card.
+
+Event A: Card is a King
+Event B: Card is a face card (J, Q, K)
+
+P(A) = 4/52 = 1/13  (4 kings in deck)
+P(B) = 12/52 = 3/13 (4 each of J, Q, K)
+P(A and B) = 4/52   (kings are face cards)
+
+P(King | face card) = P(A|B) = P(A and B)/P(B)
+                    = (4/52) / (12/52)
+                    = 4/12 = 1/3
+
+If we know it's a face card, there's a 1/3 chance it's a King.</code>
+                </div>
+                
+                <h3>Independence</h3>
+                
+                <p>
+                    Two events are <strong>independent</strong> if knowing one tells you nothing about the other.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">If independent: P(A|B) = P(A) and P(A and B) = P(A) × P(B)</div>
+                    <div class="formula-desc">Knowledge of B doesn't change probability of A</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Independence Example</h4>
+                    <code>Flip two fair coins.
+
+P(first is heads) = 1/2
+P(second is heads) = 1/2
+P(both heads) = 1/2 × 1/2 = 1/4  ← Multiply because independent
+
+The first coin doesn't affect the second.</code>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>⚠️ Common Misconception</h4>
+                    <p>
+                        Many real-world events <em>seem</em> independent but aren't! In ML data, features 
+                        are often correlated. Height and weight aren't independent. Previous words affect 
+                        next-word probabilities. The "Naive" in Naive Bayes refers to assuming independence 
+                        when it's not strictly true.
+                    </p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Classification is Conditional Probability</h4>
+                    <p>
+                        When a classifier outputs "P(cat | image) = 0.85," it's computing a conditional 
+                        probability: "Given this image, what's the probability the label is 'cat'?" 
+                        The model learned this from data where P(label | features) was observed.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Bayes' Theorem -->
+            <section class="math-section" id="bayes-theorem">
+                <h2><span class="section-number">4</span> Bayes' Theorem</h2>
+                
+                <p>
+                    <strong>Bayes' Theorem</strong> is one of the most important formulas in AI. 
+                    It lets us "flip" conditional probabilities—if we know P(B|A), we can find P(A|B).
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">P(A|B) = P(B|A) × P(A) / P(B)</div>
+                    <div class="formula-desc">Posterior = (Likelihood × Prior) / Evidence</div>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+    Bayes' Theorem Components:
+    
+    P(hypothesis | data) = P(data | hypothesis) × P(hypothesis)
+                           ─────────────────────────────────────
+                                        P(data)
+    
+           ↓                      ↓                ↓           ↓
+       POSTERIOR             LIKELIHOOD         PRIOR      EVIDENCE
+       
+       What we want:         How likely is     What we    Normalizing
+       Updated belief        this data if      believed   constant
+       after seeing data     hypothesis true   before     (same for all H)
+                    </pre>
+                    <p class="diagram-caption">Bayes' Theorem updates our beliefs based on new evidence</p>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 The Bayesian Mindset</h4>
+                    <p>
+                        Bayes' Theorem formalizes rational belief updating: Start with a <strong>prior</strong> 
+                        (what you believed before). See new <strong>evidence</strong>. Update to a 
+                        <strong>posterior</strong> (what you believe now). The more evidence, the more 
+                        your posterior dominates your prior.
+                    </p>
+                </div>
+                
+                <h3>The Classic Example: Medical Testing</h3>
+                
+                <div class="example-box">
+                    <h4>📝 The Surprising Result</h4>
+                    <code>Setup:
+- A disease affects 1% of the population: P(disease) = 0.01
+- A test is 90% accurate:
+  - P(positive | disease) = 0.90  (true positive rate)
+  - P(positive | healthy) = 0.10  (false positive rate)
+
+Question: If you test positive, what's P(disease | positive)?
+
+Intuition might say 90%... but let's compute:
+
+Step 1: Find P(positive)
+P(positive) = P(pos|disease)×P(disease) + P(pos|healthy)×P(healthy)
+            = 0.90 × 0.01 + 0.10 × 0.99
+            = 0.009 + 0.099
+            = 0.108
+
+Step 2: Apply Bayes
+P(disease|positive) = P(positive|disease) × P(disease) / P(positive)
+                    = (0.90 × 0.01) / 0.108
+                    = 0.009 / 0.108
+                    ≈ 0.083  (about 8%!)
+
+Only 8% chance of disease despite positive test!</code>
+                    <p>
+                        <strong>Why?</strong> The disease is rare (1%). Even a 90% accurate test produces many 
+                        false positives from the large healthy population. The prior matters!
+                    </p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Bayes in Machine Learning</h4>
+                    <p>
+                        <strong>Naive Bayes classifiers</strong> directly apply Bayes' theorem.<br>
+                        <strong>Regularization</strong> can be seen as encoding a prior (small weights are more likely).<br>
+                        <strong>Bayesian neural networks</strong> maintain probability distributions over weights.<br>
+                        <strong>Calibration</strong> ensures that when a model says "90% confident," it's right 90% of the time.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 5: Expected Value -->
+            <section class="math-section" id="expected-value">
+                <h2><span class="section-number">5</span> Expected Value</h2>
+                
+                <p>
+                    The <strong>expected value</strong> (or expectation) is the "average" outcome you'd expect 
+                    over many trials. It's the probability-weighted sum of all possible values.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">E[X] = Σᵢ xᵢ × P(xᵢ)</div>
+                    <div class="formula-desc">Sum of (value × probability) for all possible values</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Expected Value of a Die Roll</h4>
+                    <code>E[X] = 1×(1/6) + 2×(1/6) + 3×(1/6) + 4×(1/6) + 5×(1/6) + 6×(1/6)
+     = (1 + 2 + 3 + 4 + 5 + 6) / 6
+     = 21/6
+     = 3.5
+
+You can't roll 3.5, but over many rolls, the average converges to 3.5.</code>
+                </div>
+                
+                <h3>Properties of Expected Value</h3>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>📝 Linearity (Always True!)</h4>
+                        <code>E[aX + b] = a × E[X] + b
+E[X + Y]  = E[X] + E[Y]
+
+Works even if X, Y dependent!</code>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>📝 Product (If Independent)</h4>
+                        <code>E[X × Y] = E[X] × E[Y]
+
+Only if X, Y are independent!</code>
+                    </div>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Training Minimizes Expected Loss</h4>
+                    <p>
+                        Neural networks are trained to minimize <strong>expected loss</strong>: E[L(model, data)]. 
+                        Since we can't compute this exactly over all possible data, we approximate using 
+                        <strong>mini-batches</strong>—averaging the loss over a random sample. This is called 
+                        <strong>Monte Carlo estimation</strong>. More batches = better estimate of true expected loss.
+                    </p>
+                </div>
+                
+                <h3>Variance: Spread Around the Mean</h3>
+                
+                <div class="formula-box">
+                    <div class="formula">Var(X) = E[(X - E[X])²] = E[X²] - E[X]²</div>
+                    <div class="formula-desc">Average squared deviation from the mean</div>
+                </div>
+                
+                <p>
+                    <strong>Variance</strong> measures how spread out values are. Low variance = values cluster 
+                    near the mean. High variance = values are spread out. The <strong>standard deviation</strong> 
+                    is √Var(X), which has the same units as X.
+                </p>
+            </section>
+            
+            <!-- Section 6: Distributions & Loss -->
+            <section class="math-section" id="distributions">
+                <h2><span class="section-number">6</span> Key Distributions & Loss Functions</h2>
+                
+                <h3>Common Distributions in AI</h3>
+                
+                <table class="prob-table">
+                    <thead>
+                        <tr>
+                            <th>Distribution</th>
+                            <th>Use Case</th>
+                            <th>Key Property</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bernoulli</td>
+                            <td>Binary outcomes</td>
+                            <td>P(success) = p, P(failure) = 1-p</td>
+                        </tr>
+                        <tr>
+                            <td>Categorical</td>
+                            <td>Multi-class classification</td>
+                            <td>Generalized Bernoulli, k classes</td>
+                        </tr>
+                        <tr>
+                            <td>Gaussian (Normal)</td>
+                            <td>Continuous values, noise</td>
+                            <td>Bell curve, defined by μ (mean) and σ (std dev)</td>
+                        </tr>
+                        <tr>
+                            <td>Uniform</td>
+                            <td>Random initialization</td>
+                            <td>All values equally likely in range</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>The Gaussian (Normal) Distribution</h3>
+                
+                <p>
+                    The most important continuous distribution. Many natural phenomena are approximately Gaussian 
+                    due to the Central Limit Theorem.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">p(x) = (1/√(2πσ²)) × exp(-(x-μ)²/(2σ²))</div>
+                    <div class="formula-desc">μ = mean (center), σ = standard deviation (width)</div>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+    The Normal Distribution
+    
+           p(x)
+            ↑
+            │         ╭──╮
+            │        ╱    ╲
+            │       ╱      ╲
+            │      ╱        ╲
+            │     ╱    68%   ╲
+            │    ╱   ├─────┤  ╲
+            │   ╱              ╲
+            │──╱────────────────╲──→ x
+                   μ-σ  μ  μ+σ
+                   
+    68% of data within 1σ of mean
+    95% of data within 2σ of mean
+    99.7% within 3σ of mean
+                    </pre>
+                    <p class="diagram-caption">The Gaussian "bell curve" is defined by mean and standard deviation</p>
+                </div>
+                
+                <h3>The Softmax Function</h3>
+                
+                <p>
+                    Softmax converts a vector of real numbers (logits) into a probability distribution. 
+                    It's used in nearly every classification model.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">softmax(xᵢ) = exp(xᵢ) / Σⱼ exp(xⱼ)</div>
+                    <div class="formula-desc">Outputs sum to 1, all values in (0, 1)</div>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Softmax Example</h4>
+                    <code>Logits (raw model output): [2.0, 1.0, 0.1]
+
+Step 1: Exponentiate
+exp([2.0, 1.0, 0.1]) = [7.39, 2.72, 1.11]
+
+Step 2: Normalize (divide by sum)
+sum = 7.39 + 2.72 + 1.11 = 11.22
+softmax = [7.39/11.22, 2.72/11.22, 1.11/11.22]
+        = [0.66, 0.24, 0.10]
+
+Interpretation: 66% class 0, 24% class 1, 10% class 2</code>
+                </div>
+                
+                <h3>Cross-Entropy Loss</h3>
+                
+                <p>
+                    <strong>Cross-entropy</strong> measures how different two probability distributions are. 
+                    It's the standard loss function for classification.
+                </p>
+                
+                <div class="formula-box">
+                    <div class="formula">H(p, q) = -Σᵢ p(i) × log(q(i))</div>
+                    <div class="formula-desc">p = true distribution, q = predicted distribution</div>
+                </div>
+                
+                <div class="intuition-box">
+                    <h4>💡 Why Cross-Entropy?</h4>
+                    <p>
+                        Cross-entropy heavily penalizes confident wrong predictions. If the true label is class A 
+                        and you predict P(A) = 0.01 (very confident it's NOT A), your loss is -log(0.01) = 4.6 (high!). 
+                        If you predict P(A) = 0.99 (correctly confident), loss is -log(0.99) = 0.01 (low!).
+                    </p>
+                </div>
+                
+                <div class="visual-diagram">
+                    <pre>
+        The -log(x) Penalty Curve
+        
+        Loss │
+         5   │ ■
+             │  ■
+         4   │   ■
+             │    ■
+         3   │     ■            ← Wrong predictions = HIGH loss
+             │      ■
+         2   │        ■
+             │          ■
+         1   │            ■
+             │               ■
+         0   │─────────────────■─
+             0.0  0.2  0.4  0.6  0.8  1.0
+                       ↑              ↑
+                  Confidence in correct answer
+             
+             predict 0.01 → loss = 4.6  (disaster!)
+             predict 0.50 → loss = 0.7  (uncertain)
+             predict 0.99 → loss = 0.01 (great!)
+                    </pre>
+                    <p class="diagram-caption">Loss explodes when you're confidently WRONG, drops to near-zero when confidently RIGHT</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 Binary Cross-Entropy</h4>
+                    <code>For binary classification (label y ∈ {0, 1}):
+
+BCE = -[y × log(p) + (1-y) × log(1-p)]
+
+Where p is the predicted probability of class 1.
+
+If true label y=1:  loss = -log(p)     → want p close to 1
+If true label y=0:  loss = -log(1-p)   → want p close to 0
+
+Example:
+- True label: 1, Prediction: 0.9 → loss = -log(0.9) = 0.105
+- True label: 1, Prediction: 0.1 → loss = -log(0.1) = 2.303 (much higher!)</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 The Universal Pattern</h4>
+                    <p>
+                        Almost every classification model follows this pattern:<br>
+                        <strong>Input → Neural Network → Logits → Softmax → Probabilities → Cross-Entropy → Loss</strong><br>
+                        Language models use the same setup—predicting the next token is multi-class classification 
+                        over the vocabulary!
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 7: Practice -->
+            <section class="math-section" id="practice">
+                <h2><span class="section-number">7</span> Practice Problems</h2>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 1: Basic Probability</h4>
+                    <div class="problem">A bag has 3 red, 5 blue, and 2 green balls. What's P(not green)?</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>Total balls = 3 + 5 + 2 = 10
+P(green) = 2/10 = 0.2
+P(not green) = 1 - P(green) = 1 - 0.2 = 0.8
+
+Or directly: P(not green) = P(red or blue) = (3+5)/10 = 0.8</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 2: Conditional Probability</h4>
+                    <div class="problem">P(A) = 0.4, P(B) = 0.3, P(A and B) = 0.12. Find P(A|B).</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>P(A|B) = P(A and B) / P(B)
+       = 0.12 / 0.3
+       = 0.4
+
+Note: P(A|B) = P(A), so A and B are independent!
+(Knowing B doesn't change probability of A)</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 3: Bayes' Theorem</h4>
+                    <div class="problem">A spam filter: P(spam) = 0.3, P("free" | spam) = 0.8, P("free" | not spam) = 0.1.
+Find P(spam | "free").</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>P("free") = P("free"|spam)×P(spam) + P("free"|not spam)×P(not spam)
+          = 0.8 × 0.3 + 0.1 × 0.7
+          = 0.24 + 0.07
+          = 0.31
+
+P(spam|"free") = P("free"|spam) × P(spam) / P("free")
+               = (0.8 × 0.3) / 0.31
+               = 0.24 / 0.31
+               ≈ 0.774 (77.4%)
+
+An email containing "free" has 77% chance of being spam.</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>✏️ Problem 4: Expected Value</h4>
+                    <div class="problem">A game costs $5 to play. Win $20 with P=0.2, win $0 otherwise. What's the expected value?</div>
+                    <div class="solution">
+                        <div class="solution-header">Click to reveal solution ▼</div>
+                        <div class="solution-content">
+                            <code>Possible outcomes (after paying $5 to play):
+- Net gain of $15 (win $20 - $5 cost) with P = 0.2
+- Net gain of -$5 (win nothing, lose entry fee) with P = 0.8
+
+E[gain] = 15 × 0.2 + (-5) × 0.8
+        = 3 - 4
+        = -$1
+
+On average, you lose $1 per game. (House always wins!)</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Key Takeaways -->
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Probability</strong> ranges from 0 to 1; distributions sum/integrate to 1</li>
+                    <li><strong>Conditional probability</strong> P(A|B) is the language of prediction—"probability of A given B"</li>
+                    <li><strong>Bayes' Theorem</strong> lets us update beliefs: Posterior ∝ Likelihood × Prior</li>
+                    <li><strong>Expected value</strong> is the probability-weighted average; training minimizes expected loss</li>
+                    <li><strong>Softmax</strong> converts logits to probabilities; <strong>cross-entropy</strong> measures prediction quality</li>
+                    <li>Every ML classifier computes P(class | input)—it's conditional probability!</li>
+                </ul>
+            </div>
+            
+            <!-- Cheat Sheet -->
+            <section class="math-section">
+                <h2>Quick Reference Cheat Sheet</h2>
+                
+                <div class="example-box">
+                    <h4>📝 Probability Rules</h4>
+                    <code>P(A)           ∈ [0, 1]
+P(not A)       = 1 - P(A)
+P(A or B)      = P(A) + P(B) - P(A and B)
+P(A and B)     = P(A|B) × P(B) = P(B|A) × P(A)
+P(A|B)         = P(A and B) / P(B)
+
+Bayes:         P(A|B) = P(B|A) × P(A) / P(B)
+
+Independence:  P(A|B) = P(A)  ⟹  P(A and B) = P(A) × P(B)
+
+Expected Value: E[X] = Σ xᵢ × P(xᵢ)
+Variance:       Var(X) = E[X²] - E[X]²</code>
+                </div>
+            </section>
+            
+            <!-- Final Section -->
+            <section class="math-section">
+                <h2>You're Ready!</h2>
+                <p>
+                    With these probability foundations, you're prepared for the AI course. 
+                    You'll see these concepts throughout:
+                </p>
+                <ul>
+                    <li><strong>Module 1.2-1.3:</strong> AI as reasoning under uncertainty</li>
+                    <li><strong>Module 2.3-2.4:</strong> Loss functions (cross-entropy) and training objectives</li>
+                    <li><strong>Module 3.4:</strong> Language model probability distributions</li>
+                    <li><strong>Module 4.1-4.2:</strong> Generative models (learning P(data))</li>
+                    <li><strong>Module 5.1:</strong> Model evaluation and calibration</li>
+                </ul>
+                
+                <div class="nav-cards">
+                    <a href="calculus.html" class="nav-card">
+                        <span class="nav-card-label">Review</span>
+                        <span class="nav-card-title">← Back to Calculus</span>
+                    </a>
+                    <a href="../../index.html" class="nav-card">
+                        <span class="nav-card-label">Ready to Learn?</span>
+                        <span class="nav-card-title">Start the Course →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+    <script>
+        // Toggle solutions
+        document.querySelectorAll('.solution-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isHidden = content.style.display === 'none' || !content.style.display;
+                content.style.display = isHidden ? 'block' : 'none';
+                header.textContent = isHidden ? 'Click to hide solution ▲' : 'Click to reveal solution ▼';
+            });
+            header.nextElementSibling.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

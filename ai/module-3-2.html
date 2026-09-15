@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Attention Mechanisms — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item active"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar"><div class="progress-fill" style="width: 62%"></div></div>
+                    <span class="progress-text">11 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb"><span>Modern Architectures</span><span class="breadcrumb-sep">→</span><span>Module 3.2</span></div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Modern Architectures</span>
+                        <span class="module-duration">~45 min</span>
+                    </div>
+                    <h1 class="module-title">Attention Mechanisms</h1>
+                    <p class="module-subtitle">
+                        The breakthrough that enabled transformers: how attention allows models to 
+                        dynamically focus on relevant parts of the input, enabling long-range 
+                        dependencies and the foundation of modern language models.
+                    </p>
+                </section>
+
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand attention as dynamic, input-dependent weighting</li>
+                        <li>Explain the Query-Key-Value framework</li>
+                        <li>Compute scaled dot-product attention step by step</li>
+                        <li>Understand self-attention and why it enables transformers</li>
+                        <li>Distinguish single-head from multi-head attention</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Why Attention?</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">The Problem</div>
+                        <p class="definition-text">
+                            Before attention, sequence models (RNNs, LSTMs) processed inputs step-by-step, 
+                            compressing everything into a fixed-size hidden state. Long-range dependencies 
+                            were lost—the model couldn't "look back" at earlier tokens when needed.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                When you read "The cat sat on the mat because <strong>it</strong> was tired", 
+                                understanding "it" requires looking back at "cat"—not the immediately 
+                                preceding words. Attention lets the model directly access any relevant 
+                                earlier token.
+                            </p>
+                            <p>
+                                Think of attention as a spotlight: instead of fixed processing, the model 
+                                learns to shine its spotlight on the most relevant parts of the input for 
+                                each output it produces.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                Attention computes a weighted average of values, where weights are determined 
+                                by how well each key matches the current query:
+                            </p>
+                            <div class="formula-inline">
+                                Attention(Q, K, V) = softmax(QK^T / √d_k) V
+                            </div>
+                            <p>
+                                The softmax normalizes weights to sum to 1, creating a probability distribution 
+                                over positions. Higher weights mean "pay more attention to this position."
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                Attention is the core of transformers. In GPT, each token attends to all 
+                                previous tokens to predict the next. In BERT, each token attends to all 
+                                other tokens bidirectionally. This enables parallelization (unlike RNNs) 
+                                and direct long-range connections.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Query, Key, Value: The QKV Framework</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>A Database Analogy</h4>
+                            <p>
+                                Think of attention like a fuzzy database lookup: the <strong>query</strong> 
+                                is what you're searching for, <strong>keys</strong> are what you search 
+                                against, and <strong>values</strong> are what you retrieve. Unlike exact 
+                                lookup, attention returns a weighted combination of all values.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="qkv-grid">
+                        <div class="qkv-card query">
+                            <h4>Query (Q)</h4>
+                            <p class="qkv-subtitle">"What am I looking for?"</p>
+                            <p>
+                                The query represents the current position's "question" to the rest of 
+                                the sequence. It's computed by projecting the input through a learned 
+                                weight matrix W_Q.
+                            </p>
+                            <div class="qkv-formula">Q = X · W_Q</div>
+                        </div>
+
+                        <div class="qkv-card key">
+                            <h4>Key (K)</h4>
+                            <p class="qkv-subtitle">"What do I contain?"</p>
+                            <p>
+                                Keys represent what each position "offers" for matching. The dot product 
+                                Q·K measures how well the query matches each key—high values mean high relevance.
+                            </p>
+                            <div class="qkv-formula">K = X · W_K</div>
+                        </div>
+
+                        <div class="qkv-card value">
+                            <h4>Value (V)</h4>
+                            <p class="qkv-subtitle">"What do I return?"</p>
+                            <p>
+                                Values are the actual content to aggregate. The attention weights 
+                                determine how much of each value contributes to the output.
+                            </p>
+                            <div class="qkv-formula">V = X · W_V</div>
+                        </div>
+                    </div>
+
+                    <div class="example-block">
+                        <h4 class="example-title">Why Separate Q, K, V?</h4>
+                        <p>
+                            Having separate projections gives the model flexibility. What makes a good 
+                            "query" might differ from what makes a good "key" or what content should be 
+                            retrieved. The three matrices (W_Q, W_K, W_V) are learned to optimize this.
+                        </p>
+                        <p>
+                            In practice, each has dimension d_model × d_k (or d_v for values), where 
+                            d_k is typically d_model / number_of_heads.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Scaled Dot-Product Attention</h2>
+                    
+                    <p class="lead-paragraph">
+                        The most common attention variant, used in transformers. "Scaled" refers to 
+                        dividing by √d_k to prevent dot products from growing too large.
+                    </p>
+
+                    <div class="attention-steps">
+                        <div class="attention-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Compute Attention Scores</h4>
+                                <p>Dot product of query with all keys:</p>
+                                <div class="step-formula">scores = Q · K^T</div>
+                                <p class="step-note">Shape: (seq_len, seq_len) for self-attention</p>
+                            </div>
+                        </div>
+
+                        <div class="attention-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Scale</h4>
+                                <p>Divide by √d_k to stabilize gradients:</p>
+                                <div class="step-formula">scaled_scores = scores / √d_k</div>
+                                <p class="step-note">Prevents softmax saturation for large d_k</p>
+                            </div>
+                        </div>
+
+                        <div class="attention-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Softmax</h4>
+                                <p>Normalize to get attention weights:</p>
+                                <div class="step-formula">weights = softmax(scaled_scores)</div>
+                                <p class="step-note">Each row sums to 1 (probability distribution)</p>
+                            </div>
+                        </div>
+
+                        <div class="attention-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Weighted Sum of Values</h4>
+                                <p>Aggregate values using attention weights:</p>
+                                <div class="step-formula">output = weights · V</div>
+                                <p class="step-note">Each position gets a weighted combination of all values</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formula-block">
+                        <div class="formula-content">
+                            Attention(Q, K, V) = softmax(QK^T / √d_k) · V
+                        </div>
+                        <div class="formula-note">
+                            The complete scaled dot-product attention in one equation
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Self-Attention</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Definition</div>
+                        <p class="definition-text">
+                            In <strong>self-attention</strong>, the queries, keys, and values all come 
+                            from the same sequence. Each position attends to all other positions 
+                            (including itself) in the same input.
+                        </p>
+                    </div>
+
+                    <div class="concept-card highlight-card">
+                        <h3 class="concept-title">Why Self-Attention is Powerful</h3>
+                        <ul class="technical-list">
+                            <li><strong>Direct connections:</strong> Any two positions can interact in one step (vs. O(n) for RNNs)</li>
+                            <li><strong>Parallelizable:</strong> All positions computed simultaneously (unlike sequential RNNs)</li>
+                            <li><strong>Dynamic:</strong> Connections are input-dependent, not fixed by architecture</li>
+                            <li><strong>Interpretable:</strong> Attention weights show what the model focuses on</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-block">
+                        <h4 class="example-title">Self-Attention in Action</h4>
+                        <p>For the sentence "The cat sat on the mat":</p>
+                        <div class="attention-example">
+                            <p>
+                                When computing the representation for "sat", self-attention might assign:
+                            </p>
+                            <ul class="attention-weights-example">
+                                <li>"The": 0.05 (determiner, low relevance)</li>
+                                <li>"cat": 0.40 (subject doing the sitting)</li>
+                                <li>"sat": 0.30 (the word itself)</li>
+                                <li>"on": 0.15 (preposition, related)</li>
+                                <li>"the": 0.02 (determiner)</li>
+                                <li>"mat": 0.08 (location)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Multi-Head Attention</h2>
+                    
+                    <p class="lead-paragraph">
+                        Instead of single attention, transformers use <strong>multiple attention heads</strong> 
+                        in parallel. Each head learns to focus on different types of relationships.
+                    </p>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Why Multiple Heads?</h4>
+                            <p>
+                                A single attention head might learn syntactic relationships (subject-verb). 
+                                With multiple heads, one might learn syntax, another semantics, another 
+                                coreference, etc. The model combines these diverse perspectives.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="multihead-diagram">
+                        <div class="mh-input">
+                            <div class="mh-label">Input</div>
+                            <div class="mh-box">X</div>
+                        </div>
+                        <div class="mh-split">
+                            <div class="mh-arrow">→</div>
+                            <div class="mh-arrow">→</div>
+                            <div class="mh-arrow">→</div>
+                        </div>
+                        <div class="mh-heads">
+                            <div class="mh-head">
+                                <div class="mh-head-label">Head 1</div>
+                                <div class="mh-box small">Attn</div>
+                            </div>
+                            <div class="mh-head">
+                                <div class="mh-head-label">Head 2</div>
+                                <div class="mh-box small">Attn</div>
+                            </div>
+                            <div class="mh-head">
+                                <div class="mh-head-label">Head h</div>
+                                <div class="mh-box small">Attn</div>
+                            </div>
+                        </div>
+                        <div class="mh-concat">
+                            <div class="mh-arrow">→</div>
+                            <div class="mh-box">Concat</div>
+                            <div class="mh-arrow">→</div>
+                        </div>
+                        <div class="mh-output">
+                            <div class="mh-box">W_O</div>
+                            <div class="mh-arrow">→</div>
+                            <div class="mh-label">Output</div>
+                        </div>
+                    </div>
+
+                    <div class="formula-block">
+                        <div class="formula-content">
+                            MultiHead(Q, K, V) = Concat(head_1, ..., head_h) · W_O
+                        </div>
+                        <div class="formula-note">
+                            where head_i = Attention(QW_Q^i, KW_K^i, VW_V^i)
+                        </div>
+                    </div>
+
+                    <p>
+                        Typical configurations: GPT-2 small uses 12 heads with d_k = 64 each, totaling 
+                        768 dimensions. GPT-3 uses 96 heads with d_k = 128, totaling 12,288 dimensions.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Attention is like human attention"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                The name is metaphorical. Human attention is selective and exclusive; 
+                                neural attention computes weighted combinations of everything simultaneously.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Attention is a differentiable 
+                                mechanism for computing dynamic weighted averages. It's "soft" attention 
+                                that includes all positions with varying weights, not human-like focus.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Attention weights show what the model 'understands'"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Attention weights show where information flows, but this doesn't mean 
+                                high attention implies understanding or that low attention means irrelevance.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Attention weights are useful for 
+                                visualization but should be interpreted carefully. The model's "understanding" 
+                                is distributed across all weights and activations, not localized to attention patterns.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Attention Visualizer
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            See attention in action. Watch how attention weights distribute across 
+                            a sequence and how queries match with keys.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="weights">Attention Weights</button>
+                            <button class="lab-tab" data-tab="compute">Step-by-Step Computation</button>
+                        </div>
+
+                        <div class="lab-panel active" id="weights-panel">
+                            <div class="weights-lab">
+                                <div class="sentence-input">
+                                    <label>Input Sequence:</label>
+                                    <select id="example-sentence">
+                                        <option value="cat">The cat sat on the mat</option>
+                                        <option value="bank">I went to the bank to deposit money</option>
+                                        <option value="pronoun">John gave Mary the book because she asked</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="attention-viz">
+                                    <canvas id="attention-canvas" width="550" height="350"></canvas>
+                                </div>
+                                
+                                <div class="attention-controls">
+                                    <div class="control-group">
+                                        <label>Query Position</label>
+                                        <select id="query-position"></select>
+                                    </div>
+                                </div>
+                                
+                                <div class="attention-explanation" id="attention-explanation">
+                                    Select a query position to see attention weights.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-panel" id="compute-panel">
+                            <div class="compute-lab">
+                                <div class="compute-viz" id="compute-viz">
+                                    <!-- Generated by JS -->
+                                </div>
+                                <div class="compute-controls">
+                                    <button id="compute-step" class="btn btn-primary">Next Step</button>
+                                    <button id="reset-compute" class="btn btn-secondary">Reset</button>
+                                </div>
+                                <div class="compute-explanation" id="compute-explanation">
+                                    Click "Next Step" to walk through attention computation.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            <li><strong>Attention is sparse in practice:</strong> Most weights are near zero; only a few positions get high attention.</li>
+                            <li><strong>Context matters:</strong> The same word gets different attention patterns depending on surrounding words.</li>
+                            <li><strong>Positional relationships:</strong> Adjacent words often attend to each other, but long-range connections also appear.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">In attention, what do the Query, Key, and Value represent?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q1" value="a"><span class="option-marker"></span><span class="option-text">Input, output, and hidden state</span></label>
+                                <label class="option"><input type="radio" name="q1" value="b"><span class="option-marker"></span><span class="option-text">Query: what to search for; Key: what to match against; Value: what to retrieve</span></label>
+                                <label class="option"><input type="radio" name="q1" value="c"><span class="option-marker"></span><span class="option-text">Three identical copies of the input</span></label>
+                                <label class="option"><input type="radio" name="q1" value="d"><span class="option-marker"></span><span class="option-text">Question, answer, and context</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">Why do we scale the dot product by √d_k?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q2" value="a"><span class="option-marker"></span><span class="option-text">To make computation faster</span></label>
+                                <label class="option"><input type="radio" name="q2" value="b"><span class="option-marker"></span><span class="option-text">To prevent dot products from becoming too large, which would cause softmax to saturate</span></label>
+                                <label class="option"><input type="radio" name="q2" value="c"><span class="option-marker"></span><span class="option-text">To normalize the output to [0,1]</span></label>
+                                <label class="option"><input type="radio" name="q2" value="d"><span class="option-marker"></span><span class="option-text">To reduce memory usage</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">What is special about self-attention?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q3" value="a"><span class="option-marker"></span><span class="option-text">It only attends to the current position</span></label>
+                                <label class="option"><input type="radio" name="q3" value="b"><span class="option-marker"></span><span class="option-text">Queries, keys, and values all come from the same sequence</span></label>
+                                <label class="option"><input type="radio" name="q3" value="c"><span class="option-marker"></span><span class="option-text">It requires no training</span></label>
+                                <label class="option"><input type="radio" name="q3" value="d"><span class="option-marker"></span><span class="option-text">It uses a single attention head</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">Why do transformers use multiple attention heads?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q4" value="a"><span class="option-marker"></span><span class="option-text">To make training faster</span></label>
+                                <label class="option"><input type="radio" name="q4" value="b"><span class="option-marker"></span><span class="option-text">Each head can learn to focus on different types of relationships</span></label>
+                                <label class="option"><input type="radio" name="q4" value="c"><span class="option-marker"></span><span class="option-text">To reduce overfitting</span></label>
+                                <label class="option"><input type="radio" name="q4" value="d"><span class="option-marker"></span><span class="option-text">Single heads don't work</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">What is the output of the softmax operation in attention?</p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option"><input type="radio" name="q5" value="a"><span class="option-marker"></span><span class="option-text">The final attention output</span></label>
+                                <label class="option"><input type="radio" name="q5" value="b"><span class="option-marker"></span><span class="option-text">A probability distribution of attention weights that sum to 1</span></label>
+                                <label class="option"><input type="radio" name="q5" value="c"><span class="option-marker"></span><span class="option-text">The key vectors</span></label>
+                                <label class="option"><input type="radio" name="q5" value="d"><span class="option-marker"></span><span class="option-text">Binary 0/1 attention masks</span></label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-navigation">
+                    <a href="module-3-1.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Embeddings & Vector Spaces</span>
+                    </a>
+                    <a href="module-3-3.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Transformer Architecture →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-3-2.js"></script>
+</body>
+</html>
+

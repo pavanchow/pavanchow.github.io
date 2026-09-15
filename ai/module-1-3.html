@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Probability & Uncertainty — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Floating Sidebar Toggle (visible when collapsed) -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+    
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    
+    <div class="sidebar-overlay"></div>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a></li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span class="nav-number">1.2</span><span class="nav-label">Intelligence as Pattern-Finding</span></a></li>
+                        <li class="nav-item active"><a href="module-1-3.html" class="nav-link"><span class="nav-number">1.3</span><span class="nav-label">Probability & Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span class="nav-number">1.4</span><span class="nav-label">Optimization & Gradients</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a></li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span class="nav-number">2.3</span><span class="nav-label">Backpropagation & Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span class="nav-number">2.4</span><span class="nav-label">Generalization & Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised Learning</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a></li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span class="nav-number">3.3</span><span class="nav-label">Transformer Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span class="nav-number">3.4</span><span class="nav-label">Large Language Models</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span class="nav-number">4.1</span><span class="nav-label">Generative vs Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a></li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a></li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span class="nav-number">5.2</span><span class="nav-label">Responsible AI Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span class="nav-number">5.3</span><span class="nav-label">From Research to Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 16%"></div>
+                    </div>
+                    <span class="progress-text">3 of 19 modules</span>
+                </div>
+                <div class="sidebar-theme-toggle">
+                    <span>Theme</span>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb">
+                    <span>Foundations</span>
+                    <span class="breadcrumb-sep">→</span>
+                    <span>Module 1.3</span>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <!-- Module Header -->
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Foundation</span>
+                        <span class="module-duration">~35 min</span>
+                    </div>
+                    <h1 class="module-title">Probability & Uncertainty</h1>
+                    <p class="module-subtitle">
+                        The mathematical language of AI: how probabilistic reasoning enables 
+                        machines to make decisions under uncertainty and quantify confidence 
+                        in their predictions.
+                    </p>
+                </section>
+
+                <!-- Learning Objectives -->
+                <section class="learning-objectives">
+                    <h2 class="section-label">Learning Objectives</h2>
+                    <ul class="objectives-list">
+                        <li>Understand why AI systems must reason under uncertainty</li>
+                        <li>Apply Bayes' theorem to update beliefs given new evidence</li>
+                        <li>Interpret probability distributions as representations of uncertainty</li>
+                        <li>Distinguish between different types of uncertainty (aleatoric vs epistemic)</li>
+                        <li>Connect probabilistic reasoning to modern ML predictions</li>
+                    </ul>
+                </section>
+
+                <!-- Main Content -->
+                <section class="content-section">
+                    <h2 class="section-heading">Why Uncertainty is Fundamental</h2>
+                    
+                    <div class="definition-block">
+                        <div class="definition-marker">Core Principle</div>
+                        <p class="definition-text">
+                            <strong>Intelligent systems operate in environments where information is incomplete, 
+                            noisy, or ambiguous.</strong> Probability theory provides the mathematical 
+                            framework for reasoning rationally about uncertain situations and making 
+                            optimal decisions despite incomplete knowledge.
+                        </p>
+                    </div>
+
+                    <div class="explanation-layers">
+                        <div class="layer layer-intuition">
+                            <span class="layer-badge">Intuition</span>
+                            <p>
+                                Consider a medical AI analyzing an X-ray for signs of pneumonia. The image 
+                                is noisy, the disease presents differently in different patients, and some 
+                                conditions look similar. The AI cannot be <em>certain</em> of its diagnosis—and 
+                                it shouldn't pretend to be.
+                            </p>
+                            <p>
+                                Instead, a well-designed system outputs something like "82% probability of 
+                                pneumonia." This isn't a failure—it's honest reporting of uncertainty that 
+                                helps doctors make better decisions. A confident wrong answer is worse than 
+                                a calibrated uncertain one.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-technical">
+                            <span class="layer-badge">Technical</span>
+                            <p>
+                                Mathematically, probability quantifies uncertainty on a scale from 0 (impossible) 
+                                to 1 (certain). For an AI system:
+                            </p>
+                            <ul class="technical-list">
+                                <li>
+                                    <strong>P(Y | X)</strong>: The probability of output Y given input X. This is 
+                                    what classifiers learn to estimate.
+                                </li>
+                                <li>
+                                    <strong>P(X)</strong>: The prior probability of seeing input X—how common 
+                                    different inputs are in the world.
+                                </li>
+                                <li>
+                                    <strong>P(Y)</strong>: The marginal probability of output Y—how common 
+                                    each class is overall.
+                                </li>
+                            </ul>
+                            <p>
+                                Neural network classifiers typically output a probability distribution over 
+                                classes using a <strong>softmax</strong> function, where outputs sum to 1 and 
+                                can be interpreted as confidence levels.
+                            </p>
+                        </div>
+
+                        <div class="layer layer-practical">
+                            <span class="layer-badge">In Practice</span>
+                            <p>
+                                A spam filter doesn't just label emails "spam" or "not spam"—it estimates 
+                                P(spam | email features). This lets users set their own threshold: aggressive 
+                                filtering (flag anything >30% likely) vs. conservative (only flag >90% likely).
+                            </p>
+                            <p>
+                                Language models don't just predict the next word—they produce a probability 
+                                distribution over all possible words. Sampling from this distribution (with 
+                                varying "temperature") creates diverse, creative outputs.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Bayes' Theorem: Updating Beliefs</h2>
+                    
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>The Heart of Probabilistic Reasoning</h4>
+                            <p>
+                                Bayes' theorem tells us how to update our beliefs when we receive new evidence. 
+                                It's not just a formula—it's a <em>normative rule</em> for rational belief revision.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="formula-block">
+                        <div class="formula">
+                            P(H | E) = <span class="frac"><span class="num">P(E | H) × P(H)</span><span class="den">P(E)</span></span>
+                        </div>
+                        <div class="formula-legend">
+                            <div class="legend-item">
+                                <span class="legend-term">P(H | E)</span>
+                                <span class="legend-desc"><strong>Posterior:</strong> Probability of hypothesis H after seeing evidence E</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-term">P(E | H)</span>
+                                <span class="legend-desc"><strong>Likelihood:</strong> How probable the evidence is if the hypothesis is true</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-term">P(H)</span>
+                                <span class="legend-desc"><strong>Prior:</strong> Initial belief in hypothesis before seeing evidence</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-term">P(E)</span>
+                                <span class="legend-desc"><strong>Evidence:</strong> Overall probability of seeing this evidence</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-block">
+                        <h4 class="example-title">Example: Medical Diagnosis</h4>
+                        <p>
+                            A disease affects 1% of the population. A test is 90% accurate (detects disease 
+                            when present 90% of the time) with a 5% false positive rate. You test positive. 
+                            What's the probability you have the disease?
+                        </p>
+                        <div class="calculation">
+                            <p><strong>Given:</strong></p>
+                            <ul>
+                                <li>P(Disease) = 0.01 (prior: 1% have it)</li>
+                                <li>P(Positive | Disease) = 0.90 (sensitivity)</li>
+                                <li>P(Positive | No Disease) = 0.05 (false positive rate)</li>
+                            </ul>
+                            <p><strong>Calculate P(Positive):</strong></p>
+                            <p class="calc-step">= P(Pos | Disease) × P(Disease) + P(Pos | No Disease) × P(No Disease)</p>
+                            <p class="calc-step">= 0.90 × 0.01 + 0.05 × 0.99 = 0.009 + 0.0495 = 0.0585</p>
+                            <p><strong>Apply Bayes:</strong></p>
+                            <p class="calc-step">P(Disease | Positive) = (0.90 × 0.01) / 0.0585 ≈ <strong>15.4%</strong></p>
+                        </div>
+                        <p class="example-insight">
+                            <strong>Surprising result:</strong> Despite a positive test, you probably don't have 
+                            the disease! This is because false positives from the 99% healthy population 
+                            outnumber true positives from the 1% sick population. The <em>base rate</em> matters enormously.
+                        </p>
+                    </div>
+
+                    <p>
+                        This example illustrates why Bayesian reasoning is crucial: naive interpretation of 
+                        test results leads to wildly incorrect conclusions. AI systems trained on imbalanced 
+                        data face the same challenge—the prior distribution of classes fundamentally affects 
+                        what predictions are rational.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Types of Uncertainty</h2>
+                    
+                    <p class="lead-paragraph">
+                        Not all uncertainty is the same. Understanding the <em>source</em> of uncertainty 
+                        helps us know whether it can be reduced and how to handle it appropriately.
+                    </p>
+
+                    <div class="comparison-cards">
+                        <div class="uncertainty-card aleatoric">
+                            <h3 class="card-title">Aleatoric Uncertainty</h3>
+                            <p class="card-subtitle">Irreducible randomness in the world</p>
+                            <div class="card-content">
+                                <p>
+                                    This uncertainty comes from inherent randomness or variability in the 
+                                    process being modeled. No amount of additional data can eliminate it.
+                                </p>
+                                <ul>
+                                    <li>Noise in sensor measurements</li>
+                                    <li>Inherent ambiguity in language ("bank" = financial institution or riverbank?)</li>
+                                    <li>Quantum effects, chaotic systems</li>
+                                    <li>Two patients with identical symptoms can have different outcomes</li>
+                                </ul>
+                                <p class="card-insight">
+                                    <strong>Handling:</strong> Model the distribution of outcomes, not just 
+                                    point predictions. Report confidence intervals.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="uncertainty-card epistemic">
+                            <h3 class="card-title">Epistemic Uncertainty</h3>
+                            <p class="card-subtitle">Uncertainty from limited knowledge</p>
+                            <div class="card-content">
+                                <p>
+                                    This uncertainty stems from gaps in our knowledge—things we could know 
+                                    but don't yet. It can be reduced with more data or better models.
+                                </p>
+                                <ul>
+                                    <li>Model hasn't seen enough examples of this type</li>
+                                    <li>Input is far from training distribution</li>
+                                    <li>Model architecture can't capture the true pattern</li>
+                                    <li>Conflicting evidence in training data</li>
+                                </ul>
+                                <p class="card-insight">
+                                    <strong>Handling:</strong> Use ensemble methods, Bayesian neural networks, 
+                                    or techniques that detect out-of-distribution inputs. Flag high-uncertainty cases for human review.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>Why the Distinction Matters</h4>
+                            <p>
+                                A self-driving car should behave differently when uncertain because the road 
+                                markings are faded (aleatoric—drive cautiously) versus uncertain because it's 
+                                never seen this type of intersection before (epistemic—maybe stop and alert).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Probability Distributions in ML</h2>
+                    
+                    <p class="lead-paragraph">
+                        Machine learning models don't just output answers—they (implicitly or explicitly) 
+                        define <strong>probability distributions</strong> over possible outputs.
+                    </p>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Softmax and Classification</h3>
+                        <p>
+                            For a classification task with K classes, neural networks typically output K 
+                            numbers that get transformed through the <strong>softmax function</strong>:
+                        </p>
+                        <div class="formula-inline">
+                            softmax(z<sub>i</sub>) = e<sup>z<sub>i</sub></sup> / Σ<sub>j</sub> e<sup>z<sub>j</sub></sup>
+                        </div>
+                        <p>
+                            This ensures outputs sum to 1 and can be interpreted as probabilities. If a 
+                            model outputs [0.75, 0.20, 0.05] for three classes, it's saying "75% confident 
+                            class 1, 20% class 2, 5% class 3."
+                        </p>
+                        <p class="caution-note">
+                            <strong>Caution:</strong> Softmax outputs are often <em>overconfident</em>. A model 
+                            might output 99% confidence while being wrong. Calibration techniques help 
+                            align stated confidence with actual accuracy.
+                        </p>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Language Models as Probability Distributions</h3>
+                        <p>
+                            A language model like GPT defines a probability distribution over all possible 
+                            next tokens. Given context "The cat sat on the", it might assign:
+                        </p>
+                        <ul class="probability-list">
+                            <li><span class="prob-word">mat</span><span class="prob-bar" style="width: 35%"></span><span class="prob-value">35%</span></li>
+                            <li><span class="prob-word">floor</span><span class="prob-bar" style="width: 25%"></span><span class="prob-value">25%</span></li>
+                            <li><span class="prob-word">couch</span><span class="prob-bar" style="width: 15%"></span><span class="prob-value">15%</span></li>
+                            <li><span class="prob-word">bed</span><span class="prob-bar" style="width: 10%"></span><span class="prob-value">10%</span></li>
+                            <li><span class="prob-word">table</span><span class="prob-bar" style="width: 8%"></span><span class="prob-value">8%</span></li>
+                            <li><span class="prob-word">...</span><span class="prob-bar" style="width: 7%"></span><span class="prob-value">7%</span></li>
+                        </ul>
+                        <p>
+                            Text generation works by <strong>sampling</strong> from this distribution repeatedly. 
+                            The "temperature" parameter controls randomness: low temperature → always pick 
+                            highest probability (deterministic), high temperature → more random exploration.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-heading">Common Misconceptions</h2>
+                    
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"High confidence means the model is probably right"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                Neural networks are often miscalibrated—they can output 95% confidence while 
+                                being wrong 30% of the time. High confidence only means the model found 
+                                strong patterns; it doesn't guarantee those patterns are valid for this input.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Confidence scores require calibration to 
+                                be meaningful. A well-calibrated model should be correct 90% of the time when 
+                                it says 90% confident. Modern techniques like temperature scaling help achieve this.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Probabilities are subjective opinions"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                While there are debates about probability interpretation, in ML, probabilities 
+                                have precise operational meaning: they predict long-run frequencies. If a model 
+                                is well-calibrated and says "80% chance of rain," then among all days where 
+                                it said 80%, about 80% should actually have rain.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Probabilities in ML are empirically 
+                                verifiable predictions about frequencies. They can be tested against reality 
+                                and should match observed outcomes when the model is properly calibrated.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="misconception-card">
+                        <div class="misconception-header">
+                            <span class="misconception-icon">✗</span>
+                            <h4 class="misconception-claim">"Uncertainty is a weakness to be minimized"</h4>
+                        </div>
+                        <div class="misconception-body">
+                            <p class="misconception-problem">
+                                This assumes certainty is always better. But expressing appropriate uncertainty 
+                                is often more valuable than false confidence. A doctor wants a model that 
+                                says "I'm uncertain—get more tests" rather than one that confidently wrong-diagnoses.
+                            </p>
+                            <p class="misconception-correction">
+                                <strong>The accurate framing:</strong> Good uncertainty quantification is a 
+                                feature, not a bug. Systems should be uncertain when evidence is ambiguous 
+                                and confident when it's clear. The goal is <em>calibrated</em> uncertainty—being 
+                                uncertain about the right things.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Lab Section -->
+                <section class="content-section lab-section">
+                    <h2 class="section-heading">
+                        <span class="lab-icon">⚗</span>
+                        Interactive Lab: Bayesian Reasoning
+                    </h2>
+                    
+                    <div class="lab-introduction">
+                        <p>
+                            Explore how prior beliefs and evidence combine through Bayes' theorem. 
+                            Adjust the parameters and watch how the posterior probability changes.
+                        </p>
+                    </div>
+
+                    <div class="lab-container">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-tab="bayes">Bayes Calculator</button>
+                            <button class="lab-tab" data-tab="distribution">Distribution Visualizer</button>
+                            <button class="lab-tab" data-tab="calibration">Calibration Demo</button>
+                        </div>
+
+                        <!-- Bayes Calculator -->
+                        <div class="lab-panel active" id="bayes-panel">
+                            <div class="bayes-scenario">
+                                <h4>Scenario: Disease Testing</h4>
+                                <p>Configure the test parameters and see how Bayes' theorem determines the true probability.</p>
+                            </div>
+
+                            <div class="bayes-controls">
+                                <div class="bayes-control">
+                                    <label>Prior: Disease Prevalence</label>
+                                    <input type="range" id="prior-slider" min="0.1" max="20" value="1" step="0.1">
+                                    <span class="control-value" id="prior-value">1%</span>
+                                </div>
+                                
+                                <div class="bayes-control">
+                                    <label>Sensitivity (True Positive Rate)</label>
+                                    <input type="range" id="sensitivity-slider" min="50" max="99" value="90" step="1">
+                                    <span class="control-value" id="sensitivity-value">90%</span>
+                                </div>
+                                
+                                <div class="bayes-control">
+                                    <label>False Positive Rate</label>
+                                    <input type="range" id="fpr-slider" min="1" max="30" value="5" step="1">
+                                    <span class="control-value" id="fpr-value">5%</span>
+                                </div>
+                            </div>
+
+                            <div class="bayes-visualization">
+                                <div class="population-grid" id="population-grid">
+                                    <!-- Generated by JS -->
+                                </div>
+                                <div class="bayes-legend">
+                                    <span class="legend-entry"><span class="dot healthy-negative"></span> Healthy, Negative</span>
+                                    <span class="legend-entry"><span class="dot healthy-positive"></span> Healthy, False Positive</span>
+                                    <span class="legend-entry"><span class="dot sick-negative"></span> Sick, False Negative</span>
+                                    <span class="legend-entry"><span class="dot sick-positive"></span> Sick, True Positive</span>
+                                </div>
+                            </div>
+
+                            <div class="bayes-result">
+                                <div class="result-box">
+                                    <span class="result-label">If you test positive:</span>
+                                    <span class="result-value" id="posterior-value">15.4%</span>
+                                    <span class="result-sublabel">chance you actually have the disease</span>
+                                </div>
+                            </div>
+
+                            <div class="bayes-breakdown">
+                                <h4>The Math</h4>
+                                <div class="breakdown-formula" id="breakdown-formula">
+                                    <!-- Generated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Distribution Visualizer -->
+                        <div class="lab-panel" id="distribution-panel">
+                            <div class="distribution-intro">
+                                <p>A probability distribution shows how likely different outcomes are. 
+                                Adjust parameters to see how distributions change shape.</p>
+                            </div>
+
+                            <div class="distribution-controls">
+                                <div class="dist-control">
+                                    <label>Distribution Type</label>
+                                    <select id="dist-type">
+                                        <option value="normal">Normal (Gaussian)</option>
+                                        <option value="uniform">Uniform</option>
+                                        <option value="bimodal">Bimodal</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="dist-control">
+                                    <label>Mean / Center</label>
+                                    <input type="range" id="dist-mean" min="0" max="100" value="50">
+                                    <span class="control-value" id="mean-value">50</span>
+                                </div>
+                                
+                                <div class="dist-control">
+                                    <label>Spread / Uncertainty</label>
+                                    <input type="range" id="dist-spread" min="5" max="40" value="15">
+                                    <span class="control-value" id="spread-value">15</span>
+                                </div>
+                            </div>
+
+                            <div class="distribution-canvas-container">
+                                <canvas id="distribution-canvas" width="600" height="300"></canvas>
+                            </div>
+
+                            <div class="distribution-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Mean (μ)</span>
+                                    <span class="stat-value" id="stat-mean">50</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Std Dev (σ)</span>
+                                    <span class="stat-value" id="stat-std">15</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">P(X < 40)</span>
+                                    <span class="stat-value" id="stat-prob">25.2%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Calibration Demo -->
+                        <div class="lab-panel" id="calibration-panel">
+                            <div class="calibration-intro">
+                                <p>A well-calibrated model should be right X% of the time when it predicts X% confidence.
+                                Test whether different "models" are well-calibrated.</p>
+                            </div>
+
+                            <div class="calibration-game">
+                                <div class="calibration-model-select">
+                                    <button class="model-btn active" data-model="calibrated">Well-Calibrated Model</button>
+                                    <button class="model-btn" data-model="overconfident">Overconfident Model</button>
+                                    <button class="model-btn" data-model="underconfident">Underconfident Model</button>
+                                </div>
+
+                                <div class="calibration-test">
+                                    <div class="test-question">
+                                        <p id="calibration-question">Is this image a cat?</p>
+                                        <div class="test-image" id="test-image">🐱</div>
+                                        <div class="model-confidence">
+                                            <span>Model says:</span>
+                                            <span class="confidence-value" id="model-confidence">85%</span>
+                                            <span>confident it's a cat</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="test-buttons">
+                                        <button id="answer-cat" class="answer-btn">It's a cat ✓</button>
+                                        <button id="answer-not-cat" class="answer-btn">Not a cat ✗</button>
+                                    </div>
+                                </div>
+
+                                <div class="calibration-results">
+                                    <h4>Results After <span id="num-trials">0</span> Trials</h4>
+                                    <div class="calibration-chart" id="calibration-chart">
+                                        <!-- Generated by JS -->
+                                    </div>
+                                    <p class="calibration-interpretation" id="calibration-interpretation"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-insights">
+                        <h4>Key Takeaways</h4>
+                        <ul>
+                            <li>
+                                <strong>Base rates matter:</strong> Even accurate tests can give misleading 
+                                results when the prior probability is very low or very high.
+                            </li>
+                            <li>
+                                <strong>Distributions encode uncertainty:</strong> A narrow distribution means 
+                                high confidence; a wide distribution means uncertainty.
+                            </li>
+                            <li>
+                                <strong>Calibration is testable:</strong> We can empirically verify whether 
+                                a model's confidence scores match its actual accuracy.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Quiz Section -->
+                <section class="content-section quiz-section">
+                    <h2 class="section-heading">
+                        <span class="quiz-icon">✓</span>
+                        Check Your Understanding
+                    </h2>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <div class="quiz-question" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">1</span>
+                                <p class="question-text">
+                                    In Bayes' theorem, what does the "prior" represent?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q1" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The probability of the evidence occurring</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The initial belief in a hypothesis before seeing evidence</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The updated belief after seeing evidence</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q1" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">The likelihood of evidence given the hypothesis</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">2</span>
+                                <p class="question-text">
+                                    What is the key difference between aleatoric and epistemic uncertainty?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q2" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Aleatoric is about model errors; epistemic is about data errors</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Aleatoric is inherent randomness (irreducible); epistemic is from limited knowledge (reducible with more data)</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">Aleatoric applies to classification; epistemic applies to regression</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q2" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">There is no meaningful difference; they are synonyms</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">3</span>
+                                <p class="question-text">
+                                    A disease affects 0.1% of the population. A test has 99% sensitivity and 1% false positive rate. 
+                                    If you test positive, the probability you have the disease is approximately:
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q3" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">99% — because the test is highly accurate</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">About 9% — false positives from the healthy population dominate</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">50% — without more information, it's a coin flip</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q3" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">0.1% — same as the base rate</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">4</span>
+                                <p class="question-text">
+                                    What does it mean for a classifier to be "well-calibrated"?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q4" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It achieves high accuracy on the test set</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">When it predicts X% confidence, it's correct approximately X% of the time</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It always outputs 100% confidence</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q4" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It was trained on a balanced dataset</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">5</span>
+                                <p class="question-text">
+                                    In language models, what role does "temperature" play during text generation?
+                                </p>
+                            </div>
+                            <div class="question-options">
+                                <label class="option">
+                                    <input type="radio" name="q5" value="a">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It determines how many words to generate</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="b">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It controls the randomness of sampling—low temperature is more deterministic, high temperature is more random</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="c">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It sets the maximum probability any word can have</span>
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="q5" value="d">
+                                    <span class="option-marker"></span>
+                                    <span class="option-text">It measures the model's confidence level</span>
+                                </label>
+                            </div>
+                            <div class="question-feedback"></div>
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="submit-quiz" class="btn btn-primary">Check Answers</button>
+                            <button id="reset-quiz" class="btn btn-secondary">Reset Quiz</button>
+                        </div>
+
+                        <div class="quiz-results" id="quiz-results">
+                            <div class="results-score">
+                                <span class="score-value" id="score-value">0</span>
+                                <span class="score-total">/ 5</span>
+                            </div>
+                            <p class="results-message" id="results-message"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module Navigation -->
+                <section class="module-navigation">
+                    <a href="module-1-2.html" class="nav-prev">
+                        <span class="nav-direction">Previous</span>
+                        <span class="nav-title">← Intelligence as Pattern-Finding</span>
+                    </a>
+                    <a href="module-1-4.html" class="nav-next">
+                        <span class="nav-direction">Next Module</span>
+                        <span class="nav-title">Optimization & Gradients →</span>
+                    </a>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="module-1-3.js"></script>
+</body>
+</html>
+

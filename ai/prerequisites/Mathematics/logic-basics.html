@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Logic basics for AI: propositions, boolean operations, and truth tables explained for beginners.">
+    <title>Logic Basics — Prerequisites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        :root {
+            --prereq-accent: #06b6d4;
+            --prereq-accent-glow: rgba(6, 182, 212, 0.15);
+        }
+        
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; }
+        
+        .prereq-page { min-height: 100vh; background: var(--bg-primary); }
+        .prereq-container { max-width: 900px; margin: 0 auto; padding: clamp(1rem, 5vw, 2.5rem); }
+        
+        .prereq-header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-primary);
+            padding: 1rem 0; margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--surface-2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prereq-header-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-tertiary); text-decoration: none; font-size: 0.875rem;
+            padding: 0.5rem 1rem; border-radius: var(--radius-md);
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--prereq-accent); border-color: var(--prereq-accent);
+            background: var(--prereq-accent-glow);
+        }
+        
+        .prereq-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .prereq-nav a {
+            padding: 0.5rem 0.75rem; background: var(--bg-elevated);
+            border: 1px solid var(--surface-3); border-radius: var(--radius-md);
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.75rem; font-weight: 500; transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        .prereq-nav a:hover { border-color: var(--prereq-accent); color: var(--prereq-accent); }
+        .prereq-nav a.active {
+            background: var(--prereq-accent-glow);
+            border-color: var(--prereq-accent); color: var(--prereq-accent);
+        }
+        .prereq-nav .nav-divider {
+            display: flex; align-items: center; color: var(--text-tertiary);
+            font-size: 0.7rem; padding: 0 0.25rem;
+        }
+        
+        .prereq-hero {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl); padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 2rem; border: 1px solid var(--surface-3);
+            position: relative; overflow: hidden;
+        }
+        
+        .prereq-hero::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, var(--prereq-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .prereq-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--prereq-accent-glow); color: var(--prereq-accent);
+            padding: 0.375rem 0.875rem; border-radius: var(--radius-sm);
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: 1rem;
+        }
+        
+        .prereq-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600; color: var(--text-primary);
+            margin: 0 0 1rem; line-height: 1.2;
+        }
+        
+        .prereq-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-secondary); max-width: 600px;
+            line-height: 1.7; margin: 0;
+        }
+        
+        .estimated-time {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-tertiary); font-size: 0.8rem; margin-top: 1rem;
+            padding: 0.5rem 0.75rem; background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+        }
+        
+        .learning-objectives {
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            font-size: 0.875rem; font-weight: 600; color: var(--prereq-accent);
+            text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem;
+        }
+        
+        .learning-objectives ul { margin: 0; padding-left: 1.25rem; }
+        .learning-objectives li {
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 0.5rem;
+        }
+        
+        .toc {
+            background: var(--bg-secondary); border: 1px solid var(--surface-2);
+            border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 2rem;
+        }
+        .toc h3 {
+            font-size: 0.8rem; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.075em; margin: 0 0 1rem;
+        }
+        .toc-list { list-style: none; padding: 0; margin: 0; }
+        .toc-list li { margin-bottom: 0.5rem; }
+        .toc-list a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        .toc-list a:hover { background: var(--prereq-accent-glow); color: var(--prereq-accent); }
+        .toc-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 1.5rem; height: 1.5rem; background: var(--surface-3);
+            color: var(--text-tertiary); border-radius: 50%;
+            font-size: 0.75rem; font-weight: 600;
+        }
+        
+        .content-section {
+            background: var(--bg-secondary); border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem); margin-bottom: 1.5rem;
+            border: 1px solid var(--surface-2);
+        }
+        
+        .content-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-primary); margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem; border-bottom: 2px solid var(--prereq-accent);
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        
+        .section-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2rem; height: 2rem; background: var(--prereq-accent);
+            color: white; border-radius: 50%;
+            font-size: 0.875rem; font-weight: 600; flex-shrink: 0;
+        }
+        
+        .content-section h3 {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            color: var(--text-primary); margin: 1.75rem 0 1rem;
+        }
+        
+        .content-section p {
+            color: var(--text-secondary); line-height: 1.75;
+            margin: 0 0 1rem; font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .content-section ul, .content-section ol {
+            color: var(--text-secondary); line-height: 1.75;
+            padding-left: 1.5rem; margin: 0 0 1rem;
+        }
+        .content-section li { margin-bottom: 0.5rem; }
+        
+        .example-box {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .example-box h4 {
+            color: var(--accent-gold); font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.075em;
+            margin: 0 0 0.75rem;
+        }
+        
+        .example-box code {
+            display: block; background: var(--bg-tertiary);
+            padding: clamp(0.75rem, 2vw, 1rem); border-radius: var(--radius-sm);
+            font-family: var(--font-mono); font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: var(--text-primary); margin: 0.5rem 0;
+            overflow-x: auto; white-space: pre; line-height: 1.6;
+        }
+        
+        .example-box p {
+            font-size: 0.875rem; color: var(--text-secondary); margin: 0.75rem 0 0;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, var(--prereq-accent-glow) 0%, transparent 100%);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .concept-box h4 {
+            color: var(--prereq-accent); font-size: 0.8rem; font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .concept-box p {
+            color: var(--text-secondary); margin: 0;
+            font-size: 0.925rem; line-height: 1.7;
+        }
+        
+        .ai-connection {
+            background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(80, 184, 146, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.25rem); margin: 1.25rem 0;
+        }
+        
+        .ai-connection h4 {
+            color: var(--accent-emerald); font-size: 0.8rem; font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .ai-connection p {
+            color: var(--text-secondary); margin: 0;
+            font-size: 0.925rem; line-height: 1.7;
+        }
+        
+        .visual-diagram {
+            background: var(--bg-tertiary); border-radius: var(--radius-md);
+            padding: clamp(1rem, 3vw, 1.5rem); margin: 1.25rem 0;
+            overflow-x: auto;
+        }
+        
+        .visual-diagram pre {
+            font-family: var(--font-mono); color: var(--text-secondary);
+            font-size: clamp(0.7rem, 2vw, 0.85rem); line-height: 1.5;
+            margin: 0; white-space: pre;
+        }
+        
+        .visual-diagram .diagram-caption {
+            font-size: 0.8rem; color: var(--text-tertiary);
+            text-align: center; margin-top: 1rem; font-style: italic;
+        }
+        
+        .truth-table {
+            width: 100%; border-collapse: collapse; margin: 1.25rem 0;
+            font-family: var(--font-mono);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+        
+        .truth-table th, .truth-table td {
+            padding: 0.75rem; text-align: center;
+            border: 1px solid var(--surface-3);
+        }
+        
+        .truth-table th {
+            background: var(--bg-tertiary); color: var(--prereq-accent);
+            font-weight: 600;
+        }
+        
+        .truth-table td { color: var(--text-secondary); }
+        
+        .truth-table .true { color: var(--accent-emerald); font-weight: 600; }
+        .truth-table .false { color: var(--accent-coral); font-weight: 600; }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .key-takeaways {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--surface-3); border-radius: var(--radius-lg);
+            padding: 1.5rem; margin: 2rem 0;
+        }
+        
+        .key-takeaways h3 {
+            color: var(--prereq-accent); font-size: 0.9rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem;
+        }
+        
+        .key-takeaways ul { margin: 0; padding-left: 1.25rem; }
+        .key-takeaways li {
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 0.5rem;
+        }
+        
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem; margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: var(--bg-elevated); border: 1px solid var(--surface-3);
+            border-radius: var(--radius-md); padding: 1.25rem;
+            text-decoration: none; transition: all var(--transition-fast);
+        }
+        
+        .nav-card:hover {
+            border-color: var(--prereq-accent); transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card-label {
+            font-size: 0.7rem; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.075em;
+        }
+        
+        .nav-card-title {
+            font-size: 1rem; color: var(--text-primary);
+            font-weight: 500; margin-top: 0.25rem;
+        }
+        
+        @media (max-width: 640px) {
+            .prereq-header-inner { flex-direction: column; align-items: stretch; }
+            .back-link { width: fit-content; }
+            .prereq-nav { justify-content: flex-start; overflow-x: auto; }
+            .two-column { grid-template-columns: 1fr; }
+            .truth-table { font-size: 0.75rem; }
+            .truth-table th, .truth-table td { padding: 0.5rem 0.25rem; }
+        }
+        
+        html { scroll-behavior: smooth; }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--prereq-accent); outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prereq-page">
+        <div class="prereq-container">
+            <header class="prereq-header">
+                <div class="prereq-header-inner">
+                    <a href="../../index.html" class="back-link"><span>←</span> Back to Course</a>
+                    <nav class="prereq-nav">
+                        <a href="math-foundations.html">Foundations</a>
+                        <a href="number-sense.html">Numbers</a>
+                        <a href="logic-basics.html" class="active">Logic</a>
+                        <span class="nav-divider">|</span>
+                        <a href="calculus.html">Calculus</a>
+                        <a href="linear-algebra.html">Linear Algebra</a>
+                        <a href="probability.html">Probability</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="prereq-hero">
+                <span class="prereq-badge">🧠 Beginner • Mathematics</span>
+                <h1 class="prereq-title">Logic Basics for AI</h1>
+                <p class="prereq-subtitle">
+                    Logic is the language of reasoning—both for humans and machines. Learn how to 
+                    express and combine true/false statements, the foundation of every if-statement, 
+                    every decision boundary, and every neural network gate.
+                </p>
+                <div class="estimated-time"><span>⏱</span> 10-12 minutes</div>
+            </div>
+            
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Learn</h3>
+                <ul>
+                    <li>What propositions and truth values are</li>
+                    <li>The three fundamental operations: AND, OR, NOT</li>
+                    <li>How to reason with if-then statements</li>
+                    <li>Reading and building truth tables</li>
+                    <li>How logic underlies AI decision-making</li>
+                </ul>
+            </div>
+            
+            <nav class="toc">
+                <h3>Contents</h3>
+                <ol class="toc-list">
+                    <li><a href="#propositions"><span class="toc-number">1</span> Propositions & Truth Values</a></li>
+                    <li><a href="#and-or-not"><span class="toc-number">2</span> AND / OR / NOT</a></li>
+                    <li><a href="#if-then"><span class="toc-number">3</span> If-Then Reasoning</a></li>
+                    <li><a href="#truth-tables"><span class="toc-number">4</span> Truth Tables</a></li>
+                </ol>
+            </nav>
+            
+            <!-- Section 1: Propositions -->
+            <section class="content-section" id="propositions">
+                <h2><span class="section-number">1</span> Propositions & Truth Values</h2>
+                
+                <p>
+                    A <strong>proposition</strong> is a statement that is either <strong>true</strong> or 
+                    <strong>false</strong>—never both, never neither. This binary nature is fundamental 
+                    to how computers think.
+                </p>
+                
+                <div class="two-column">
+                    <div class="example-box">
+                        <h4>✓ Valid Propositions</h4>
+                        <code>"The sky is blue"         → True
+"5 > 10"                   → False
+"Paris is in France"       → True
+"2 + 2 = 5"                → False
+"This model is trained"    → True/False</code>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>✗ Not Propositions</h4>
+                        <code>"Hello!"          → Greeting, not T/F
+"What time is it?" → Question, not T/F
+"x + 5"            → Expression, not T/F
+"Maybe"            → Not definite T/F
+"Do your homework" → Command, not T/F</code>
+                    </div>
+                </div>
+                
+                <h3>Truth Values</h3>
+                
+                <p>
+                    Every proposition has exactly one of two <strong>truth values</strong>:
+                </p>
+                
+                <ul>
+                    <li><strong>True (T)</strong> — often represented as 1</li>
+                    <li><strong>False (F)</strong> — often represented as 0</li>
+                </ul>
+                
+                <div class="concept-box">
+                    <h4>💡 Binary Thinking</h4>
+                    <p>
+                        Computers are built on binary: everything is 0 or 1, off or on, false or true. 
+                        This isn't a limitation—it's incredibly powerful. Complex decisions are built 
+                        by combining many simple true/false questions.
+                    </p>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 In AI</h4>
+                    <p>
+                        Classification models answer propositions: "Is this email spam?" (T/F), 
+                        "Is this a cat?" (T/F). Even when models output probabilities (0.73), 
+                        we often threshold them to get a final true/false decision.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 2: AND / OR / NOT -->
+            <section class="content-section" id="and-or-not">
+                <h2><span class="section-number">2</span> AND / OR / NOT</h2>
+                
+                <p>
+                    These three operations let you combine and modify propositions to build complex 
+                    conditions from simple ones.
+                </p>
+                
+                <h3>NOT (Negation) — ¬ or !</h3>
+                
+                <p>
+                    <strong>NOT</strong> flips the truth value. If something is true, NOT makes it false, 
+                    and vice versa.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        NOT reverses the truth value:
+        
+        NOT True  = False
+        NOT False = True
+        
+        Example:
+        "The light is on" is True
+        "The light is NOT on" is False
+                    </pre>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 NOT in Code</h4>
+                    <code>Python:  not True   → False
+         not False  → True
+         not (5 > 3) → False
+
+Math:    ¬T = F
+         ¬F = T</code>
+                </div>
+                
+                <h3>AND (Conjunction) — ∧ or &&</h3>
+                
+                <p>
+                    <strong>AND</strong> is true only when <em>both</em> parts are true. Think of it as 
+                    requiring two conditions to pass.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        AND requires BOTH to be true:
+        
+        True  AND True  = True   ✓ (both pass)
+        True  AND False = False  ✗ (one fails)
+        False AND True  = False  ✗ (one fails)
+        False AND False = False  ✗ (both fail)
+        
+        Example:
+        "I have money" AND "Store is open" → Can I shop?
+        Both must be true to shop!
+                    </pre>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 AND in Code</h4>
+                    <code>Python:  True and True   → True
+         True and False  → False
+         (5 > 3) and (2 < 4) → True
+
+Real example:
+if age >= 18 and has_id:
+    allow_entry()</code>
+                </div>
+                
+                <h3>OR (Disjunction) — ∨ or ||</h3>
+                
+                <p>
+                    <strong>OR</strong> is true when <em>at least one</em> part is true. Think of it as 
+                    needing only one condition to pass.
+                </p>
+                
+                <div class="visual-diagram">
+                    <pre>
+        OR requires AT LEAST ONE to be true:
+        
+        True  OR True  = True   ✓ (at least one)
+        True  OR False = True   ✓ (at least one)
+        False OR True  = True   ✓ (at least one)
+        False OR False = False  ✗ (neither passes)
+        
+        Example:
+        "It's weekend" OR "It's holiday" → Can I sleep in?
+        Either one being true is enough!
+                    </pre>
+                </div>
+                
+                <div class="example-box">
+                    <h4>📝 OR in Code</h4>
+                    <code>Python:  True or False  → True
+         False or False → False
+         (5 > 10) or (2 < 4) → True
+
+Real example:
+if is_admin or is_moderator:
+    show_controls()</code>
+                </div>
+                
+                <div class="concept-box">
+                    <h4>💡 Remember the Pattern</h4>
+                    <p>
+                        <strong>AND</strong> is strict: all must be true → "Both/All"<br>
+                        <strong>OR</strong> is lenient: any can be true → "At least one"<br>
+                        <strong>NOT</strong> is a flip: opposite truth value
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 3: If-Then -->
+            <section class="content-section" id="if-then">
+                <h2><span class="section-number">3</span> If-Then Reasoning</h2>
+                
+                <p>
+                    <strong>If-then</strong> statements (implications) are the backbone of logical reasoning 
+                    and programming. "If A is true, then B follows."
+                </p>
+                
+                <h3>Structure</h3>
+                
+                <div class="visual-diagram">
+                    <pre>
+        IF [condition] THEN [result]
+        
+        "If it rains, then the ground gets wet"
+        
+        Condition (antecedent): "it rains"
+        Result (consequent): "the ground gets wet"
+        
+        Written as: P → Q (P implies Q)
+                    </pre>
+                </div>
+                
+                <h3>When is If-Then True?</h3>
+                
+                <p>
+                    An implication P → Q is <strong>only false</strong> when the condition (P) is true 
+                    but the result (Q) is false. This is a broken promise.
+                </p>
+                
+                <table class="truth-table">
+                    <thead>
+                        <tr>
+                            <th>P (If)</th>
+                            <th>Q (Then)</th>
+                            <th>P → Q</th>
+                            <th>Interpretation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="true">T</td>
+                            <td class="true">T</td>
+                            <td class="true">T</td>
+                            <td>Promise kept ✓</td>
+                        </tr>
+                        <tr>
+                            <td class="true">T</td>
+                            <td class="false">F</td>
+                            <td class="false">F</td>
+                            <td>Promise broken ✗</td>
+                        </tr>
+                        <tr>
+                            <td class="false">F</td>
+                            <td class="true">T</td>
+                            <td class="true">T</td>
+                            <td>No promise made</td>
+                        </tr>
+                        <tr>
+                            <td class="false">F</td>
+                            <td class="false">F</td>
+                            <td class="true">T</td>
+                            <td>No promise made</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="example-box">
+                    <h4>📝 Real Example</h4>
+                    <code>"If you pass the test, you get a certificate"
+
+Pass? Certificate?  Promise kept?
+Yes    Yes          ✓ True (got what was promised)
+Yes    No           ✗ False (promise broken!)
+No     Yes          ✓ True (bonus! no promise broken)
+No     No           ✓ True (no promise was made)</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 If-Then in AI</h4>
+                    <p>
+                        Decision trees are chains of if-then rules. "If pixel brightness > 128, then go right, 
+                        else go left." Neural network activation: "If weighted sum > threshold, then fire." 
+                        Even attention mechanisms use if-then logic: "If these tokens are related, then attend more."
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Section 4: Truth Tables -->
+            <section class="content-section" id="truth-tables">
+                <h2><span class="section-number">4</span> Truth Tables</h2>
+                
+                <p>
+                    A <strong>truth table</strong> systematically shows all possible input combinations 
+                    and their outputs. It's the complete specification of a logical operation.
+                </p>
+                
+                <h3>Building a Truth Table</h3>
+                
+                <ol>
+                    <li>List all variables (P, Q, etc.)</li>
+                    <li>Write all possible combinations of T/F</li>
+                    <li>Compute the result for each combination</li>
+                </ol>
+                
+                <div class="visual-diagram">
+                    <pre>
+        For n variables, you need 2ⁿ rows:
+        
+        1 variable (P):      2¹ = 2 rows   (T, F)
+        2 variables (P, Q):  2² = 4 rows   (TT, TF, FT, FF)
+        3 variables:         2³ = 8 rows
+        4 variables:         2⁴ = 16 rows
+                    </pre>
+                </div>
+                
+                <h3>Complete Reference Tables</h3>
+                
+                <div class="two-column">
+                    <div>
+                        <p><strong>NOT (¬P)</strong></p>
+                        <table class="truth-table">
+                            <thead><tr><th>P</th><th>¬P</th></tr></thead>
+                            <tbody>
+                                <tr><td class="true">T</td><td class="false">F</td></tr>
+                                <tr><td class="false">F</td><td class="true">T</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <p><strong>AND (P ∧ Q)</strong></p>
+                        <table class="truth-table">
+                            <thead><tr><th>P</th><th>Q</th><th>P ∧ Q</th></tr></thead>
+                            <tbody>
+                                <tr><td class="true">T</td><td class="true">T</td><td class="true">T</td></tr>
+                                <tr><td class="true">T</td><td class="false">F</td><td class="false">F</td></tr>
+                                <tr><td class="false">F</td><td class="true">T</td><td class="false">F</td></tr>
+                                <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="two-column">
+                    <div>
+                        <p><strong>OR (P ∨ Q)</strong></p>
+                        <table class="truth-table">
+                            <thead><tr><th>P</th><th>Q</th><th>P ∨ Q</th></tr></thead>
+                            <tbody>
+                                <tr><td class="true">T</td><td class="true">T</td><td class="true">T</td></tr>
+                                <tr><td class="true">T</td><td class="false">F</td><td class="true">T</td></tr>
+                                <tr><td class="false">F</td><td class="true">T</td><td class="true">T</td></tr>
+                                <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <p><strong>XOR (P ⊕ Q) — Exclusive OR</strong></p>
+                        <table class="truth-table">
+                            <thead><tr><th>P</th><th>Q</th><th>P ⊕ Q</th></tr></thead>
+                            <tbody>
+                                <tr><td class="true">T</td><td class="true">T</td><td class="false">F</td></tr>
+                                <tr><td class="true">T</td><td class="false">F</td><td class="true">T</td></tr>
+                                <tr><td class="false">F</td><td class="true">T</td><td class="true">T</td></tr>
+                                <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                            </tbody>
+                        </table>
+                        <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
+                            XOR = "one or the other, but not both"
+                        </p>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; background: var(--bg-tertiary); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);">
+                            <strong>Real-world XOR:</strong> "Soup or salad?" at a restaurant means you get <em>one</em>, not both!
+                        </p>
+                    </div>
+                </div>
+                
+                <h3>Complex Expression Example</h3>
+                
+                <div class="example-box">
+                    <h4>📝 Evaluate: (P AND Q) OR (NOT P)</h4>
+                    <code>Step by step for each row:
+
+P    Q  │ P AND Q │ NOT P │ (P AND Q) OR (NOT P)
+────────┼─────────┼───────┼─────────────────────
+T    T  │    T    │   F   │         T
+T    F  │    F    │   F   │         F
+F    T  │    F    │   T   │         T
+F    F  │    F    │   T   │         T</code>
+                </div>
+                
+                <div class="ai-connection">
+                    <h4>🤖 Logic Gates in Neural Networks</h4>
+                    <p>
+                        A single perceptron can learn AND and OR, but NOT XOR! This was the famous 
+                        limitation discovered in 1969. It's why we need multiple layers (deep learning)—to 
+                        combine simple logic gates into complex decision boundaries.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Key Takeaways -->
+            <div class="key-takeaways">
+                <h3>🎯 Key Takeaways</h3>
+                <ul>
+                    <li><strong>Propositions</strong> are statements that are either True or False</li>
+                    <li><strong>NOT</strong> flips truth values; <strong>AND</strong> requires all true; <strong>OR</strong> requires at least one</li>
+                    <li><strong>If-then</strong> is only false when the condition is true but the result is false</li>
+                    <li><strong>Truth tables</strong> exhaustively show all input/output combinations</li>
+                    <li>Logic is the foundation of programming conditions and AI decision-making</li>
+                </ul>
+            </div>
+            
+            <!-- Navigation -->
+            <section class="content-section">
+                <h2>What's Next?</h2>
+                <p>
+                    You've completed the beginner math foundations! Now you're ready for the core topics:
+                </p>
+                
+                <div class="nav-cards">
+                    <a href="calculus.html" class="nav-card">
+                        <span class="nav-card-label">Core Topic</span>
+                        <span class="nav-card-title">Calculus →</span>
+                    </a>
+                    <a href="linear-algebra.html" class="nav-card">
+                        <span class="nav-card-label">Core Topic</span>
+                        <span class="nav-card-title">Linear Algebra →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="../../app.js"></script>
+</body>
+</html>
+

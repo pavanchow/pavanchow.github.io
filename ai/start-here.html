@@ -1,0 +1,545 @@
+<!-- VERSION: v1.0-course-locked (orientation page added) -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="description"
+        content="Start your AI learning journey here—comprehensive orientation guide for the Foundations of AI course.">
+    <title>Start Here: Your Guided Path — Foundations of AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="module-styles.css">
+</head>
+
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-logo">
+            <img src="logo.png" alt="AI Course Logo" class="logo-img" style="width: 24px; height: 24px;">
+            <span class="logo-text">Foundations of AI</span>
+        </a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-icon"><span></span><span></span><span></span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Floating Sidebar Toggle -->
+    <button class="sidebar-toggle-floating" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+    </button>
+
+    <!-- Sidebar Backdrop -->
+    <div class="sidebar-backdrop"></div>
+    <div class="sidebar-overlay"></div>
+
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="AI Course Logo" class="logo-img">
+                    <div class="logo-text">
+                        Foundations
+                        <span class="logo-subtext">of Artificial Intelligence</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" aria-label="Close sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="curriculum-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">I. Foundations</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span
+                                    class="nav-number">1.1</span><span class="nav-label">What AI Actually Is</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-1-2.html" class="nav-link"><span
+                                    class="nav-number">1.2</span><span class="nav-label">Intelligence as
+                                    Pattern-Finding</span></a></li>
+                        <li class="nav-item"><a href="module-1-3.html" class="nav-link"><span
+                                    class="nav-number">1.3</span><span class="nav-label">Probability &
+                                    Uncertainty</span></a></li>
+                        <li class="nav-item"><a href="module-1-4.html" class="nav-link"><span
+                                    class="nav-number">1.4</span><span class="nav-label">Optimization &
+                                    Gradients</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">II. Core Methods</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-2-1.html" class="nav-link"><span
+                                    class="nav-number">2.1</span><span class="nav-label">Decision Boundaries</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-2-2.html" class="nav-link"><span
+                                    class="nav-number">2.2</span><span class="nav-label">Neural Networks as Function
+                                    Approximators</span></a></li>
+                        <li class="nav-item"><a href="module-2-3.html" class="nav-link"><span
+                                    class="nav-number">2.3</span><span class="nav-label">Backpropagation &
+                                    Learning</span></a></li>
+                        <li class="nav-item"><a href="module-2-4.html" class="nav-link"><span
+                                    class="nav-number">2.4</span><span class="nav-label">Generalization &
+                                    Regularization</span></a></li>
+                        <li class="nav-item"><a href="module-2-5.html" class="nav-link"><span
+                                    class="nav-number">2.5</span><span class="nav-label">CNNs, RNNs & Unsupervised
+                                    Learning</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">III. Modern Architectures</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-3-1.html" class="nav-link"><span
+                                    class="nav-number">3.1</span><span class="nav-label">Embeddings & Vector
+                                    Spaces</span></a></li>
+                        <li class="nav-item"><a href="module-3-2.html" class="nav-link"><span
+                                    class="nav-number">3.2</span><span class="nav-label">Attention Mechanisms</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-3-3.html" class="nav-link"><span
+                                    class="nav-number">3.3</span><span class="nav-label">Transformer
+                                    Architecture</span></a></li>
+                        <li class="nav-item"><a href="module-3-4.html" class="nav-link"><span
+                                    class="nav-number">3.4</span><span class="nav-label">Large Language
+                                    Models</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">IV. Generative AI</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-4-1.html" class="nav-link"><span
+                                    class="nav-number">4.1</span><span class="nav-label">Generative vs
+                                    Discriminative</span></a></li>
+                        <li class="nav-item"><a href="module-4-2.html" class="nav-link"><span
+                                    class="nav-number">4.2</span><span class="nav-label">Diffusion Models</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-4-3.html" class="nav-link"><span
+                                    class="nav-number">4.3</span><span class="nav-label">Multimodal Systems</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">V. Evaluation & Practice</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="module-5-1.html" class="nav-link"><span
+                                    class="nav-number">5.1</span><span class="nav-label">Model Evaluation</span></a>
+                        </li>
+                        <li class="nav-item"><a href="module-5-2.html" class="nav-link"><span
+                                    class="nav-number">5.2</span><span class="nav-label">Responsible AI
+                                    Reasoning</span></a></li>
+                        <li class="nav-item"><a href="module-5-3.html" class="nav-link"><span
+                                    class="nav-number">5.3</span><span class="nav-label">From Research to
+                                    Deployment</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text">Orientation</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="breadcrumb">
+                    <span>Getting Started</span>
+                    <span class="breadcrumb-sep">→</span>
+                    <span>Orientation</span>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <article class="module-content">
+                <!-- Module Hero -->
+                <section class="module-hero">
+                    <div class="module-meta">
+                        <span class="module-tag">Orientation</span>
+                        <span class="module-duration">~5 min</span>
+                    </div>
+                    <h1 class="module-title">Start Here: Your Guided Path Through the AI Course</h1>
+                    <p class="module-subtitle">
+                        Welcome! This page will guide you through the course structure, help you assess your readiness,
+                        and set you up for success in learning the foundations of artificial intelligence.
+                    </p>
+                </section>
+
+                <!-- Section 1: Before You Begin -->
+                <section class="content-section">
+                    <h2 class="section-heading">Before You Begin</h2>
+
+                    <p class="lead-paragraph">
+                        This course is designed to be <strong>rigorous and comprehensive</strong>. To get the most out
+                        of it,
+                        you should complete the prerequisites first. Think of them as the foundation—without them, the
+                        main
+                        course modules won't make sense.
+                    </p>
+
+                    <div
+                        style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, transparent 100%); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0;">
+                        <h4
+                            style="color: #f59e0b; font-size: 0.9rem; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                            📚 What You Need to Know First
+                        </h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div>
+                                <strong style="color: var(--text-primary);">Mathematics Prerequisites:</strong>
+                                <ul
+                                    style="margin: 0.5rem 0 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.7;">
+                                    <li><strong>Functions:</strong> What f(x) means, how to read graphs</li>
+                                    <li><strong>Vectors:</strong> Arrays of numbers, geometric interpretation</li>
+                                    <li><strong>Dot product:</strong> How to compute it, what it represents</li>
+                                    <li><strong>Derivatives:</strong> Rate of change, slopes of curves</li>
+                                    <li><strong>Basic probability:</strong> P(A), conditional probability</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Programming Prerequisites (Optional but
+                                    Helpful):</strong>
+                                <ul
+                                    style="margin: 0.5rem 0 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.7;">
+                                    <li><strong>Variables:</strong> Storing and naming data</li>
+                                    <li><strong>Loops:</strong> Repeating actions (for, while)</li>
+                                    <li><strong>Conditionals:</strong> if/else logic</li>
+                                    <li><strong>Functions:</strong> Defining reusable code blocks</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p style="margin: 1rem 0 0; font-size: 0.875rem; color: var(--text-tertiary);">
+                            <strong>Not sure?</strong> Check the <a href="index.html#prerequisites"
+                                style="color: #f59e0b;">Prerequisites section</a>
+                            on the homepage for detailed guides and self-assessment questions.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 2: Recommended Course Order -->
+                <section class="content-section">
+                    <h2 class="section-heading">Recommended Course Order</h2>
+
+                    <p class="lead-paragraph">
+                        Follow this sequence for the best learning experience. Each step builds on the previous ones.
+                    </p>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Phase 1: Prerequisites (Complete These First)</h3>
+                        <div
+                            style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+                            <h4 style="font-size: 0.9rem; color: var(--text-primary); margin: 0 0 0.75rem;">Mathematics
+                            </h4>
+                            <ol
+                                style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+                                <li><a href="prerequisites/Mathematics/math-foundations.html">Math Foundations</a> —
+                                    Functions, variables, graphs</li>
+                                <li><a href="prerequisites/Mathematics/number-sense.html">Number Sense</a> — Real
+                                    numbers, growth patterns</li>
+                                <li><a href="prerequisites/Mathematics/logic-basics.html">Logic Basics</a> —
+                                    Propositions, truth tables</li>
+                                <li><a href="prerequisites/Mathematics/calculus.html">Calculus</a> — Derivatives, chain
+                                    rule</li>
+                                <li><a href="prerequisites/Mathematics/linear-algebra.html">Linear Algebra</a> —
+                                    Vectors, matrices, dot products</li>
+                                <li><a href="prerequisites/Mathematics/probability.html">Probability</a> — Basic
+                                    probability, expectation</li>
+                            </ol>
+                        </div>
+                        <div
+                            style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+                            <h4 style="font-size: 0.9rem; color: var(--text-primary); margin: 0 0 0.75rem;">Programming
+                                (Optional)</h4>
+                            <ol
+                                style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+                                <li><a href="prerequisites/Programming/programming-foundations.html">Programming
+                                        Foundations</a> — What is a program?</li>
+                                <li><a href="prerequisites/Programming/python-basics.html">Python Basics</a> —
+                                    Variables, data types</li>
+                                <li><a href="prerequisites/Programming/control-flow.html">Control Flow</a> — Loops,
+                                    conditionals</li>
+                                <li><a href="prerequisites/Programming/functions-data.html">Functions & Data</a> —
+                                    Functions, lists, dictionaries</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3 class="concept-title">Phase 2: Main Course (In Order)</h3>
+                        <div
+                            style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+                            <ol
+                                style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+                                <li><strong>Module 1: Foundations</strong> — <a href="index.html">What AI Is</a>,
+                                    Pattern-Finding, Probability, Optimization</li>
+                                <li><strong>Module 2: Core Methods</strong> — Decision Boundaries, Neural Networks,
+                                    Backpropagation, Regularization</li>
+                                <li><strong>Module 3: Modern Architectures</strong> — Embeddings, Attention,
+                                    Transformers, LLMs</li>
+                                <li><strong>Module 4: Generative AI</strong> — Generative Models, Diffusion, Multimodal
+                                    Systems</li>
+                                <li><strong>Module 5: Evaluation & Practice</strong> — Model Evaluation, Responsible AI,
+                                    Deployment</li>
+                            </ol>
+                        </div>
+                        <p style="margin: 1rem 0 0; font-size: 0.9rem; color: var(--text-tertiary);">
+                            <strong>Don't skip ahead!</strong> Each module assumes you've mastered the previous ones.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 3: How Long Will This Take? -->
+                <section class="content-section">
+                    <h2 class="section-heading">How Long Will This Take?</h2>
+
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                        <div
+                            style="background: linear-gradient(135deg, rgba(102, 153, 204, 0.1) 0%, transparent 100%); border: 1px solid rgba(102, 153, 204, 0.3); border-radius: var(--radius-md); padding: 1.25rem;">
+                            <h4
+                                style="color: #6699cc; font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                                Prerequisites</h4>
+                            <p style="font-size: 2rem; font-weight: 600; color: var(--text-primary); margin: 0;">6–10
+                                hours</p>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--text-secondary);">
+                                Mathematics + Programming basics</p>
+                        </div>
+                        <div
+                            style="background: linear-gradient(135deg, rgba(80, 184, 146, 0.1) 0%, transparent 100%); border: 1px solid rgba(80, 184, 146, 0.3); border-radius: var(--radius-md); padding: 1.25rem;">
+                            <h4
+                                style="color: #50b892; font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                                Main Course</h4>
+                            <p style="font-size: 2rem; font-weight: 600; color: var(--text-primary); margin: 0;">12–18
+                                hours</p>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--text-secondary);">All 19
+                                modules with labs</p>
+                        </div>
+                        <div
+                            style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: var(--radius-md); padding: 1.25rem;">
+                            <h4
+                                style="color: #a78bfa; font-size: 0.8rem; font-weight: 600; margin: 0 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                                Total Time</h4>
+                            <p style="font-size: 2rem; font-weight: 600; color: var(--text-primary); margin: 0;">18–28
+                                hours</p>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--text-secondary);">Complete
+                                course from start to finish</p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, rgba(80, 184, 146, 0.08) 0%, transparent 100%); border: 1px solid rgba(80, 184, 146, 0.25); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0;">
+                        <h4 style="color: var(--accent-emerald); font-size: 0.9rem; margin: 0 0 0.75rem;">💡 Pacing
+                            Recommendations</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+                            <li><strong>Intensive pace:</strong> 1–2 weeks (3–4 hours/day)</li>
+                            <li><strong>Moderate pace:</strong> 3–4 weeks (1–2 hours/day)</li>
+                            <li><strong>Relaxed pace:</strong> 6–8 weeks (30–60 min/day)</li>
+                        </ul>
+                        <p style="margin: 0.75rem 0 0; font-size: 0.875rem;">
+                            <strong>Quality over speed.</strong> It's better to deeply understand Module 1 than to rush
+                            through all 19 modules superficially.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 4: Learning Flow -->
+                <section class="content-section">
+                    <h2 class="section-heading">How Each Module Works</h2>
+
+                    <p class="lead-paragraph">
+                        Every module follows a carefully designed learning flow to build understanding progressively:
+                    </p>
+
+                    <div style="margin: 2rem 0;">
+                        <div style="display: grid; gap: 1.5rem;">
+                            <!-- Step 1 -->
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, rgba(102, 153, 204, 0.2) 0%, rgba(102, 153, 204, 0.05) 100%); border: 2px solid #6699cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #6699cc;">
+                                    1</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 1rem;">
+                                        Intuition First</h4>
+                                    <p
+                                        style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">
+                                        We start with real-world analogies and visual explanations. Why does this
+                                        concept matter? What problem does it solve?
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, rgba(102, 153, 204, 0.2) 0%, rgba(102, 153, 204, 0.05) 100%); border: 2px solid #6699cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #6699cc;">
+                                    2</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 1rem;">
+                                        Mathematical Depth</h4>
+                                    <p
+                                        style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">
+                                        Then we dive into the math. Equations, formulas, proofs. This is where you
+                                        understand <em>how</em> it works.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, rgba(102, 153, 204, 0.2) 0%, rgba(102, 153, 204, 0.05) 100%); border: 2px solid #6699cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #6699cc;">
+                                    3</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 1rem;">
+                                        Interactive Lab</h4>
+                                    <p
+                                        style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">
+                                        Play with the concept! Interactive visualizations let you adjust parameters and
+                                        see results in real-time.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, rgba(102, 153, 204, 0.2) 0%, rgba(102, 153, 204, 0.05) 100%); border: 2px solid #6699cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #6699cc;">
+                                    4</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 1rem;">Code
+                                        View (Optional)</h4>
+                                    <p
+                                        style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">
+                                        See production-quality Python/PyTorch implementations. You can read, copy, or
+                                        modify the code.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, rgba(102, 153, 204, 0.2) 0%, rgba(102, 153, 204, 0.05) 100%); border: 2px solid #6699cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #6699cc;">
+                                    5</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 1rem;">Recap &
+                                        Quiz</h4>
+                                    <p
+                                        style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">
+                                        Key takeaways and self-check questions verify your understanding before moving
+                                        forward.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: Final Advice -->
+                <section class="content-section">
+                    <h2 class="section-heading">Final Advice: How to Succeed</h2>
+
+                    <div class="key-insight">
+                        <div class="insight-icon">◈</div>
+                        <div class="insight-content">
+                            <h4>You Don't Need to Understand Everything Immediately</h4>
+                            <p>
+                                AI is complex. Neural networks, backpropagation, attention mechanisms—these aren't
+                                simple topics.
+                                <strong>Confusion is normal and expected.</strong> The first time you read about
+                                gradient descent, it might not click.
+                                That's okay. Read it again. Try the lab. Look at the visualizations. Understanding comes
+                                with repetition and practice.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%); border: 1px solid var(--surface-3); border-radius: var(--radius-lg); padding: 1.5rem; margin: 2rem 0;">
+                        <h4 style="color: var(--text-primary); font-size: 1rem; margin: 0 0 1rem;">✨ Tips for Success
+                        </h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.9;">
+                            <li><strong>Take notes by hand.</strong> Writing forces you to process, not just consume.
+                            </li>
+                            <li><strong>Do the math yourself.</strong> Don't just read the equations—work through them
+                                on paper.</li>
+                            <li><strong>Ask "why?" constantly.</strong> Why this formula? Why this architecture?
+                                Curiosity drives understanding.</li>
+                            <li><strong>Revisit modules.</strong> Come back to Module 1 after Module 5. You'll
+                                understand it differently.</li>
+                            <li><strong>Explore the labs.</strong> They're interactive for a reason. Change the
+                                parameters. Break things. Learn by doing.</li>
+                            <li><strong>Don't compare your pace.</strong> Some people fly through; others take it slow.
+                                Both are fine.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: var(--radius-md); padding: 1.5rem; margin: 2rem 0;">
+                        <h4
+                            style="color: #a78bfa; font-size: 1rem; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🚀 Ready to Begin?
+                        </h4>
+                        <p style="margin: 0 0 1rem; color: var(--text-secondary); line-height: 1.7;">
+                            Start with the prerequisites if you haven't already, or jump straight into <strong>Module
+                                1.1: What AI Actually Is</strong>
+                            if you're confident in your background.
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="index.html#prerequisites"
+                                style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--accent-blue); color: white; border-radius: var(--radius-md); text-decoration: none; font-weight: 500; transition: all 0.2s;">
+                                📚 Start with Prerequisites
+                            </a>
+                            <a href="index.html"
+                                style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--bg-elevated); border: 1px solid var(--surface-3); color: var(--text-primary); border-radius: var(--radius-md); text-decoration: none; font-weight: 500; transition: all 0.2s;">
+                                ◇ Jump to Module 1.1
+                            </a>
+                        </div>
+                    </div>
+
+                    <p
+                        style="text-align: center; font-size: 0.9rem; color: var(--text-tertiary); margin: 2rem 0 0; font-style: italic;">
+                        Remember: The goal isn't to finish quickly. The goal is to <strong>deeply understand</strong>
+                        how AI works.
+                    </p>
+                </section>
+
+            </article>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

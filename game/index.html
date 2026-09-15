@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Set character encoding -->
+  <meta charset="UTF-8"/>
+  <!-- Page title -->
+  <title>Floors, Bridge, and Joystick Control with Camera Orbit</title>
+  <!-- CSS styles for layout and UI elements -->
+  <style>
+    /* Remove default margins and hide scrollbars */
+    body {
+      margin: 0; 
+      overflow: hidden; 
+      background: #333; /* Dark background */
+    }
+    /* Speed slider container styling (top-left corner) */
+    #speedContainer {
+      position: absolute; 
+      top: 10px; 
+      left: 10px; 
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff; 
+      padding: 8px; 
+      font-family: sans-serif;
+      z-index: 9999; /* Ensures it appears on top */
+    }
+    #speedContainer label {
+      margin-right: 10px;
+    }
+    #speedSlider {
+      width: 150px;
+    }
+    /* Joystick container styling (bottom-left corner) */
+    #joystickContainer {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 100px; 
+      height: 100px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      z-index: 9999;
+      touch-action: none; /* Allows custom pointer handling on mobile */
+    }
+    /* Joystick knob styling */
+    #joystickKnob {
+      position: absolute;
+      width: 20px; 
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      transform: translate(40px,40px);
+      touch-action: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Speed slider UI for controlling movement speed -->
+  <div id="speedContainer">
+    <!-- Label shows current speed -->
+    <label for="speedSlider">Speed: <span id="speedLabel">50</span></label>
+    <!-- Input slider element -->
+    <input type="range" min="0" max="300" step="10" id="speedSlider" value="50"/>
+  </div>
+
+  <!-- Joystick UI for mobile control -->
+  <div id="mobileControls" style="display:none; position:absolute; bottom:20px; left:20px;">
+    <button id="arrowUp">▲</button><br>
+    <button id="arrowLeft">◄</button>
+    <button id="arrowDown">▼</button>
+    <button id="arrowRight">►</button>
+  </div>
+
+  <!-- Main JavaScript file; placed at the end so that the DOM is loaded -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
