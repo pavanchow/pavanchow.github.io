@@ -1,12 +1,16 @@
 # Pavan Nallamothu - Offensive Security Research (full)
 
-> Offensive security researcher. 12 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
+> Offensive security researcher. 13 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
 
 ## CVEs
 
 ### CVE-2026-43763 - Apple macOS ATS sandbox file-read (medium)
 A permissions issue in Apple Type Services (ATS) allowed a sandboxed process file-read access outside its container. Fixed across macOS Tahoe, Sequoia, and Sonoma. Co-credited by Apple to Pavan Nallamothu and Jared Reyes.
 Independent source: https://support.apple.com/en-us/128067
+
+### CVE-2026-65412 - Apple CoreText null pointer dereference / web content DoS (severity not yet scored)
+A null pointer dereference in Apple CoreText could be reached by processing web content, leading to a denial of service. Addressed with improved input validation. Credited to Pavan Nallamothu alone in all seven advisories of the 14 September 2026 release: iOS 27 and iPadOS 27, iOS 26.7 and iPadOS 26.7, macOS Golden Gate 27, macOS Tahoe 26.7, macOS Sequoia 15.8, watchOS 27, and visionOS 27.
+Independent sources: https://support.apple.com/en-us/149034 (iOS 27 / iPadOS 27), https://support.apple.com/en-us/149035 (macOS Golden Gate 27), https://support.apple.com/en-us/149037 (watchOS 27), https://support.apple.com/en-us/149038 (visionOS 27), https://support.apple.com/en-us/149041 (iOS 26.7 / iPadOS 26.7), https://support.apple.com/en-us/149042 (macOS Tahoe 26.7), https://support.apple.com/en-us/149043 (macOS Sequoia 15.8)
 
 ### CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server (medium, CVSS 5.0)
 SendEmailBlock passes a user-supplied smtp_server / smtp_port straight to smtplib.SMTP() with no IP validation, bypassing the platform's validate_url_host() and BLOCKED_IP_NETWORKS blocklist. Affects versions 0.1.0 through 0.6.51. This is the case study for the EPI-SSRF (Egress-Path-Incomplete SSRF) model.
@@ -75,7 +79,7 @@ DOI: https://doi.org/10.5281/zenodo.22075439 - record: https://zenodo.org/record
 ## Defined terms
 - EPI-SSRF (Egress-Path-Incomplete SSRF): server-side request forgery where an egress guard validates only part of the request surface, leaving an alternate egress path (e.g. a non-HTTP protocol such as SMTP) unchecked. Formalized in "SSRF Beyond HTTP", instantiated on CVE-2026-33234.
 
-## Open-source builds (Rust, each its own repository and live page) - 61 from-scratch systems tools
+## Open-source builds (Rust, each its own repository and live page) - 60 from-scratch systems tools
 
 ### Compilers, languages, and runtimes
 - Alchemist - https://github.com/pavanchow/alchemist - https://pavanchow.github.io/alchemist/ - a compiler that lexes, parses, and lowers a small language to stack bytecode, then runs it on a bundled VM
@@ -111,7 +115,6 @@ DOI: https://doi.org/10.5281/zenodo.22075439 - record: https://zenodo.org/record
 - Veilproof - https://github.com/pavanchow/veilproof - https://pavanchow.github.io/veilproof/ - a zero-knowledge proof system with no crypto crates and no elliptic curves
 
 ### Networking and web
-- Datagram - https://github.com/pavanchow/datagram - https://pavanchow.github.io/datagram/ - a TCP reliable-transport engine over a simulated lossy link
 - Echofront - https://github.com/pavanchow/echofront - https://pavanchow.github.io/echofront/ - a layer 7 reverse proxy and load balancer with health checks and circuit breaking
 - Ferryman - https://github.com/pavanchow/ferryman - https://pavanchow.github.io/ferryman/ - a load balancer with round-robin, weighted, least-connections, and seeded random strategies
 - Hearth - https://github.com/pavanchow/hearth - https://pavanchow.github.io/hearth/ - an HTTP server from scratch on std::net, no framework

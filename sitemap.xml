@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://pavanchow.github.io/</loc><lastmod>2026-09-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://pavanchow.github.io/about/</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://pavanchow.github.io/papers/ssrf-beyond-http.html</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://pavanchow.github.io/papers/trusting-the-filename.html</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pavanchow.github.io/</loc><lastmod>2026-09-15</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://pavanchow.github.io/about/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://pavanchow.github.io/papers/ssrf-beyond-http.html</loc><lastmod>2026-09-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pavanchow.github.io/papers/trusting-the-filename.html</loc><lastmod>2026-09-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pavanchow.github.io/epi-ssrf/</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://pavanchow.github.io/cve/</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pavanchow.github.io/cve/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pavanchow.github.io/cve/CVE-2026-43763.html</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pavanchow.github.io/cve/CVE-2026-63013.html</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pavanchow.github.io/cve/CVE-2026-63014.html</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/cve/CVE-2026-65412.html</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/cve/CVE-2026-63013.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/cve/CVE-2026-63014.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pavanchow.github.io/cve/CVE-2026-63177.html</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pavanchow.github.io/cve/CVE-2026-63134.html</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pavanchow.github.io/cve/CVE-2026-63133.html</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -80,4 +81,12 @@
   <url><loc>https://pavanchow.github.io/stopwatch/</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://pavanchow.github.io/Codebase-Cartographer/</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pavanchow.github.io/siteguard-scorecard/</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://pavanchow.github.io/ai/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pavanchow.github.io/blog/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/book/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/diy/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pavanchow.github.io/game/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pavanchow.github.io/web/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pavanchow.github.io/how-to.html</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
