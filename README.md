@@ -3,7 +3,7 @@
 **Security Researcher** - Jersey City, NJ · MS Cybersecurity, Pace University
 
 Published vulnerability research credited by Apple, CISA, the NSA, NASA, and open-source
-maintainers. 14 assigned CVEs across Apple, CISA, the NSA, AutoGPT, yt-dlp, and
+maintainers. 14 assigned CVEs across Apple, CISA, the NSA, NASA, AutoGPT, yt-dlp, and
 BlueprintUE, plus published GitHub Security Advisories and two research papers on
 SSRF and archive/download file-write attacks.
 
