@@ -2,7 +2,7 @@
 
 **Security Researcher** - Jersey City, NJ · MS Cybersecurity, Pace University
 
-Published vulnerability research credited by Apple, CISA, the NSA, and open-source
+Published vulnerability research credited by Apple, CISA, the NSA, NASA, and open-source
 maintainers. 14 assigned CVEs across Apple, CISA, the NSA, AutoGPT, yt-dlp, and
 BlueprintUE, plus published GitHub Security Advisories and two research papers on
 SSRF and archive/download file-write attacks.
@@ -21,6 +21,7 @@ Website: https://pavanchow.github.io/
 | CVE-2026-43763 | Apple (App Transport Security) | Transport security |
 | CVE-2026-65412 | Apple (CoreText) | Denial of service |
 | CVE-2026-92148 | NationalSecurityAgency/skills-service | Privilege escalation |
+| GHSA-fjr5-6w4j-47xf | NASA-AMMOS/AIT-Core (no CVE) | Denial of service |
 | CVE-2026-33234 | Significant-Gravitas/AutoGPT | SSRF |
 | CVE-2026-50023 | yt-dlp | File write |
 | CVE-2026-63013 | NationalSecurityAgency/skills-service | Privilege escalation |

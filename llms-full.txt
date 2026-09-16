@@ -1,6 +1,6 @@
 # Pavan Nallamothu - Offensive Security Research (full)
 
-> Offensive security researcher. 14 published CVEs across Apple, CISA, NSA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
+> Offensive security researcher. 14 published CVEs across Apple, CISA, NSA, NASA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
 
 ## CVEs
 
@@ -15,6 +15,10 @@ Independent sources: https://support.apple.com/en-us/149034 (iOS 27 / iPadOS 27)
 ### CVE-2026-92148 - NSA skills-service privilege escalation to root admin via the Inception token endpoint (high)
 The Inception token endpoint accepts an arbitrary userId from the URL path with no validation that it matches the authenticated caller. The resulting JWT carries the target user's full authorities, and /root/** endpoints skip the proxyingSystemId vs projectId check entirely because root URLs carry no project ID, so any authenticated user escalates to root administrator and can grant themselves persistent ROLE_SUPER_DUPER_USER. Fixed in 4.6.1; Form authentication mode is the prerequisite.
 Independent source: https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-gx26-q78q-6hxr
+
+### GHSA-fjr5-6w4j-47xf - NASA AIT-Core format-string memory exhaustion in the BSC capture manager (high)
+The BSC capture manager passes an unvalidated file_name_pattern from a POST request into str.format(). A padding directive such as {name:999999999} forces an allocation of about 1GB and crashes the ground station capture manager; repeating the request exhausts memory. The REST handler accepted the parameter even though an earlier commit blocked log_dir_path and validated path. Fixed in 3.1.2 by removing it from the REST API, leaving it configurable only by file. No CVE assigned.
+Independent source: https://github.com/NASA-AMMOS/AIT-Core/security/advisories/GHSA-fjr5-6w4j-47xf
 
 ### CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server (medium, CVSS 5.0)
 SendEmailBlock passes a user-supplied smtp_server / smtp_port straight to smtplib.SMTP() with no IP validation, bypassing the platform's validate_url_host() and BLOCKED_IP_NETWORKS blocklist. Affects versions 0.1.0 through 0.6.51. This is the case study for the EPI-SSRF (Egress-Path-Incomplete SSRF) model.
