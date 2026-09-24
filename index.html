@@ -1333,7 +1333,7 @@ var MY_CVES = [
    url:'https://www.cve.org/CVERecord?id=CVE-2026-65412',meta:'Moderate (6.5) · Fixed: iOS 27 · iPadOS 27 · macOS 27 · macOS Tahoe 26.7 · Sequoia 15.8 · watchOS 27 · visionOS 27'},
   {id:'CVE-2026-92148',sev:'high',tag:'NSA skills-service',title:'Privilege escalation to root admin via Inception token endpoint (IDOR)',
    desc:'The Inception token endpoint accepts an arbitrary userId with no check that it matches the caller. The resulting JWT carries the target user\'s full authorities, and /root/** endpoints skip the proxyingSystemId check entirely because root URLs have no project ID. Any authenticated user escalates to root administrator and can grant themselves persistent ROLE_SUPER_DUPER_USER.',
-   url:'https://www.cve.org/CVERecord?id=CVE-2026-92148',meta:'High · NSA · Fixed: 4.6.1'},
+   url:'https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-gx26-q78q-6hxr',meta:'High · NSA · Fixed: 4.6.1'},
   {id:'CVE-2026-63013',sev:'high',tag:'NSA skills-service',title:'Privilege escalation via unauthorized admin-group assignment',
    desc:'Three admin-group assignment endpoints grant admin roles with no caller-authorization check. Any authenticated user takes over any project, quiz, or global badge, reading and destructively deleting data. CVSS 8.8.',
    url:'https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-67x3-r85f-822r',meta:'High (8.8) · NSA · CVE assigned, MITRE record pending'},
