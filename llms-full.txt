@@ -1,6 +1,6 @@
 # Pavan Nallamothu - Offensive Security Research (full)
 
-> Offensive security researcher. 17 published CVEs across Apple, CISA, NSA, NASA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
+> Offensive security researcher. 14 published CVEs across Apple, CISA, NSA, NASA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). This file expands the manifest in /llms.txt with the full technical body of each item. Every item carries the independent third-party advisory that credits "pavanchow" / "Pavan Nallamothu". The researcher/credentials hub is https://pavanchow.gitlab.io/.
 
 ## CVEs
 
@@ -15,6 +15,10 @@ Independent sources: https://support.apple.com/en-us/149034 (iOS 27 / iPadOS 27)
 ### CVE-2026-92148 - NSA skills-service privilege escalation to root admin via the Inception token endpoint (high)
 The Inception token endpoint accepts an arbitrary userId from the URL path with no validation that it matches the authenticated caller. The resulting JWT carries the target user's full authorities, and /root/** endpoints skip the proxyingSystemId vs projectId check entirely because root URLs carry no project ID, so any authenticated user escalates to root administrator and can grant themselves persistent ROLE_SUPER_DUPER_USER. Fixed in 4.6.1; Form authentication mode is the prerequisite.
 Independent source: https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-gx26-q78q-6hxr
+
+### GHSA-fjr5-6w4j-47xf - NASA AIT-Core format-string memory exhaustion in the BSC capture manager (high)
+The BSC capture manager passes an unvalidated file_name_pattern from a POST request into str.format(). A padding directive such as {name:999999999} forces an allocation of about 1GB and crashes the ground station capture manager; repeating the request exhausts memory. The REST handler accepted the parameter even though an earlier commit blocked log_dir_path and validated path. Fixed in 3.1.2 by removing it from the REST API, leaving it configurable only by file. No CVE assigned.
+Independent source: https://github.com/NASA-AMMOS/AIT-Core/security/advisories/GHSA-fjr5-6w4j-47xf
 
 ### CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server (medium, CVSS 5.0)
 SendEmailBlock passes a user-supplied smtp_server / smtp_port straight to smtplib.SMTP() with no IP validation, bypassing the platform's validate_url_host() and BLOCKED_IP_NETWORKS blocklist. Affects versions 0.1.0 through 0.6.51. This is the case study for the EPI-SSRF (Egress-Path-Incomplete SSRF) model.
@@ -35,18 +39,6 @@ Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-
 ### CVE-2026-63177 - CISA Malcolm authorization bypass via URI-normalization differential / RBAC (high)
 A URI-normalization differential between the reverse proxy and the application backend lets an authenticated user bypass ROLE_UPLOAD checks and reach the upload/processing endpoint without the required role.
 Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-m5fr-rv3h-xg2r
-
-### CVE-2026-107337 - CISA Malcolm unauthenticated script execution via CSRF (high, CVSS 7.1)
-Unauthenticated script execution via CSRF in the kiosk /script_call endpoint. Published 2026-08-24.
-Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm
-
-### CVE-2026-107361 - CISA Malcolm missing server-to-server auth on the Hedgehog Sensor Arkime reachback port (medium, CVSS 4.2)
-Missing server-to-server (s2s) authentication on the Hedgehog Sensor Arkime reachback port. Published 2026-08-24.
-Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34
-
-### CVE-2026-107362 - CISA Malcolm full-read SSRF via FilePond remote-URL fetch in the file-upload component (high, CVSS 7.1)
-The file-upload component passes a client-supplied remote URL to the unmodified FilePond fetch API, letting an attacker reach internal services and read back the full response body. Published 2026-08-24.
-Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-cvx2-hj33-vc4q
 
 ### CVE-2026-63013 - NSA skills-service privilege escalation (high, CVSS 8.8)
 Three admin-group assignment endpoints grant admin roles with no caller-authorization check. Any authenticated user takes over any project, quiz, or global badge, reading and destructively deleting data. CVE assigned, MITRE record pending. The GitHub Security Advisory is the canonical source.
@@ -74,9 +66,13 @@ Independent source: https://github.com/blueprintue/blueprintue-self-hosted-editi
 
 ## Advisories without a CVE
 
-### GHSA-fjr5-6w4j-47xf - NASA AIT-Core format-string memory exhaustion in the BSC capture manager (high)
-The BSC capture manager passes an unvalidated file_name_pattern from a POST request into str.format(). A padding directive such as {name:999999999} forces an allocation of about 1GB and crashes the ground station capture manager; repeating the request exhausts memory. The REST handler accepted the parameter even though an earlier commit blocked log_dir_path and validated path. Fixed in 3.1.2 by removing it from the REST API, leaving it configurable only by file. No CVE assigned.
-Independent source: https://github.com/NASA-AMMOS/AIT-Core/security/advisories/GHSA-fjr5-6w4j-47xf
+### GHSA-w8gq-4v5x-xrrm - CISA Malcolm unauthenticated script execution via CSRF (high, CVSS 7.1)
+Unauthenticated script execution via CSRF in the kiosk /script_call endpoint. Published 2026-08-24.
+Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm
+
+### GHSA-86h3-7rf8-8j34 - CISA Malcolm missing server-to-server auth (moderate, CVSS 4.2)
+Missing server-to-server (s2s) authentication on the Hedgehog Sensor Arkime reachback port. Published 2026-08-24.
+Independent source: https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34
 
 ## Papers
 

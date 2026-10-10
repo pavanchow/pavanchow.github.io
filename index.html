@@ -77,9 +77,9 @@
     "author":{"@id":"https://pavanchow.gitlab.io/#pavan"},
     "datePublished":"2026-08-24",
     "inLanguage":"en",
-    "identifier":["https://doi.org/10.5281/zenodo.22075439","https://doi.org/10.20944/preprints202608.2314.v1"],
+    "identifier":["https://doi.org/10.5281/zenodo.22075439","https://doi.org/10.20944/preprints202608.2314.v2"],
     "url":"https://pavanchow.github.io/papers/trusting-the-filename.html",
-    "sameAs":["https://doi.org/10.5281/zenodo.22075439","https://doi.org/10.20944/preprints202608.2314.v1","https://www.preprints.org/manuscript/202608.2314/v1"],
+    "sameAs":["https://doi.org/10.5281/zenodo.22075439","https://doi.org/10.20944/preprints202608.2314.v2","https://www.preprints.org/manuscript/202608.2314/v2"],
     "publisher":{"@type":"Organization","name":"Zenodo"}
   },
   {
@@ -552,7 +552,7 @@ footer a{color:var(--text-muted)}footer a:hover{color:var(--accent)}
         <span class="card-tag">Preprint</span>
         <h3>Trusting the Filename: File-Write Attacks from Untrusted Archive and Download Metadata</h3>
         <p>File-write attacks from attacker-controlled archive and download metadata across three 2026 CVEs. Zenodo, 2026.</p>
-        <div class="card-meta"><a href="papers/trusting-the-filename.html" style="color:var(--accent)">Paper &amp; PDF</a><a href="https://doi.org/10.5281/zenodo.22075439" target="_blank" rel="noopener" style="color:var(--accent)">doi &rarr;</a><a href="https://doi.org/10.20944/preprints202608.2314.v1" target="_blank" rel="noopener" style="color:var(--accent)">preprints doi &rarr;</a></div>
+        <div class="card-meta"><a href="papers/trusting-the-filename.html" style="color:var(--accent)">Paper &amp; PDF</a><a href="https://doi.org/10.5281/zenodo.22075439" target="_blank" rel="noopener" style="color:var(--accent)">doi &rarr;</a><a href="https://doi.org/10.20944/preprints202608.2314.v2" target="_blank" rel="noopener" style="color:var(--accent)">preprints doi &rarr;</a></div>
       </article>
       <article class="card">
         <span class="card-tag">Preprint &middot; under review</span>
@@ -1849,7 +1849,7 @@ var COMMANDS = {
   tree: function() {
     return '<span class="acc">pavan-blog/</span>\n' +
       '├── <span class="acc">CVE_Portfolio/</span> (17 CVEs)\n' +
-      '├── <span class="acc">Advisories/</span> (9 GHSAs)\n' +
+      '├── <span class="acc">Advisories/</span> (5 GHSAs)\n' +
       '├── <span class="acc">Lab/</span> (5 PoCs)\n' +
       '├── <span class="acc">Experience/</span>\n' +
       '├── <span class="acc">Education/</span>\n' +
@@ -1967,9 +1967,9 @@ var COMMANDS = {
   },
   projects: function() {
     return '<table class="cli-table">' +
-      '<tr><td>1.</td><td><span class="acc">Apple</span> (CVE-2026-43763, CVE-2026-65412), Sandbox file-read + CoreText web-content DoS</td></tr>' +
-      '<tr><td>2.</td><td><span class="acc">NSA skills-service</span> (CVE-2026-63013, 63014, 92148), Priv esc + IDOR + root token IDOR</td></tr>' +
-      '<tr><td>3.</td><td><span class="acc">CISA Malcolm</span> (CVE-2026-63133, 63134, 63177, 107337, 107361, 107362), RBAC bypass + path traversal + DoS + CSRF + SSRF + auth bypass</td></tr>' +
+      '<tr><td>1.</td><td><span class="acc">Apple macOS</span> (CVE-2026-43763), Sandbox file-read</td></tr>' +
+      '<tr><td>2.</td><td><span class="acc">NSA skills-service</span> (CVE-2026-63013/14), Priv esc + IDOR</td></tr>' +
+      '<tr><td>3.</td><td><span class="acc">CISA Malcolm</span> (CVE-2026-63177/34/33), RBAC bypass + path traversal + DoS</td></tr>' +
       '<tr><td>4.</td><td><span class="acc">AutoGPT</span> (CVE-2026-33234), SSRF via SMTP</td></tr>' +
       '<tr><td>5.</td><td><span class="acc">yt-dlp</span> (CVE-2026-50023), Dangerous file creation</td></tr>' +
       '<tr><td>6.</td><td><span class="acc">BlueprintUE</span> (4 CVEs), Auth bypass, brute force, reset tokens, sessions</td></tr>' +
