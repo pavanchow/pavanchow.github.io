@@ -1,6 +1,6 @@
 # Pavan Nallamothu - Offensive Security Tooling and Exploits
 
-> Offensive security researcher. 14 published CVEs across Apple, CISA, NSA, NASA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
+> Offensive security researcher. 17 published CVEs across Apple, CISA, NSA, NASA, AutoGPT, yt-dlp and BlueprintUE, plus two open-access papers (Zenodo). Every claim below links to an independent, third-party source that credits "pavanchow" / "Pavan Nallamothu".
 
 This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproduction scripts, the two papers, 60 from-scratch systems tools, and two standalone projects. The researcher/credentials hub is pavanchow.gitlab.io. Each CVE line points to the vendor or GitHub Security Advisory that names the reporter, not to a self-authored page.
 
@@ -12,12 +12,14 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 - [CVE-2026-43763 - Apple macOS ATS sandbox file-read](https://support.apple.com/en-us/128067): Apple security release co-credits "Pavan Nallamothu, Jared Reyes"
 - [CVE-2026-65412 - Apple CoreText null pointer dereference / web content DoS](https://support.apple.com/en-us/149034): credited to Pavan Nallamothu alone in all seven advisories of the 14 September 2026 release (iOS 27, iPadOS 27, iOS 26.7, iPadOS 26.7, macOS Golden Gate 27, macOS Tahoe 26.7, macOS Sequoia 15.8, watchOS 27, visionOS 27). Registry: https://www.cve.org/CVERecord?id=CVE-2026-65412
 - [CVE-2026-92148 - NSA skills-service privilege escalation to root admin via the Inception token endpoint](https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-gx26-q78q-6hxr): GHSA-gx26-q78q-6hxr credits pavanchow (Finder). Fixed in 4.6.1.
-- [GHSA-fjr5-6w4j-47xf - NASA AIT-Core format-string memory exhaustion in the BSC capture manager](https://github.com/NASA-AMMOS/AIT-Core/security/advisories/GHSA-fjr5-6w4j-47xf): credits Pavan Nallamothu (Reporter). High. Fixed in 3.1.2. No CVE assigned yet.
 - [CVE-2026-33234 - AutoGPT SSRF via user-controlled SMTP server](https://github.com/Significant-Gravitas/AutoGPT/security/advisories/GHSA-4jwj-6mg5-wrwf): GHSA-4jwj-6mg5-wrwf credits pavanchow (Reporter)
 - [CVE-2026-50023 - yt-dlp dangerous file creation](https://github.com/advisories/GHSA-c6mh-fpjc-4pr3): GHSA-c6mh-fpjc-4pr3 credits pavanchow (Reporter)
 - [CVE-2026-63133 - CISA Malcolm inode-exhaustion DoS](https://github.com/cisagov/Malcolm/security/advisories/GHSA-c35g-mgc3-95rx): GHSA-c35g-mgc3-95rx credits pavanchow (Finder)
 - [CVE-2026-63134 - CISA Malcolm archive path traversal](https://github.com/cisagov/Malcolm/security/advisories/GHSA-65mm-vgrw-vqx4): GHSA-65mm-vgrw-vqx4 credits pavanchow (Finder)
 - [CVE-2026-63177 - CISA Malcolm RBAC / URI-normalization bypass](https://github.com/cisagov/Malcolm/security/advisories/GHSA-m5fr-rv3h-xg2r): GHSA-m5fr-rv3h-xg2r credits pavanchow / Pavan Nallamothu (Finder)
+- [CVE-2026-107337 - CISA Malcolm unauthenticated script execution via CSRF (kiosk /script_call)](https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm): GHSA-w8gq-4v5x-xrrm credits pavanchow / Pavan Nallamothu (Finder)
+- [CVE-2026-107361 - CISA Malcolm missing server-to-server auth on Hedgehog Sensor Arkime reachback port](https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34): GHSA-86h3-7rf8-8j34 credits pavanchow / Pavan Nallamothu (Finder)
+- [CVE-2026-107362 - CISA Malcolm full-read SSRF via FilePond remote-URL fetch in the file-upload component](https://github.com/cisagov/Malcolm/security/advisories/GHSA-cvx2-hj33-vc4q): GHSA-cvx2-hj33-vc4q credits pavanchow / Pavan Nallamothu (Finder)
 - [CVE-2026-63013 - NSA skills-service privilege escalation](https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-67x3-r85f-822r): GHSA-67x3-r85f-822r credits pavanchow (Finder). CVE assigned, MITRE record pending.
 - [CVE-2026-63014 - NSA skills-service cross-project IDOR](https://github.com/NationalSecurityAgency/skills-service/security/advisories/GHSA-p527-vjfp-c43p): GHSA-p527-vjfp-c43p credits pavanchow (Finder). CVE assigned, MITRE record pending.
 - [CVE-2026-40585 - blueprintUE non-expiring password-reset tokens](https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-qr65-6vp8-whjf): GHSA-qr65-6vp8-whjf credits pavanchow (Finder)
@@ -26,8 +28,7 @@ This site (pavanchow.github.io) is the technical hub: per-CVE detail, reproducti
 - [CVE-2026-40588 - blueprintUE password change without current-password check](https://github.com/blueprintue/blueprintue-self-hosted-edition/security/advisories/GHSA-73f2-p9jr-m44x): GHSA-73f2-p9jr-m44x credits pavanchow (Finder)
 
 ## Advisories without a CVE (credit proof)
-- [GHSA-w8gq-4v5x-xrrm - CISA Malcolm unauthenticated script execution via CSRF (kiosk /script_call)](https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm): credits pavanchow / Pavan Nallamothu (Finder)
-- [GHSA-86h3-7rf8-8j34 - CISA Malcolm missing server-to-server auth on Hedgehog Sensor Arkime reachback port](https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34): credits pavanchow / Pavan Nallamothu (Finder)
+- [GHSA-fjr5-6w4j-47xf - NASA AIT-Core format-string memory exhaustion in the BSC capture manager](https://github.com/NASA-AMMOS/AIT-Core/security/advisories/GHSA-fjr5-6w4j-47xf): credits Pavan Nallamothu (Reporter). High. Fixed in 3.1.2. No CVE assigned yet.
 
 ## Papers
 - [SSRF Beyond HTTP: Egress-Path-Incomplete Guards in AI Agent Platforms](https://zenodo.org/records/22075470): Zenodo, DOI 10.5281/zenodo.22075470, author Nallamothu, Pavan

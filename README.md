@@ -3,7 +3,7 @@
 **Security Researcher** - Jersey City, NJ · MS Cybersecurity, Pace University
 
 Published vulnerability research credited by Apple, CISA, the NSA, NASA, and open-source
-maintainers. 14 assigned CVEs across Apple, CISA, the NSA, NASA, AutoGPT, yt-dlp, and
+maintainers. 17 assigned CVEs across Apple, CISA, the NSA, NASA, AutoGPT, yt-dlp, and
 BlueprintUE, plus published GitHub Security Advisories and two research papers on
 SSRF and archive/download file-write attacks.
 
@@ -26,11 +26,12 @@ Website: https://pavanchow.github.io/
 | CVE-2026-50023 | yt-dlp | File write |
 | CVE-2026-63013 | NationalSecurityAgency/skills-service | Privilege escalation |
 | CVE-2026-63014 | NationalSecurityAgency/skills-service | IDOR |
-| CVE-2026-63133 / 63134 / 63177 | cisagov/Malcolm | Web / auth |
+| CVE-2026-63133 / 63134 / 63177 / 107337 / 107361 / 107362 | cisagov/Malcolm | Web / auth |
 | CVE-2026-40585 / 40586 / 40587 / 40588 | BlueprintUE | Web |
 
-Advisories without CVE: [GHSA-86h3-7rf8-8j34](https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34),
-[GHSA-w8gq-4v5x-xrrm](https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm) (cisagov/Malcolm).
+Advisory without a CVE: [GHSA-fjr5-6w4j-47xf](https://github.com/NASA-AMMOS/AIT-Core/security/advisories/GHSA-fjr5-6w4j-47xf) (NASA-AMMOS/AIT-Core).
+
+GitHub Security Advisory cross-references for the Malcolm CVEs: [GHSA-w8gq-4v5x-xrrm](https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm) (CVE-2026-107337), [GHSA-86h3-7rf8-8j34](https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34) (CVE-2026-107361), [GHSA-cvx2-hj33-vc4q](https://github.com/cisagov/Malcolm/security/advisories/GHSA-cvx2-hj33-vc4q) (CVE-2026-107362).
 
 ## Elsewhere
 

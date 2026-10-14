@@ -7,11 +7,11 @@
 <link rel="canonical" href="https://pavanchow.github.io/cve/">
 <link rel="icon" type="image/svg+xml" href="/img/icon/favicon.svg">
 <link rel="apple-touch-icon" href="/img/icon/apple-touch-icon.png">
-<meta name="description" content="Fourteen published CVEs discovered and responsibly disclosed by security researcher Pavan Nallamothu, with fixes and credits from Apple, CISA, the NSA, NASA, yt-dlp, AutoGPT, and BlueprintUE.">
+<meta name="description" content="Seventeen published CVEs discovered and responsibly disclosed by security researcher Pavan Nallamothu, with fixes and credits from Apple, CISA, the NSA, NASA, yt-dlp, AutoGPT, and BlueprintUE.">
 <meta name="author" content="Pavan Nallamothu">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CVEs and Security Advisories - Pavan Nallamothu">
-<meta property="og:description" content="Fourteen published CVEs by security researcher Pavan Nallamothu.">
+<meta property="og:description" content="Seventeen published CVEs by security researcher Pavan Nallamothu.">
 <meta property="og:url" content="https://pavanchow.github.io/cve/">
 <script type="application/ld+json">
 {
@@ -88,6 +88,21 @@
       "@type": "ListItem",
       "position": 14,
       "item": { "@type": "CreativeWork", "name": "CVE-2026-40585", "url": "https://pavanchow.github.io/cve/CVE-2026-40585.html", "about": "Password-reset tokens have no expiry window." }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": { "@type": "CreativeWork", "name": "CVE-2026-107337", "url": "https://pavanchow.github.io/cve/CVE-2026-107337.html", "about": "Unauthenticated CSRF in the kiosk /script_call endpoint allows arbitrary management-command execution." }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": { "@type": "CreativeWork", "name": "CVE-2026-107362", "url": "https://pavanchow.github.io/cve/CVE-2026-107362.html", "about": "Server-side request forgery with full response-body readback via the unmodified FilePond fetch API." }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": { "@type": "CreativeWork", "name": "CVE-2026-107361", "url": "https://pavanchow.github.io/cve/CVE-2026-107361.html", "about": "Authentication bypass via the Arkime live-capture service trusting X-Forwarded-User from any network." }
     }
   ]
 }
@@ -121,7 +136,7 @@
 <div class="wrap">
   <p class="back"><a href="/">&larr; Pavan Nallamothu</a></p>
   <h1>CVEs and Security Advisories</h1>
-  <p class="lead">Fourteen CVEs discovered and responsibly disclosed by Pavan Nallamothu, with fixes and credits from Apple, CISA, the NSA, NASA, and open-source projects including yt-dlp, AutoGPT, and BlueprintUE. Each entry links to the authoritative record where one exists, and to the vendor or repository advisory that names the reporter. Two of the NSA skills-service CVEs are GitHub-CNA-assigned and their cve.org records have not propagated yet, so the advisory is the canonical source there.</p>
+  <p class="lead">Seventeen CVEs discovered and responsibly disclosed by Pavan Nallamothu, with fixes and credits from Apple, CISA, the NSA, NASA, and open-source projects including yt-dlp, AutoGPT, and BlueprintUE. Each entry links to the authoritative record where one exists, and to the vendor or repository advisory that names the reporter. Two of the NSA skills-service CVEs are GitHub-CNA-assigned and their cve.org records have not propagated yet, so the advisory is the canonical source there.</p>
   <div class="card">
     <h3><a href="/cve/CVE-2026-43763.html">CVE-2026-43763</a><span class="sev medium">Medium 5.5</span></h3>
     <div class="t">Apple macOS (Apple Type Services)</div>
@@ -169,6 +184,24 @@
     <div class="t">cisagov/Malcolm</div>
     <p>Inode-exhaustion denial of service in archive extraction.</p>
     <div class="links"><a href="https://www.cve.org/CVERecord?id=CVE-2026-63133">cve.org record</a><a href="https://github.com/cisagov/Malcolm/security/advisories/GHSA-c35g-mgc3-95rx">GitHub advisory</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="/cve/CVE-2026-107337.html">CVE-2026-107337</a><span class="sev high">High 7.1</span></h3>
+    <div class="t">cisagov/Malcolm</div>
+    <p>Unauthenticated CSRF in the kiosk /script_call endpoint allows arbitrary management-command execution.</p>
+    <div class="links"><a href="https://www.cve.org/CVERecord?id=CVE-2026-107337">cve.org record</a><a href="https://github.com/cisagov/Malcolm/security/advisories/GHSA-w8gq-4v5x-xrrm">GitHub advisory</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="/cve/CVE-2026-107362.html">CVE-2026-107362</a><span class="sev high">High 7.1</span></h3>
+    <div class="t">cisagov/Malcolm</div>
+    <p>Server-side request forgery with full response-body readback via the unmodified FilePond fetch API.</p>
+    <div class="links"><a href="https://www.cve.org/CVERecord?id=CVE-2026-107362">cve.org record</a><a href="https://github.com/cisagov/Malcolm/security/advisories/GHSA-cvx2-hj33-vc4q">GitHub advisory</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="/cve/CVE-2026-107361.html">CVE-2026-107361</a><span class="sev medium">Medium 4.2</span></h3>
+    <div class="t">cisagov/Malcolm</div>
+    <p>Authentication bypass via the Arkime live-capture service trusting X-Forwarded-User from any network.</p>
+    <div class="links"><a href="https://www.cve.org/CVERecord?id=CVE-2026-107361">cve.org record</a><a href="https://github.com/cisagov/Malcolm/security/advisories/GHSA-86h3-7rf8-8j34">GitHub advisory</a></div>
   </div>
   <div class="card">
     <h3><a href="/cve/CVE-2026-33234.html">CVE-2026-33234</a><span class="sev medium">Medium 5.0</span></h3>
